@@ -1,0 +1,106 @@
+[t:template,n:deer_hunted]
+{
+  category_name = "1W_evil_a";
+  doc = "A deer to put in the forests around the map.";
+  specializes = actor_evil;
+  [actor]
+  {
+    alignment      = aa_evil;
+    race = other;
+    [skills]
+    {
+      strength =   5, 0;
+      intelligence =  3, 0;
+      dexterity =   4, 0;
+      melee =  1,  0;
+    }
+  }
+  [aspect]
+  {
+    model = m_c_na_dr_pos_1;
+    life = 8;
+    max_life = 8;
+    mana = 8;
+    max_mana = 8;
+       experience_value = 4;
+    is_invincible = false;
+  }
+  [body]
+  {
+    avg_move_velocity = 4.220000;
+    [bone_translator]
+    {
+      body_anterior = spine1;
+      body_mid = spine2;
+      body_posterior = spine_hip;
+      kill_bone = spine_shoulder;
+      shield_bone = spine1;
+      weapon_bone = spine1;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_na_dr_fs;
+      [chore_attack]
+      {
+        chore_stances = 0;
+        skrit = select_attack;
+        [anim_files] { 00=dsf; }
+      }
+      [chore_default]
+      {
+        chore_stances = 0;
+        skrit = infinite_loop;
+        [anim_files] { 00=ds; }
+      }
+      [chore_die]
+      {
+        chore_stances = 0;
+        skrit = select_transition;
+        [anim_files] { 00=di; }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0;
+        skrit = select_fidget;
+        [anim_files]
+        {
+          00 = dsf;
+          01 = dsf-02;
+        }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0;
+        skrit = select_walk;
+        [anim_files] { 00=rl; }
+      }
+    }
+  }
+  [common] { screen_name="Deer"; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        il_main = meat_bone;
+      }
+    }
+  }
+  [mind]
+  {
+    flee_count = 100;
+    on_enemy_spotted_alert_friends = true;
+    on_enemy_spotted_attack = false;
+    on_enemy_entered_ocz_flee = true;
+    on_enemy_entered_icz_flee = false;
+    on_friend_entered_ocz_flee = true;
+    inner_comfort_zone_range = 0.5;
+    melee_engage_range = 0.4;
+    ranged_engage_range = 4.5;
+    outer_comfort_zone_range = 2;
+    personal_space_range = 0.4;
+    sight_range = 5;
+    com_range = 3;
+  }
+}
