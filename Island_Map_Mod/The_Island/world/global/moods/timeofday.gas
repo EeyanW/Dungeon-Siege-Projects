@@ -1,0 +1,33 @@
+[timeofday]
+{                                //typically 1.6
+  RealMinutesPerWorldHour  = 1.75;//0.017 for quick cycles
+                                 //0.05 for quickish cycles for light testing
+                                 //0.20 for regular lighting tests
+                                 //1.5 for the Island map fast
+                                 //1.75 for the Island map normal
+                                 //2.0 for the Island map long
+  00h00m:color = 0xFF9E4DCA;
+  01h00m:color = 0xFF000040;
+  02h00m:color = 0xFF000020;
+  03h00m:color = 0xFF000000;
+  04h00m:color = 0xFF000010;
+  05h00m:color = 0xFFA4700F;
+  06h00m:color = 0xFFA4700F;
+  07h00m:color = 0xFFE0A54B;
+  08h00m:color = 0xFFE0A54B;
+  09h00m:color = 0xFFE0C24B;
+  10h00m:color = 0xFFE0C24B;
+  11h00m:color = 0xFFF5F19A;
+  12h00m:color = 0xFFF5F19A;
+  13h00m:color = 0xFFF8FBD7;
+  14h00m:color = 0xFFF8FBD7;
+  15h00m:color = 0xFFF8FBD7;
+  16h00m:color = 0xFFF8FBD7;
+  17h00m:color = 0xFFF8FBD7;
+  18h00m:color = 0xFFF5F19A;
+  19h00m:color = 0xFFF5F19A;
+  20h00m:color = 0xFFE0C24B;
+  21h00m:color = 0xFFE0C24B;
+  22h00m:color = 0xFFE0A54B;
+  23h00m:color = 0xFFA4700F;
+}

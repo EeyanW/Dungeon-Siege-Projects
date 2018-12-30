@@ -1,0 +1,716 @@
+//////////////////////////////////////////////////////////////////////////////
+//
+// File     :  mood_manager.skrit
+// Author(s):  David Tomandl, James Loe
+//
+// Copyright © 2000 Gas Powered Games, Inc.  All rights reserved.
+//----------------------------------------------------------------------------
+//  $Revision:: $              $Date:$
+//----------------------------------------------------------------------------
+//NOTES:
+//
+// The old version is in mood_manager_old.  -J
+//
+///////////////////////////////////////////////////////////////////////
+// Here's our current system:
+//
+// We care about
+// 1. Who the camera is pointing at (the camera's focus)
+// 2. If that changed between the last time we checked and now
+//
+// If it hasn't changed, use the mood of the person that the camera is focused on
+// If it has changed, instantly switch to the new person's mood
+//////////////////////////////////////////////////////////////////////////////
+// In addition, now the fog changes color based on the time of day.
+// If the hour H :  13 <= H <= 17, fog gets 25% brighter (125% of original)
+// If the hour H :  H = 5,6, or 23, fog gets 25% darker (75% of original)
+// If the hour H :  0 <= H <= 4, fog gets 50% darker (50% of original)
+// Otherwise, it's daytime, and the brightness of the fog stays at 100%.
+//////////////////////////////////////////////////////////////////////////////
+// The weather also randomly changes.  Generally, every 15 seconds there
+// is a good chance of no change happening, or a small change.  There
+// are small chances for a large change in the weather (20% or 30% difference
+// in rain or snow density, for example).
+
+
+//////////////////////////////////////////////////////////////////////////////
+// public definitions
+
+// reserved tags
+property bool   _server_only$    = false;
+property string _doc$        = "Controls mood management";
+
+//float battleTime$          = 0.0;    // Track of time the party has been in battle
+//float battleDelay$        = 2.0;    // Delay in seconds before battle music starts playing
+//float battleMusicTime$      = 0.0;    // Time the battle music will playing beyond the end of the battle
+
+int LastFocused$          = -1;    // Track which party member is the focus
+float Time$              = 0.0;    // This is to trigger time-based actions
+
+int LastHour$            = -1;    // This will help track when the hour of day changes
+string LastMood$          = "x";    // This will allow tracking of when the mood changes
+
+//////////////////////////////////////////////////////////////////////////////
+
+ManageMoods$( GoidColl partyMembers$, bool /*instantSwitch$*/, float secondsElapsed$ )
+{
+
+  Goid focusedGo$;   // get the focused go
+
+  int newFocused$;  // the number of the party member that is focused
+
+  // Run through the party looking for the person with the focus
+  int i$ = 0;
+  while( i$ < partyMembers$.Size() )
+  {
+    if(partyMembers$.Get( i$ ).GetGo.IsFocused())
+    {
+      focusedGo$ = partyMembers$.Get( i$ );
+      newFocused$ = i$; //once we find it, record which number they are
+    }
+        i$ += 1;
+    }
+
+  float transitionTime$ = Mood.GetGoMoodSetting( focusedGo$ ).transitionTime;
+
+  // If the focus has changed, and the mood is different, instantly switch to the new mood
+
+  // We can't get the mood of the last focused mood if this if the first time we have tried to manage moods.
+  // We don't want to try and get a party member that doesn't exist, thus this check  --DT
+
+  if ( ( LastFocused$ < 0 ) || ( LastFocused$ >= partyMembers$.Size() ) ) // if this is the first time through, OR we just disbanded a party member
+  {
+    transitionTime$ = 0;
+  }
+  else if ( newFocused$ != LastFocused$ )
+  {
+    if ( Mood.GetGoRequestedMood( partyMembers$.Get( newFocused$ ) ) != Mood.GetGoRequestedMood( partyMembers$.Get( LastFocused$ ) ) )
+    {
+      transitionTime$ = 0;
+    }
+  }
+  LastFocused$ = newFocused$;
+
+  // Time to play with weather
+
+  Time$ += secondsElapsed$;
+
+  if ( Time$ > 15.0 ) // time to see if the weather is going to change
+  {
+    //report.generic( "I'm going to see if I should change the weather.\n" );
+    Time$ = 0.0;
+    float randomNumber$ = math.randomfloat( 1.0 );
+    // 20% of the time, the weather will not change
+    if (randomNumber$ > 0.2)
+    {
+      //report.generic( "Yep, I'm changing the weather.\n" );
+      // If it's raining, the rain will change
+      if (Mood.GetGoMoodSetting( focusedGo$ ).bRainEnabled)
+      {
+        float rainCurrent$ = Mood.GetGoMoodSetting( focusedGo$ ).rainDensity;
+
+        // This is the original rain density
+        float rainBaseline$ = Mood.GetOriginalMoodSetting( Mood.GetGoRequestedMood( focusedGo$ ) ).rainDensity;
+
+        float weatherModifier$;
+
+        // 50/50 chance of more or less rain
+        randomNumber$ = math.randomfloat( 1.0 );
+        if (randomNumber$ > 0.5)
+        {
+          weatherModifier$ = 1.0;
+          //report.generic( "More rain.\n" );
+        }
+        else
+        {
+          weatherModifier$ = -1.0;
+          //report.generic( "Less rain.\n" );
+        }
+        randomNumber$ = math.randomfloat( 1.0 );
+        // 80% chance of 10% weather change
+        // 10% chance of 20% weather change
+        // 6% chance of 30% weather change
+        // 4% chance of 50% weather change
+
+        if (randomNumber$ < 0.5)
+        {
+          weatherModifier$ *= 0.1;
+          //report.generic( "10% change.\n" );
+        }
+        else if (randomNumber$ < 0.55)
+        {
+          weatherModifier$ *= 0.2;
+          //report.generic( "20% change.\n" );
+        }
+        else if (randomNumber$ < 0.6)
+        {
+          weatherModifier$ *= 0.3;
+          //report.generic( "30% change.\n" );
+        }
+        else if (randomNumber$ < 0.63)
+        {
+          weatherModifier$ *= 0.4;
+          //report.generic( "40% change.\n" );
+        }
+        else if (randomNumber$ < 0.68)
+        {
+          weatherModifier$ *= 0.5;
+          //report.generic( "50% change.\n" );
+        }
+        else if (randomNumber$ < 0.7)
+        {
+          weatherModifier$ *= 0.6;
+          //report.generic( "60% change.\n" );
+        }
+        else if (randomNumber$ < 0.73)
+        {
+          weatherModifier$ *= 0.7;
+          //report.generic( "70% change.\n" );
+        }
+        else if (randomNumber$ < 0.77)
+        {
+          weatherModifier$ *= 0.8;
+          //report.generic( "80% change.\n" );
+        }
+        else if (randomNumber$ < 0.8)
+        {
+          weatherModifier$ *= 0.9;
+          //report.generic( "90% change.\n" );
+        }
+        else
+        {
+          weatherModifier$ *= 1.0;
+          //report.generic( "100% change.\n" );
+        }
+
+        rainCurrent$ += rainBaseline$ * weatherModifier$;
+
+        // This will keep the weather from becoming too different from the base mood
+        //if (rainCurrent$ < (rainBaseline$ * 0.5) ) { rainCurrent$ = (rainBaseline$ * 0.5); }
+        //if (rainCurrent$ > (rainBaseline$ * 1.5) ) { rainCurrent$ = (rainBaseline$ * 1.5); }
+
+        // Now 100% chance of lightning above a certain threshold (used to be 70%).
+        // People rarely noticed that the lightning was random, and it makes maintaining
+        // the state of the lightning easier  --DT
+        if ( ( rainCurrent$ >= 200.0 ) || ( GameAuditor.GetDb.GetBool( "turn_world_red" ) && ( Mood.GetGoMoodSetting( focusedGo$ ).bInterior == false ) ) )
+        {
+          Mood.GetGoMoodSetting( focusedGo$ ).bLightning = true;
+          //report.genericF("Rain density is now %f, turned on lightning.\n", rainCurrent$);
+        }
+        else
+        {
+          Mood.GetGoMoodSetting( focusedGo$ ).bLightning = false;
+          //report.genericF("Rain density is now %f, turned off lightning.\n", rainCurrent$);
+        }
+
+        // This applies the changes
+        Mood.GetGoMoodSetting( focusedGo$ ).rainDensity = rainCurrent$;
+        Mood.ForceUpdateRain(0);
+
+        //report.genericF("Rain density is now %f,base rain is %f\n",rainCurrent$,rainBaseline$);
+      } // end rain modification
+
+      // If it's snowing, the snow will change
+      if (Mood.GetGoMoodSetting( focusedGo$ ).bSnowEnabled)
+      {
+        float snowCurrent$ = Mood.GetGoMoodSetting( focusedGo$ ).snowDensity;
+
+        // This is the original snow density
+        float snowBaseline$ = Mood.GetOriginalMoodSetting( Mood.GetGoRequestedMood( focusedGo$ ) ).snowDensity;
+
+        float weatherModifier$;
+
+        // 50/50 chance of more or less snow
+        randomNumber$ = math.randomfloat( 1.0 );
+        if (randomNumber$ > 0.5)
+        {
+          weatherModifier$ = 1.0;
+          //report.generic( "More snow.\n" );
+        }
+        else
+        {
+          weatherModifier$ = -1.0;
+          //report.generic( "Less snow.\n" );
+        }
+        randomNumber$ = math.randomfloat( 1.0 );
+        // 80% chance of 10% weather change
+        // 10% chance of 20% weather change
+        // 6% chance of 30% weather change
+        // 4% chance of 50% weather change
+
+        if (randomNumber$ < 0.8)
+        {
+          weatherModifier$ *= 0.1;
+          //report.generic( "10% change.\n" );
+        }
+        else if (randomNumber$ < 0.9)
+        {
+          weatherModifier$ *= 0.2;
+          //report.generic( "20% change.\n" );
+        }
+        else if (randomNumber$ < 0.96)
+        {
+          weatherModifier$ *= 0.3;
+          //report.generic( "30% change.\n" );
+        }
+        else
+        {
+          weatherModifier$ *= 0.5;
+          //report.generic( "50% change.\n" );
+        }
+
+        snowCurrent$ += snowBaseline$ * weatherModifier$;
+
+        if (snowCurrent$ < (snowBaseline$ * 0.5) ) { snowCurrent$ = (snowBaseline$ * 0.5); }
+        if (snowCurrent$ > (snowBaseline$ * 1.5) ) { snowCurrent$ = (snowBaseline$ * 1.5); }
+
+        // This applies the changes
+        Mood.GetGoMoodSetting( focusedGo$ ).snowDensity = snowCurrent$;
+        Mood.ForceUpdateSnow(0);
+
+        //report.genericF("Snow density is now %f,base snow is %f\n",snowCurrent$,snowBaseline$);
+        //report.genericF("Snow density is now %f,base snow is %f\nOriginal mood name: %s, snow value %f\n",snowCurrent$,snowBaseline$,originalMood$,originalSnow$);
+      } // end snow modification
+
+      // If it's windy, the wind will change
+      if (Mood.GetGoMoodSetting( focusedGo$ ).bWindEnabled)
+      {
+        float windCurrent$ = Mood.GetGoMoodSetting( focusedGo$ ).windVelocity;
+        // This is the original wind velocity
+        float windBaseline$ = Mood.GetMoodSetting( Mood.GetGoRequestedMood( focusedGo$ ) ).windVelocity;
+        float weatherModifier$;
+
+        // 50/50 chance of more or less wind
+        randomNumber$ = math.randomfloat( 1.0 );
+        if (randomNumber$ > 0.5)
+        {
+          weatherModifier$ = 1.0;
+          //report.generic( "More wind.\n" );
+        }
+        else
+        {
+          weatherModifier$ = -1.0;
+          //report.generic( "Less wind.\n" );
+        }
+        randomNumber$ = math.randomfloat( 1.0 );
+        // 80% chance of 10% weather change
+        // 10% chance of 20% weather change
+        // 6% chance of 30% weather change
+        // 4% chance of 50% weather change
+
+        if (randomNumber$ < 0.8)
+        {
+          weatherModifier$ *= 0.1;
+          //report.generic( "10% change.\n" );
+        }
+        else if (randomNumber$ < 0.9)
+        {
+          weatherModifier$ *= 0.2;
+          //report.generic( "20% change.\n" );
+        }
+        else if (randomNumber$ < 0.96)
+        {
+          weatherModifier$ *= 0.3;
+          //report.generic( "30% change.\n" );
+        }
+        else
+        {
+          weatherModifier$ *= 0.5;
+          //report.generic( "50% change.\n" );
+        }
+
+        windCurrent$ += windBaseline$ * weatherModifier$;
+
+        if (windCurrent$ < (windBaseline$ * 0.5) ) { windCurrent$ = (windBaseline$ * 0.5); }
+        if (windCurrent$ > (windBaseline$ * 1.5) ) { windCurrent$ = (windBaseline$ * 1.5); }
+
+        // This applies the changes
+        Mood.GetGoMoodSetting( focusedGo$ ).windVelocity = windCurrent$;
+        Mood.ForceUpdateWind(0);
+
+        //report.genericF("Wind velocity is now %f,base wind is %f\n",windCurrent$,windBaseline$);
+        //report.genericF("Wind velocity is now %f,base wind is %f\nOriginal mood name: %s, wind value %f\n",windCurrent$,windBaseline$,originalMood$,originalWind$);
+      } // end wind modification
+
+    } // end weather modification
+  }
+
+  // This is a check to see if the lightning is enabled when it shouldn't be.
+  // This could happen if they were playing in the multiplayer world, and had the "turn_world_red" quest,
+  // and walked through outdoor areas.
+
+  if (
+    ( Mood.GetOriginalMoodSetting( Mood.GetGoRequestedMood( focusedGo$ ) ).bLightning == false ) &&
+    ( Mood.GetGoMoodSetting( focusedGo$ ).bLightning == true ) &&
+    !( GameAuditor.GetDb.GetBool( "turn_world_red" ) ) &&
+    !( Mood.GetGoMoodSetting( focusedGo$ ).rainDensity > 200 )
+     )
+  {
+    Mood.GetGoMoodSetting( focusedGo$ ).bLightning = false;
+    Mood.ForceUpdateRain(0); // This applies the change
+    //report.genericF("Rain density is now %f, turned off lightning.\n",Mood.GetGoMoodSetting( focusedGo$ ).rainDensity);
+  }
+
+  // This will change the color of the fog based on the time of day.
+
+  int currentHour$ = TimeOfDay.GetHour();
+  string currentMood$ = Mood.GetGoRequestedMood( focusedGo$ ); // Get the name of the current mood
+
+    // Fog color should change with time of day...but not if they are inside.
+
+  // Adding a check for the multiplayer "turn_world_red" quest...this is the normal block, the "turn world red" block is after this
+  if ( !GameAuditor.GetDb.GetBool( "turn_world_red" ) && ( Mood.GetGoMoodSetting( focusedGo$ ).bInterior == false) && ( (currentHour$ != LastHour$) || (currentMood$ != LastMood$ ) ) )
+  {
+    //report.genericf( "The old/new hour: %i / %i.\n", LastHour$, currentHour$);
+    //report.genericf( "The old/new mood: %s / %s.\n", LastMood$, currentMood$);
+
+    // Fog color changes are: 50% at night, 75% for morning/evening, and 125% for noon/bright.
+
+    // Fog color format: 0xAARRGGBB; hex, AA = alpha, RR = red, GG = green, BB = blue
+    // Fog color is really an "unsigned int", but skrit doesn't recognize that.
+    // I'll handle it as an int, and be careful.
+
+    int baseFogColor$ = Mood.GetOriginalMoodSetting( Mood.GetGoRequestedMood( focusedGo$ ) ).fogColor;
+    int oldFogColor$ = Mood.GetGoMoodSetting( focusedGo$ ).fogColor;
+    int newFogColor$;
+
+    int alphaFogComponent$  = baseFogColor$ & 0xFF000000; //I'm not going to mess with the alpha, it's just here for consistency
+    int redFogComponent$  = baseFogColor$ & 0x00FF0000;
+    int greenFogComponent$  = baseFogColor$ & 0x0000FF00;
+    int blueFogComponent$  = baseFogColor$ & 0x000000FF;
+
+    //report.genericf("base fog red / green / blue : 0x%x / 0x%x / 0x%x\n", redFogComponent$, greenFogComponent$, blueFogComponent$);
+
+    if ( ( currentHour$ >= 0 ) && ( currentHour$ <= 4 ) ) {
+      // Night; fog color set to 50%
+      // This is really what I'm doing...
+
+      // redFogComponent$ *= 0.5;
+      // greenFogComponent$ *= 0.5;
+      // blueFogComponent$ *= 0.5;
+
+      // ...I'm just forcing the conversions here to get rid of warnings.
+      redFogComponent$ = int ( (float (redFogComponent$)) * 12 );//used to be .5
+      greenFogComponent$ = int ( (float (greenFogComponent$)) * 12 );//used to be .5
+      blueFogComponent$ = int ( (float (blueFogComponent$)) * 12 );//used to be .5
+      //redFogComponent$ = redFogComponent$ & 0x00FF0000;
+      //greenFogComponent$ = greenFogComponent$ & 0x0000FF00;
+      //blueFogComponent$ = blueFogComponent$ & 0x000000FF;
+
+      redFogComponent$ = 0x00FF0000;
+      greenFogComponent$ = 0x0000FF00;
+      blueFogComponent$ = 0x000000FF;
+
+      newFogColor$ = redFogComponent$ | greenFogComponent$ | blueFogComponent$;
+
+      //newFogColor$ = alphaFogComponent$ | redFogComponent$ | greenFogComponent$ | blueFogComponent$;
+    }
+    else if (( currentHour$ >= 17 ) && ( currentHour$ <= 22 ) || ( currentHour$ == 5 )) {
+
+      redFogComponent$ = int ( (float (redFogComponent$)) * 6 );//used to be .5
+      greenFogComponent$ = int ( (float (greenFogComponent$)) * 6 );//used to be .5
+      blueFogComponent$ = int ( (float (blueFogComponent$)) * 6 );//used to be .5
+
+      redFogComponent$ = 0x00FF0000;
+      greenFogComponent$ = 0x0000FF00;
+      blueFogComponent$ = 0x000000FF;
+
+      newFogColor$ = redFogComponent$ | greenFogComponent$ | blueFogComponent$;
+
+    }
+    else if ( ( currentHour$ == 6 ) || ( currentHour$ == 16 ) ) {
+      // Sunset/Sunrise; fog color set to 75%
+
+      // The int (float () ) conversions are to suppress warnings
+      redFogComponent$ = int ( (float (redFogComponent$)) * 3 );//used to be .75
+      greenFogComponent$ = int ( (float (greenFogComponent$)) * 3 );//used to be .75
+      blueFogComponent$ = int ( (float (blueFogComponent$)) * 3 );//used to be .75
+
+      redFogComponent$ = redFogComponent$ & 0x00FF0000;
+      greenFogComponent$ = greenFogComponent$ & 0x0000FF00;
+      blueFogComponent$ = blueFogComponent$ & 0x000000FF;
+      newFogColor$ = alphaFogComponent$ | redFogComponent$ | greenFogComponent$ | blueFogComponent$;
+    }
+    else if ( ( currentHour$ >= 12 ) && ( currentHour$ <= 15 ) ) {
+      // Bright Daylight; fog color set to 125%
+
+      // The int (float () ) conversions are to suppress warnings
+      redFogComponent$ = int ( (float (redFogComponent$)) * 1.25 );
+      greenFogComponent$ = int ( (float (greenFogComponent$)) * 1.25 );
+      blueFogComponent$ = int ( (float (blueFogComponent$)) * 1.25 );
+
+      redFogComponent$ = redFogComponent$ & 0x00FF0000;
+      greenFogComponent$ = greenFogComponent$ & 0x0000FF00;
+      blueFogComponent$ = blueFogComponent$ & 0x000000FF;
+
+      // Upper bound check; this should prevent a bright fog from suddenly getting really dark thanks to the above calculations
+      // baseFogColor$ is commented out.  If commented, anything that fails the check gets set to FF, if not commented, set to original value.
+      if ( ( redFogComponent$ & 0x00FF0000 ) < ( baseFogColor$ & 0x00FF0000 ) ) { redFogComponent$ = /*baseFogColor$ & */0x00FF0000; }
+      if ( ( greenFogComponent$ & 0x0000FF00 ) < ( baseFogColor$ & 0x0000FF00 ) ) { greenFogComponent$ = /*baseFogColor$ & */0x0000FF00; }
+      if ( ( blueFogComponent$ & 0x000000FF ) < ( baseFogColor$ & 0x000000FF ) ) { blueFogComponent$ = /*baseFogColor$ & */0x000000FF; }
+
+      newFogColor$ = alphaFogComponent$ | redFogComponent$ | greenFogComponent$ | blueFogComponent$;
+    }
+
+    // This should catch the transition back into normal daylight hours
+    else if ( ( ( currentHour$ >= 7 ) && ( currentHour$ <= 11) ) ) {
+      newFogColor$ = baseFogColor$;
+    }
+
+    if ( Mood.GetGoMoodSetting( focusedGo$ ).rainDensity > 200 ) {
+      // Heavy Rain darkens the fog to 85% of current value
+
+      // The int (float () ) conversions are to suppress warnings
+      redFogComponent$ = int ( (float (redFogComponent$)) * 0.85 );
+      greenFogComponent$ = int ( (float (greenFogComponent$)) * 0.85 );
+      blueFogComponent$ = int ( (float (blueFogComponent$)) * 0.85 );
+
+      redFogComponent$ = redFogComponent$ & 0x00FF0000;
+      greenFogComponent$ = greenFogComponent$ & 0x0000FF00;
+      blueFogComponent$ = blueFogComponent$ & 0x000000FF;
+
+      newFogColor$ = alphaFogComponent$ | redFogComponent$ | greenFogComponent$ | blueFogComponent$;
+    }
+
+    Mood.GetGoMoodSetting( focusedGo$ ).fogColor = newFogColor$; // apply changes
+
+    //report.genericf( "Fog base / last / new : 0x%x / 0x%x / 0x%x.\n", baseFogColor$, oldFogColor$, newFogColor$);
+
+    // If the mood just changed, the engine will update the fog color to the value that we just created.
+    // If the mood has not changed, we have to prompt it to update.
+
+    if (( LastMood$ == currentMood$ ) && (oldFogColor$ != newFogColor$)) { Mood.ForceUpdateFog( 15.0 ); }
+
+    LastMood$ = currentMood$; // cleanup
+    LastHour$ = currentHour$; // cleanup
+
+  }
+
+  // Adding this block for the special "turn the whole world red" quest in multiplayer world
+  else if ( GameAuditor.GetDb.GetBool( "turn_world_red" ) && ( (currentHour$ != LastHour$) || (currentMood$ != LastMood$ ) ) )
+  {
+    //report.genericf( "The old/new hour: %i / %i.\n", LastHour$, currentHour$);
+    //report.genericf( "The old/new mood: %s / %s.\n", LastMood$, currentMood$);
+
+    // I'm going to invert the normal scheme of things (since the quest is pretty much "you released the evil")
+    // so the night gets brighter, day gets darker: 125% at night, 100% for morning/evening, 75% for the day, and 50% for noon/bright.
+
+    // Fog color format: 0xAARRGGBB; hex, AA = alpha, RR = red, GG = green, BB = blue
+    // Fog color is really an "unsigned int", but skrit doesn't recognize that.
+    // I'll handle it as an int, and be careful.
+
+    int baseFogColor$ = Mood.GetOriginalMoodSetting( Mood.GetGoRequestedMood( focusedGo$ ) ).fogColor;
+    int oldFogColor$ = Mood.GetGoMoodSetting( focusedGo$ ).fogColor;
+    int newFogColor$;
+
+    int alphaFogComponent$  = baseFogColor$ & 0xFF000000; //I'm not going to mess with the alpha, it's just here for consistency
+    int redFogComponent$  = baseFogColor$ & 0x00FF0000;
+    int greenFogComponent$  = baseFogColor$ & 0x0000FF00;
+    int blueFogComponent$  = baseFogColor$ & 0x000000FF;
+
+    //report.genericf("base fog red / green / blue : 0x%x / 0x%x / 0x%x\n", redFogComponent$, greenFogComponent$, blueFogComponent$);
+
+    if ( ( currentHour$ >= 0 ) && ( currentHour$ <= 4 ) ) {
+      // Night; fog color set to 125%
+      // This is really what I'm doing...
+
+      // redFogComponent$ *= 1.25;
+      // greenFogComponent$ *= 1.25;
+      // blueFogComponent$ *= 1.25;
+
+      // ...I'm just forcing the conversions here to get rid of warnings.
+      if (redFogComponent$ < greenFogComponent$) { redFogComponent$ = greenFogComponent$; }
+      if (redFogComponent$ < blueFogComponent$) { redFogComponent$ = blueFogComponent$; }
+
+      redFogComponent$ = int ( (float (redFogComponent$)) * 1.25 );
+      greenFogComponent$ = int ( (float (greenFogComponent$)) * 0 );
+      blueFogComponent$ = int ( (float (blueFogComponent$)) * 0 );
+
+      redFogComponent$   = redFogComponent$   & 0x00FF0000;
+      greenFogComponent$  = greenFogComponent$ & 0x0000FF00;
+      blueFogComponent$  = blueFogComponent$  & 0x000000FF;
+
+      // Upper bound check; this should prevent a bright fog from suddenly getting really dark thanks to the above calculations
+      // baseFogColor$ is commented out.  If commented, anything that fails the check gets set to FF, if not commented, set to original value.
+      //if ( ( redFogComponent$ & 0x00FF0000 ) < ( baseFogColor$ & 0x00FF0000 ) ) { redFogComponent$ = /*baseFogColor$ & */0x00FF0000; }
+      //if ( ( greenFogComponent$ & 0x0000FF00 ) < ( baseFogColor$ & 0x0000FF00 ) ) { greenFogComponent$ = /*baseFogColor$ & */0x0000FF00; }
+      //if ( ( blueFogComponent$ & 0x000000FF ) < ( baseFogColor$ & 0x000000FF ) ) { blueFogComponent$ = /*baseFogColor$ & */0x000000FF; }
+
+      newFogColor$ = alphaFogComponent$ | redFogComponent$ | greenFogComponent$ | blueFogComponent$;
+    }
+    else if ( ( ( currentHour$ >= 7 ) && ( currentHour$ <= 12) ) || ( ( currentHour$ >= 18 ) && ( currentHour$ <= 22 ) ) ) {
+      // Normal day hours; fog color set to 75%
+
+      if (redFogComponent$ < greenFogComponent$) { redFogComponent$ = greenFogComponent$; }
+      if (redFogComponent$ < blueFogComponent$) { redFogComponent$ = blueFogComponent$; }
+
+      // The int (float () ) conversions are to suppress warnings
+      redFogComponent$ = int ( (float (redFogComponent$)) * 0.75 );
+      greenFogComponent$ = int ( (float (greenFogComponent$)) * 0 );
+      blueFogComponent$ = int ( (float (blueFogComponent$)) * 0 );
+
+      redFogComponent$ = redFogComponent$ & 0x00FF0000;
+      greenFogComponent$ = greenFogComponent$ & 0x0000FF00;
+      blueFogComponent$ = blueFogComponent$ & 0x000000FF;
+      newFogColor$ = alphaFogComponent$ | redFogComponent$ | greenFogComponent$ | blueFogComponent$;
+    }
+    else if ( ( currentHour$ >= 13 ) && ( currentHour$ <= 17 ) ) {
+      // Noon; fog color set to 50%
+
+      if (redFogComponent$ < greenFogComponent$) { redFogComponent$ = greenFogComponent$; }
+      if (redFogComponent$ < blueFogComponent$) { redFogComponent$ = blueFogComponent$; }
+
+      // The int (float () ) conversions are to suppress warnings
+      redFogComponent$ = int ( (float (redFogComponent$)) * 0.5 );
+      greenFogComponent$ = int ( (float (greenFogComponent$)) * 0 );
+      blueFogComponent$ = int ( (float (blueFogComponent$)) * 0 );
+
+      redFogComponent$ = redFogComponent$ & 0x00FF0000;
+      greenFogComponent$ = greenFogComponent$ & 0x0000FF00;
+      blueFogComponent$ = blueFogComponent$ & 0x000000FF;
+      newFogColor$ = alphaFogComponent$ | redFogComponent$ | greenFogComponent$ | blueFogComponent$;
+    }
+
+    // This is the early morning/late evening hours, fog at 100% normal brightness
+    else if ( (( currentHour$ >= 5 ) && ( currentHour$ <= 6 )) || ( currentHour$ == 23 ) ) {
+      if (redFogComponent$ < greenFogComponent$) { redFogComponent$ = greenFogComponent$; }
+      if (redFogComponent$ < blueFogComponent$) { redFogComponent$ = blueFogComponent$; }
+
+      newFogColor$ = alphaFogComponent$ | redFogComponent$;
+    }
+
+    else {
+      // other cases...not that there should be any...
+
+      if (redFogComponent$ < greenFogComponent$) { redFogComponent$ = greenFogComponent$; }
+      if (redFogComponent$ < blueFogComponent$) { redFogComponent$ = blueFogComponent$; }
+
+      // The int (float () ) conversion is to suppress warnings
+      redFogComponent$ = int ( (float (redFogComponent$)) * 1.0 );
+
+      redFogComponent$ = redFogComponent$ & 0x00FF0000;
+      greenFogComponent$ = 0;
+      blueFogComponent$ = 0;
+
+      newFogColor$ = alphaFogComponent$ | redFogComponent$;
+    }
+
+    if ( Mood.GetGoMoodSetting( focusedGo$ ).rainDensity > 200 ) {
+      // Heavy Rain darkens the fog to 85% of current value
+
+      // The int (float () ) conversions are to suppress warnings
+      redFogComponent$ = int ( (float (redFogComponent$)) * 0.85 );
+      greenFogComponent$ = int ( (float (greenFogComponent$)) * 0.85 );
+      blueFogComponent$ = int ( (float (blueFogComponent$)) * 0.85 );
+
+      redFogComponent$ = redFogComponent$ & 0x00FF0000;
+      greenFogComponent$ = greenFogComponent$ & 0x0000FF00;
+      blueFogComponent$ = blueFogComponent$ & 0x000000FF;
+
+      newFogColor$ = alphaFogComponent$ | redFogComponent$ | greenFogComponent$ | blueFogComponent$;
+    }
+
+    Mood.GetGoMoodSetting( focusedGo$ ).fogColor = newFogColor$; // apply changes
+
+    //report.genericf( "Fog base / last / new : 0x%x / 0x%x / 0x%x.\n", baseFogColor$, oldFogColor$, newFogColor$);
+
+    // Adding this by popular request -- there will now be lightning in all non-interior areas of the world
+    // when the fog is red
+    if ( Mood.GetGoMoodSetting( focusedGo$ ).bInterior == false ) {
+      Mood.GetGoMoodSetting( focusedGo$ ).bLightning = true;
+      Mood.ForceUpdateRain(0); // This applies the change
+    }
+
+    // If the mood just changed, the engine will update the fog color to the value that we just created.
+    // If the mood has not changed, we have to prompt it to update.
+
+    if (( LastMood$ == currentMood$ ) && (oldFogColor$ != newFogColor$)) { Mood.ForceUpdateFog( 15.0 ); }
+
+    LastMood$ = currentMood$; // cleanup
+    LastHour$ = currentHour$; // cleanup
+
+  }  // Now back to our regularly scheduled programming
+
+  // Set the focused go as the active go for all mood components
+  Mood.SetActiveSunGo( focusedGo$, transitionTime$ );
+  Mood.SetActiveFogGo( focusedGo$, transitionTime$ );
+  Mood.SetActiveRainGo( focusedGo$, transitionTime$ );
+  Mood.SetActiveSnowGo( focusedGo$, transitionTime$ );
+  Mood.SetActiveWindGo( focusedGo$, transitionTime$ );
+  Mood.SetActiveMusicGo( focusedGo$, transitionTime$ );
+
+  // Always play ambient theme and standard music
+  Mood.PlayAmbientTrack( 0.0 );
+  Mood.PlayStandardTrack( 0.0 );
+
+  // If we decided to turn off the music (and fiddle with the "battle music" track),
+  // here's how we could turn it back on:
+  /*
+    // Play standard music if it is not already playing
+    if( !Mood.IsStandardTrackPlaying() )
+    {
+      Mood.PlayStandardTrack( 2.0 );
+    }
+  */
+
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
+/*****************************************************************************
+**              DOCUMENTATION                  **
+******************************************************************************
+
+  // If you need to retrieve information about a mood, use the following:
+
+  Mood.GetGoRequestedMood( goid );      // Get the name of the mood requested by this GO
+  Mood.GetGoMoodSetting( goid );        // Get the setting requested by the GO
+  Mood.GetMoodSetting( moodName );      // Get the setting for the mood of this name
+
+  // You can manually activate a mood by name by doing:
+
+  Mood.SetMood( moodName, transTime );    // Transition to the given mood over transTime
+
+  // Or you can activate individual mood components directly from
+  // the GO by doing:
+
+  Mood.SetActiveSunGo( goid, transTime );    // Set the active sun mood to this GO's mood, transitioning over transTime
+  Mood.SetActiveFogGo( goid, transTime );    // Set the active fog mood to this GO's mood, transitioning over transTime
+  Mood.SetActiveRainGo( goid, transTime );  // Set the active rain mood to this GO's mood, transitioning over transTime
+  Mood.SetActiveSnowGo( goid, transTime );  // Set the active snow mood to this GO's mood, transitioning over transTime
+  Mood.SetActiveWindGo( goid, transTime );  // Set the active wind mood to this GO's mood, transitioning over transTime
+  Mood.SetActiveMusicGo( goid, transTime );  // Set the active music mood to this GO's mood, transitioning over transTime
+
+  // You can retreive information about the GO's that are currently
+  // controlling different parts of the mood by calling:
+
+  Mood.GetActiveSunGo();            // Get the active sun GO
+  Mood.GetActiveFogGo();            // Get the active fog GO
+  Mood.GetActiveRainGo();            // Get the active rain GO
+  Mood.GetActiveSnowGo();            // Get the active snow GO
+  Mood.GetActiveWindGo();            // Get the active wind GO
+  Mood.GetActiveMusicGo();          // Get the active music GO
+
+  // By default, all music is disabled.  To play any tracks, you must specify the tracks
+  // to play and the time to fade the track in.  For example, to fade in a theme:
+
+  Mood.PlayStandardTrack( 0.0 );        // Instantly start playing the standard theme
+  Mood.PlayBattleTrack( 2.0 );        // Fade in battle theme over 2 seconds
+  Mood.PlayAmbientTrack( 10.0 );        // Fade in ambient theme over 10 seconds
+
+  // Once you have started a theme, you are also responsible for stopping it.  To fade out
+  // the theme, you would do:
+
+  Mood.StopStandardTrack( 1.0 );        // Fade out standard theme over 1 second
+  Mood.StopBattleTrack( 0.0 );        // Instantly stop playing the battle theme
+  Mood.StopAmbientTrack( 2.0 );        // Fade our ambient theme of 2 seconds
+
+  // In many cases, you may need to determine if a theme is playing.  To do this:
+
+  Mood.IsStandardTrackPlaying();        // See if standard track is currently playing or not
+  Mood.IsBattleTrackPlaying();        // See if battle track is currently playing or not
+  Mood.IsAmbientTrackPlaying();        // See if ambient track is currently playing or not
+
+******************************************************************************
+**              END DOCUMENTATION                **
+*****************************************************************************/

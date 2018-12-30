@@ -1,0 +1,73 @@
+
+[effect_script*]
+{
+  name  =island_moth_dust;
+
+  script  =[[
+      set $velocity 0,-40,-30;
+      set $accel 0,10,-10;
+
+      set $flames1 100;
+      set $flames2 100;
+
+      set $width1 1;
+      set $width2 5;
+
+      /////////////////////////////////////////
+      // This is the main trackball for the effect, everything is based off of this.
+      sfx create trackball #TARGET_KB
+        "must_update()delay(.4)invisible()color0(1,1,1)dur(6)afterlife(2)";
+      set $trackball #POP;
+      sfx position_at $trackball bone02 source;
+      sfx freeze_targets $trackball;
+      sfx friendly party $trackball;
+
+      sfx create fire #TARGET
+        "must_update()ts(4)dark()grey_tex()count(10)color0(0.7,0.7,0.1)velocity(0,0,0)
+        accel(0,0,0)flamesize(4)alphafade(1)max_radius(2)";
+      set $fire #POP;
+      sfx rat $fire;
+      sfx target $fire $trackball;
+      sfx attach $trackball $fire;
+
+      sfx create fire #TARGET
+        "must_update()texture(b_sfx_sparkle01)count(25)color0(1,1,1)velocity(0,2,0)
+        accel(0,-10,0)flamesize(2.5)alphafade(.45)max_radius(4)";
+      set $fire2 #POP;
+      sfx rat $fire2;
+      sfx target $fire2 $trackball;
+      sfx attach $trackball $fire2;
+
+      sfx start $trackball;
+
+      sfx create charge #SOURCE
+        "centersize(.35)scale(.75)radius(1)count(10)color0(0.7,0.7,0.1)
+        ts(5)dur(.5)";
+      sfx attach_point #PEEK bone02 target;
+      sfx start #POP;
+
+      sfx create explosion #SOURCE
+        "srate(.01)ts(.3)omni_dir()scale_range(.2,.5,0)texture(b_sfx_sparkle01)
+        color0(0.7,0.7,0.1)dur(2)radius(.2)fade_range(0,1,0)
+        count(20)";
+      sfx attach_point #PEEK bone02 target;
+      sfx start #POP;
+
+      waitfor collision $trackball #DEFAULT_TIMEOUT;
+
+      set $collision_type #POP;
+
+      if ( $collision_type != #NO_COLLISION )
+      {
+        get collision point $trackball;
+
+        sfx create explosion #POP
+          "ts(.6)omni_dir()texture(b_sfx_sparkle01)
+          color0(0.7,0.7,0.1)dur(2)radius(.2)fade_range(0,1,0)
+          count(15)";
+        sfx start #POP;
+      }
+
+      worldmsg WE_SPELL_SYNC_END #INVALID_GOID #OWNER_GOID #TARGET_GOID;
+      ]];
+}

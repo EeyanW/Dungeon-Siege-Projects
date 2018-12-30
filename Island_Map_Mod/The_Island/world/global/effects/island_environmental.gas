@@ -1,0 +1,53 @@
+/*
+[effect_script*]
+{
+  name  =torch_firews3-equip; // translated down more
+
+  script  =[[
+      if ( #LODFI > 0.5 )
+      {
+        sfx create fire #TARGET
+          "flamesize(2)dark()grey_tex()color0(0,0,0)color1(0,0,0)
+          instant()offset(0,.35,0)scale(.525)min_count(10)count(20)
+          ";
+        set $smoke #POP;
+        sfx attach_point $smoke ap_light target;
+        sfx start $smoke;
+      }
+
+            sfx create fire #TARGET
+              "offset(0,0,0)instant()scale(.525)min_count(10)count(20)
+              texture(b_sfx_fireball-01)flamesize(.5)color0(.75,.35,.24)
+              color1(.2,0,0)max_radius(1.45)";
+      set $flame #POP;
+      sfx attach_point $flame ap_light target;
+      sfx start $flame;
+
+      ]];
+}
+*/
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+[effect_script*]
+{
+  name  =torch_firews3-equip; // translated down more
+
+  script  =[[
+          sfx create fireb #TARGET
+           "dark()flamesize(2)count(20)alphafade(.55)color0(0,0,0)
+           offset(0,.35,0)velocity(0,5,0)accel(0,0,0)";
+        set $smoke #POP;
+        sfx attach_point $smoke ap_light target;
+        sfx start $smoke;
+
+            sfx create fire #TARGET
+              "ignite()fdamage(.001,.001,.2)instant()scale(.525)count(20)
+              texture(b_sfx_fireball-01)flamesize(.5)color0(.75,.35,.24)
+              color1(.2,0,0)max_radius(1.45)";
+      set $flame #POP;
+      sfx attach_point $flame ap_light target;
+      sfx start $flame;
+
+      ]];
+}

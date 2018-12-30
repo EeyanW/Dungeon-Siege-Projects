@@ -1,0 +1,45 @@
+//////////////////////////////////////////////////////////////////////////////
+// Ramp fx
+
+Fx_RampUp$( LightFxTarget /*fx$*/, GoLight light$ )
+{
+  SetState RampUp$;
+
+  // start out on but dark
+  light$.Active = true;
+  light$.Intensity = 0;
+}
+
+state RampUp$ event OnLightFxUpdate$(
+  float         /*deltaTime$*/,
+  float           currentTime$,
+  float           duration$,
+  LightFxTarget /*fx$*/,
+  GoLight         light$ )
+{
+  light$.Intensity = light$.ProtoIntensity * Math.FilterSmoothStep( currentTime$ / duration$ );
+}
+
+Fx_RampDown$( LightFxTarget /*fx$*/, GoLight /*light$*/ )
+{
+  SetState RampDown$;
+}
+
+state RampDown$ event OnLightFxUpdate$(
+  float         /*deltaTime$*/,
+  float           currentTime$,
+  float           duration$,
+  LightFxTarget /*fx$*/,
+  GoLight         light$ )
+{
+  if ( currentTime$ ~= duration$ )
+  {
+    light$.Active = false;
+  }
+  else
+  {
+    light$.Intensity = light$.ProtoIntensity * (1.0 - (4* Math.FilterSmoothStep( currentTime$ / duration$ )));
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////
