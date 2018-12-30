@@ -1,0 +1,34 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Smuggler Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Melee///////////////////////////////////////////////////////////////////////
+[t:template,n:island_gen_leveled-smuggler]
+{
+  category_name = "1W_evil_a";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_leveled-smuggler";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 34;
+        low_level = 43;
+        medium_level = 56;
+        high_level = 65;
+        highest_level = 77;
+        super_level = 83;
+        crazy_level = 95;
+
+        Child_Template_Name_Lowest = island_smuggler_weakest;
+        Child_Template_Name_Low = island_smuggler_weak;
+        Child_Template_Name_Medium_Low = island_smuggler_privateer;
+        Child_Template_Name_Medium_High = island_smuggler_studded;
+        Child_Template_Name_High = island_smuggler_corsair;
+        Child_Template_Name_Highest = island_smuggler_corsair_brute;
+        Child_Template_Name_Super = island_smuggler_corsair_mutineer;
+        Child_Template_Name_Crazy = island_smuggler_corsair_rogue;
+        //Just in case the code chokes
+        Child_Template_Name = island_smuggler_weak;
+  }
+}

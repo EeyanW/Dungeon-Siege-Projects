@@ -1,0 +1,119 @@
+
+[t:template,n:crate_island_misc_jewels]
+{
+  category_name = "container";
+  doc = "Island Jewel Crate";
+  specializes = base_container_wood;
+  [aspect]
+  {
+    model = m_i_glb_crate;
+  }
+  [common]
+  {
+    screen_name = "Crate";
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          max = 100;
+          min = 80;
+          min_pile = 2;
+          piles = 4 - 4;
+        }
+        [oneof*]
+        {
+          chance = .2;
+          il_main = island_cross_glb_01;
+        }
+        [oneof*]
+        {
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [oneof*]
+        {
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [oneof*]
+        {
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [oneof*]
+        {
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+}
+
+[t:template,n:crate_island_misc_jewels_toggle-select]
+{
+  category_name = "container";
+  doc = "Island Jewel Crate Bottom";
+  specializes = base_container_wood;
+  [aspect]
+  {
+    model = m_i_glb_crate;
+  }
+  [common]
+  {
+    screen_name = "Crate";
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          max = 100;
+          min = 80;
+          min_pile = 2;
+          piles = 4 - 4;
+        }
+        [oneof*]
+        {
+          chance = .2;
+          il_main = island_cross_glb_01;
+        }
+        [oneof*]
+        {
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [oneof*]
+        {
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [oneof*]
+        {
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [oneof*]
+        {
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [object_selection_toggle]
+  {
+    Selection_Off_Msg = we_entered_world;
+    Selection_On_Msg = we_req_activate;
+  }
+}

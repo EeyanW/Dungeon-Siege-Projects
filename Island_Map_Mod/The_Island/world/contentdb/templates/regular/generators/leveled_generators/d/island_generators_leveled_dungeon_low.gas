@@ -1,0 +1,36 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Dungeon Low Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Melee////////////////////////////////////////////////////////////////////
+
+//Dungeon Low
+[t:template,n:island_gen_dungeon_low_leveled_melee]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_dungeon_low_leveled_melee";
+  //bd_ro_m_g_c_105
+  [generator_advanced_leveling]
+  {
+        lowest_level = 6;
+        low_level = 9;
+        medium_level = 15;
+        high_level = 21;
+        highest_level = 33;
+        super_level = 46;
+        crazy_level = 69;
+
+        Child_Template_Name_Lowest = dsx_skeleton_04;
+        Child_Template_Name_Low = dsx_crawler_dungeon;
+        Child_Template_Name_Medium_Low = dsx_armor_deadly;//dsx_eyes_whelnar(ranged)
+        Child_Template_Name_Medium_High = island_necron_ghastly;
+        Child_Template_Name_High = island_acolyte_dark;
+        Child_Template_Name_Highest = ;
+        Child_Template_Name_Super = ;
+        Child_Template_Name_Crazy = ;//kell(fix leveling)
+        //Just in case the code chokes
+        Child_Template_Name = dsx_armor_deadly;
+  }
+}

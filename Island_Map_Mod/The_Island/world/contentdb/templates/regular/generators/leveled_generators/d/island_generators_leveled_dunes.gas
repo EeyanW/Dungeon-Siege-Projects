@@ -1,0 +1,36 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Desert Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Varient 1////////////////////////////////////////////////////////////////////
+
+//Dunes
+[t:template,n:island_gen_dunes_leveled]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_dunes_leveled";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 50;
+        low_level = 59;
+        medium_level = 74;
+        high_level = 82;
+        highest_level = 89;
+        super_level = 95;
+        crazy_level = 101;
+
+        Child_Template_Name_Lowest = island_gorack_desert_01;
+        Child_Template_Name_Low = island_gorack_desert_02;
+        Child_Template_Name_Medium_Low = island_impaler;
+        Child_Template_Name_Medium_High = island_outcast;
+        Child_Template_Name_High = island_gorack_desert_hugefucker;
+        Child_Template_Name_Highest = island_skatwyrm_desert;
+        Child_Template_Name_Super = island_wandering_giant;
+        Child_Template_Name_Crazy = island_dune_worm;
+        //Just in case the code chokes
+        Child_Template_Name = island_impaler;
+  }
+}

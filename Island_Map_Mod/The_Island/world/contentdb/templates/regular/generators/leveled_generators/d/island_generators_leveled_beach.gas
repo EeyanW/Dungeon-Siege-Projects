@@ -1,0 +1,68 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Beach Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Melee////////////////////////////////////////////////////////////////////
+
+//Beach
+[t:template,n:island_gen_beach_leveled_melee]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_beach_leveled_melee";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 3;
+        low_level = 7;
+        medium_level = 11;
+        high_level = 18;
+        highest_level = 33;
+        super_level = 46;
+        crazy_level = 69;
+
+        Child_Template_Name_Lowest = island_grub;
+        Child_Template_Name_Low = island_spider_scrubs;
+        Child_Template_Name_Medium_Low = dsx_mhulliq_one;
+        Child_Template_Name_Medium_High = island_chomper;
+        Child_Template_Name_High = mangler_sea;
+        Child_Template_Name_Highest = island_scrub_howler;
+        Child_Template_Name_Super = island_lizard_thunder;
+        Child_Template_Name_Crazy = 3W_dsx_scorpion_sm;
+        //Just in case the code chokes
+        Child_Template_Name = island_grub;
+  }
+}
+
+//Ranged////////////////////////////////////////////////////////////////////
+
+//Beach
+[t:template,n:island_gen_beach_leveled_ranged]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_beach_leveled_ranged";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 3;
+        low_level = 7;
+        medium_level = 11;
+        high_level = 18;
+        highest_level = 33;
+        super_level = 46;
+        crazy_level = 69;
+
+        Child_Template_Name_Lowest = island_moth;
+        Child_Template_Name_Low = island_beach_slinger;
+        Child_Template_Name_Medium_Low = island_moth_strong;
+        Child_Template_Name_Medium_High = island_spiked_dweller;
+        Child_Template_Name_High = island_chitterskrag_weakest_spew;
+        Child_Template_Name_Highest = island_spiked_dweller_large_highlevel;
+        Child_Template_Name_Super = island_mangler_sea_giant;
+        Child_Template_Name_Crazy = island_spiked_dweller_large_crazylevel;//Change this later, yeah?
+        //Just in case the code chokes
+        Child_Template_Name = island_moth;
+  }
+}

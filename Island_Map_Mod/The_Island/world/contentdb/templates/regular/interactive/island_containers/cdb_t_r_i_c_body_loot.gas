@@ -1,0 +1,66 @@
+
+[t:template,n:container_body]//Based off 'bookcase_glb_gen_01'
+{
+  category_name =  "container";
+  doc  = "body_loot";
+  specializes  = prop;
+  [aspect]
+  {
+    model = m_i_glb_dead_farmer-01;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_11;
+      1 = b_c_pos_a1_051;
+    }
+    lodfi_lower = -1;
+    lodfi_upper = -1;
+    does_block_path = false;
+  }
+
+  [generator_object_pcontent]
+  {
+    create_msg = WE_REQ_USE;
+    one_shot = true;
+  }
+  [common]
+  {
+    screen_name = "Body";
+    rollover_display = true;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [gold*]
+        {
+          chance = 0.5;
+          min = 1;
+          max = 4;
+        }
+        [oneof*]
+        {
+          chance = 0.3;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.03;
+          il_main = dg_g_c_1h_fun;
+          il_main = #bow/1-4;
+          il_main = #spell/0-4;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = #weapon/3-7;
+          il_main = #ring/1-2;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = #staff/1-5;
+      }
+    }
+  }
+}

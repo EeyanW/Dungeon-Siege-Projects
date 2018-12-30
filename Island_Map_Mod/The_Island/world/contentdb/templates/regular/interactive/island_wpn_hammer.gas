@@ -1,0 +1,36 @@
+
+[t:template,n:island_patch_hm_g_c_1h1m_fun]
+{
+  doc = "Common Hammer";
+  specializes = base_hammer;
+  [aspect]
+  {
+    model = m_w_hmr_008;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    f damage_max = 7.000000;
+    f damage_min = 5.000000;
+  }
+  [common]
+  {
+    //b allow_modifiers = false;
+    screen_name = "Common Hammer";
+    pcontent_special_type = normal;
+  }
+  [gui]
+  {
+    inventory_height = 3;
+    inventory_icon = b_gui_ig_i_w_hmr_013;
+    inventory_width = 1;
+  }
+  [pcontent]
+  {
+    [base]
+    {
+      f modifier_max = 100.000000;
+      f modifier_min = 0.000000;
+    }
+  }
+}

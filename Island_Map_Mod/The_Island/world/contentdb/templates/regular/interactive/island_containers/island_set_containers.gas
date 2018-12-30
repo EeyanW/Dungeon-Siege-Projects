@@ -1,0 +1,165 @@
+
+//WARLORD SET
+[t:template,n:island_set_ancient_base]
+{
+  category_name = "container";
+  doc = "island_set_ancient_base";
+  specializes = base_chest;
+  [aspect]
+  {
+    material = set_item;
+    model = m_i_glb_chest-03;
+textures:0 = b_i_glb_chest-01;
+  }
+  [body]
+  {
+    [chore_dictionary]
+    {
+      chore_prefix = a_i_ice;
+      [chore_open]
+      {
+        skrit = transition;
+        [anim_files] { 00=chest-open; }
+      }
+    }
+  }
+}
+//Sword
+[t:template,n:island_set_ancient_sword]
+{
+  doc = "island_set_ancient_sword";
+  specializes = island_set_ancient_base;
+  [common]
+  {
+
+    screen_name="Chest";
+    is_multi_player = false;
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_ray_dsx_cyan");
+      }
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_light_dsx_cyan");
+      }
+    }
+  }
+  [inventory]
+  {
+    drop_at_use_point = true;
+    [pcontent]
+    {
+      [oneof*]
+      {
+        il_main = sword_island_set_island_ancient;
+      }
+    }
+  }
+}
+//Ring and Amulet
+[t:template,n:island_set_ancient_misc_base]
+{
+  category_name = "container";
+  doc = "island_set_ancient_misc_base";
+  //copied from ds1 pot_des_clay_03
+  specializes      = base_container_clay;
+  aspect:model    = m_i_des_pot-clay-03;
+     [physics]
+     {
+    fire_resistance    = 1.0;
+
+    break_dependents  = true;
+    break_sound  = s_e_set_item_clay_break;
+       [break_particulate]
+       {
+         frag_glb_pot_clay_01 = 2;
+         frag_glb_pot_clay_02 = 2;
+         frag_glb_pot_clay_03 = 3;
+         frag_glb_pot_clay_04 = 2;
+       }
+     }
+}
+//Ring
+[t:template,n:island_set_ancient_ring]
+{
+  doc = "island_set_ancient_ring";
+  specializes = island_set_ancient_misc_base;
+  [common]
+  {
+    screen_name="Pot";
+    is_multi_player = false;
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_ray_dsx_cyan");
+      }
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_light_dsx_cyan");
+      }
+    }
+  }
+  [inventory]{
+    drop_at_use_point = true;
+    [pcontent]
+    {
+      [oneof*]
+      {
+        il_main = ring_island_set_island_ancient;
+      }
+    }
+  }
+}
+//Amulet
+[t:template,n:island_set_ancient_amulet]
+{
+  doc = "island_set_ancient_ring";
+  specializes = island_set_ancient_misc_base;
+  [common]
+  {
+    screen_name="Pot";
+    is_multi_player = false;
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_ray_dsx_cyan");
+      }
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_light_dsx_cyan");
+      }
+    }
+  }
+  [inventory]{
+    drop_at_use_point = true;
+    [pcontent]
+    {
+      [oneof*]
+      {
+        il_main = amulet_island_set_island_ancient;
+      }
+    }
+  }
+}

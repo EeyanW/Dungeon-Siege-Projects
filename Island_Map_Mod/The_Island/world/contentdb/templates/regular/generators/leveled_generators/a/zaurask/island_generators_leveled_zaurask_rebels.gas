@@ -1,0 +1,102 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Zaurask Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Zaurask////////////////////////////////////////////////////////////////////
+
+//Melee
+[t:template,n:island_gen_leveled-zaurask_rebel_melee]
+{
+  category_name = "1W_evil_a";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_leveled-zaurask_rebel_melee";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 15;
+        low_level = 19;
+        medium_level = 25;
+        high_level = 32;
+        highest_level = 40;
+        super_level = 52;
+        crazy_level = 70;
+
+        Child_Template_Name_Lowest = island_zaurask_rebel;
+        Child_Template_Name_Low = island_zaurask_insurgent;
+        Child_Template_Name_Medium_Low = island_zaurask_insurrectionist;
+        Child_Template_Name_Medium_High = island_zaurask_militia;
+        Child_Template_Name_High = island_zaurask_trooper;
+        Child_Template_Name_Highest = island_zaurask_peacekeeper;
+        Child_Template_Name_Super = island_zaurask_organizer;
+        Child_Template_Name_Crazy = island_zaurask_champion;
+        //Just in case the code chokes
+        Child_Template_Name = island_zaurask_insurgent;
+
+        accel_rate = 600;
+  }
+}
+
+//Ranged
+[t:template,n:island_gen_leveled-zaurask_rebel_ranged]
+{
+  category_name = "1W_evil_a";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_leveled-zaurask_rebel_ranged";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 16;
+        low_level = 19;
+        medium_level = 21;
+        high_level = 25;
+        highest_level = 31;
+        super_level = 46;
+        crazy_level = 70;
+
+        Child_Template_Name_Lowest = island_zaurask_spine;
+        Child_Template_Name_Low = island_zaurask_archer;
+        Child_Template_Name_Medium_Low = island_zaurask_archer;
+        Child_Template_Name_Medium_High = island_zaurask_ranger;
+        Child_Template_Name_High = island_zaurask_ranger;
+        Child_Template_Name_Highest = island_zaurask_archer_highest;
+        Child_Template_Name_Super = island_zaurask_archer_super;
+        Child_Template_Name_Crazy = 2W_dsx_zaurask_spitter;
+        //Just in case the code chokes
+        Child_Template_Name = island_lizardus;
+
+        accel_rate = 600;
+  }
+}
+
+//Ranged
+[t:template,n:island_gen_leveled-zaurask_rebel_magic]
+{
+  category_name = "1W_evil_a";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_leveled-zaurask_rebel_magic";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 16;
+        low_level = 19;
+        medium_level = 21;
+        high_level = 25;
+        highest_level = 31;
+        super_level = 46;
+        crazy_level = 70;
+
+        Child_Template_Name_Lowest = island_zaurask_adept;
+        Child_Template_Name_Low = island_zaurask_adept;
+        Child_Template_Name_Medium_Low = island_zaurask_seer;
+        Child_Template_Name_Medium_High = island_zaurask_seer;
+        Child_Template_Name_High = island_zaurask_mage;
+        Child_Template_Name_Highest = island_zaurask_mage;
+        Child_Template_Name_Super = island_zaurask_archer_super;
+        Child_Template_Name_Crazy = 2W_dsx_zaurask_adept;
+        //Just in case the code chokes
+        Child_Template_Name = island_lizardus;
+
+        accel_rate = 600;
+  }
+}

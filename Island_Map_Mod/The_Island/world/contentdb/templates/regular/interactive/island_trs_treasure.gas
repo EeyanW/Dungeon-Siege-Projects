@@ -1,0 +1,360 @@
+//////////////////////////////////////////////////////////////////////////////
+// Crystal templates
+/////////////////////////
+[t:template,n:island_crystal_base]
+{
+  specializes      = treasure;
+  doc          = "Island Crystal Base";
+    category_name       = "treasure";
+
+  aspect:model    = m_i_cav_gems-04;
+  aspect:gold_value = 450;
+  aspect:voice:put_down:* = s_e_gui_put_down_jewelry;
+  aspect:scale_base = .3;
+
+  common:screen_name  = "Crystal";
+
+  gui:inventory_icon  = b_gui_ig_i_it_jewel_01;
+}
+
+[t:template,n:island_crystal_teal]
+{
+  specializes      = island_crystal_base;
+  doc          = "Island Crystal Teal";
+  category_name       = "treasure";
+
+  //aspect:textures:
+
+  gui:inventory_icon  = b_gui_ig_i_it_crystal_teal;
+}
+
+[t:template,n:island_crystal_purple]
+{
+  specializes      = island_crystal_base;
+  doc          = "Island Crystal Purple";
+  category_name       = "treasure";
+
+  aspect:textures:0 = b_i_cav_gems-02-static;
+
+  gui:inventory_icon  = b_gui_ig_i_it_crystal_purple;
+}
+
+[t:template,n:island_crystal_green]
+{
+  specializes      = island_crystal_base;
+  doc          = "Island Crystal Green";
+  category_name       = "treasure";
+
+  aspect:textures:0 = b_i_cav_gems-03-static;
+
+  gui:inventory_icon  = b_gui_ig_i_it_crystal_green;
+}
+
+[t:template,n:island_crystal_blue]
+{
+  specializes      = island_crystal_base;
+  doc          = "Island Crystal Blue";
+  category_name       = "treasure";
+
+  aspect:textures:0 = b_i_cav_gems-04-static;
+
+  gui:inventory_icon  = b_gui_ig_i_it_crystal_blue;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Gold templates
+/////////////////////////
+[t:template,n:island_gold_glb_01]
+{
+  specializes      = treasure;
+  doc          = "Island Gold Ore";
+    category_name       = "treasure";
+
+  aspect:model    = m_i_glb_jewel-02;
+  aspect:textures:0 = b_i_cav_gold-01;
+  aspect:gold_value = 350;
+  aspect:voice:put_down:* = s_e_gui_put_down_jewelry;
+
+  common:screen_name  = "Gold Ore";
+
+  gui:inventory_icon  = b_gui_ig_i_it_gold-pile-md;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Jewel/Ruby templates
+/////////////////////////
+
+[t:template,n:island_jewel_glb_01]
+{
+  specializes      = treasure;
+  doc          = "Island jewel_sm_red";
+    category_name       = "treasure";
+
+  aspect:model    = m_i_glb_jewel-01;
+  aspect:gold_value = 7500;
+  aspect:voice:put_down:* = s_e_gui_put_down_jewelry;
+
+  common:screen_name  = "Polished Ruby";
+
+  gui:inventory_icon  = b_gui_ig_i_it_jewel_01;
+}
+
+[t:template,n:island_jewel_glb_02]
+{
+  specializes      = treasure;
+  doc          = "Island jewel_sm_blue_pink";
+    category_name       = "treasure";
+
+  aspect:model    = m_i_glb_jewel-02;
+  aspect:voice:put_down:* = s_e_gui_put_down_jewelry;
+  aspect:gold_value = 5000;
+
+  common:screen_name  = "Polished Jewel";
+
+  gui:inventory_icon  = b_gui_ig_i_it_jewel_02;
+}
+
+[t:template,n:island_jewel_glb_03]
+{
+  specializes      = treasure;
+  doc          = "Island jewel_lg_yllw";
+    category_name       = "treasure";
+
+
+  aspect:model    = m_i_glb_jewel-03;
+  aspect:gold_value = 9000;
+  aspect:voice:put_down:* = s_e_gui_put_down_jewelry;
+
+  common:screen_name  = "Carved Gemstone";
+
+  gui:inventory_icon  = b_gui_ig_i_it_jewel_03;
+}
+
+[t:template,n:island_jewel_glb_04]
+{
+  specializes      = treasure;
+  doc          = "Island jewel_med_red";
+    category_name       = "treasure";
+
+  aspect:model    = m_i_glb_crystal;
+  aspect:voice:put_down:* = s_e_gui_put_down_jewelry;
+  aspect:gold_value = 135000;
+
+  common:screen_name  = "Polished Gem";
+
+  gui:inventory_icon  = b_gui_ig_i_it_gem;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Trinket templates
+/////////////////////////
+[t:template,n:island_cross_glb_01]
+{
+  specializes      = treasure;
+  doc          = "Island trinket_ankh";
+    category_name       = "treasure";
+
+  aspect:model    = m_i_glb_cross-01;
+  aspect:voice:put_down:* = s_e_gui_put_down_jewelry;
+  aspect:gold_value = 1000;
+
+  common:screen_name  = "Ankh Trinket";
+
+  gui:inventory_icon  = b_gui_ig_i_it_cross_01;
+}
+//AMULET TRINKETS/////////////////////////////////////////////////////////////
+[t:template,n:island_trinket_glb_base]
+{
+  specializes      = treasure;
+  doc          = "Island Trinket 1";
+  category_name       = "treasure";
+
+  aspect:model    = m_i_glb_amulet-01;
+  aspect:textures:0  = b_i_glb_amulet-01;
+  aspect:voice:put_down:* = s_e_gui_put_down_jewelry;
+  aspect:gold_value = 150;
+
+  common:screen_name  = "Trinket";
+
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_005;
+}
+//Amulet 1
+[t:template,n:island_trinket_glb_01]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 01";
+  category_name       = "treasure";
+
+  aspect:gold_value = 150;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_005;
+}
+//Amulet 2
+[t:template,n:island_trinket_glb_02]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 02";
+  category_name       = "treasure";
+
+  aspect:gold_value = 200;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_006;
+}
+//Amulet 3
+[t:template,n:island_trinket_glb_03]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 03";
+  category_name       = "treasure";
+
+  aspect:gold_value = 300;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_007;
+}
+//Amulet 4
+[t:template,n:island_trinket_glb_04]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 04";
+  category_name       = "treasure";
+
+  aspect:gold_value = 400;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_016;
+}
+//Amulet 5
+[t:template,n:island_trinket_glb_05]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 05";
+  category_name       = "treasure";
+
+  aspect:gold_value =500;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_008;
+}
+//Amulet 6
+[t:template,n:island_trinket_glb_06]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 06";
+  category_name       = "treasure";
+
+  aspect:gold_value = 550;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_010;
+}
+//Amulet 7
+[t:template,n:island_trinket_glb_07]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 07";
+  category_name       = "treasure";
+
+  aspect:gold_value = 650;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_009;
+}
+//Amulet 8
+[t:template,n:island_trinket_glb_08]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 08";
+  category_name       = "treasure";
+
+  aspect:gold_value = 900;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_018;
+}
+//Amulet 9
+[t:template,n:island_trinket_glb_09]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 09";
+  category_name       = "treasure";
+
+  aspect:gold_value = 1000;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_019;
+}
+//Amulet 10
+[t:template,n:island_trinket_glb_10]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 10";
+  category_name       = "treasure";
+
+  aspect:gold_value = 2000;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_020;
+}
+//Amulet 11
+[t:template,n:island_trinket_glb_11]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 11";
+  category_name       = "treasure";
+
+  aspect:gold_value = 5000;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_029;
+}
+//Amulet 12
+[t:template,n:island_trinket_glb_12]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 12";
+  category_name       = "treasure";
+
+  aspect:gold_value = 10000;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_027;
+}
+//Amulet 13
+[t:template,n:island_trinket_glb_13]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 13";
+  category_name       = "treasure";
+
+  aspect:gold_value = 15000;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_034;
+}
+//Amulet 14
+[t:template,n:island_trinket_glb_14]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 14";
+  category_name       = "treasure";
+
+  aspect:gold_value = 20000;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_035;
+}
+//Amulet 15
+[t:template,n:island_trinket_glb_15]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 15";
+  category_name       = "treasure";
+
+  aspect:gold_value = 50000;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_037;
+}
+//Amulet 16
+[t:template,n:island_trinket_glb_16]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 16";
+  category_name       = "treasure";
+
+  aspect:gold_value = 100000;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_038;
+}
+//Amulet 17
+[t:template,n:island_trinket_glb_17]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 17";
+  category_name       = "treasure";
+
+  aspect:gold_value = 500000;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_039;
+}
+//Amulet 18
+[t:template,n:island_trinket_glb_18]
+{
+  specializes      = island_trinket_glb_base;
+  doc          = "Island Trinket 18";
+  category_name       = "treasure";
+
+  aspect:gold_value = 1000000;
+  gui:inventory_icon  = b_gui_ig_i_it_amulet_028;
+}

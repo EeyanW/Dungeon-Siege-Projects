@@ -1,0 +1,703 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//WARLORD'S ORNAMENTS
+//////////////////////////////////////////////////////////////////////////////
+
+//
+//Sword
+//
+[t:template,n:sword_island_set_island_ancient]
+{
+  category_name = "set_item";
+  doc = "Island_set_Sword";
+  specializes = dsx_base_sword;
+  [aspect]
+    {
+      gold_value = 650000;
+      model = m_w_swd_blkstel;
+    }
+  [attack]
+    {
+      f damage_max = 350.0;
+      f damage_min = 250.0;
+    }
+  [common]
+    {
+      b allow_modifiers = false;
+      screen_name = "Warlord's Right Hand";
+      is_pcontent_allowed = false;
+    }
+  [gui]
+    {
+      equip_requirements = strength:53;
+      active_icon = b_gui_ig_i_ic_swd_007;
+      inventory_height = 4;
+      inventory_icon = b_gui_ig_i_w_swd_300;
+      inventory_width = 1;
+      tooltip_color = set_item;
+    }
+
+  [magic]
+    {
+    }
+  [set_item]
+    {
+      set_name = "Warlord's Ornaments";
+      set_compare_name = warlord;
+      modifier_file = "island_ancient_sword";
+      number_items_in_set = 3;
+      item_power_modifier = 10;
+    }
+}
+//
+//Ring
+//
+[t:template,n:ring_island_set_island_ancient]
+{
+  category_name = "set_item";
+  doc = "Island_set_Ring";
+  specializes = ring;
+
+ aspect:gold_value = 450000;
+
+  [common]
+    {
+      b allow_modifiers = false;
+      screen_name = "Warlord's Ring";
+      is_pcontent_allowed = false;
+    }
+  [gui]
+    {
+      equip_requirements = intelligence:16;
+      tooltip_color = set_item;
+    }
+
+  [set_item]
+    {
+      set_name = "Warlord's Ornaments";
+      set_compare_name = warlord;
+      modifier_file = "island_ancient_ring";
+      number_items_in_set = 3;
+      item_power_modifier = 17;
+    }
+  [magic]
+    {}
+}
+
+//
+//Amulet
+//
+[t:template,n:amulet_island_set_island_ancient]
+{
+  category_name = "set_item";
+  doc = "Island_set_Amulet";
+  specializes = amulet;
+
+ aspect:gold_value = 600000;
+
+  [common]
+    {
+      b allow_modifiers = false;
+      screen_name = "Warlord's's Amulet";
+      is_pcontent_allowed = false;
+    }
+  [set_item]
+    {
+      set_name = "Warlord's Ornaments";
+      set_compare_name = warlord;
+      modifier_file = "island_ancient_amulet";
+      number_items_in_set = 3;
+      item_power_modifier = 28;
+    }
+  [gui]
+    {
+      equip_requirements = dexterity:34, strength: 56;
+      tooltip_color = set_item;
+    }
+
+  [magic]
+    {}
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//LEGIONAIRRE'S ACCOUTREMENTS
+//////////////////////////////////////////////////////////////////////////////
+
+//
+//Helm
+//
+[t:template,n:island_set_legion_helm]
+{
+  category_name = "set_item";
+  doc = "Island Set Legion Helm";
+  specializes = base_helm;
+  [common]
+  {
+    is_pcontent_allowed = false;
+    b allow_modifiers = false;
+    screen_name = "Legionnaire Helm";
+  }
+  [defend]
+  {
+    armor_style = 053;
+    armor_type = type20;
+    f defense = 24;
+  }
+  [set_item]
+  {
+    set_name = "Legionnaire's Accoutrements";
+    set_compare_name = island_legion;
+    modifier_file = "island_legion_helm";
+    number_items_in_set = 5;
+    item_power_modifier = 28;
+  }
+  [gui]
+  {
+    equip_requirements = strength:23;
+    inventory_icon = b_gui_ig_i_a_hlmt_053;
+    tooltip_color = set_item;
+  }
+  [magic]
+  {}
+}
+
+//
+//Plate
+//
+[t:template,n:island_set_legion_plate]
+{
+  category_name = "set_item";
+  doc = "Island Set Legion Plate";
+  specializes = base_body_armor_plate;
+  [common]
+  {
+    b allow_modifiers = false;
+    is_pcontent_allowed = false;
+    screen_name = "Legionnaire Parade Plate";
+  }
+  [defend]
+  {
+    armor_style = 015;
+    armor_type = a3;
+    f defense = 254.000000;
+  }
+  [set_item]
+  {
+    set_name = "Legionnaire's Accoutrements";
+    set_compare_name = island_legion;
+    modifier_file = "island_legion_plate";
+    number_items_in_set = 5;
+    item_power_modifier = 28;
+  }
+  [gui]
+  {
+    equip_requirements = strength:34;
+    inventory_height = 3;
+    inventory_icon = b_gui_ig_i_a_pos_a3_015;
+    inventory_width = 2;
+    tooltip_color = set_item;
+  }
+  [magic]
+  {}
+}
+
+//
+//Sword
+//
+[t:template,n:island_set_legion_sword]
+{
+  category_name = "set_item";
+  doc = "Island Set Legion Blade";
+  specializes = base_sword;
+  [aspect]
+  {
+    model = m_w_swd_014;
+  }
+  [attack]
+  {
+    f damage_max = 82.000000;
+    f damage_min = 68.000000;
+  }
+  [common]
+  {
+    is_pcontent_allowed = false;
+    b allow_modifiers = false;
+    screen_name = "Legionnaire Blade";
+  }
+  [gui]
+  {
+    equip_requirements = strength:19;
+    inventory_height = 3;
+    inventory_icon = b_gui_ig_i_w_swd_014;
+    inventory_width = 1;
+    tooltip_color = set_item;
+  }
+  [set_item]
+  {
+    set_name = "Legionnaire's Accoutrements";
+    set_compare_name = island_legion;
+    modifier_file = "island_legion_sword";
+    number_items_in_set = 5;
+    item_power_modifier = 28;
+  }
+  [magic]
+  {}
+}
+
+//
+//Shield
+//
+[t:template,n:island_set_legion_shield]
+{
+  category_name = "set_item";
+  doc = "Island Set Legion Buckler";
+  specializes = base_shield;
+  [aspect]
+  {
+    model = m_a_shd_19;
+    [textures]
+    {
+      0 = b_a_shd_078;
+    }
+  }
+  [common]
+  {
+    is_pcontent_allowed = false;
+    b allow_modifiers = false;
+    screen_name = "Legionnaire Buckler";
+  }
+  [defend]
+  {
+    f defense = 7.000000;
+  }
+  [gui]
+  {
+    equip_requirements = strength:14;
+    inventory_height = 2;
+    inventory_icon = b_gui_ig_i_a_shd_078;
+    inventory_width = 2;
+    tooltip_color = set_item;
+  }
+  [set_item]
+  {
+    set_name = "Legionnaire's Accoutrements";
+    set_compare_name = island_legion;
+    modifier_file = "island_legion_shield";
+    number_items_in_set = 5;
+    item_power_modifier = 28;
+  }
+  [magic]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        alteration = alter_chance_to_block_melee_damage;
+        description = "10% Chance to Block Melee Attack";
+        duration = #infinite;
+        innate_enchantment = true;
+        is_permanent = true;
+        is_single_instance = false;
+        value = 10;
+      }
+      [*]
+      {
+        alteration = alter_chance_to_block_ranged_damage;
+        description = "5% Chance to Block Ranged Attack";
+        duration = #infinite;
+        innate_enchantment = true;
+        is_permanent = true;
+        is_single_instance = false;
+        value = 5;
+      }
+    }
+  }
+}
+
+//
+//Bow
+//
+[t:template,n:island_set_legion_bow]
+{
+  category_name = "set_item";
+  doc = "Island Set Legion Bow";
+  specializes = base_bow;
+  [aspect]
+  {
+    model = m_w_bow_011;
+  }
+  [attack]
+  {
+    attack_range = 12;
+    f damage_max = 55.000000;
+    f damage_min = 51.000000;
+    reload_delay = 0.15;
+  }
+  [common]
+  {
+    is_pcontent_allowed = false;
+    b allow_modifiers = false;
+    screen_name = "Legionnaire Bow";
+  }
+  [gui]
+  {
+    equip_requirements = dexterity:15;
+    inventory_height = 4;
+    inventory_icon = b_gui_ig_i_w_bow_013;
+    inventory_width = 1;
+    tooltip_color = set_item;
+  }
+  [set_item]
+  {
+    set_name = "Legionnaire's Accoutrements";
+    set_compare_name = island_legion;
+    modifier_file = "island_legion_bow";
+    number_items_in_set = 5;
+    item_power_modifier = 28;
+  }
+  [magic]
+  {}
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//MERCENARY'S IMPEDIMENTA
+//////////////////////////////////////////////////////////////////////////////
+
+//
+//Sledgehammer
+//
+[t:template,n:island_set_merc_sledgehammer]
+{
+  doc = "Island Set Merc Sledgehammer";
+  category_name = "set_item";
+  specializes = base_hammer;
+  [aspect]
+  {
+    model = m_w_hmr_hmallet;
+    //scale_base = 3.0;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    f damage_max = 220.000000;
+    f damage_min = 180.000000;
+    //is_two_handed = true;
+  }
+  [common]
+  {
+    //b allow_modifiers = false;
+    screen_name = "Mercenary's Sledgehammer";
+  }
+  [gui]
+  {
+    active_icon = b_gui_ig_i_ic_hmr_003;
+    equip_requirements = strength:80;
+    inventory_height = 3;
+    inventory_icon = b_gui_ig_i_w_hmr_302;
+    inventory_width = 2;
+    tooltip_color = set_item;
+  }
+  [set_item]
+  {
+    set_name = "Mercenary's Impedimenta";
+    set_compare_name = island_merc;
+    modifier_file = "island_mercenary_sledgehammer";
+    number_items_in_set = 3;
+    item_power_modifier = 30;
+  }
+  [magic]
+  {}
+}
+
+//
+//Gloves
+//
+[t:template,n:island_set_merc_gloves]
+{
+  doc = "Island Set Merc Gloves";
+  category_name = "set_item";
+  specializes = base_glove;
+  [common]
+  {
+    b allow_modifiers = false;
+    screen_name = "Mercenary's Plated Gloves";
+  }
+  [defend]
+  {
+    armor_style = 019;
+    armor_type = type1;
+    f defense = 4.000000;
+  }
+  [gui]
+  {
+    equip_requirements = strength:15;
+    inventory_height = 2;
+    inventory_icon = b_gui_ig_i_a_gntl_019;
+    inventory_width = 1;
+    tooltip_color = set_item;
+  }
+  [set_item]
+  {
+      set_name = "Mercenary's Impedimenta";
+      set_compare_name = island_merc;
+      modifier_file = "island_mercenary_gloves";
+      number_items_in_set = 3;
+      item_power_modifier = 30;
+  }
+  [magic]
+  {
+  }
+}
+
+//
+//Ring
+//
+[t:template,n:island_set_merc_ring]
+{
+  category_name = "set_item";
+  doc = "Island Set Merc Ring";
+  specializes = ring;
+
+ aspect:gold_value = 54000;
+
+  [common]
+    {
+      b allow_modifiers = false;
+      screen_name = "Mercenary's Ring";
+      is_pcontent_allowed = false;
+    }
+  [gui]
+    {
+      equip_requirements = strength:20, intelligence:20;
+      tooltip_color = set_item;
+      inventory_icon = b_gui_ig_i_it_ring_007;
+    }
+
+  [set_item]
+    {
+      set_name = "Mercenary's Impedimenta";
+      set_compare_name = island_merc;
+      modifier_file = "island_mercenary_ring";
+      number_items_in_set = 3;
+      item_power_modifier = 30;
+    }
+  [magic]
+  {
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//SCAVENGER'S IMPLEMENTS
+//////////////////////////////////////////////////////////////////////////////
+
+//
+//Rock Club
+//
+[t:template,n:island_set_scavenger_club]
+{
+  category_name = "set_item";
+  specializes = base_club;
+  doc = "Island Set Scavenger Club";
+  [aspect]
+  {
+    model = m_w_clb_008;
+  }
+  [attack]
+  {
+    damage_max = 6;
+    damage_min = 4;
+  }
+  [common]
+  {
+    allow_modifiers = false;
+    screen_name = "Scavengers Rock Club";
+  }
+  [gui]
+  {
+    inventory_height = 2;
+    inventory_icon = b_gui_ig_i_w_clb_008;
+    inventory_width = 1;
+    tooltip_color = set_item;
+  }
+  [set_item]
+  {
+    set_name = "Scavenger's Implements";
+    set_compare_name = island_scavenger;
+    modifier_file = "island_scavenger_club";
+    number_items_in_set = 2;
+    item_power_modifier = 28;
+  }
+  [magic]
+  {}
+}
+
+//
+//Boots
+//
+[t:template,n:island_set_scavenger_boots]
+{
+  category_name = "set_item";
+  doc = "Island Set Scavenger Boots";
+  specializes = base_boot;
+  [common]
+  {
+    screen_name = "Scavengers Leather Boots";
+  }
+  [defend]
+  {
+    armor_style = 001;
+    armor_type = type1;
+    f defense = 2.000000;
+  }
+  [gui]
+  {
+    inventory_height = 2;
+    inventory_icon = b_gui_ig_i_a_boot_001;
+    inventory_width = 1;
+    tooltip_color = set_item;
+  }
+  [set_item]
+  {
+    set_name = "Scavenger's Implements";
+    set_compare_name = island_scavenger;
+    modifier_file = "island_scavenger_boots";
+    number_items_in_set = 2;
+    item_power_modifier = 28;
+  }
+  [magic]
+  {}
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//TREKKER'S EQUIPAGE
+//////////////////////////////////////////////////////////////////////////////
+
+//
+//Gloves
+//
+[t:template,n:island_set_trekker_gloves]
+{
+  category_name = "set_item";
+  doc = "Island Set Trekker Gloves";
+  specializes = base_glove;
+  [common]
+  {
+    //b allow_modifiers = false;
+    screen_name = "Trekker's Leather Gloves";
+  }
+  [defend]
+  {
+    armor_style = 016;
+    armor_type = type1;
+    f defense = 4.000000;
+  }
+  [gui]
+  {
+    equip_requirements = strength:15;
+    inventory_height = 2;
+    inventory_icon = b_gui_ig_i_a_gntl_016;
+    inventory_width = 1;
+    tooltip_color = set_item;
+  }
+  [set_item]
+  {
+    set_name = "Trekker's Equipage";
+    set_compare_name = island_trekker;
+    modifier_file = "island_trekker_gloves";
+    number_items_in_set = 3;
+    item_power_modifier = 28;
+  }
+  [magic]
+  {
+  }
+}
+
+//
+//Boots
+//
+[t:template,n:island_set_trekker_boots]
+{
+  category_name = "set_item";
+  doc = "Island Set Trekker Boots";
+  specializes = base_boot;
+  [common]
+  {
+    //pcontent_special_type = rare, unique;
+    screen_name = "Trekker's  Boots";
+  }
+  [defend]
+  {
+    armor_style = 011;
+    armor_type = type1;
+    f defense = 6.000000;
+  }
+  [gui]
+  {
+    equip_requirements = strength:14;
+    inventory_height = 2;
+    inventory_icon = b_gui_ig_i_a_boot_078;
+    inventory_width = 1;
+    tooltip_color = set_item;
+  }
+  [set_item]
+  {
+    set_name = "Trekker's Equipage";
+    set_compare_name = island_trekker;
+    modifier_file = "island_trekker_boots";
+    number_items_in_set = 3;
+    item_power_modifier = 28;
+  }
+  [magic]
+  {
+  }
+}
+
+//
+//Leather
+//
+[t:template,n:island_set_trekker_armor]
+{
+  category_name = "set_item";
+  doc = "Island Set Trekker Leather";
+  specializes = base_body_armor_leather;
+  [common]
+  {
+    screen_name = "Trekker's Leather";
+  }
+  [defend]
+  {
+    armor_style = 078;
+    armor_type = a1;
+    f defense = 10.000000;
+  }
+  [gui]
+  {
+    inventory_height = 2;
+    inventory_icon = b_gui_ig_i_a_pos_a1_078;
+    inventory_width = 2;
+    tooltip_color = set_item;
+  }
+  [set_item]
+  {
+    set_name = "Trekker's Equipage";
+    set_compare_name = island_trekker;
+    modifier_file = "island_trekker_leather";
+    number_items_in_set = 3;
+    item_power_modifier = 28;
+  }
+  [magic]
+  {
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//THE GENERAL'S DECORATIONS
+//////////////////////////////////////////////////////////////////////////////
+//gloves 032
+//
+//
+//
+
+//
+//
+//

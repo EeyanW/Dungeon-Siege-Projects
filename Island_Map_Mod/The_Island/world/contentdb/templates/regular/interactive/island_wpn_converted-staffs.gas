@@ -1,0 +1,85 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//PIKES
+//////////////////////////////////////////////////////////////////////////////
+//Weaker Varient
+[t:template,n:island_w_cdb_t_r_i_pike-staff-01]
+{
+  doc = "Island Pike 01";
+  specializes = base_staff;
+  [aspect]
+  {
+    model = m_w_stf_033;//m_w_stf_073;
+    [textures]
+    {
+      0 = b_w_stf_064a;
+    }
+  }
+  [attack]
+  {
+    attack_class = ac_sword;
+    f damage_max = 38.000000;
+    f damage_min = 30.000000;
+    is_two_handed = false;
+  }
+  [common]
+  {
+    screen_name = "Pike";
+    pcontent_special_type = normal, rare;
+  }
+  [gui]
+  {
+    active_icon = b_gui_ig_i_ic_stf_006;
+    //equip_requirements = strength:14,dexterity:12;
+    inventory_height = 4;
+    inventory_icon = b_gui_ig_i_w_stf_064;
+    inventory_width = 1;
+  }
+  [pcontent]
+  {
+    [base]
+    {
+      f modifier_max = 100.000000;
+      f modifier_min = 0.000000;
+    }
+  }
+}
+//Stronger Varient
+[t:template,n:island_w_cdb_t_r_i_pike-staff-02]
+{
+  doc = "Island Pike 02";
+  specializes = base_staff;
+  [aspect]
+  {
+    model = m_w_stf_033;//m_w_stf_073;
+  }
+  [attack]
+  {
+    attack_class = ac_sword;
+    f damage_max = 42.000000;
+    f damage_min = 36.000000;
+    is_two_handed = false;
+  }
+  [common]
+  {
+    b allow_modifiers = true;
+    screen_name = "Decorated Pike";
+    pcontent_special_type = normal, rare, unique;
+  }
+  [gui]
+  {
+    active_icon = b_gui_ig_i_ic_stf_006;
+    //equip_requirements = strength:15,dexterity:13;
+    inventory_height = 4;
+    inventory_icon = b_gui_ig_i_w_stf_073;
+    inventory_width = 1;
+  }
+  [pcontent]
+  {
+    [base]
+    {
+      f modifier_max = 500.000000;
+      f modifier_min = 0.000000;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+
+//back/////////////////////////////////////////////////////////////////////////
+[t:template,n:island_body_glb_utraea_f_01]
+{
+  category_name = "dead";
+  doc = "island_dead utraea front 01";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    lodfi_lower = 0.8;
+    lodfi_upper = 1;
+    //model = m_i_glb_dead_gaurd-01;
+    model = m_c_gah_fb_pos_a3;
+    [textures]
+    {
+      0 = b_c_gan_utraean_skin_03;
+      1 = b_c_pos_a9_241;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Mucosa Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Melee////////////////////////////////////////////////////////////////////
+
+[t:template,n:island_gen_leveled-mucosa_melee]
+{
+  category_name = "1W_evil_c";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_leveled-mucosa_melee";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 2;
+        low_level = 6;
+        medium_level = 12;
+        high_level = 18;
+        highest_level = 26;
+        super_level = 38;
+        crazy_level = 70;
+
+        Child_Template_Name_Lowest = bs_weakest_dude_melee_1;
+        Child_Template_Name_Low = bs_weakest_dude_melee_2;
+        Child_Template_Name_Medium_Low = island_bandit_melee_weak;
+        Child_Template_Name_Medium_High = island_bandit_melee_normal_03;
+        Child_Template_Name_High = island_bandit_melee_normal_02;
+        Child_Template_Name_Highest = island_bandit_melee_normal_01;
+        Child_Template_Name_Super = island_bandit_melee_strong;
+        Child_Template_Name_Crazy = island_bandit_melee_strongest;
+        //Just in case the code chokes
+        Child_Template_Name = island_bandit_melee_normal_01;
+  }
+}
+
+//Ranged////////////////////////////////////////////////////////////////////

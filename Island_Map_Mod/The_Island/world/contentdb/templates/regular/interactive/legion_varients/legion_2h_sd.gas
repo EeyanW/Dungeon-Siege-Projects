@@ -1,0 +1,37 @@
+[t:template,n:legion_2h_sd_n0-shop]
+{
+  doc = "Legion Great Sword (DO NOT PLACE)";
+  specializes = base_sword;
+  [aspect]
+  {
+    model = m_w_swd_018;
+  }
+  [attack]
+  {
+    f damage_max = 58.000000;
+    f damage_min = 52.000000;
+    is_two_handed = true;
+  }
+  [common]
+  {
+    screen_name = "Great Sword";
+    is_pcontent_allowed = false;
+    pcontent_special_type = normal;
+  }
+  [gui]
+  {
+    active_icon = b_gui_ig_i_ic_swd_007;
+    equip_requirements = strength:11;
+    inventory_height = 4;
+    inventory_icon = b_gui_ig_i_w_swd_017;
+    inventory_width = 1;
+  }
+  [pcontent]
+  {
+    [base]
+    {
+      f modifier_max = 0.000000;
+      f modifier_min = 0.000000;
+    }
+  }
+}

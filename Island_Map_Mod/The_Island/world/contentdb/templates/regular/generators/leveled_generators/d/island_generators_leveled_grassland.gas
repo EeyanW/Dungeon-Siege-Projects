@@ -1,0 +1,68 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Beach Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Melee////////////////////////////////////////////////////////////////////
+
+//Beach
+[t:template,n:island_gen_grassland_leveled_melee]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_grassland_leveled_melee";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 11;
+        low_level = 17;
+        medium_level = 24;
+        high_level = 32;
+        highest_level = 47;
+        super_level = 61;
+        crazy_level = 78;
+
+        Child_Template_Name_Lowest = dsx_mhulliq_one;
+        Child_Template_Name_Low = island_chitterskrag_weakest;
+        Child_Template_Name_Medium_Low = dsx_kikclaw;
+        Child_Template_Name_Medium_High = island_phrak_grass_melee;
+        Child_Template_Name_High = island_skatwyrm_melee;
+        Child_Template_Name_Highest = island_gremal_evil;
+        Child_Template_Name_Super = 2W_dsx_kikclaw;
+        Child_Template_Name_Crazy = island_synged_grassland;
+        //Just in case the code chokes
+        Child_Template_Name = island_chitterskrag_weakest;
+  }
+}
+
+//Ranged////////////////////////////////////////////////////////////////////
+
+//Beach
+[t:template,n:island_gen_grassland_leveled_ranged]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_grassland_leveled_ranged";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 11;
+        low_level = 17;
+        medium_level = 24;
+        high_level = 32;
+        highest_level = 47;
+        super_level = 61;
+        crazy_level = 78;
+
+        Child_Template_Name_Lowest = island_spiked_dweller;
+        Child_Template_Name_Low = island_chitterskrag_weakest_spew;
+        Child_Template_Name_Medium_Low = dsx_kikclaw_2;
+        Child_Template_Name_Medium_High = island_phrak_grass_ranged;
+        Child_Template_Name_High = island_skatwyrm_ranged;
+        Child_Template_Name_Highest = island_spiked_dweller_large_highlevel;
+        Child_Template_Name_Super = island_midge_swirling;
+        Child_Template_Name_Crazy = island_synged_grassland;
+        //Just in case the code chokes
+        Child_Template_Name = island_spiked_dweller;
+  }
+}

@@ -1,0 +1,84 @@
+
+/*[t:template,n:island_generator_generic_base]
+{
+  specializes = generator;
+  doc = "island_gen_leveling_base";
+    [aspect]
+  {
+    is_collidable =   FALSE;
+    is_selectable =   FALSE;
+    is_usable =     FALSE;
+        material =       foliage;
+      does_block_camera =  true;
+       model =       m_i_glb_bush-10;
+    textures:0    = b_i_grs_bush-rhod;
+        scale_base      = 1.0;
+  }
+  [body]
+  {
+    [chore_dictionary]
+    {
+            chore_prefix = 0;
+      [chore_misc]
+      {
+        chore_stances = ignore;
+        skrit = select_transition;
+                [anim_files]
+        {
+          spwn = a_i_glb_bush-10-shake;
+          rest = a_i_glb_bush-10-still;
+        }
+      }
+
+    }
+  }
+
+    common:dev_instance_text = "LEVELED GENERATOR";
+  common:forced_expiration_class = immediate;
+  common:auto_expiration_class = immediate;
+
+  [generator_advanced_leveling]
+  {
+        trigger_range = 120;//Set to the frustum of the map
+                            //This can also be changed in the editor
+                            //and will be changed for lower frustum areas
+        sound_start = true;
+        sound_end = false;
+        accelerate = true;
+  }
+  [gizmo]
+  {
+    diffuse_color    =  0.0, 1, 0.0;
+    model = m_i_glb_object-waypoint;
+    use_diffuse_color = TRUE;
+  }
+}*/
+
+[t:template,n:island_generator_generic_base]
+{
+  specializes = generator;
+  doc = "island_gen_leveling_base";
+    [aspect]
+  {
+    is_visible = false;
+  }
+
+    common:dev_instance_text = "LEVELED GENERATOR";
+  //common:forced_expiration_class = immediate;
+  //common:auto_expiration_class = immediate;
+
+  [generator_advanced_leveling]
+  {
+        trigger_range = 100;//should be 120, set to 100 for logistical reasons
+                            //Set to the frustum of the map
+                            //This can also be changed in the editor
+                            //and will be changed for lower frustum areas
+        accelerate = true;
+  }
+  [gizmo]
+  {
+    diffuse_color    =  0.0, 1, 0.0;
+    model = m_i_glb_object-waypoint;
+    use_diffuse_color = TRUE;
+  }
+}

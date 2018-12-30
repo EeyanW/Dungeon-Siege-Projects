@@ -1,0 +1,126 @@
+//////////////////////////////////////////////////////////////////////////////
+// Emitters
+
+
+//amb_birds
+[t:template,n:island_emt_sound_amb_birds]
+{
+  specializes    = emitter_lightweight;
+    category_name  = "emitter";
+  doc        = "Island Sound Birds";
+
+  extra_doc    = "starts on creation, lightweight use if possible.";
+  [sound_emitter]
+  {
+    repeat_rate = 10;
+    max_repeat_rate = -1;
+    event_sound = "amb_birds";
+    min_dist = 10;
+    max_dist = 40;
+    start_hour = 5;
+    stop_hour = 19;
+  }
+}
+
+//amb_birds2
+[t:template,n:island_emt_sound_amb_bird2]
+{
+  specializes    = emitter_lightweight;
+    category_name  = "emitter";
+  doc        = "Island Sound Birds2";
+
+  extra_doc    = "starts on creation, lightweight use if possible.";
+  [sound_emitter]
+  {
+    repeat_rate = 8;
+    max_repeat_rate = -1;
+    event_sound = "amb_birds2";
+    min_dist = 10;
+    max_dist = 40;
+    start_hour = 5;
+    stop_hour = 19;
+  }
+}
+
+//env_bird_chatting
+
+[t:template,n:island_emt_sound_env_bird_chatting]
+{
+  specializes    = emitter_lightweight;
+    category_name  = "emitter";
+  doc        = "Island Sound Bird Chatting";
+
+  extra_doc    = "starts on creation, lightweight use if possible.";
+  [sound_emitter]
+  {
+    repeat_rate = 6;
+    max_repeat_rate = 12;
+    event_sound = "s_e_env_bird_chatting";
+    min_dist = 10;
+    max_dist = 40;
+    start_hour = 5;
+    stop_hour = 19;
+  }
+}
+
+[t:template,n:island_emt_sound_env_loon_call]
+{
+  specializes    = emitter_lightweight;
+    category_name  = "emitter";
+  doc        = "Island Sound Bird Call Loon";
+
+  extra_doc    = "starts on creation, lightweight use if possible.";
+  [sound_emitter]
+  {
+    repeat_rate = 8;
+    max_repeat_rate = 16;
+    event_sound = "s_e_env_loon_call";
+    min_dist = 10;
+    max_dist = 40;
+    start_hour = 5;
+    stop_hour = 19;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//RIVER
+//////////////////////////////////////////////////////////////////////////////
+//River Running
+[t:template,n:island_emt_sound_env_river_brook]
+{
+  specializes    = emitter_lightweight;
+    category_name  = "emitter";
+  doc        = "Island Sound River Running";
+
+  extra_doc    = "starts on creation, lightweight use if possible.";
+  [sound_emitter]
+  {
+    repeat_rate = 5;
+    max_repeat_rate = 6;
+    event_sound = "env_brook";
+    min_dist = 6;
+    max_dist = 50;
+    //start_hour = 5;
+    //stop_hour = 19;
+  }
+}
+
+//River Waterfall
+[t:template,n:island_emt_sound_env_river_wfall]
+{
+  specializes    = emitter_lightweight;
+    category_name  = "emitter";
+  doc        = "Island Sound River Waterfall";
+
+  extra_doc    = "starts on creation, lightweight use if possible.";
+  [sound_emitter]
+  {
+    repeat_rate = 6;
+    max_repeat_rate = 7;
+    event_sound = "env_waterfall";
+    min_dist = 6;
+    max_dist = 50;
+    //start_hour = 5;
+    //stop_hour = 19;
+  }
+}

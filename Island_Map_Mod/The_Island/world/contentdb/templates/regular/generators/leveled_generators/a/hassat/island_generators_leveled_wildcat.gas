@@ -1,0 +1,35 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Beach Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Hassatheneicus////////////////////////////////////////////////////////////////////
+
+[t:template,n:island_gen_leveled-wildcat]
+{
+  category_name = "1W_evil_a";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_leveled-wildcat";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 3;
+        low_level = 6;
+        medium_level = 9;
+        high_level = 15;
+        highest_level = 21;
+        super_level = 34;
+        crazy_level = 52;
+
+        Child_Template_Name_Lowest = island_hassathineicus_easy;
+        Child_Template_Name_Low = island_hassathineicus_normal;
+        Child_Template_Name_Medium_Low = island_hassathineicus_strong;
+        Child_Template_Name_Medium_High = island_hassathineicus_large;
+        Child_Template_Name_High = island_hassathineicus_superior;
+        Child_Template_Name_Highest = island_hassathineicus_deranged;
+        Child_Template_Name_Super = island_hassathineicus_mutated;
+        Child_Template_Name_Crazy = island_hassathineicus_crazy;
+        //Just in case the code chokes
+        Child_Template_Name = island_hassathineicus_normal;
+  }
+}

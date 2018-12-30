@@ -1,0 +1,48 @@
+
+[t:template,n:bs_test_statue_01]  //fen_statue 02
+{
+  category_name = "statue";
+  doc = "bs_fen_statue_02";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    model = m_i_glb_statue_02;
+    [textures]
+    {
+      0 = b_i_glb_statue_02-01;
+      1 = b_i_glb_statue_02-02;
+    }
+  }
+}
+
+[t:template,n:bs_test_statue_02]  //fen_statue 03
+{
+  category_name = "statue";
+  doc = "bs_fen_statue_03";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    model = m_i_glb_statue_03;
+    [textures]
+    {
+      0 = b_i_glb_statue_03-01;
+      1 = b_i_glb_statue_03-02;
+    }
+  }
+}
+
+[t:template,n:bs_test_statue_03]  //fen_statue 06
+{
+  category_name = "statue";
+  doc = "bs_fen_statue_06";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    model = m_i_glb_statue_06;
+    [textures]
+    {
+      0 = b_i_glb_statue_06-01;
+      1 = b_i_glb_statue_06-02;
+    }
+  }
+}

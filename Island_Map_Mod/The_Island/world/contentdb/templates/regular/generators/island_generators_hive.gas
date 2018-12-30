@@ -1,0 +1,455 @@
+//Wasp
+//Breakable
+[t:template,n:island_generator_highlands_spawner_01]
+{
+  specializes = base_breakable_wood;
+  doc = "island_gen_highlands_hole-wasp";
+    category_name = "1w_generator";
+    [common]
+    {
+      rollover_display = true;
+      screen_name = "Wasp Hive";
+    rollover_life = true;
+    }
+
+  physics:break_effect  = sarcophagus_dust;
+
+  [aspect]
+    {
+      model     = m_i_cav_stalagmite-03;
+    [textures] { 0 = b_i_grs_spawner-01;}
+
+    life_state    = LS_ALIVE_CONSCIOUS;
+        is_collidable   = true;
+    life      = 100;
+    max_life    = 100;
+    use_range = 1;
+  }
+  [defend]
+  {
+    defense = 10;
+  }
+  [physics]
+  {
+    [break_particulate]
+    {
+      frag_glb_stone_03  = 2;
+      frag_glb_stone_04  = 8;
+        }
+  }
+    [gizmo]
+  {
+    model        =  m_i_glb_object-waypoint;
+    texture        =  ;
+    diffuse_color    =  0.2, 1, 0.0;
+    use_diffuse_color  =  true;
+  }
+  [island_generator_breakable]
+  {
+        Child_Template_Name = island_wasped_green;
+        num_children_incubating = 50;
+        spawn_period = 2;
+        spawn_range = .4;
+        //trigger_range = 14;
+        max_alive_children = 6;
+  }
+}
+
+//Gritch
+//Breakable
+[t:template,n:island_generator_highlands_spawner_02]
+{
+  specializes = base_breakable_wood;
+  doc = "island_gen_highlands_hole-gritch";
+    category_name = "1w_generator";
+    [common]
+    {
+      rollover_display = true;
+      screen_name = "Gritch Hive";
+    rollover_life = true;
+    }
+
+  physics:break_effect  = sarcophagus_dust;
+
+  [aspect]
+    {
+      model     = m_i_cav_stalagmite-03;
+    [textures] { 0 = b_i_grs_spawner-01;}
+
+    life_state    = LS_ALIVE_CONSCIOUS;
+        is_collidable   = true;
+    life      = 100;
+    max_life    = 100;
+    use_range = 1;
+  }
+  [defend]
+  {
+    defense = 90;
+  }
+  [physics]
+  {
+    [break_particulate]
+    {
+      frag_glb_stone_03  = 2;
+      frag_glb_stone_04  = 8;
+        }
+  }
+    [gizmo]
+  {
+    model        =  m_i_glb_object-waypoint;
+    texture        =  ;
+    diffuse_color    =  0.2, 1, 0.0;
+    use_diffuse_color  =  true;
+  }
+  [island_generator_breakable]
+  {
+        Child_Template_Name = dsx_flying_gritch;
+        num_children_incubating = 50;
+        spawn_period = 2;
+        spawn_range = .4;
+        //trigger_range = 14;
+        max_alive_children = 6;
+  }
+}
+
+//Soul Stinger
+//Breakable
+[t:template,n:island_generator_highlands_spawner_03]
+{
+  specializes = base_breakable_wood;
+  doc = "island_gen_highlands_hole-soulstinger";
+    category_name = "1w_generator";
+    [common]
+    {
+      rollover_display = true;
+      screen_name = "Stinger Mound";
+    rollover_life = true;
+    }
+
+  physics:break_effect  = sarcophagus_dust;
+
+  [aspect]
+    {
+      model     = m_i_cav_stalagmite-03;
+    [textures] { 0 = b_i_grs_spawner-01;}
+
+    life_state    = LS_ALIVE_CONSCIOUS;
+        is_collidable   = true;
+    life      = 100;
+    max_life    = 100;
+    use_range = 1;
+  }
+  [defend]
+  {
+    defense = 120;
+  }
+  [physics]
+  {
+    [break_particulate]
+    {
+      frag_glb_stone_03  = 2;
+      frag_glb_stone_04  = 8;
+    }
+  }
+  [gizmo]
+  {
+    model        =  m_i_glb_object-waypoint;
+    texture        =  ;
+    diffuse_color    =  0.2, 1, 0.0;
+    use_diffuse_color  =  true;
+  }
+  [island_generator_breakable]
+  {
+        Child_Template_Name = dsx_soul_stinger;
+        num_children_incubating = 50;
+        spawn_period = 2;
+        spawn_range = .4;
+        //trigger_range = 14;
+        max_alive_children = 6;
+  }
+}
+
+//Mountain Phrak
+//Breakable
+[t:template,n:island_generator_highlands_spawner_04]
+{
+  specializes = base_breakable_wood;
+  doc = "island_gen_highlands_hole-mountainphrak";
+    category_name = "1w_generator";
+    [common]
+    {
+      rollover_display = true;
+      screen_name = "Phrak Hive";
+    rollover_life = true;
+    }
+
+  physics:break_effect  = sarcophagus_dust;
+
+  [aspect]
+    {
+      model     = m_i_cav_stalagmite-03;
+    [textures] { 0 = b_i_grs_spawner-01;}
+
+    life_state    = LS_ALIVE_CONSCIOUS;
+        is_collidable   = true;
+    life      = 150;
+    max_life    = 150;
+    use_range = 1;
+  }
+  [defend]
+  {
+    defense = 150;
+  }
+  [physics]
+  {
+    [break_particulate]
+    {
+      frag_glb_stone_03  = 2;
+      frag_glb_stone_04  = 8;
+    }
+  }
+  [gizmo]
+  {
+    model        =  m_i_glb_object-waypoint;
+    texture        =  ;
+    diffuse_color    =  0.2, 1, 0.0;
+    use_diffuse_color  =  true;
+  }
+  [island_generator_breakable]
+  {
+        Child_Template_Name = dsx_phrak_piercer;
+        num_children_incubating = 50;
+        spawn_period = 2;
+        spawn_range = .4;
+        //trigger_range = 14;
+        max_alive_children = 6;
+  }
+}
+
+//Wasp
+//Breakable
+[t:template,n:island_generator_highlands_spawner_05]
+{
+  specializes = base_breakable_wood;
+  doc = "island_gen_highlands_hole-wasp";
+    category_name = "1w_generator";
+    [common]
+    {
+      rollover_display = true;
+      screen_name = "Wasp Mound";
+    rollover_life = true;
+    }
+
+  physics:break_effect  = sarcophagus_dust;
+
+  [aspect]
+    {
+      model     = m_i_cav_stalagmite-03;
+    [textures] { 0 = b_i_grs_spawner-01;}
+
+    life_state    = LS_ALIVE_CONSCIOUS;
+        is_collidable   = true;
+    life      = 200;
+    max_life    = 200;
+    use_range = 1;
+  }
+  [defend]
+  {
+    defense = 240;
+  }
+  [physics]
+  {
+    [break_particulate]
+    {
+      frag_glb_stone_03  = 2;
+      frag_glb_stone_04  = 8;
+    }
+  }
+  [gizmo]
+  {
+    model        =  m_i_glb_object-waypoint;
+    texture        =  ;
+    diffuse_color    =  0.2, 1, 0.0;
+    use_diffuse_color  =  true;
+  }
+  [island_generator_breakable]
+  {
+        Child_Template_Name = island_wasped_desert;
+        num_children_incubating = 50;
+        spawn_period = 2;
+        spawn_range = .4;
+        //trigger_range = 14;
+        max_alive_children = 6;
+  }
+}
+
+//Giant Wasp
+//Breakable
+[t:template,n:island_generator_highlands_spawner_06]
+{
+  specializes = base_breakable_wood;
+  doc = "island_gen_highlands_hole-giantwasp";
+    category_name = "1w_generator";
+    [common]
+    {
+      rollover_display = true;
+      screen_name = "Giant Wasp Mound";
+    rollover_life = true;
+    }
+
+  physics:break_effect  = sarcophagus_dust;
+
+  [aspect]
+    {
+      model     = m_i_cav_stalagmite-03;
+    [textures] { 0 = b_i_grs_spawner-01;}
+
+    life_state    = LS_ALIVE_CONSCIOUS;
+        is_collidable   = true;
+    life      = 200;
+    max_life    = 200;
+    use_range = 1;
+  }
+  [defend]
+  {
+    defense = 300;
+  }
+  [physics]
+  {
+    [break_particulate]
+    {
+      frag_glb_stone_03  = 2;
+      frag_glb_stone_04  = 8;
+    }
+  }
+  [gizmo]
+  {
+    model        =  m_i_glb_object-waypoint;
+    texture        =  ;
+    diffuse_color    =  0.2, 1, 0.0;
+    use_diffuse_color  =  true;
+  }
+  [island_generator_breakable]
+  {
+        Child_Template_Name = wasped;
+        num_children_incubating = 50;
+        spawn_period = 2;
+        spawn_range = .4;
+        //trigger_range = 14;
+        max_alive_children = 6;
+  }
+}
+
+//Phrak
+//Breakable
+[t:template,n:island_generator_highlands_spawner_07]
+{
+  specializes = base_breakable_wood;
+  doc = "island_gen_highlands_hole-phrak";
+    category_name = "1w_generator";
+    [common]
+    {
+      rollover_display = true;
+      screen_name = "Phrak Mound";
+    rollover_life = true;
+    }
+
+  physics:break_effect  = sarcophagus_dust;
+
+  [aspect]
+    {
+      model     = m_i_cav_stalagmite-03;
+    [textures] { 0 = b_i_grs_spawner-01;}
+
+    life_state    = LS_ALIVE_CONSCIOUS;
+        is_collidable   = true;
+    life      = 250;
+    max_life    = 250;
+    use_range = 1;
+  }
+  [defend]
+  {
+    defense = 400;
+  }
+  [physics]
+  {
+    [break_particulate]
+    {
+      frag_glb_stone_03  = 2;
+      frag_glb_stone_04  = 8;
+    }
+  }
+  [gizmo]
+  {
+    model        =  m_i_glb_object-waypoint;
+    texture        =  ;
+    diffuse_color    =  0.2, 1, 0.0;
+    use_diffuse_color  =  true;
+  }
+  [island_generator_breakable]
+  {
+        Child_Template_Name = 2W_phrak;
+        num_children_incubating = 50;
+        spawn_period = 2;
+        spawn_range = .4;
+        //trigger_range = 14;
+        max_alive_children = 6;
+  }
+}
+
+//Feathered Drake
+//Breakable
+[t:template,n:island_generator_highlands_spawner_08]
+{
+  specializes = base_breakable_wood;
+  doc = "island_gen_highlands_hole-feathered drake";
+    category_name = "1w_generator";
+    [common]
+    {
+      rollover_display = true;
+      screen_name = "Phrak Mound";
+    rollover_life = true;
+    }
+
+  physics:break_effect  = sarcophagus_dust;
+
+  [aspect]
+    {
+      model     = m_i_cav_stalagmite-03;
+    [textures] { 0 = b_i_grs_spawner-01;}
+
+    life_state    = LS_ALIVE_CONSCIOUS;
+        is_collidable   = true;
+    life      = 300;
+    max_life    = 300;
+    use_range = 1;
+  }
+  [defend]
+  {
+    defense = 500;
+  }
+  [physics]
+  {
+    [break_particulate]
+    {
+      frag_glb_stone_03  = 2;
+      frag_glb_stone_04  = 8;
+    }
+  }
+  [gizmo]
+  {
+    model        =  m_i_glb_object-waypoint;
+    texture        =  ;
+    diffuse_color    =  0.2, 1, 0.0;
+    use_diffuse_color  =  true;
+  }
+  [island_generator_breakable]
+  {
+        Child_Template_Name = 2W_dsx_drake_feathered;
+        num_children_incubating = 50;
+        spawn_period = 2;
+        spawn_range = .4;
+        //trigger_range = 14;
+        max_alive_children = 6;
+  }
+}

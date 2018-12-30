@@ -1,0 +1,98 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Highland Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Melee////////////////////////////////////////////////////////////////////
+
+//Highland
+[t:template,n:island_gen_highland_leveled_melee]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_highland_leveled_melee";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 6;
+        low_level = 14;
+        medium_level = 21;
+        high_level = 27;
+        highest_level = 38;
+        super_level = 49;
+        crazy_level = 71;
+
+        Child_Template_Name_Lowest = island_wasped_green;
+        Child_Template_Name_Low = island_chomper;
+        Child_Template_Name_Medium_Low = island_troll_highlands;
+        Child_Template_Name_Medium_High = dsx_troll_masher;
+        Child_Template_Name_High = island_cyclops;
+        Child_Template_Name_Highest = island_rock_spirit;
+        Child_Template_Name_Super = island_drake_highlands;
+        Child_Template_Name_Crazy = island_rock_beast;
+        //Just in case the code chokes
+        Child_Template_Name = island_troll_highlands;
+  }
+}
+
+//Ranged////////////////////////////////////////////////////////////////////
+
+//Highland
+[t:template,n:island_gen_highland_leveled_ranged]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_highland_leveled_other";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 6;
+        low_level = 14;
+        medium_level = 21;
+        high_level = 27;
+        highest_level = 38;
+        super_level = 49;
+        crazy_level = 71;
+
+        Child_Template_Name_Lowest = island_wasped_green;
+        Child_Template_Name_Low = dsx_mhulliq_two;
+        Child_Template_Name_Medium_Low = island_chomper;
+        Child_Template_Name_Medium_High = island_troll_highlands;
+        Child_Template_Name_High = island_rock_spirit;
+        Child_Template_Name_Highest = island_spiked_dweller_large_highlevel;
+        Child_Template_Name_Super = island_drake_highlands;
+        Child_Template_Name_Crazy = island_rock_beast;
+        //Just in case the code chokes
+        Child_Template_Name = dsx_mhulliq_two;
+  }
+}
+
+//Hives
+[t:template,n:island_gen_highland_leveled_wasp]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_highland_leveled_wasp";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 8;
+        low_level = 18;
+        medium_level = 25;
+        high_level = 28;
+        highest_level = 34;
+        super_level = 46;
+        crazy_level = 56;
+
+        Child_Template_Name_Lowest = island_generator_highlands_spawner_01;
+        Child_Template_Name_Low = island_generator_highlands_spawner_02;
+        Child_Template_Name_Medium_Low = island_generator_highlands_spawner_03;
+        Child_Template_Name_Medium_High = island_generator_highlands_spawner_04;
+        Child_Template_Name_High = island_generator_highlands_spawner_05;
+        Child_Template_Name_Highest = island_generator_highlands_spawner_06;
+        Child_Template_Name_Super = island_generator_highlands_spawner_07;
+        Child_Template_Name_Crazy = island_generator_highlands_spawner_08;//Change this later, yeah?
+        //Just in case the code chokes
+        Child_Template_Name = island_generator_highlands_spawner_01;
+  }
+}

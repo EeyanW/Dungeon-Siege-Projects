@@ -1,0 +1,99 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Mountain Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Melee////////////////////////////////////////////////////////////////////
+
+//Mountain
+[t:template,n:island_gen_mountain_leveled_melee]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_mountain_leveled_melee";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 8;
+        low_level = 14;
+        medium_level = 21;
+        high_level = 29;
+        highest_level = 33;
+        super_level = 46;
+        crazy_level = 69;
+
+        Child_Template_Name_Lowest = island_ice_fly;
+        Child_Template_Name_Low = island_braak;
+        Child_Template_Name_Medium_Low = island_ice_warrior;
+        Child_Template_Name_Medium_High = island_braak_large;
+        Child_Template_Name_High = island_klaw;
+        Child_Template_Name_Highest = island_cave_giant_small;
+        Child_Template_Name_Super = 2W_dsx_spider_frost;
+        Child_Template_Name_Crazy = island_golem_frost;
+        //Just in case the code chokes
+        Child_Template_Name = island_ice_fly;
+  }
+}
+
+//Ranged////////////////////////////////////////////////////////////////////
+
+//Mountain
+[t:template,n:island_gen_mountain_leveled_ranged]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_mountain_leveled_ranged";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 8;
+        low_level = 14;
+        medium_level = 21;
+        high_level = 29;
+        highest_level = 33;
+        super_level = 46;
+        crazy_level = 69;
+
+        Child_Template_Name_Lowest = island_ice_fly;
+        Child_Template_Name_Low = island_braak_magic_small;
+        Child_Template_Name_Medium_Low = island_ice_archer;
+        Child_Template_Name_Medium_High = island_braak_magic_large;
+        Child_Template_Name_High = island_klaw;
+        Child_Template_Name_Highest = island_cave_giant_small;
+        Child_Template_Name_Super = 2W_dsx_spider_frost_range;
+        Child_Template_Name_Crazy = island_golem_frost_ranged;
+        //Just in case the code chokes
+        Child_Template_Name = island_ice_fly;
+  }
+}
+
+//Boss////////////////////////////////////////////////////////////////////
+//Mountain
+[t:template,n:island_gen_mountain_leveled_boss]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_mountain_leveled_boss";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 9;
+        low_level = 14;
+        medium_level = 21;
+        high_level = 29;
+        highest_level = 37;
+        super_level = 46;
+        crazy_level = 70;
+
+        Child_Template_Name_Lowest = island_mine_worm;
+        Child_Template_Name_Low = island_braak_boss_01;
+        Child_Template_Name_Medium_Low = island_ice_warrior_boss_01;
+        Child_Template_Name_Medium_High = island_braak_large;
+        Child_Template_Name_High = island_klaw_boss_01;
+        Child_Template_Name_Highest = island_arctic_giant;
+        Child_Template_Name_Super = island_drake_frost;
+        Child_Template_Name_Crazy = island_furok;
+        //Just in case the code chokes
+        Child_Template_Name = island_mine_worm;
+  }
+}

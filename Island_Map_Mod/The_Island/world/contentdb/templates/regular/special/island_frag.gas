@@ -1,0 +1,54 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//SCRUB SPIDER FRAGS//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:island_frag_glb_spider_01]
+{
+  doc = "island_frag_glb_spider_01";
+  specializes   = fragment;
+  [aspect]
+  {
+    model   = m_i_glb_frag-spider-01;
+    scale_base = .4;
+  }
+}
+[t:template,n:island_frag_glb_spider_02]
+{
+  doc = "island_frag_glb_spider_02";
+  specializes   = fragment;
+  [aspect]
+  {
+    model   = m_i_glb_frag-spider-02;
+    scale_base = .4;
+  }
+}
+[t:template,n:island_frag_glb_spider_03]
+{
+  doc = "island_frag_glb_spider_03";
+  specializes   = fragment;
+  [aspect]
+  {
+    model   = m_i_glb_frag-spider-03;
+    scale_base = .4;
+  }
+}
+[t:template,n:island_frag_glb_spider_04]
+{
+  doc = "island_frag_glb_spider_04";
+  specializes   = fragment;
+  [aspect]
+  {
+    model   = m_i_glb_frag-spider-04;
+    scale_base = .4;
+  }
+}
+[t:template,n:island_frag_glb_spider_05]
+{
+  doc = "island_frag_glb_spider_05";
+  specializes   = fragment;
+  [aspect]
+  {
+    model   = m_i_glb_frag-spider-05;
+    scale_base = .4;
+  }
+}

@@ -1,0 +1,68 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Lowland Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Melee////////////////////////////////////////////////////////////////////
+
+//Lowland
+[t:template,n:island_gen_lowland_leveled_melee]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_lowland_leveled_melee";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 2;
+        low_level = 7;
+        medium_level = 11;
+        high_level = 17;
+        highest_level = 24;
+        super_level = 32;
+        crazy_level = 49;
+
+        Child_Template_Name_Lowest = island_gremal;
+        Child_Template_Name_Low = island_krug_melee;
+        Child_Template_Name_Medium_Low = island_chitterskrag_weakest;
+        Child_Template_Name_Medium_High = island_chitterskrag_weakest;
+        Child_Template_Name_High = dsx_kikclaw;
+        Child_Template_Name_Highest = island_phrak_grass_melee;
+        Child_Template_Name_Super = island_skatwyrm_melee;
+        Child_Template_Name_Crazy = island_gremal_evil;
+        //Just in case the code chokes
+        Child_Template_Name = island_chitterskrag_weakest;
+  }
+}
+
+//Ranged////////////////////////////////////////////////////////////////////
+
+//Lowland
+[t:template,n:island_gen_lowland_leveled_ranged]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_lowland_leveled_ranged";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 2;
+        low_level = 7;
+        medium_level = 11;
+        high_level = 17;
+        highest_level = 24;
+        super_level = 32;
+        crazy_level = 49;
+
+        Child_Template_Name_Lowest = phrak;
+        Child_Template_Name_Low = island_krug_ranged;
+        Child_Template_Name_Medium_Low = island_spiked_dweller;
+        Child_Template_Name_Medium_High = island_chitterskrag_weakest_spew;
+        Child_Template_Name_High = dsx_kikclaw_2;
+        Child_Template_Name_Highest = island_phrak_grass_ranged;
+        Child_Template_Name_Super = island_skatwyrm_ranged;
+        Child_Template_Name_Crazy = island_spiked_dweller_large_highlevel;
+        //Just in case the code chokes
+        Child_Template_Name = island_spiked_dweller;
+  }
+}

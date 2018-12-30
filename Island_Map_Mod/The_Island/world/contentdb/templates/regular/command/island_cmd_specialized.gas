@@ -1,0 +1,27 @@
+
+[t:template,n:cmd_ai_t_move_orient_island]
+{
+  specializes = cmd_const;
+  doc      = "cmd_t_move_orient_island";
+     extra_doc  = "This is a command for setting up Target1 movement waypoints where the actor will orient to the orientation of the waypoint.";
+    category_name       = "target";
+
+  //Keeps the object in the game
+  common:auto_expiration_class = never;
+  common:forced_expiration_class = never;
+  [cmd_ai_dojob] {
+
+    jat      = jat_move;
+  q      = jq_action;
+  placement  = qp_front;
+  ao      = ao_command;
+    mode    = djm_1v2;
+  useCommandOrientation = true;
+
+  }
+  [gizmo]
+  {
+    diffuse_color=0.000000,0.000000,0.700000;
+    model = m_i_glb_object-waypoint;
+  }
+}

@@ -1,0 +1,160 @@
+
+//back/////////////////////////////////////////////////////////////////////////
+/*[t:template,n:island_body_glb_soldier_b_01]
+{
+  category_name = "dead";
+  doc = "island_dead guard back 01";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    lodfi_lower = 0.8;
+    lodfi_upper = 1;
+    model = m_i_glb_dead_gaurd-02;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_05;
+      1 = b_c_pos_a3_207;
+    }
+  }
+}
+
+[t:template,n:island_body_glb_soldier_b_02]
+{
+  category_name = "dead";
+  doc = "island_dead guard back 02";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    lodfi_lower = 0.8;
+    lodfi_upper = 1;
+    model = m_i_glb_dead_knight-02;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_30;
+      1 = b_c_pos_a3_207;
+    }
+  }
+}
+
+[t:template,n:island_body_glb_soldier_b_03]
+{
+  category_name = "dead";
+  doc = "island_dead guard back 03";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    lodfi_lower = 0.8;
+    lodfi_upper = 1;
+    model = m_i_glb_dead_knight-06;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_20;
+      1 = b_c_pos_a3_207;
+    }
+  }
+}
+//front////////////////////////////////////////////////////////////////////////
+[t:template,n:island_body_glb_soldier_f_01]
+{
+  category_name = "dead";
+  doc = "island_dead guard front 01";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    lodfi_lower = 0.8;
+    lodfi_upper = 1;
+    model = m_i_glb_dead_gaurd-03;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_06;
+      1 = b_c_pos_a3_207;
+    }
+  }
+}
+
+[t:template,n:island_body_glb_soldier_f_02]
+{
+  category_name = "dead";
+  doc = "island_dead guard front 02";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    lodfi_lower = 0.8;
+    lodfi_upper = 1;
+    model = m_i_glb_dead_knight-01;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_003;
+      1 = b_c_pos_a3_207;
+    }
+  }
+}
+[t:template,n:island_body_glb_soldier_f_03]
+{
+  category_name = "dead";
+  doc = "island_dead guard front 03";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    lodfi_lower = 0.8;
+    lodfi_upper = 1;
+    model = m_i_glb_dead_knight-04;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_004;
+      1 = b_c_pos_a3_207;
+    }
+  }
+}
+[t:template,n:island_body_glb_soldier_f_04]
+{
+  category_name = "dead";
+  doc = "island_dead guard front 04";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    lodfi_lower = 0.8;
+    lodfi_upper = 1;
+    model = m_i_glb_dead_knight-05;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_005;
+      1 = b_c_pos_a3_207;
+    }
+  }
+}
+//side/////////////////////////////////////////////////////////////////////////
+[t:template,n:island_body_glb_soldier_s_01]
+{
+  category_name = "dead";
+  doc = "island_dead guard side 01";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    lodfi_lower = 0.8;
+    lodfi_upper = 1;
+    model = m_i_glb_dead_gaurd-04;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_11;
+      1 = b_c_pos_a3_207;
+    }
+  }
+}
+[t:template,n:island_body_glb_soldier_s_02]
+{
+  category_name = "dead";
+  doc = "island_dead guard side 02";
+  specializes = non_interactive_nonblocking;
+  [aspect]
+  {
+    lodfi_lower = 0.8;
+    lodfi_upper = 1;
+    model = m_i_glb_dead_knight-03;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_11;
+      1 = b_c_pos_a3_207;
+    }
+  }
+}*/

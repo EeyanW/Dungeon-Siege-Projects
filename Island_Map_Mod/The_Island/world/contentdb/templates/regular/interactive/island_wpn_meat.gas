@@ -1,0 +1,29 @@
+
+[t:template,n:island_meat_bone]
+{
+  specializes = base_misc_fs1;
+  category_name = "other";
+  doc = "Island Meat Weapon";
+  [aspect]
+  {
+    material = wood;
+    model = m_w_misc_meat_bone;
+    gold_value = 50;
+  }
+  [attack]
+  {
+    damage_max = 3;
+    damage_min = 1;
+  }
+  [common]
+  {
+    screen_name = "Meat";
+  }
+  [gui]
+  {
+    active_icon = b_gui_ig_i_ic_msc_007;
+    inventory_height = 2;
+    inventory_icon = b_gui_ig_i_w_msc_007;
+    inventory_width = 1;
+  }
+}

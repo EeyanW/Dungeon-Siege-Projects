@@ -1,0 +1,97 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Goblin Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Grunts////////////////////////////////////////////////////////////////////
+
+[t:template,n:island_gen_leveled-goblin_grunts]
+{
+  category_name = "1W_evil_a";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_leveled-goblin_grunt";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 7;
+        low_level = 13;
+        medium_level = 19;
+        high_level = 27;
+        highest_level = 36;
+        super_level = 50;
+        crazy_level = 70;
+
+        Child_Template_Name_Lowest = island_goblin_grunt_lesser;
+        Child_Template_Name_Low = island_goblin_grunt_norm;
+        Child_Template_Name_Medium_Low = island_goblin_grunt_greater;
+        Child_Template_Name_Medium_High = island_goblin_grunt_superior;
+        Child_Template_Name_High = island_goblin_grunt_hammerhand;
+        Child_Template_Name_Highest = island_goblin_brute;
+        Child_Template_Name_Super = island_goblin_brute_mutated;
+        Child_Template_Name_Crazy = 2W_dsx_goblin_mutant;
+        //Just in case the code chokes
+        Child_Template_Name = island_goblin_grunt_norm;
+  }
+}
+
+//Guards////////////////////////////////////////////////////////////////////
+
+[t:template,n:island_gen_leveled-goblin_guards]
+{
+  category_name = "1W_evil_a";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_leveled-goblin_guards";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 13;
+        low_level = 17;
+        medium_level = 22;
+        high_level = 34;
+        highest_level = 48;
+        super_level = 58;
+        crazy_level = 76;
+
+        Child_Template_Name_Lowest = island_goblin_grunt_norm;
+        Child_Template_Name_Low = island_goblin_grunt_greater;
+        Child_Template_Name_Medium_Low = island_goblin_grunt_greater;
+        Child_Template_Name_Medium_High = island_goblin_armored;
+        Child_Template_Name_High = island_goblin_soldier;
+        Child_Template_Name_Highest = island_goblin_guard;
+        Child_Template_Name_Super = island_goblin_heavy;
+        Child_Template_Name_Crazy = island_goblin_royal;
+        //Just in case the code chokes
+        Child_Template_Name = island_goblin_armored;
+  }
+}
+
+//Pale Cave////////////////////////////////////////////////////////////////////
+
+[t:template,n:island_gen_leveled-goblin_cave]
+{
+  category_name = "1W_evil_a";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_leveled-goblin_cave";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 40;
+        low_level = 45;
+        medium_level = 50;
+        high_level = 55;
+        highest_level = 60;
+        super_level = 80;
+        crazy_level = 90;
+
+        Child_Template_Name_Lowest = island_goblin_gray_normal;
+        Child_Template_Name_Low = island_goblin_gray_normal;
+        Child_Template_Name_Medium_Low = island_goblin_gray_normal;
+        Child_Template_Name_Medium_High = island_goblin_gray_large;
+        Child_Template_Name_High = island_goblin_gray_large;
+        Child_Template_Name_Highest = island_goblin_gray_large;
+        Child_Template_Name_Super = island_goblin_gray_light;
+        Child_Template_Name_Crazy = island_goblin_gray_light;
+        //Just in case the code chokes
+        Child_Template_Name = island_goblin_gray_normal;
+  }
+}

@@ -1,0 +1,68 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Desert Varients//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//Varient 1////////////////////////////////////////////////////////////////////
+
+//Desert
+[t:template,n:island_gen_desert_leveled_groups]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_desert_leveled_groups";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 35;
+        low_level = 43;
+        medium_level = 50;
+        high_level = 59;
+        highest_level = 70;
+        super_level = 82;
+        crazy_level = 99;
+
+        Child_Template_Name_Lowest = island_wasped_desert;
+        Child_Template_Name_Low = island_sand_ripper;
+        Child_Template_Name_Medium_Low = island_sand_basher;
+        Child_Template_Name_Medium_High = island_braak_desert_melee;
+        Child_Template_Name_High = island_braak_desert_melee_tough;
+        Child_Template_Name_Highest = island_chitterskrag_desert;
+        Child_Template_Name_Super = island_skick_desert;
+        Child_Template_Name_Crazy = island_synged_desert;
+        //Just in case the code chokes
+        Child_Template_Name = island_wasped_desert;
+  }
+}
+
+//Varient 2////////////////////////////////////////////////////////////////////
+
+//Desert
+[t:template,n:island_gen_desert_leveled_lone]
+{
+  category_name = "1W_evil_d";
+  specializes = island_generator_generic_base;
+  doc = "island_gen_desert_leveled_lone";
+
+  [generator_advanced_leveling]
+  {
+        lowest_level = 35;
+        low_level = 43;
+        medium_level = 50;
+        high_level = 59;
+        highest_level = 74;
+        super_level = 82;
+        crazy_level = 99;
+
+        Child_Template_Name_Lowest = island_sand_ripper;
+        Child_Template_Name_Low = island_rock_spirit;
+        Child_Template_Name_Medium_Low = island_gorack_desert_01;
+        Child_Template_Name_Medium_High = island_gorack_desert_02;
+        Child_Template_Name_High = island_impaler;
+        Child_Template_Name_Highest = island_outcast;
+        Child_Template_Name_Super = island_darkblood;
+        Child_Template_Name_Crazy = ;
+        //Just in case the code chokes
+        Child_Template_Name = island_impaler;
+  }
+}
