@@ -1,0 +1,620 @@
+[t:template,n:bs_base_npc_fb]
+{
+  doc = "Base template for non-hero actors specializing FB resources";
+  specializes = npc;
+  [actor]
+  {
+    portrait_icon = b_gui_ig_i_ic_c_bs_son;
+  }
+  [aspect]
+  {
+    draw_selection_indicator = true;
+    life = 24;
+    max_life = 24;
+    model = m_c_gah_fb_pos_a1;
+  }
+  [body]
+  {
+    armor_version = gah_fb;
+    avg_move_velocity = 4.500000;
+    [bone_translator]
+    {
+      body_anterior = bip01_head;
+      body_mid = bip01_spine2;
+      body_posterior = bip01_pelvis;
+      kill_bone = bip01_spine2;
+      shield_bone = shield_grip;
+      weapon_bone = weapon_grip;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_gah_fb_fs;
+      [chore_attack]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = at;
+          qffg = dff;
+        }
+      }
+      [chore_default]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = infinite_loop;
+        [anim_files]
+        {
+          00 = ds;
+        }
+      }
+      [chore_die]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_transition;
+        [anim_files]
+        {
+          00 = di;
+        }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_fidget;
+        [anim_files]
+        {
+          00 = dsf;
+        }
+      }
+      [chore_magic]
+      {
+        chore_stances = 0,5;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = mg;
+          01 = mg-02;
+        }
+      }
+      [chore_misc]
+      {
+        chore_stances = ignore;
+        skrit = select_transition;
+        [anim_files]
+        {
+          bed1 = a_c_gah_fb_fs0_dsf-05;
+          bed2 = a_c_gah_fb_fs0_dsf-06;
+          bed3 = a_c_gah_fb_fs0_dsf-07;
+          bed4 = a_c_gah_fb_fs0_dsf-11;
+          bed5 = a_c_gah_fb_fs0_dsf-12;
+          bed6 = a_c_gah_fb_fs0_dsf-13;
+          bed7 = a_c_gah_fb_fs0_dsf-14;
+          look = a_c_gah_fb_fs0_dsf;
+          sit1 = a_c_gah_fb_fs0_dsf-09;
+          sit2 = a_c_gah_fb_fs0_dsf-10;
+          sit3 = a_c_gah_fb_fs0_dsf-15;
+          talk = a_c_gah_fb_fs0_dsf-04;
+          wyme = a_c_gah_fb_fs0_dsf-02;
+          lsn2 = a_c_gah_fb_fs0_dsf-18;
+          hoe1 = a_c_gah_fb_fs5_dsf-02;
+        }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0,1,2,3,4,5,6;
+        skrit = select_walk;
+        [anim_files]
+        {
+          00 = rl;
+        }
+      }
+    }
+  }
+  [conversation]
+  {
+  }
+  [defend]
+  {
+  }
+  [guts_manager]
+  {
+    effect_name = melee_hit_2;
+  }
+  [inventory]
+  {
+    [equipment]
+    {
+      es_feet = bo_bo_le_light;
+    }
+  }
+  [mind]
+  {
+    actor_may_attack = true;
+        actor_may_be_attacked = true;
+    jat_talk = world\ai\jobs\common\job_talk.skrit;
+  }
+}
+
+[t:template,n:bs_farmer_male]
+{
+  category_name = "1W_character";
+  doc = "bs farmer";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_13;
+      1 = b_c_pos_a1_015;
+    }
+  }
+  [common]
+  {
+    screen_name = "Farmer";
+  }
+}
+[t:template,n:bs_farmer_male_old]
+{
+  category_name = "1W_character";
+  doc = "bs farmer, old";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_12;
+      1 = b_c_pos_a1_051;
+    }
+  }
+  [common]
+  {
+    screen_name = "Farmer";
+  }
+}
+[t:template,n:bs_farmer_01]
+{
+  category_name = "1W_character";
+  doc = "bs farmer 01";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    model = m_c_gah_fb_pos_a2;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_08;
+      1 = b_c_pos_a1_015;
+    }
+  }
+  [common]
+  {
+    screen_name = "Farmer";
+  }
+}
+[t:template,n:bs_farmer_02]
+{
+  category_name = "1W_character";
+  doc = "bs farmer 02";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_10;
+      1 = b_c_pos_a1_015;
+    }
+  }
+  [common]
+  {
+    screen_name = "Farmer";
+  }
+}
+[t:template,n:bs_farmer_03]
+{
+  category_name = "1W_character";
+  doc = "bs farmer 03";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_09;
+      1 = b_c_pos_a1_051;
+    }
+  }
+  [inventory]
+  {
+    custom_head = m_c_gah_fb_hlmt_head-05;
+  }
+  [common]
+  {
+    screen_name = "Farmer";
+  }
+}
+[t:template,n:bs_dude_01]
+{
+  category_name = "1W_character";
+  doc = "bs dude 01";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    draw_selection_indicator = TRUE;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_16;
+      1 = b_c_pos_a1_031;
+    }
+  }
+  [common]
+  {
+    screen_name = "Yamus";
+  }
+}
+[t:template,n:bs_hunter]
+{
+  category_name = "1W_character";
+  doc = "bs hunter";
+  specializes = bs_base_npc_fb;
+  [actor]
+  {
+    portrait_icon = b_gui_ig_i_ic_c_jeriah;
+  }
+  [aspect]
+  {
+    draw_selection_indicator = TRUE;
+    is_ghost_usable = TRUE;
+    model = m_c_gbn_ja_pos_1;
+    use_range = 1;
+  }
+  [common]
+  {
+    screen_name = "Jeriah";
+  }
+  [inventory]
+  {
+  }
+}
+[t:template,n:bs_dude_02]
+{
+  category_name = "1W_character";
+  doc = "bs dude 02";
+  specializes = bs_base_npc_fb;
+  [actor]
+  {
+    portrait_icon = b_gui_ig_i_ic_c_beuwel;
+  }
+  [aspect]
+  {
+    use_range = 1.0;
+    draw_selection_indicator = TRUE;
+    model = m_c_gah_fb_pos_a2;
+    is_ghost_usable = TRUE;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_20;
+      1 = b_c_pos_a2_052;
+    }
+  }
+  [common]
+  {
+    screen_name = "Blake";
+  }
+  [inventory]
+  {
+  }
+}
+[t:template,n:bs_dude_03]
+{
+  category_name = "1W_character";
+  doc = "bs dude 03";
+  specializes = bs_base_npc_fb;
+  [actor]
+  {
+    portrait_icon = b_gui_ig_i_ic_c_magus;
+  }
+  [aspect]
+  {
+    draw_selection_indicator = TRUE;
+    is_ghost_usable = TRUE;
+    use_range = 1;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_38;
+      1 = b_c_pos_a1_056;
+    }
+  }
+  [common]
+  {
+    screen_name = "Jordeaon";
+  }
+  [inventory]
+  {
+  }
+}
+[t:template,n:bs_dude_04]
+{
+  category_name = "1W_townsperson";
+  doc = "bs dude 04";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_27;
+      1 = b_c_pos_a1_036;
+    }
+  }
+  [common]
+  {
+    screen_name = "Dohn";
+  }
+}
+[t:template,n:bs_dude_05]
+{
+  category_name = "1W_townsperson";
+  doc = "bs dude 05";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_15;
+      1 = b_c_pos_a1_040;
+    }
+  }
+  [inventory]
+  {
+    custom_head = m_c_gah_fb_hlmt_head-03;
+  }
+  [common]
+  {
+    screen_name = "Terron";
+  }
+}
+[t:template,n:bs_dude_06]
+{
+  category_name = "1W_townsperson";
+  doc = "bs dude 06";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_02;
+      1 = b_c_pos_a1_050;
+    }
+  }
+  [common]
+  {
+    screen_name = "Sckricko";
+  }
+}
+[t:template,n:bs_dude_07]
+{
+  category_name = "1W_townsperson";
+  doc = "bs dude 07";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_03;
+      1 = b_c_pos_a1_003;
+    }
+  }
+  [common]
+  {
+    screen_name = "Mazpar";
+  }
+}
+[t:template,n:bs_dude_08]
+{
+  category_name = "1W_townsperson";
+  doc = "bs dude 08";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_04;
+      1 = b_c_pos_a1_004;
+    }
+  }
+  [common]
+  {
+    screen_name = "Krilliac";
+  }
+}
+[t:template,n:bs_dude_09]
+{
+  category_name = "1W_townsperson";
+  doc = "bs dude 09";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_05;
+      1 = b_c_pos_a1_009;
+    }
+  }
+  [common]
+  {
+    screen_name = "Hernyon";
+  }
+}
+[t:template,n:bs_dude_10]
+{
+  category_name = "1W_townsperson";
+  doc = "bs dude 10";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_21;
+      1 = b_c_pos_a1_055;
+    }
+  }
+  [common]
+  {
+    screen_name = "Kesren";
+  }
+}
+[t:template,n:bs_stranded_guy_01]
+{
+  category_name = "1W_townsperson";
+  doc = "bs stranded guy 01";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_07;
+      1 = b_c_pos_a1_014;
+    }
+  }
+  [inventory]
+  {
+    custom_head = m_c_gah_fb_hlmt_head-02;
+  }
+  [common]
+  {
+    screen_name = "Jerron";
+  }
+}
+[t:template,n:bs_farmer_man]
+{
+  category_name = "1W_character";
+  doc = "bs farmer man";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    draw_selection_indicator = TRUE;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_026;
+      1 = b_c_pos_a1_015;
+    }
+  }
+  [common]
+  {
+    screen_name = "Farmer";
+  }
+}
+[t:template,n:bs_stranded_guy_02]
+{
+  category_name = "1W_character";
+  doc = "bs stranded guy 02";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_39;
+      1 = b_c_pos_a1_074;
+    }
+  }
+  [common]
+  {
+    screen_name = "Hesrack";
+  }
+}
+[t:template,n:bs_sleeping_stranded_guy]
+{
+  category_name = "1W_character";
+  doc = "bs stranded guy sleeping";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_40;
+      1 = b_c_pos_a1_075;
+    }
+  }
+  [common]
+  {
+    screen_name = "Torrin";
+  }
+}
+[t:template,n:bs_stranded_guy_03]
+{
+  category_name = "1W_character";
+  doc = "bs stranded guy 03";
+  specializes = bs_base_npc_fb;
+  [aspect]
+  {
+    draw_selection_indicator = TRUE;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_19;
+      1 = b_c_pos_a1_074;
+    }
+  }
+  [inventory]
+  {
+    custom_head = m_c_gah_fb_hlmt_head-03;
+  }
+  [common]
+  {
+    screen_name = "Garish";
+  }
+}
+[t:template,n:bs_stranded_guy_04]
+{
+  category_name = "1W_character";
+  doc = "bs stranded guy 04";
+  specializes = bs_base_npc_fb;
+  [actor]
+  {
+    portrait_icon = b_gui_ig_i_ic_c_prison-01;
+  }
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_30;
+      1 = b_c_pos_a1_070;
+    }
+  }
+  [common] { screen_name="Kendall"; }
+}
+[t:template,n:bs_stranded_guy_05]
+{
+  category_name = "1W_character";
+  doc = "bs stranded guy 05";
+  specializes = bs_base_npc_fb;
+  [actor]
+  {
+    portrait_icon = b_gui_ig_i_ic_c_prison-02;
+  }
+  [aspect]
+  {
+    model = m_c_gah_fb_pos_a1;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_31;
+      1 = b_c_pos_a1_071;
+    }
+  }
+  [common] { screen_name="Fesron"; }
+}
+[t:template,n:bs_stranded_guy_06]
+{
+  category_name = "1W_character";
+  doc = "bs stranded guy 06";
+  specializes = bs_base_npc_fb;
+  [actor]
+  {
+    portrait_icon = b_gui_ig_i_ic_c_prison-03;
+  }
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_32;
+      1 = b_c_pos_a1_072;
+    }
+  }
+  [common] { screen_name="Sylvedren"; }
+}

@@ -1,0 +1,202 @@
+
+[t:template,n:island_base_dwarf_miner]
+{
+  category_name = "1W_townsperson";
+  doc = "Island BASE Dwarf Miner";
+  specializes = base_dwarf;
+  [aspect]
+  {
+    is_collidable    = true;
+    is_invincible    = false;
+    is_selectable = false;
+    life = 200;
+    mana = 1;
+    max_life = 200;
+    life_recovery_period = 4;
+    life_recovery_unit = 1;
+    max_mana = 1;
+    [textures]
+    {
+      0 = b_c_gan_df_skin_03;
+      1 = b_c_pos_a1_006;
+    }
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_dwarf; }
+      [hit_glance]  { priority = low; * = s_e_hit_dwarf; }
+    }
+  }
+  [common]
+  {
+    screen_name = "Miner";
+    [template_triggers]
+    {
+      [*]
+      {
+        action* = call_sfx_script("melee_hit_2");
+        condition* = receive_world_message("we_killed");
+      }
+    }
+  }
+  [defend]
+  {
+    defense = 66;
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+      [equipment]
+    {
+      es_forearms = gl_gl_le_f_g_c_avg;
+      es_feet = bo_bo_le_light;
+      es_weapon_hand = pickaxe;
+    }
+  }
+  [mind]
+  {
+    actor_may_attack = true;
+    actor_may_be_attacked = true;
+  }
+  [physics]
+  {
+    fire_effect = human_physics_fire;
+  }
+}
+
+//Pickaxe
+[t:template,n:island_dwarf_miner_01]
+{
+  category_name = "1W_townsperson";
+  doc = "Island Dwarf Miner 01";
+  specializes = island_base_dwarf_miner;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gan_df_skin_04;
+      1 = b_c_pos_a1_006;
+    }
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_forearms = gl_gl_le_f_g_c_avg;
+      es_feet = bo_bo_le_light;
+      es_weapon_hand = pickaxe;
+    }
+  }
+}
+
+//Pickaxe
+[t:template,n:island_dwarf_miner_02]
+{
+  category_name = "1W_townsperson";
+  doc = "Island Dwarf Miner 02";
+  specializes = island_base_dwarf_miner;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gan_df_skin_02;
+      1 = b_c_pos_a1_006;
+    }
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_forearms = gl_gl_le_f_g_c_avg;
+      es_feet = bo_bo_le_light;
+      es_weapon_hand = pickaxe;
+    }
+  }
+}
+
+//Pickaxe
+[t:template,n:island_dwarf_miner_03]
+{
+  category_name = "1W_townsperson";
+  doc = "Island Dwarf Miner 03";
+  specializes = island_base_dwarf_miner;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gan_df_skin_03;
+      1 = b_c_pos_a1_006;
+    }
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_forearms = gl_gl_le_f_g_c_avg;
+      es_feet = bo_bo_le_light;
+      es_weapon_hand = pickaxe;
+    }
+  }
+}
+
+//Misc
+[t:template,n:island_dwarf_miner_misc]
+{
+  category_name = "1W_townsperson";
+  doc = "Island Dwarf Miner Misc";
+  specializes = island_base_dwarf_miner;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gan_df_skin_06;
+      1 = b_c_pos_a1_006;
+    }
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_forearms = gl_gl_le_f_g_c_avg;
+      es_feet = bo_bo_le_light;
+      [*oneof]
+      {
+        es_weapon_hand = blacksmith_hammer;
+        es_weapon_hand = torch_small;
+      }
+    }
+  }
+}
+
+//Misc
+[t:template,n:island_dwarf_miner_foreman]
+{
+  category_name = "1W_townsperson";
+  doc = "Island Dwarf Miner Foreman";
+  specializes = island_base_dwarf_miner;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gan_df_skin_07;
+      1 = b_c_pos_a1_002;
+    }
+  }
+  [common]
+  {
+    screen_name = "Foreman";
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_forearms = gl_gl_le_f_g_c_avg;
+      es_feet = bo_bo_le_light;
+      es_head = he_ca_pl_cap_brown;
+    }
+  }
+}

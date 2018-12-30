@@ -1,0 +1,278 @@
+
+[t:template,n:bs_richad]//change shopping to a higher level
+{
+  category_name = "1W_shopkeep";
+  doc = "BS Shopper Richad (lvl *2-4*");
+  specializes = base_npc_fb;
+  [actor]
+  {
+    portrait_icon = b_gui_ig_i_ic_c_prison-01;
+  }
+  [aspect]
+  {
+    draw_selection_indicator = TRUE;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_31;
+      1 = b_c_pos_a1_006;
+    }
+  }
+  [inventory]
+  {
+    [equipment]
+    {
+      es_feet = bo_bo_le_light;
+    }
+    [store_pcontent]
+    {
+      full_ratio = 0;
+      [armor]
+      {
+        [all*]
+        {
+          il_main = #body,ro/23-110;
+          max = 4;
+          min = 4;
+        }
+
+        [all*]
+        {
+          il_main = #body/23-40;
+          max = 7;
+          min = 7;
+        }
+        [all*]
+        {
+          il_main = #body/41-79;
+          max = 18;
+          min = 18;
+        }
+        [all*]
+        {
+          il_main = #body/80-110;
+          max = 5;
+          min = 5;
+        }
+
+
+        [all*]
+        {
+          il_main = #gloves/3-40;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #gloves/41-79;
+          max = 12;
+          min = 12;
+        }
+        [all*]
+        {
+          il_main = #gloves/80-110;
+          max = 6;
+          min = 6;
+        }
+
+        [all*]
+        {
+          il_main = #helm/3-40;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #helm/41-79;
+          max = 12;
+          min = 12;
+        }
+        [all*]
+        {
+          il_main = #helm/80-110;
+          max = 6;
+          min = 6;
+        }
+
+        [all*]
+        {
+          il_main = #boots/3-40;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #boots/41-79;
+          max = 12;
+          min = 12;
+        }
+        [all*]
+        {
+          il_main = #boots/80-110;
+          max = 6;
+          min = 6;
+        }
+      }
+      [shields]
+      {
+        [all*]
+        {
+          il_main = #shield/3-40;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #shield/41-79;
+          max = 12;
+          min = 12;
+        }
+        [all*]
+        {
+          il_main = #shield/80-110;
+          max = 6;
+          min = 6;
+        }
+      }
+      [weapons]
+      {
+        [all*]
+        {
+          il_main = #melee/14-18;
+          max = 8;
+          min = 8;
+        }
+        [all*]
+        {
+          il_main = #melee/19-38;
+          max = 20;
+          min = 20;
+        }
+        [all*]
+        {
+          il_main = #melee/39-52;
+          max = 6;
+          min = 6;
+        }
+
+        [all*]
+        {
+          il_main = #ranged/14-18;
+          max = 8;
+          min = 8;
+        }
+        [all*]
+        {
+          il_main = #ranged/19-38;
+          max = 20;
+          min = 20;
+        }
+        [all*]
+        {
+          il_main = #ranged/39-52;
+          max = 6;
+          min = 6;
+        }
+      }
+      [magic]
+      {
+        [all*]
+        {
+          il_main = #spell/4-18;
+          max = 40;
+          min = 40;
+        }
+        [all*]
+        {
+          il_main = #spell/0-3;
+          max = 10;
+          min = 10;
+        }
+      }
+      [misc]
+      {
+        [all*]
+        {
+          il_main = book_glb_magic_01;
+          max = 5;
+          min = 5;
+        }
+        [all*]
+        {
+          il_main = DSX_backpack_empty;
+          max = 3;
+          min = 2;
+        }
+        [all*]
+        {
+          il_main = #spellbook/10-20;
+          max = 6;
+          min = 4;
+        }
+        [all*]
+        {
+          il_main = #spellbook/19-23;
+          max = 10;
+          min = 4;
+        }
+        [all*]
+        {
+          il_main = #spellbook/23-30;
+          max = 6;
+          min = 4;
+        }
+        [all*]
+        {
+          il_main = book_glb_magic_01;
+          max = 3;
+          min = 3;
+        }
+        [all*]
+        {
+          il_main = #ring/-mod(1)/10-24;
+          max = 3;
+          min = 1;
+        }
+        [all*]
+        {
+          il_main = #amulet/-mod(1)/10-24;
+          max = 3;
+          min = 1;
+        }
+      }
+    }
+  }
+  [respawn_shrine]
+  {
+  }
+  [store]
+  {
+    item_markup = 2;
+    [item_restock]
+    {
+      potion_health_small = 15;
+      potion_health_medium = 10;
+      potion_mana_small = 15;
+      potion_mana_medium = 10;
+      potion_rejuvenation_small = 5;
+
+      scroll_resurrect = 10;
+            spell_resurrect = 10;
+            spell_revive = 10;
+            spell_healing_hands = 10;
+
+            spell_zap = 4;
+            spell_fireshot = 4;
+    }
+  }
+  [common]
+  {
+    screen_name = "Richard Winslow";
+  }
+  [conversation]
+  {
+  }
+  [mind]
+  {
+  jat_talk = world\ai\jobs\common\job_talk.skrit;
+  }
+}

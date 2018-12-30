@@ -1,0 +1,135 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//OTHER GUARDS-HELM//
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:island_utraean_kat_01_walk_base]
+{
+  category_name = "1W_character";
+  doc = "Island Utraean WALK G-B Katana 01";
+  specializes = island_utraean_melee_base;
+
+  [body]
+  {
+    armor_version = gah_fb;
+    avg_move_velocity = 2.2500000;
+    [bone_translator]
+    {
+      body_anterior = bip01_head;
+      body_mid = bip01_spine2;
+      body_posterior = bip01_pelvis;
+      kill_bone = bip01_spine2;
+      shield_bone = shield_grip;
+      weapon_bone = weapon_grip;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_gah_fb_fs;
+      [chore_attack]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = at;
+          qffg = dff;
+        }
+      }
+      [chore_default]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = infinite_loop;
+        [anim_files]
+        {
+          00 = ds;
+        }
+      }
+      [chore_die]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_transition;
+        [anim_files]
+        {
+          00 = di;
+        }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_fidget;
+        [anim_files]
+        {
+          00 = dsf;
+        }
+      }
+      [chore_magic]
+      {
+        chore_stances = 0,5;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = mg;
+          01 = mg-02;
+        }
+      }
+      [chore_misc]
+      {
+        chore_stances = ignore;
+        skrit = select_transition;
+        [anim_files]
+        {
+          bed1 = a_c_gah_fb_fs0_dsf-05;
+          bed2 = a_c_gah_fb_fs0_dsf-06;
+          bed3 = a_c_gah_fb_fs0_dsf-07;
+          bed4 = a_c_gah_fb_fs0_dsf-11;
+          bed5 = a_c_gah_fb_fs0_dsf-12;
+          bed6 = a_c_gah_fb_fs0_dsf-13;
+          bed7 = a_c_gah_fb_fs0_dsf-14;
+          look = a_c_gah_fb_fs0_dsf;
+          sit1 = a_c_gah_fb_fs0_dsf-09;
+          sit2 = a_c_gah_fb_fs0_dsf-10;
+          sit3 = a_c_gah_fb_fs0_dsf-15;
+          talk = a_c_gah_fb_fs2_dff;
+          wyme = a_c_gah_fb_fs0_dsf-02;
+          lsn2 = a_c_gah_fb_fs0_dsf-18;
+          hoe1 = a_c_gah_fb_fs5_dsf-02;
+        }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0,1,2,3,4,5,6;
+        skrit = select_walk;
+        [anim_files]
+        {
+          00 = wl;
+        }
+      }
+    }
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 54;
+    damage_min = 48;
+  }
+  [defend] { defense=175; }
+  [check_level]
+  {
+    check_level = true;
+    //low_level = 2;//TBD
+    //high_level = 4;//TBD
+  }
+  [inventory]
+  {
+    [equipment]
+    {
+      es_feet = bo_bo_ch_f_g_c_avg;
+      es_head = he_fu_pl_smallwings_kavaren;
+      es_weapon_hand = sd_g_c_dsx_kat_1h_avg;
+    }
+  }
+  [mind]
+  {
+    jat_talk = world\ai\jobs\common\job_talk_island_guard_town_main.skrit;
+  }
+}

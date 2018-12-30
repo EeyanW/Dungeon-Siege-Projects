@@ -1,0 +1,249 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//SARGE//
+//////////////////////////////////////////////////////////////////////////////
+//Something is wrong with this. still gotta figure out what it is...
+//DONT USE IT
+[t:template,n:island_legion_shopper_letter_camp]
+{
+  category_name = "1W_character";
+  doc = "Island legion G-B Shopper Camp";
+  specializes = base_npc_fb;
+  [actor]
+  {
+    portrait_icon = b_gui_ig_i_ic_c_banthorne;
+  }
+  [aspect]
+  {
+    model = m_c_gah_fb_pos_a3;
+    draw_selection_indicator = TRUE;
+    use_range = 1;
+    is_collidable = TRUE;
+    is_ghost_usable = TRUE;
+        [textures]
+    {
+      0 = b_c_gah_fb_skin_10;
+      1 = b_c_pos_a3_015;
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 62;
+    damage_min = 60;
+  }
+     [defend] { defense=250; }
+  [common]
+  {
+    screen_name = "Supply Specialist";
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_ray_purple(sgx)");
+      }
+    }
+  }
+  [conversation]
+  {
+  }
+  [inventory]
+  {
+    [equipment]
+    {
+      //es_chest = bd_un_pl_f_g_c_avg;
+      es_feet = bo_bo_sc_f_g_c_avg;
+      es_forearms = gl_ga_fp_f_g_c_avg;
+      es_head = he_un_op_pl_guard_fighter;
+      //es_shield_hand = sh_w_g_c_r_m_avg;
+      //es_weapon_hand = legion_2h_sd_n0-shop;
+    }
+    [store_pcontent]
+    {
+      full_ratio = 0;
+
+      [magic]
+      {
+        [all*]
+        {
+          il_main = #spell/0-4;
+          max = 8;
+          min = 8;
+        }
+        [all*]
+        {
+          il_main = #spell/9-10;
+          max = 4;
+          min = 4;
+        }
+      }
+      [misc]
+      {
+        [all*]
+        {
+          il_main = DSX_backpack_empty;
+          max = 8;
+          min = 8;
+        }
+        [all*]
+        {
+          il_main = #spellbook/19-23;
+          max = 2;
+          min = 1;
+        }
+        [all*]
+        {
+          il_main = #spellbook/23-30;
+          max = 1;
+          min = 0;
+        }
+        [all*]
+        {
+          il_main = book_glb_magic_01;
+          max = 3;
+          min = 3;
+        }
+        [all*]
+        {
+          il_main = #ring/-mod(1)/19-23;
+          max = 3;
+          min = 1;
+        }
+        [all*]
+        {
+          il_main = #amulet/-mod(1)/19-23;
+          max = 3;
+          min = 1;
+        }
+      }
+
+      [armor]
+      {
+        [all*]
+        {
+           il_main = #body,m/33-52;
+           max = 2;
+           min = 1;
+        }
+        [all*]
+        {
+           il_main = #body,r/33-62;
+           max = 2;
+           min = 1;
+        }
+        [all*]
+        {
+           il_main = #body,f/58-62;
+           max = 2;
+           min = 1;
+        }
+        [all*]
+        {
+          il_main = #body/6-23;
+          max = 2;
+          min = 2;
+        }
+        [all*]
+        {
+          il_main = #helm/6-33;
+          max = 2;
+          min = 1;
+        }
+        [all*]
+        {
+          il_main = #helm/49-62;
+          max = 1;
+          min = 0;
+        }
+
+        [all*]
+        {
+          il_main = #gloves/29-43;
+          max = 2;
+          min = 1;
+        }
+        [all*]
+        {
+          il_main = #gloves/44-62;
+          max = 2;
+          min = 0;
+        }
+        [all*]
+        {
+          il_main = #boots/29-43;
+          max = 2;
+          min = 1;
+        }
+      }
+      [shields]
+      {
+        [all*]
+        {
+          il_main = #shield/10-20;
+          max = 3;
+          min = 1;
+        }
+      }
+      [weapons]
+      {
+        [all*]
+        {
+          il_main = #sword/10-18;
+          max = 2;
+          min = 2;
+        }
+        [all*]
+        {
+          il_main = #club/10-18;
+          max = 2;
+          min = 2;
+        }
+        [all*]
+        {
+          il_main = #mace/10-18;
+          max = 2;
+          min = 2;
+        }
+
+        [all*]
+        {
+          il_main = #bow/10-18;
+          max = 4;
+          min = 2;
+        }
+        [all*]
+        {
+          il_main = #bow/19-23;
+          max = 4;
+          min = 2;
+        }
+      }
+    }
+  }
+
+  [store]
+  {
+    item_markup = 6;
+    [item_restock]
+    {
+      potion_health_small = 5;
+      potion_mana_small = 7;
+
+      potion_health_medium = 1;
+      potion_mana_medium = 2;
+
+      scroll_resurrect = 2;
+      spell_fireshot = 1;
+      spell_zap = 1;
+    }
+  }
+  [mind]
+  {
+    actor_may_attack = false;
+        actor_may_be_attacked = false;
+    jat_talk = world\ai\jobs\common\job_talk_island_legion_shop_quest.skrit;
+  }
+}

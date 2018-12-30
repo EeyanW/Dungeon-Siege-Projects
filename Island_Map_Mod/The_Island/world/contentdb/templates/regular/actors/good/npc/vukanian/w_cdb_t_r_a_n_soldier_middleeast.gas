@@ -1,0 +1,190 @@
+
+///////////////////////////////////////////////////////////////////////////////
+//SOLDIERS////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:horty_soldier_east_melee_base]
+{
+  category_name = "1W_character";
+  doc = "horty eastern guy melee_base";
+  specializes = horty_base_melee_east;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_007;
+      1 = b_c_pos_a1_015;
+    }
+  }
+  [common]
+  {
+    screen_name = "Vukanian Warrior";
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
+//MELEE///////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:bs_soldier_east_melee_01]
+{
+  category_name = "1W_character";
+  doc = "BS eastern guy melee 01";
+  specializes = horty_soldier_east_melee_base;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_007;
+      1 = b_c_pos_a3_005;
+    }
+  }
+  [inventory]
+  {
+    [equipment]
+    {
+      es_chest = eastern_armor_warrior;
+      es_feet = #boots/1-5;
+      es_forearms = #gloves/1-5;
+      //es_head = ;
+    }
+    [pcontent]
+    {
+      [oneof*]
+      {
+          es_weapon_hand = eastern_weapon_2;
+          es_weapon_hand = eastern_weapon_3;
+          es_weapon_hand = eastern_weapon_4;
+      }
+    }
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:bs_soldier_east_melee_02]
+{
+  category_name = "1W_character";
+  doc = "BS eastern guy melee 02";
+  specializes = horty_soldier_east_melee_base;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_008;
+      1 = b_c_pos_a3_005;
+    }
+  }
+  [inventory]
+  {
+    [equipment]
+    {
+      es_chest = eastern_armor_warrior;
+      es_feet = #boots/1-5;
+      es_forearms = #gloves/1-5;
+      //es_head = ;
+    }
+    [pcontent]
+    {
+      [oneof*]
+      {
+          es_weapon_hand = eastern_weapon_2;
+          es_weapon_hand = eastern_weapon_3;
+          es_weapon_hand = eastern_weapon_4;
+      }
+    }
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:bs_soldier_east_melee_03]
+{
+  category_name = "1W_character";
+  doc = "BS eastern guy melee 03";
+  specializes = horty_soldier_east_melee_base;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_022;
+      1 = b_c_pos_a3_005;
+    }
+  }
+  [inventory]
+  {
+    [equipment]
+    {
+      es_chest = eastern_armor_warrior;
+      es_feet = #boots/1-5;
+      es_forearms = #gloves/1-5;
+      //es_head = ;
+    }
+    [pcontent]
+    {
+      [oneof*]
+      {
+          es_weapon_hand = eastern_weapon_2;
+          es_weapon_hand = eastern_weapon_3;
+          es_weapon_hand = eastern_weapon_4;
+      }
+    }
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:bs_soldier_east_melee_captain]
+{
+  category_name = "1W_character";
+  doc = "BS eastern guy melee captain";
+  specializes = horty_soldier_east_melee_base;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_007;
+      1 = b_c_pos_a3_017;
+    }
+  }
+  [common]
+  {
+    screen_name = "Vukanian Captain";
+  }
+  [inventory]
+  {
+    [equipment]
+    {
+      es_chest = eastern_armor_captain;
+      es_feet = #boots/1-5;
+      es_forearms = #gloves/1-5;
+      es_head = he_op_pl_m_bone_headdress_dsx;
+      es_weapon_hand = eastern_weapon_1;
+      es_shield_hand = eastern_shield;
+    }
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
+
+[t:template,n:bs_soldier_east_ranged]
+{
+  category_name = "1W_character";
+  doc = "BS eastern guy ranged";
+  specializes = horty_base_archer_east;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_10;
+      1 = b_c_pos_a1_015;
+    }
+  }
+  [common]
+  {
+    screen_name = "Vukanian Ranger";
+  }
+  [inventory]
+  {
+    selected_active_location = il_active_ranged_weapon;
+    [equipment]
+    [equipment]
+    {
+      es_chest = eastern_armor_ranger;
+      es_feet = #boots/1-5;
+      es_forearms = #gloves/1-5;
+      //es_shield_hand = ;
+    }
+  }
+}
+///////////////////////////////////////////////////////////////////////////////

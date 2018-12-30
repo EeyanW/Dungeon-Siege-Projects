@@ -1,0 +1,252 @@
+
+[t:template,n:island_base_legionnaire_G-B]
+{
+  doc = "Base template for legionnaires specializing FB resources";
+  specializes = actor_evil;
+  [actor]
+  {
+    alignment = aa_good;
+    portrait_icon = b_gui_ig_i_ic_c_bs_son;
+  }
+  [aspect]
+  {
+    life_recovery_unit   = 1;
+    life_recovery_period = 8;
+    //model = m_c_gah_fb_pos_a1;
+    draw_selection_indicator = true;
+    model = m_c_gah_fb_pos_a3;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_hit_male_old_cough; }
+      [enemy_spotted]  { priority = high; * = ; }
+      [hit_critical]  { priority = low; * = s_e_hit_steelsword_flesh1; }
+      //[hit_glance]  { priority = low; * = ; }
+      [hit_solid]    { priority = low; * = s_e_hit_steelsword_flesh2; }
+    }
+  }
+  [body]
+  {
+    armor_version = gah_fb;
+    avg_move_velocity = 4.500000;
+    [bone_translator]
+    {
+      body_anterior = bip01_head;
+      body_mid = bip01_spine2;
+      body_posterior = bip01_pelvis;
+      kill_bone = bip01_spine2;
+      shield_bone = shield_grip;
+      weapon_bone = weapon_grip;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_gah_fb_fs;
+      [chore_attack]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = at;
+          01 = at-02;
+          02 = at-03;
+          03 = at-04;
+          qffg = dff;
+        }
+      }
+      [chore_default]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = infinite_loop;
+        [anim_files]
+        {
+          00 = dff;
+        }
+      }
+      [chore_die]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_transition;
+        [anim_files]
+        {
+          00 = di;
+          01 = di-02;
+          02 = di-03;
+        }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_fidget;
+        [anim_files]
+        {
+          00 = dff;
+          01 = dff-02;
+        }
+      }
+      [chore_magic]
+      {
+        chore_stances = 0,5;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = mg;
+          01 = mg-02;
+        }
+      }
+      [chore_misc]
+      {
+        chore_stances = ignore;
+        skrit = select_transition;
+        [anim_files]
+        {
+          drnk = a_c_gah_fb_fs1_dk;
+          gtup = a_c_gah_fb_fs0_up;
+          look = a_c_gah_fb_fs0_dsf;
+          wyme = a_c_gah_fb_fs0_dsf-02;
+          frtd = a_c_gah_fb_fs0_dsf-03;
+          talk = a_c_gah_fb_fs0_dsf-04;
+          bed1 = a_c_gah_fb_fs0_dsf-05;
+          bed2 = a_c_gah_fb_fs0_dsf-06;
+          bed3 = a_c_gah_fb_fs0_dsf-07;
+          mrik = a_c_gah_fb_fs0_dsf-08;
+          sit1 = a_c_gah_fb_fs0_dsf-09;
+          sit2 = a_c_gah_fb_fs0_dsf-10;
+          bed4 = a_c_gah_fb_fs0_dsf-11;
+          bed5 = a_c_gah_fb_fs0_dsf-12;
+          froz = a_c_gah_fb_fs0_dsf-16;
+          andi = a_c_gah_fb_fs0_dsf-17;
+          lsn2 = a_c_gah_fb_fs0_dsf-18;
+          knee = a_c_gah_fb_fs1_dsf-03;
+          lstn = a_c_gah_fb_fs1_dsf-04;
+          lblg = a_c_gah_fb_fs2_dsf-02;
+          hoe1 = a_c_gah_fb_fs5_dsf-02;
+        }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0,1,2,3,4,5,6;
+        skrit = select_walk;
+        [anim_files]
+        {
+          00 = rl;
+        }
+      }
+    }
+  }
+  [common]
+  {
+      membership = legion;
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_feet = bo_bo_le_light;
+    }
+  }
+  [mind]
+  {
+    //BALANCING
+    com_channels = party_bandit_ranged;
+    com_range = 22.0;
+    melee_engage_range = 14.0;
+    ranged_engage_range = 14.0;
+    sight_range = 22.0;
+        job_travel_distance_limit = 30;
+        on_job_reached_travel_distance_abort_attack = true;
+    //
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = false//this can be changed to true
+      &still      = true;
+      //
+      jat_brain = world\ai\jobs\common\brain_hero.skrit
+          ?actor_creates_own_party    = true
+      &actor_joins_existing_party    = true
+      &party_template          = "party_bandit_ranged";
+    //OTHER
+    actor_may_attack = true;
+        actor_may_be_attacked = true;
+    jat_talk = world\ai\jobs\common\job_talk.skrit;
+    }
+}
+//////////////////////////////////////////////////////////////////////////////
+//BASE GUARDS
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:island_legion_helm_good-bad_base]//Balanced as a Bandit
+{
+  category_name = "1W_character";
+  doc = "Island Legion G-B Helm";
+  specializes = island_base_legionnaire_G-B;
+  [actor]
+  {
+    [skills]
+    {
+      dexterity = 15,  0;
+      intelligence = 13,  0;
+      melee = 15,  0;
+      ranged = 15, 0;
+      strength = 15, 0;
+    }
+    //can_level_up = true;
+  }
+  [aspect]
+  {
+    life = 450;//Slightly more health
+    max_life = 450;
+    mana = 20;
+    max_mana = 20;
+    experience_value = 1400;
+    draw_selection_indicator = true;
+    is_collidable = true;
+      [textures]
+    {
+      0 = b_c_gah_fb_skin_02;
+      1 = b_c_pos_a3_014;
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 60;
+    damage_min = 50;
+  }
+  [defend] { defense=175; }
+  [common]
+  {
+    screen_name = "Legionnaire";
+  }
+  [conversation]
+  {
+  }
+  [check_level]
+  {
+    check_level = true;
+    //low_level = 2;//TBD
+    //high_level = 4;//TBD
+  }
+  [inventory]
+  {
+    [equipment]
+    {
+      //es_chest = bd_un_pl_f_g_c_fun;
+      es_feet = bo_bo_ch_f_g_c_avg;
+      es_forearms = gl_ga_bl_f_g_c_avg;
+      //es_head = he_op_pl_eyes;
+      //es_shield_hand = sh_m_g_c_r_s_avg;
+      es_weapon_hand = #sd_g_c_st_1h_avg:o_avg;
+    }
+  }
+  [mind]
+  {
+    actor_may_attack = true;
+        actor_may_be_attacked = true;
+    jat_talk = world\ai\jobs\common\job_talk_check_level.skrit;
+  }
+  [guts_manager]
+  {
+    effect_name = melee_hit_2;
+  }
+}

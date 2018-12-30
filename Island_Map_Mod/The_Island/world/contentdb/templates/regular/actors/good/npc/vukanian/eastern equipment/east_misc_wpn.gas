@@ -1,0 +1,225 @@
+
+[t:template,n:eastern_weapon_1]
+{
+  doc = "East Clockwork Sword";
+  specializes = dsx_base_sword;
+  [aspect]
+    {
+      model = m_w_swd_301;
+    }
+  [attack]
+    {
+      f damage_max = 45.0;
+      f damage_min = 36.0;
+      is_two_handed = false;
+    }
+  [common]
+    {
+      screen_name = "Eastern Sword";
+            is_pcontent_allowed = false;
+    }
+  [gui]
+    {
+      equip_requirements = strength:16;
+      active_icon = b_gui_ig_i_ic_swd_007; //PLACEHOLDER
+      inventory_icon = b_gui_ig_i_w_swd_301;
+      inventory_height = 4;
+      inventory_width = 1;
+    }
+  [pcontent]
+    {
+      [base]
+        {
+          f modifier_max = 9;
+          f modifier_min = 0;
+        }
+    }
+}
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:eastern_weapon_2]
+{
+  specializes = dsx_base_club;
+  doc = "DSX Rubber Club";
+  [aspect]
+    {
+      model = m_w_clb_302;
+    }
+  [attack]
+    {
+      damage_max = 50.0;
+      damage_min = 50.0;
+      is_two_handed = false;
+    }
+  [common]
+    {
+      screen_name = "Eastern Rubber Club";
+            is_pcontent_allowed = false;
+    }
+  [gui]
+    {
+      inventory_icon = b_gui_ig_i_w_clb_302;
+      inventory_height = 2;
+      inventory_width = 1;
+    }
+  [pcontent]
+    {
+      [base]
+        {
+          f modifier_max = 9;
+          f modifier_min = 0;
+        }
+    }
+}
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:eastern_weapon_3]
+{
+  doc = "East Sai";
+  specializes = dsx_base_dagger;
+  [aspect]
+    {
+      model = m_w_dag_claw_03;
+    }
+  [attack]
+    {
+      attack_range = 0.5;
+      f damage_max = 32;
+      f damage_min = 26;
+      is_two_handed = false;
+      attack_class = ac_beastfu; //punch style
+    }
+  [common]
+    {
+      screen_name = "Specialized Dagger";
+            is_pcontent_allowed = false;
+    }
+  [gui]
+    {
+    equip_requirements = strength:14;
+            active_icon = b_gui_ig_i_ic_dg_302;
+      inventory_icon = b_gui_ig_i_w_dgr_302;
+      inventory_height = 2;
+      inventory_width = 1;
+    }
+  [pcontent]
+    {
+      [base]
+        {
+          f modifier_max = 17;
+          f modifier_min = 0;
+        }
+    }
+}
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:eastern_weapon_4]
+{
+  doc = "East Barong";
+  specializes = dsx_base_dagger;
+  [aspect]
+    {
+      model = m_w_dag_303;
+    }
+  [attack]
+    {
+      attack_range = 0.5;
+      f damage_max = 50;
+      f damage_min = 50;
+      is_two_handed = false;
+    }
+  [common]
+    {
+      screen_name = "Eastern Barong";
+            is_pcontent_allowed = false;
+    }
+  [gui]
+    {
+    equip_requirements = strength:18;
+      inventory_icon = b_gui_ig_i_w_dgr_303;
+      inventory_height = 2;
+      inventory_width = 1;
+    }
+  [pcontent]
+    {
+      [base]
+        {
+          f modifier_max = 9;
+          f modifier_min = 0;
+        }
+    }
+}
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:eastern_weapon_5]
+{
+  doc = "East Hassat Scimitar";
+  specializes = dsx_base_polearm_staff;
+  [aspect]
+    {
+      model = m_w_stf_polearm;
+      selection_indicator_scale = 0.65;
+    }
+  [attack]
+    {
+      attack_range = 0.5;
+      f damage_max = 50.0;
+      f damage_min = 50.0;
+      is_two_handed = false;
+    }
+  [common]
+    {
+      screen_name = "Hassat Scimitar";
+            is_pcontent_allowed = false;
+    }
+  [gui]
+    {
+    equip_requirements = strength:18;
+      active_icon = b_gui_ig_i_ic_stf_308;
+      inventory_icon = b_gui_ig_i_w_stf_308;
+      inventory_height = 4;
+      inventory_width = 1;
+    }
+  [pcontent]
+    {
+      [base]
+        {
+          f modifier_max = 11;
+          f modifier_min = 0;
+        }
+    }
+}
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:eastern_weapon_dggr]
+{
+  category_name = "Dagger";
+  doc = "East Dagger";
+  specializes = base_dagger;
+  [aspect]
+  {
+    model = m_w_dag_001;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    f damage_max = 12.000000;
+    f damage_min = 8.000000;
+  }
+  [common]
+  {
+    //b allow_modifiers = false;
+    pcontent_special_type = normal, rare, unique;
+    screen_name = "Jewled Dagger";
+  }
+  [gui]
+  {
+  equip_requirements = strength:11;
+    inventory_height = 2;
+    inventory_icon = b_gui_ig_i_w_dgr_006;
+    inventory_width = 1;
+  }
+  [pcontent]
+    {
+      [base]
+        {
+          f modifier_max = 6;
+          f modifier_min = 0;
+        }
+    }
+}

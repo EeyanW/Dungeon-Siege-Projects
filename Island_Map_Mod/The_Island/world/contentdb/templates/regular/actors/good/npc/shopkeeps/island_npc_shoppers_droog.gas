@@ -1,0 +1,477 @@
+//WEAPONS
+[t:template,n:island_droog_weaponsmith_unique]
+{
+    category_name = "1W_shopkeep";
+  doc = "Island Droog Weaponsmith Unique";
+  specializes = base_npc_dg;
+  [actor] { portrait_icon = b_gui_ig_i_ic_c_orellean; }
+  [aspect]
+  {
+    use_range = 1.0;
+    is_ghost_usable = TRUE;
+    [textures] { 0=b_c_eam_dg-05; }
+  }
+  [common] { screen_name="Master Weaponsmith"; }
+  [conversation] { }
+  [inventory]
+  {
+    [store_pcontent]
+    {
+      full_ratio = 0;
+      [weapons]
+      {
+        [all*]
+        {
+          il_main = #melee/127-313;
+          max = 8;
+          min = 8;
+        }
+        [all*]
+        {
+          il_main = #melee/-rare(1)/115-205;
+          max = 30;
+          min = 30;
+        }
+        [all*]
+        {
+          il_main = #melee/-rare(1)/206-310;
+          max = 20;
+          min = 20;
+        }
+        [all*]
+        {
+          il_main = #melee/-rare(1)/311-450;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #melee/-rare(1)/450-600;
+          max = 6;
+          min = 4;
+        }
+
+        [all*]
+        {
+          il_main = #bow/127-313;
+          max = 8;
+          min = 8;
+        }
+        [all*]
+        {
+          il_main = #bow/-rare(1)/115-205;
+          max = 30;
+          min = 30;
+        }
+        [all*]
+        {
+          il_main = #bow/-rare(1)/206-310;
+          max = 20;
+          min = 20;
+        }
+        [all*]
+        {
+          il_main = #bow/-rare(1)/311-450;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #ranged/-rare(1)/450-600;
+          max = 6;
+          min = 4;
+        }
+      }
+    }
+  }
+  [respawn_shrine]
+  {
+  }
+  [store]
+  {
+    item_markup = 12;
+  }
+  [mind]
+  {
+    jat_talk = world\ai\jobs\common\job_talk.skrit;
+  }
+}
+
+//ARMOR
+[t:template,n:island_droog_armorsmith_unique]
+{
+    category_name = "1W_shopkeep";
+  doc = "Island Droog Armorsmith Unique";
+  specializes = base_npc_dg;
+  [actor] { portrait_icon = b_gui_ig_i_ic_c_orellean; }
+  [aspect]
+  {
+    use_range = 1.0;
+    is_ghost_usable = TRUE;
+    [textures] { 0=b_c_eam_dg-05; }
+  }
+  [common] { screen_name="Master Armorer"; }
+  [conversation] { }
+  [inventory]
+  {
+    [store_pcontent]
+    {
+      full_ratio = 0;
+      [armor]
+      {
+        [all*]
+        {
+          il_main = #armor/127-313;
+          max = 8;
+          min = 8;
+        }
+        [all*]
+        {
+          il_main = #armor/-rare(1)/115-205;
+          max = 30;
+          min = 30;
+        }
+        [all*]
+        {
+          il_main = #armor/-rare(1)/206-310;
+          max = 20;
+          min = 20;
+        }
+        [all*]
+        {
+          il_main = #armor/-rare(1)/311-450;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #armor/-rare(1)/450-600;
+          max = 6;
+          min = 4;
+        }
+        [all*]
+        {
+          il_main = #body,ro/-rare(1)/450-600;
+          max = 10;
+          min = 8;
+        }
+      }
+    }
+  }
+  [respawn_shrine]
+  {
+  }
+  [store]
+  {
+    item_markup = 12;
+  }
+  [mind]
+  {
+    jat_talk = world\ai\jobs\common\job_talk.skrit;
+  }
+}
+
+//SHIELDS
+[t:template,n:island_droog_shieldsmith_unique]
+{
+    category_name = "1W_shopkeep";
+  doc = "Island Droog Shieldsmith Unique";
+  specializes = base_npc_dg;
+  [actor] { portrait_icon = b_gui_ig_i_ic_c_orellean; }
+  [aspect]
+  {
+    use_range = 1.0;
+    is_ghost_usable = TRUE;
+    [textures] { 0=b_c_eam_dg-05; }
+  }
+  [common] { screen_name="Master Shieldsmith"; }
+  [conversation] { }
+  [inventory]
+  {
+    [store_pcontent]
+    {
+      full_ratio = 0;
+      [armor]
+      {
+        [all*]
+        {
+          il_main = #shield/127-313;
+          max = 8;
+          min = 8;
+        }
+        [all*]
+        {
+          il_main = #shield/-rare(1)/115-205;
+          max = 30;
+          min = 30;
+        }
+        [all*]
+        {
+          il_main = #shield/-rare(1)/206-310;
+          max = 20;
+          min = 20;
+        }
+        [all*]
+        {
+          il_main = #shield/-rare(1)/311-450;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #shield/-rare(1)/450-600;
+          max = 6;
+          min = 4;
+        }
+        [all*]
+        {
+          il_main = #shield/-rare(1)/200-400;
+          max = 10;
+          min = 8;
+        }
+      }
+    }
+  }
+  [respawn_shrine]
+  {
+  }
+  [store]
+  {
+    item_markup = 12;
+  }
+  [mind]
+  {
+    jat_talk = world\ai\jobs\common\job_talk.skrit;
+  }
+}
+
+
+//RINGS
+[t:template,n:island_droog_rings_unique]
+{
+    category_name = "1W_shopkeep";
+  doc = "Island Droog Ringsmith Unique";
+  specializes = base_npc_dg;
+  [actor] { portrait_icon = b_gui_ig_i_ic_c_no; }
+  [aspect]
+  {
+    use_range = 1.0;
+    is_ghost_usable = TRUE;
+    [textures] { 0=b_c_eam_dg-04; }
+  }
+  [common] { screen_name="Master Ringsmith"; }
+  [conversation] { }
+  [inventory]
+  {
+    [store_pcontent]
+    {
+      full_ratio = 0;
+      [misc]
+      {
+        [all*]
+        {
+          il_main = #ring/40-100;
+          max = 30;
+          min = 30;
+        }
+        [all*]
+        {
+          il_main = #ring/101-300;
+          max = 20;
+          min = 20;
+        }
+        [all*]
+        {
+          il_main = #ring/-rare(1)/1-50;
+          max = 20;
+          min = 20;
+        }
+        [all*]
+        {
+          il_main = #ring/-rare(1)/51-111;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #ring/-rare(1)/111-249;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #ring/-rare(1)/250-400;
+          max = 10;
+          min = 10;
+        }
+      }
+    }
+  }
+  [respawn_shrine]
+  {
+  }
+  [store]
+  {
+    item_markup = 16;
+  }
+  [mind]
+  {
+    jat_talk = world\ai\jobs\common\job_talk.skrit;
+  }
+}
+
+
+//RINGS
+[t:template,n:island_droog_amulets_unique]
+{
+    category_name = "1W_shopkeep";
+  doc = "Island Droog Amuletsmith Unique";
+  specializes = base_npc_dg;
+  [actor] { portrait_icon = b_gui_ig_i_ic_c_no; }
+  [aspect]
+  {
+    use_range = 1.0;
+    is_ghost_usable = TRUE;
+    [textures] { 0=b_c_eam_dg-04; }
+  }
+  [common] { screen_name="Master Amulet Maker"; }
+  [conversation] { }
+  [inventory]
+  {
+    [store_pcontent]
+    {
+      full_ratio = 0;
+      [misc]
+      {
+        [all*]
+        {
+          il_main = #amulet/40-100;
+          max = 30;
+          min = 30;
+        }
+        [all*]
+        {
+          il_main = #amulet/101-300;
+          max = 20;
+          min = 20;
+        }
+        [all*]
+        {
+          il_main = #amulet/-rare(1)/1-50;
+          max = 20;
+          min = 20;
+        }
+        [all*]
+        {
+          il_main = #amulet/-rare(1)/51-111;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #amulet/-rare(1)/111-249;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #amulet/-rare(1)/250-400;
+          max = 10;
+          min = 10;
+        }
+      }
+    }
+  }
+  [respawn_shrine]
+  {
+  }
+  [store]
+  {
+    item_markup = 16;
+  }
+  [mind]
+  {
+    jat_talk = world\ai\jobs\common\job_talk.skrit;
+  }
+}
+
+
+//SPELLBOOKS
+[t:template,n:island_droog_spellbook_unique]
+{
+    category_name = "1W_shopkeep";
+  doc = "Island Droog Spellbook Unique";
+  specializes = base_npc_dg;
+  [actor] { portrait_icon = b_gui_ig_i_ic_c_no; }
+  [aspect]
+  {
+    use_range = 1.0;
+    is_ghost_usable = TRUE;
+    [textures] { 0=b_c_eam_dg-04; }
+  }
+  [common] { screen_name="Master Bookbinder"; }
+  [conversation] { }
+  [inventory]
+  {
+    [store_pcontent]
+    {
+      full_ratio = 0;
+      [misc]
+      {
+        [all*]
+        {
+          il_main = #spellbook/40-100;
+          max = 4;
+          min = 4;
+        }
+        [all*]
+        {
+          il_main = #spellbook/101-300;
+          max = 8;
+          min = 8;
+        }
+        [all*]
+        {
+          il_main = #spellbook/101-300;
+          max = 8;
+          min = 8;
+        }
+        [all*]
+        {
+          il_main = #spellbook/-rare(1)/1-150;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #spellbook/-rare(1)/151-311;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #spellbook/-rare(1)/311-449;
+          max = 10;
+          min = 10;
+        }
+        [all*]
+        {
+          il_main = #spellbook/-rare(1)/450-600;
+          max = 10;
+          min = 10;
+        }
+      }
+    }
+  }
+  [respawn_shrine]
+  {
+  }
+  [store]
+  {
+    item_markup = 10;
+  }
+  [mind]
+  {
+    jat_talk = world\ai\jobs\common\job_talk.skrit;
+  }
+}

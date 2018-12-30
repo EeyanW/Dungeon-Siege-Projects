@@ -1,0 +1,24 @@
+
+[t:template,n:island_droog_archer]
+{
+  category_name = "1W_Character";
+  doc = "Island Droog Archer Good";
+  specializes = island_droog_archer_base;
+
+  [guts_manager]
+  {
+    effect_name = melee_hit_2;
+  }
+}
+[t:template,n:island_droog_grunt]
+{
+  category_name = "1W_Character";
+  doc = "Island Droog Soldier Good";
+  specializes = island_droog_grunt_base;
+}
+[t:template,n:island_droog_mage]
+{
+  category_name = "1W_Character";
+  doc = "Island Droog Mage Good";
+  specializes = island_droog_mage_base;
+}

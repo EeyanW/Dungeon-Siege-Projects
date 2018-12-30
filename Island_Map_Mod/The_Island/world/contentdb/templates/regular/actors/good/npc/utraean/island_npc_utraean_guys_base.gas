@@ -1,0 +1,170 @@
+[t:template,n:island_utraean_melee_base]
+{
+  category_name = "1W_character";
+  doc = "Island Utraean Melee Base";
+  specializes = actor_evil;
+  [actor]
+  {
+    alignment = aa_good;
+    [skills]
+    {
+      dexterity = 15,  0;
+      intelligence = 13,  0;
+      melee = 15,  0;
+      ranged = 15, 0;
+      strength = 15, 0;
+    }
+  }
+  [aspect]
+  {
+    life_recovery_unit   = 1;
+    life_recovery_period = 8;
+    life = 450;//Slightly more health
+    max_life = 450;
+    mana = 20;
+    max_mana = 20;
+    experience_value = 1400;
+    draw_selection_indicator = true;
+    is_collidable = true;
+    model = m_c_gah_fb_pos_a9;
+    [textures]
+    {
+      0 = b_c_gan_utraean_skin_01;
+      1 = b_c_pos_a9_201;
+    }
+  }
+  [body]
+  {
+    armor_version = gah_fb;
+    avg_move_velocity = 4.500000;
+    [bone_translator]
+    {
+      body_anterior = bip01_head;
+      body_mid = bip01_spine2;
+      body_posterior = bip01_pelvis;
+      kill_bone = bip01_spine2;
+      shield_bone = shield_grip;
+      weapon_bone = weapon_grip;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_gah_fb_fs;
+      [chore_attack]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = at;
+          qffg = dff;
+        }
+      }
+      [chore_default]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = infinite_loop;
+        [anim_files]
+        {
+          00 = ds;
+        }
+      }
+      [chore_die]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_transition;
+        [anim_files]
+        {
+          00 = di;
+        }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0,1,2,3,4,5,6,7;
+        skrit = select_fidget;
+        [anim_files]
+        {
+          00 = dsf;
+        }
+      }
+      [chore_magic]
+      {
+        chore_stances = 0,5;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = mg;
+          01 = mg-02;
+        }
+      }
+      [chore_misc]
+      {
+        chore_stances = ignore;
+        skrit = select_transition;
+        [anim_files]
+        {
+          bed1 = a_c_gah_fb_fs0_dsf-05;
+          bed2 = a_c_gah_fb_fs0_dsf-06;
+          bed3 = a_c_gah_fb_fs0_dsf-07;
+          bed4 = a_c_gah_fb_fs0_dsf-11;
+          bed5 = a_c_gah_fb_fs0_dsf-12;
+          bed6 = a_c_gah_fb_fs0_dsf-13;
+          bed7 = a_c_gah_fb_fs0_dsf-14;
+          look = a_c_gah_fb_fs0_dsf;
+          sit1 = a_c_gah_fb_fs0_dsf-09;
+          sit2 = a_c_gah_fb_fs0_dsf-10;
+          sit3 = a_c_gah_fb_fs0_dsf-15;
+          talk = a_c_gah_fb_fs2_dff;
+          wyme = a_c_gah_fb_fs0_dsf-02;
+          lsn2 = a_c_gah_fb_fs0_dsf-18;
+          hoe1 = a_c_gah_fb_fs5_dsf-02;
+        }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0,1,2,3,4,5,6;
+        skrit = select_walk;
+        [anim_files]
+        {
+          00 = rl;
+        }
+      }
+    }
+  }
+  [common]
+  {
+      screen_name = "Utraean Infantry";
+  }
+  [conversation]
+  {
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+  }
+  [mind]
+  {
+    //BALANCING
+    com_channels = party_bandit_ranged;
+    com_range = 24.0;
+    melee_engage_range = 16.0;
+    ranged_engage_range = 16.0;
+    sight_range = 24.0;
+        job_travel_distance_limit = 30;
+        on_job_reached_travel_distance_abort_attack = true;
+    //
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = false//this can be changed to true
+      &still      = true;
+      //
+      jat_brain = world\ai\jobs\common\brain_hero.skrit
+          ?actor_creates_own_party    = true
+      &actor_joins_existing_party    = true
+      &party_template          = "party_bandit_ranged";
+    //OTHER
+    actor_may_attack = true;
+        actor_may_be_attacked = true;
+    jat_talk = world\ai\jobs\common\job_talk.skrit;
+    }
+}

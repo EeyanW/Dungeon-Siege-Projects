@@ -1,0 +1,73 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//OTHER GUARDS-HELM//
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:island_utraean_kat_01]
+{
+  category_name = "1W_character";
+  doc = "Island Utraean G-B Katana 01";
+  specializes = island_utraean_melee_base;
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 74;
+    damage_min = 68;
+  }
+  [defend] { defense=175; }
+  [check_level]
+  {
+    check_level = true;
+    //low_level = 2;//TBD
+    //high_level = 4;//TBD
+  }
+  [inventory]
+  {
+    [equipment]
+    {
+      es_feet = bo_bo_ch_f_g_c_avg;
+      es_head = he_fu_pl_smallwings_kavaren;
+      es_weapon_hand = sd_g_c_dsx_kat_1h_avg;
+    }
+  }
+  [mind]
+  {
+    jat_talk = world\ai\jobs\common\job_talk_island_guard_town_main.skrit;
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
+//OTHER GUARDS-NO HELM
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:island_utraean_rand_weap_01]
+{
+  category_name = "1W_character";
+  doc = "Island utraean G-B Random Weapon 01";
+  specializes = island_utraean_melee_base;
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 74;
+    damage_min = 68;
+  }
+  [defend] { defense=175; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+          es_weapon_hand = sd_g_c_dsx_kat_1h_avg;
+          es_weapon_hand = cb_g_c_dsx_rbr_avg;
+          es_weapon_hand = ax_g_c_dsx_moo_avg;
+          es_weapon_hand = sd_g_c_dsx_ser_1h_avg;
+          es_weapon_hand = ax_g_c_dsx_png_avg;
+          es_weapon_hand = ax_g_c_dsx_psc_avg;
+      }
+    }
+    [equipment]
+    {
+      es_feet = bo_bo_ch_f_g_c_avg;
+      es_head = he_fu_pl_smallwings_kavaren;
+    }
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
