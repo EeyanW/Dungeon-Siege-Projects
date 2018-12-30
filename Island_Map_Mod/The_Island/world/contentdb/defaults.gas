@@ -1,0 +1,33 @@
+//////////////////////////////////////////////////////////////////////////////
+//
+// File     :  world\contentdb\defaults.gas
+// Author(s):  Chad Queen
+//
+// Summary  :  Contains default names needed by the game to query.
+//
+// Copyright © 2001 Gas Powered Games, Inc.  All rights reserved.
+//----------------------------------------------------------------------------
+//  $Revision:: ME$              $Date:10/23/18$
+//----------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////
+
+[defaults]
+{
+  // misc
+  default_texture = b_i_glb_placeholder;
+
+  // templates
+  default_gold = gold;
+  default_packmule = pack_mule;
+  default_mule = mule;
+  default_spellbook = book_glb_magic_01;
+  default_tombstone = tombstone_multiplayer;
+  default_fader_proxy = fader_proxy;
+  default_waypoint_moving = waypoint_moving;
+  default_point = point;
+  default_party_humanoid = party_humanoid;
+
+  // gold
+  //max_party_gold = 9999999;
+    max_party_gold = 100000000;
+}
