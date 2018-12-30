@@ -1,0 +1,156 @@
+/*
+  ============================================================================
+  ----------------------------------------------------------------------------
+
+  File    :   job_talk_check_level.skrit
+
+  Author(s)  :   Ian Winslow
+
+  Purpose    :   Skrit for the NPC Guards (and possibly others) in the SmallIsland
+                 map for telling the player which areas are too advanced, which
+                 areas are easy, and which areas are on their level.
+
+  (C)opyright 2000 Gas Powered Games, Inc.
+
+  ----------------------------------------------------------------------------
+  ============================================================================
+*/
+
+Go    m_Go$;
+GoMind  m_Mind$;
+GoBody  m_Body$;
+Job    m_Job$;
+Goid  m_Target$;
+
+//string red_Con$;
+string low_Con$;
+string high_Con$;
+
+//Fidgeting Utilities
+#include "k_job_c_mcp_fidget_utils"
+
+startup state STARTUP$
+{
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+//  init
+event OnJobInitPointers$( Job job$ )
+{
+  m_Job$    = job$;
+  m_Go$    = job$.Go;
+  m_Mind$    = job$.Go.Mind;
+  m_Body$    = job$.Go.Body;
+}
+
+
+event OnJobInit$( Job job$ )
+{
+  OnJobInitPointers$( job$ );
+
+  m_Target$  = job$.GoalObject;
+
+  SetState Talk$;
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//  blab blab away... pretend you're Darlene
+state Talk$
+{
+  transition
+  {
+    -> Exiting$:  OnWorldMessage( WE_REQ_TALK_END ) =
+    {
+      if( m_Go$.Mind.ActorAutoFidgets )
+      {
+        StartFidgetIfRequired$();
+      }
+    }
+  }
+
+  trigger OnWorldMessage$( WE_ANIM_DONE )
+  {
+    if( m_Go$.Mind.ActorAutoFidgets )
+    {
+      StartFidgetIfRequired$();
+    }
+  }
+
+  event OnEnterState$
+  {
+    if( m_Go$.HasComponent( "check_level" ) )//If they have a check_level component
+    {
+      if( m_Go$.GetComponentBool( "check_level", "check_level", false ) )
+      {
+        if( StringTool.IsEmpty( low_Con$ ))//Low level selection
+        {
+          StringTool.Append( low_Con$, m_Go$.GetConversation.GetSelectedConversation );
+          StringTool.Append( low_Con$, "_low" );//Select the low_level convo
+        }
+        if( StringTool.IsEmpty( high_Con$ ))//High level selection
+        {
+          StringTool.Append( high_Con$, m_Go$.GetConversation.GetSelectedConversation );
+          StringTool.Append( high_Con$, "_high" );//Select the high_level convo
+        }
+      }
+    }
+
+    // select conversation.
+    if( m_Go$.HasComponent( "check_level" ) )//If they have a check_level component
+    {
+      if( m_Go$.GetComponentBool( "check_level", "check_level", false ) )
+      { //Check the characters Uber (max overall) level
+        float level$ = m_Target$.Go.Actor.GetSkillLevel( "Uber" );
+
+        float low$ = m_Go$.GetComponentFloat( "check_level", "low_level", 1.0 );
+        float high$ = m_Go$.GetComponentFloat( "check_level", "high_level", 1.0 );
+
+        if ( World.IsMultiPlayer() )//Checking in multiplayer for elite and
+        {                           //veteran, no change if regular (normal)
+          string world_name$ = WorldMap.GetMpWorldName();
+          if ( world_name$ == "veteran" )//Selects veteran convo
+          {
+            low$ = m_Go$.GetComponentFloat( "check_level", "low_level_2w", 1.0 );
+            high$ = m_Go$.GetComponentFloat( "check_level", "high_level_2w", 1.0 );
+          }
+          else if ( world_name$ == "elite" )//Selects elite convo
+          {
+            low$ = m_Go$.GetComponentFloat( "check_level", "low_level_3w", 1.0 );
+            high$ = m_Go$.GetComponentFloat( "check_level", "high_level_3w", 1.0 );
+          }
+        }
+        //Reports the level of the character in correspondance with the NPC
+        report.genericf("level: %g  low: %g  high: %g\n", level$, low$, high$);
+
+        if( level$ < low$ )//Low level
+        {
+          report.generic("trying low level\n");
+          m_Go$.Conversation.RSSelectConversation( low_Con$ );
+        }
+        else if( level$ > high$ )//High level
+        {
+          report.generic("trying high level\n");
+          m_Go$.Conversation.RSSelectConversation( high_Con$ );
+        }
+      }//Else normal level selects
+    }
+    m_Go$.Conversation.RSActivateDialogue();
+    if( m_Go$.Mind.ActorAutoFidgets )
+    {
+      StartFidgetIfRequired$();//Start the fidget action if it is required by
+    }                          //the NPC
+  }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+//  finish blabbing
+state Exiting$
+{
+  event OnEnterState$
+  {
+    m_Job$.MarkForDeletion();
+  }
+}

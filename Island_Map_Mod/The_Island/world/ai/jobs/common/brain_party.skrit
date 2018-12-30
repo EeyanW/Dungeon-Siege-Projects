@@ -1,0 +1,1746 @@
+/*
+  ============================================================================
+  ----------------------------------------------------------------------------
+
+  File    :   brain_party.skrit
+
+  Author(s)  :   Eric Tams, Bartosz Kijanka
+
+  Purpose    :  Coordinates the collective automatic behavior of a party.
+
+
+  Expected Behavior: (out of date)
+  ------------------
+
+    The party brain will execute periodically ( every sensor scan period ) seconds
+    and try to take action.  The party brain will try to take action only with party
+    members who are NOT already 'busy' AND who have permissions set which allow
+    them to take automatic actions.  The party beain operates in two passes:
+    Defensive and Offensive.  Currently the brain favors Defensive.  Meaning; the
+    brain will always try to perform a Defensive action before an Offensive one.
+    If the brain finds that it can't perform a Defensive action, it will try to
+    take Offensive action.
+
+
+  The Defensive pass:
+
+    Find a party member with the lowest life.  Find an idle party party member
+    with the with the most mana and best healing spell and who has permission
+    to heal others, and have him cast it on the weak guy.
+
+    If nobody is low on life, proceed to find a party member with low mana.  Then
+    find an idle party member who has a mana xfer spell and has permission to
+    auto-use it.  Cast it on the weak guy.
+
+
+  Offensive pass:
+
+    Find a party member who is currently least likely to survive the near future, based
+    on the enemies that have engaged him.  If there are any idle members, take the
+    toughest one and have him attack the toughest attacker of the weak guy.
+
+
+  Current permissions the party brain looks at are:
+
+    Mind.ActorAutoHealsOthersLife
+    Mind.ActorAutoXfersMana
+    Mind.ActorAutoDefendsOthers
+
+
+  (C)opyright 2001 Gas Powered Games, Inc.
+
+  ----------------------------------------------------------------------------
+  ============================================================================
+*/
+
+Go    m_Go$;
+GoMind  m_Mind$;
+GoParty m_Party$;
+Job    m_Job$;
+
+property  int    min_party_size$      = 2      doc = "How many friends must be nearby to form a party";
+property  int    max_party_size$      = 12      doc = "What is the larget size I will leat a party be to join, or add into my own.?";
+
+property  float  heal$          = 0.30    doc = "What ratio of the time will the party try to heal members";
+property  int    heal_charges$      = 2      doc  = "How many times the party can heal before it must recharge";
+property  float  heal_recharge$      = 15.00    doc = "Seconds before the party will try to heal members";
+property  bool  heal_by_range$       = false    doc = "Use range to determine who will heal instead of who is the best helper.";
+
+property  float  reanimate$        = 0.30    doc = "What ratio of the time will the party try to re-animate dead members";
+property  int    reanimate_charges$    = 2      doc  = "How many times the party can re-animate before it must recharge";
+property  float  reanimate_recharge$    = 15.00    doc = "Seconds before the party will try to re-animate dead members";
+
+property  float  formation_change$    = 0.02    doc  = "Chance to change the formation shape each time it moves.";
+property  int    formation_charges$    = 1      doc  = "How many times the party can move in formation before it must recharge";
+property  float  formation_recharge$    = 5.00    doc = "Seconds before the party will try to move in formation again";
+
+property  float  approach_distance$    = 1.66    doc = "Meters to try to approach by when approaching in formation.";
+property  float  min_approach_distance$    = 5.00    doc = "Minimum distance before the party will approach.";
+property  float  melee_approach_distance$  = 3.00    doc = "Minimum distance before the party will approach.";
+
+property  float  party_sight_distance$  = -1.0    doc  = "Set to a positive value to allow the party to see an enemy farther away (usefull for get friends) -1 to use sight range.";
+
+property  bool  free_move_on_enemy_enter_ICZ$     = true   doc = "if enemy enters ICZ allow party to freely attack";
+property  bool  free_move_on_enemy_enter_OCZ$     = false  doc = "if enemy enters OCZ allow party to freely attack";
+property  bool  free_move_on_life_low$         = false  doc = "if a party reaches life low allow party to freely attack";
+property  bool  free_move_if_cant_respond$       = true   doc = "allow characters to move freely if the can't attack back when in formation.";
+property  bool  all_out_attack_if_cant_respond$   = true   doc = "whole party will attack if they can't attack back when in formation.";
+
+property  bool  move_ranged_in_formation$       = true   doc = "move ranged attackers in formation even if they are allowed free movment.";
+property  bool  move_melee_in_formation$       = true   doc = "move melee attackers in formation even if they are closer then the min approach distance.";
+
+property  bool  rank_members$             = true  doc = "assign party members rank so they can move in formation.";
+property  bool  free_move$               = false doc = "allow free movement by default";
+property  bool  use_loose_formation$         = false doc = "move in a disorganized formation (used for archers to prevent them from standing on each other)";
+property  string  formation_list$               doc = "comma delimited list of possible formations to use (If empty will use default monster formations)";
+
+property  int    required_party_members_to_hold_formation$    = 2   doc = "Number of party members required to approach in formation.";
+property  int    required_ranged_attackers_to_hold_formation$  = 1   doc = "Number of ranged attackers required in the party to approach in formation.";
+property  int    required_ranged_attackers_to_hold_ground$    = 9   doc = "Number of ranged attackers required in the party to hold ground in formation.";
+property  int    required_members_for_all_out_attack$      = -1  doc = "Mumber of party members required for an all out attack. (useful for getting friends or pack attacks.";
+property  int    required_alive_members_for_all_out_attack$    = -1  doc = "Mumber of alive party members required for an all out attack. (useful for getting friends or pack attacks.";
+
+property  bool  flee_when_member_killed$            = false  doc = "Party members flee when a party member is killed.";
+
+bool   party_dirty$ = true;
+bool  move_freely$ = false;
+bool  melee_ranked$ = false;
+bool  in_combat$ = false;
+
+int    heal_charges_used$ = 0;
+int    reanimate_charges_used$ = 0;
+int    formation_charges_used$ = 0;
+int    num_ranged_attackers_in_party$ = 0;
+int    num_alive_members_in_party$ = 0;
+int    num_memebers$ = 0;
+int    num_ranked$ = 0;
+
+#include "k_job_c_attack_utils"
+
+
+startup state STARTUP$
+{
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//  init
+event OnJobInitPointers$( Job job$ )
+{
+  m_Job$    = job$;
+  m_Go$    = job$.Go;
+  m_Mind$    = job$.Go.Mind;
+  m_Party$  = job$.Go.Party;
+}
+
+
+event OnJobInit$( Job job$ )
+{
+  OnJobInitPointers$( job$ );
+
+  SetState Thinking$;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+//  helper functions
+
+////////////////////////////////////////
+//  function GetToughestEnemy
+
+Go GetToughestEnemy$( Go member$ )
+{
+  Go toughestEnemy$;
+
+  if( party_sight_distance$ > 0 )
+  {
+    m_Mind$.TempGopColl1.Clear;
+    m_Mind$.TempGopColl2.Clear;
+
+    AIQuery.GetOccupantsInSphere( member$.placement.position, party_sight_distance$, m_Mind$.TempGopColl1 );
+
+    m_Mind$.TempQtColl1.Clear;
+    m_Mind$.TempQtColl1.Add( QT_ENEMY );
+    m_Mind$.TempQtColl1.Add( QT_ALIVE_CONSCIOUS );
+    m_Mind$.TempQtColl1.Add( QT_ATTACKABLE );
+
+    AIQuery.Get( member$, m_Mind$.TempQtColl1, m_Mind$.TempGopColl1, m_Mind$.TempGopColl2 );
+    toughestEnemy$ = AIQuery.GetMax( member$, QT_OFFENSE_FACTOR, m_Mind$.TempGopColl2 );
+  }
+
+  if( toughestEnemy$ == NULL )
+  {
+    toughestEnemy$ = member$.mind.GetBestFocusEnemy();
+  }
+
+  return toughestEnemy$;
+}
+
+////////////////////////////////////////
+//  function SelectFormation
+
+void SelectFormation$( bool loose$, float change_chance$ )
+{
+  if ( num_ranked$ == 0 )
+  {
+    return;
+  }
+  if( loose$ ) {
+    int formation$ = Math.RandomInt( 2 );
+    if( formation$ == 0 )
+    {
+      m_Go$.Party.Formation.Shape = "monster_blob_1";
+    }
+    else if( formation$ == 1 )
+    {
+      m_Go$.Party.Formation.Shape = "monster_blob_2";
+    }
+    else if( formation$ == 2 )
+    {
+      m_Go$.Party.Formation.Shape = "monster_blob_3";
+    }
+  } else if( change_chance$ > Math.RandomFloat( 1 ) )  {
+    if( StringTool.IsEmpty( formation_list$ ) )
+    {
+      int formation$ = Math.RandomInt( 4 );
+      if( formation$ == 0 )
+      {
+        m_Go$.Party.Formation.Shape = "monster_1";
+      }
+      else if( formation$ == 1 )
+      {
+        m_Go$.Party.Formation.Shape = "monster_2";
+      }
+      else if( formation$ == 2 )
+      {
+        m_Go$.Party.Formation.Shape = "monster_3";
+      }
+      else if( formation$ == 3 )
+      {
+        m_Go$.Party.Formation.Shape = "monster_4";
+      }
+      else
+      {
+        m_Go$.Party.Formation.Shape = "double_column";
+      }
+    }
+    else
+    {
+      int formation$ = Math.RandomInt( StringTool.GetNumDelimitedValues( formation_list$ ) - 1 );
+      string temp$ = StringTool.GetDelimitedString( formation_list$, formation$ );
+      if( !StringTool.IsEmpty( temp$ ) )
+      {
+        m_Go$.Party.Formation.Shape = StringTool.GetDelimitedString( formation_list$, formation$ );
+      }
+      else
+      {
+        m_Go$.Party.Formation.Shape = "monster_1";
+      }
+    }
+  }
+}
+
+
+////////////////////////////////////////
+//  function RankMelee
+
+void RankMelee$( )
+{
+  if( !rank_members$ )
+  {
+    return;
+  }
+  melee_ranked$ = true;
+
+  num_ranked$ = 0;
+  int i$ = 0;
+  int iend$ = m_Go$.Children.Size();
+  int rank$ = 0;
+  Go temp_child$;
+
+  while( i$ != iend$ )
+  {
+    temp_child$ = m_Go$.Children.Get( i$ );
+    if( AIQuery.Is( m_Go$, temp_child$, QT_ALIVE_CONSCIOUS ) && !( temp_child$.Inventory.IsRangedWeaponSelected || temp_child$.Inventory.IsSpellSelected ) )
+    {
+      num_ranged_attackers_in_party$ += 1;
+      temp_child$.Mind.Rank = rank$;
+      rank$ += 1;
+    } else {
+      temp_child$.Mind.Rank = 0xFFFFFFFF;
+      temp_child$.Mind.RSSetCombatOrders( CO_FREE );
+      temp_child$.Mind.RSSetMovementOrders( MO_FREE );
+    }
+    i$ += 1;
+  }
+  num_ranked$ = rank$;
+}
+
+
+////////////////////////////////////////
+//  function FreeMovement
+
+void FreeMovement$( )
+{
+  if( !rank_members$ )
+  {
+    return;
+  }
+
+  move_freely$ = true;
+  num_ranked$ = 0;
+
+  int i$ = 0;
+  int iend$ = m_Go$.Children.Size();
+  while( i$ != iend$ )
+  {
+    m_Go$.Children.Get( i$ ).Mind.RSSetCombatOrders( CO_FREE );
+    m_Go$.Children.Get( i$ ).Mind.RSSetMovementOrders( MO_FREE );
+
+    i$ += 1;
+  }
+
+  if( move_ranged_in_formation$ && ( num_alive_members_in_party$ >= required_party_members_to_hold_formation$ ) )
+  {
+    num_ranged_attackers_in_party$ = 0;
+    int i$ = 0;
+    int iend$ = m_Go$.Children.Size();
+    int rank$ = 0;
+    Go temp_child$;
+
+    while( i$ != iend$ )
+    {
+      temp_child$ = m_Go$.Children.Get( i$ );
+      if( AIQuery.Is( m_Go$, temp_child$, QT_ALIVE_CONSCIOUS ) && ( temp_child$.Inventory.IsRangedWeaponSelected || temp_child$.Inventory.IsSpellSelected ) )
+      {
+        num_ranged_attackers_in_party$ += 1;
+        temp_child$.Mind.Rank = rank$;
+        rank$ += 1;
+      } else {
+        temp_child$.Mind.Rank = 0xFFFFFFFF;
+      }
+      i$ += 1;
+    }
+    num_ranked$ = rank$;
+  }
+
+  SelectFormation$( use_loose_formation$, 0 );
+}
+
+
+////////////////////////////////////////
+//  function InitParty
+
+void InitParty$( )
+{
+  m_Party$.TempGopCollA.Clear;
+
+  // get alive party members
+  if( !AIQuery.Get( m_Go$, QT_ALIVE_CONSCIOUS, m_Go$.Children, m_Party$.TempGopCollA ) )
+  {
+    report.reportf( "aiskrit", "'%s' -  can't find alive members\n",m_Go$.TemplateName );
+  }
+
+  if( free_move$ || move_freely$ )
+  {
+    FreeMovement$();
+    return;
+  }
+
+  if( melee_ranked$ )
+  {
+    RankMelee$();
+    return;
+  }
+
+  num_alive_members_in_party$ = m_Party$.TempGopCollA.Size();
+  num_ranged_attackers_in_party$ = 0;
+
+  int i$ = 0;
+  int iend$ = m_Go$.Children.Size();
+  int rank$ = 0;
+  Go temp_child$;
+
+  // sort the members based on occupation.
+
+  while( i$ != iend$ )
+  {
+    temp_child$ = m_Go$.Children.Get( i$ );
+    if( AIQuery.Is( m_Go$, temp_child$, QT_ALIVE_CONSCIOUS ) && !temp_child$.Inventory.IsRangedWeaponSelected && !temp_child$.Inventory.IsSpellSelected )
+    {
+      temp_child$.Mind.Rank = rank$;
+
+      report.reportf( "aiskrit", "'%s' -  ranked Melee actor to party\n",m_Go$.TemplateName );
+      if(!move_freely$)
+      {
+        temp_child$.Mind.RSSetCombatOrders( CO_FREE );
+        temp_child$.Mind.RSSetMovementOrders( MO_LIMITED );
+      }
+      rank$ += 1;
+    }
+    i$ += 1;
+  }
+
+  i$ = 0;
+  while( i$ != iend$ )
+  {
+    temp_child$ = m_Go$.Children.Get( i$ );
+    if ( AIQuery.Is( m_Go$, temp_child$, QT_ALIVE_CONSCIOUS ) && temp_child$.Inventory.IsRangedWeaponSelected )
+    {
+      num_ranged_attackers_in_party$ += 1;
+      temp_child$.Mind.Rank = rank$;
+
+      report.reportf( "aiskrit", "'%s' -  ranked Ranged actor to party\n",m_Go$.TemplateName );
+      if(!move_freely$)
+      {
+        temp_child$.Mind.RSSetCombatOrders( CO_FREE );
+        temp_child$.Mind.RSSetMovementOrders( MO_HOLD );
+      }
+
+      rank$ += 1;
+    }
+
+    i$ += 1;
+  }
+
+  i$ = 0;
+  while( i$ != iend$ )
+  {
+    temp_child$ = m_Go$.Children.Get( i$ );
+    if ( AIQuery.Is( m_Go$, temp_child$, QT_ALIVE_CONSCIOUS ) && temp_child$.Inventory.IsSpellSelected )
+    {
+      temp_child$.Mind.Rank = rank$;
+      report.reportf( "aiskrit", "'%s' -  ranked Magic actor to party\n",m_Go$.TemplateName );
+
+      if( AIQuery.Is( temp_child$, temp_child$.Inventory.SelectedSpell, QT_CASTABLE ) )
+      {
+        num_ranged_attackers_in_party$ += 1;
+
+        if(!move_freely$)
+        {
+          temp_child$.Mind.RSSetCombatOrders( CO_FREE );
+          temp_child$.Mind.RSSetMovementOrders( MO_HOLD );
+        }
+      }
+      else
+      {
+        if(!move_freely$)
+        {
+          temp_child$.Mind.RSSetCombatOrders( CO_FREE );
+          temp_child$.Mind.RSSetMovementOrders( MO_LIMITED );
+        }
+      }
+
+      rank$ += 1;
+    }
+
+    i$ += 1;
+  }
+
+  i$ = 0;
+  while( i$ != iend$ )
+  {
+    if ( !AIQuery.Is( m_Go$, m_Go$.Children.Get( i$ ), QT_ALIVE_CONSCIOUS ) )
+    {
+      m_Go$.Children.Get( i$ ).Mind.Rank = rank$;
+
+      report.reportf( "aiskrit", "'%s' -  ranked Dead actor to party\n",m_Go$.TemplateName );
+      rank$ += 1;
+    }
+
+    i$ += 1;
+  }
+
+  num_ranked$ = rank$;
+
+  if( num_ranked$ > 8 )
+  {
+    Report.Errorf("Mis-Calculation determining rank!! in %s\nRanked %d party members out of %d\n",m_Go$.TemplateName,rank$,iend$);
+  }
+
+  SelectFormation$( use_loose_formation$, 1 );
+
+  report.reportf( "aiskrit", "'%s' -  Ranked %d party members out of %d\n",m_Go$.TemplateName,rank$,iend$ );
+
+  if( ( num_ranged_attackers_in_party$ < required_ranged_attackers_to_hold_formation$ ) || ( num_alive_members_in_party$ < required_party_members_to_hold_formation$ ) )
+  {
+    FreeMovement$();
+  }
+}
+
+////////////////////////////////////////
+//  function MoveFormation
+
+void MoveFormation$( SiegePos position$ )
+{
+  SelectFormation$( use_loose_formation$, formation_change$ );
+
+  m_Go$.Party.Formation.Position = position$;
+  m_Go$.Party.Formation.Move( QP_CLEAR, AO_PARTY, false);
+}
+
+////////////////////////////////////////
+//  function TryResurrect
+//  Use the party members specified to try to resurect a fallen friend
+
+bool TryResurrect$( GopColl Resurrecting_members$ )
+{
+  report.reportf( "aiskrit", "'%s' - TryResurrect$ - entered\n", m_Go$.TemplateName );
+
+  m_Party$.TempGopCollB.Clear();
+
+  if( AIQuery.GetMin( m_Go$, QT_LIFE_LOW, m_Go$.Children, m_Party$.TempGopCollB ) )
+  {
+    report.reportf( "aiskrit", "'%s' -found weakest member to resurrect\n", m_Go$.TemplateName );
+
+    ////////////////////////////////////////////////////////////////////////////////
+    //  help member with low LIFE
+
+    ////////////////////////////////////////
+    //  find the weakest party member
+    Go weakMember$ = m_Party$.TempGopCollB.Get( 0 );
+
+    ////////////////////////////////////////
+    //  find if we need should resurrect
+
+    // $$$ hacky shouldn't need to check visibility to see if a guy has gibbed
+
+    if( ( weakMember$.aspect.lifestate == LS_DEAD_NORMAL ) && weakMember$.aspect.IsVisible )
+    {
+      report.reportf( "aiskrit", "'%s' -  weakest member is dead\n",m_Go$.TemplateName );
+
+      ////////////////////////////////////////
+      //  find member to cast resurrect spell
+      int i$ = 0;
+      int iend$ = Resurrecting_members$.Size();
+
+      Go helper$     = NULL;
+      Go bestHelper$  = NULL;
+      Go bestSpell$  = NULL;
+
+      while( i$ != iend$ )
+      {
+        if( !m_Go$.Children.Get( i$ ).Mind.ActorAutoReanimatesFriends )
+        {
+          report.reportf( "aiskrit", "'%s' -  party member can't re-animate\n",m_Go$.TemplateName );
+          i$ += 1;
+          continue;
+        }
+
+        report.reportf( "aiskrit", "'%s' -  party member can re-animate\n",m_Go$.TemplateName );
+
+        helper$ = Resurrecting_members$.Get( i$ );
+
+        float maxMana$ = -1;
+
+        report.reportf( "aiskrit", "'%s' -  looking for spells to re-animate\n",m_Go$.TemplateName );
+
+        ////////////////////////////////////////
+        //  get spells I can cast
+        helper$.Mind.TempQtColl1.Clear;
+        helper$.Mind.TempQtColl1.Add( QT_SPELL       );
+        helper$.Mind.TempQtColl1.Add( QT_CASTABLE    );
+        helper$.Mind.TempQtColl1.Add( QT_REANIMATING );
+
+        ////////////////////////////////////////
+        //  reanimate dead buddies
+        helper$.Mind.TempGopColl1.Clear;
+        if( helper$.Mind.GetAutoItems( helper$.Mind.TempQtColl1, helper$.Mind.TempGopColl1 ) )
+        {
+          Go spell$ = helper$.Mind.TempGopColl1.Get( 0 );
+
+          // $$$ IsSpellInProgress doesn't seem to work if the spell hasn't been cast yet... so caster may get stuck when
+          // a new request to cast the spell comes in.
+
+          if( !helper$.Inventory.IsSpellInProgress( spell$.TemplateName ) && HaveEnoughManaToCast$( helper$, spell$, weakMember$ ) )
+          {
+            if( maxMana$ < helper$.Aspect.CurrentMana )
+            {
+              maxMana$     = helper$.Aspect.CurrentMana;
+              bestHelper$   = helper$;
+              bestSpell$    = spell$;
+            }
+          }
+        }
+        i$ += 1;
+      }
+
+      ////////////////////////////////////////
+      //  cast resurrect spell
+      if( bestHelper$ != NULL )
+      {
+        Job temp_job$ = helper$.Mind.GetFrontJob( JQ_ACTION );
+        bool doit$ = true;
+
+        if( temp_job$ != NULL )
+        {
+          // make sure we aren't about to cast the resurrect spell
+
+          Go current_spell$ = temp_job$.GoalModifier.Go;
+          if( current_spell$ != NULL)
+          {
+            if( StringTool.SameNoCase(temp_job$.GoalModifier.Go.templatename, bestSpell$.TemplateName ) )
+            {
+              doit$ = false;
+            }
+          }
+        }
+
+        if( doit$ )
+        {
+          bestHelper$.Mind.SDoJob( MakeJobReq( JAT_CAST, JQ_ACTION, QP_FRONT, AO_PARTY, weakMember$.Goid, bestSpell$.Goid ) );
+
+          // set up the timer to decrement the resurrection charges.
+
+          if( reanimate_recharge$ > 0.0 )
+          {
+            if( reanimate_charges_used$ == 0 )
+            {
+              This.CreateTimer( 1, reanimate_recharge$ );
+              This.SetTimerGlobal( 1, true );
+            }
+            reanimate_charges_used$ += 1;
+            This.SetTimerRepeatCount( 1, reanimate_charges_used$ );
+          }
+          return( true );
+        }
+      }
+    }
+  }
+  return false;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//  function TryHeal$
+//
+//  Use the party members specified to try to heal a friend
+
+bool TryHeal$( GopColl Healing_members$, Bool Heal_unconscious$ )
+{
+  report.reportf( "aiskrit", "'%s' - TryHeal$ - entered\n", m_Go$.TemplateName );
+
+  ////////////////////////////////////////////////////////////////////////////////
+  //  find healing target
+
+  m_Party$.TempGopCollB.Clear();
+
+  m_Party$.TempQtColl1.Clear();
+  m_Party$.TempQtColl1.Add( QT_ALIVE );
+  m_Party$.TempQtColl1.Add( QT_LIFE_LOW );
+
+  ////////////////////////////////////////
+  //  attempt early-out
+
+  if( !AIQuery.GetMinN( m_Go$, m_Party$.TempQtColl1, 1, m_Go$.Children, m_Party$.TempGopCollB ) )
+  {
+    report.reportf( "aiskrit", "'%s' - exit - no members in need of healing\n", m_Go$.TemplateName );
+    return false;
+  }
+
+  ////////////////////////////////////////
+  //  find weakest member
+
+  int i$ = 0;
+  int iend$ = m_Party$.TempGopCollB.Size();
+  Go weakMember$ = NULL;
+
+  while( ( i$ != iend$ ) && ( weakMember$ == NULL ) )
+  {
+    weakMember$ = m_Party$.TempGopCollB.Get( i$ );
+
+    if( ( weakMember$.aspect.lifestate == LS_ALIVE_UNCONSCIOUS ) && Heal_unconscious$ )
+    {
+      if( m_Party$.TempGopCollB.Get( i$ ).Mind.AliveEnemiesVisible() )
+      {
+        weakMember$ = NULL;
+      }
+    }
+    i$ += 1;
+  }
+
+  m_Party$.TempGopCollB.Clear();
+
+  if( weakMember$ == NULL )
+  {
+    report.reportf( "aiskrit", "'%s' - exit - weakMember$ == NULL\n", m_Go$.TemplateName );
+    return false;
+  }
+
+  report.reportf( "aiskrit", "'%s' - found member to heal = '%s'\n", m_Go$.TemplateName, weakMember$.TemplateName );
+
+  ////////////////////////////////////////////////////////////////////////////////
+  //  find someone to cast heal on target
+
+  i$    = 0;
+  iend$   = Healing_members$.Size();
+
+  Go helper$     = NULL;
+  Go bestHelper$  = NULL;
+  Go bestSpell$  = NULL;
+  float smallRange$ = -1;
+
+  while( i$ != iend$ )
+  {
+    helper$ = Healing_members$.Get( i$ );
+
+    if( !helper$.Mind.ActorAutoHealsOthersLife )
+    {
+      i$ += 1;
+      continue;
+    }
+
+    helper$ = Healing_members$.Get( i$ );
+
+    float maxHealing$ = -1;
+
+    ////////////////////////////////////////
+    //  find the most healing spell this guy can cast
+
+    helper$.Mind.TempQtColl1.Clear();
+    helper$.Mind.TempQtColl1.Add( QT_SPELL );
+    helper$.Mind.TempQtColl1.Add( QT_CASTABLE );
+    helper$.Mind.TempQtColl1.Add( QT_LIFE_HEALING );
+
+    m_Party$.TempGopCollC.Clear;
+    helper$.Mind.GetAutoItems( helper$.Mind.TempQtColl1, m_Party$.TempGopCollC );
+    Go spell$ = AIQuery.GetMax( m_Go$, QT_LIFE_HEALING, m_Party$.TempGopCollC );
+
+    ////////////////////////////////////////
+    //  compare spell and log if best one thus far
+
+    if( spell$ != NULL )
+    {
+      if( heal_by_range$ )
+      {
+        float currentRange$ = AIQuery.GetDistance( weakMember$.Placement.Position, helper$.Placement.Position );
+//        report.genericf("Range %g  Small Range %g\n", currentRange$, smallRange$);
+        if( ( smallRange$ < 0.0 ) || ( smallRange$ > currentRange$ ) )
+        {
+          smallRange$    = currentRange$;
+          bestHelper$   = helper$;
+          bestSpell$    = spell$;
+//          report.genericf("Switch Range %g  Small Range %g\n", currentRange$, smallRange$);
+        }
+      }
+      else
+      {
+        float currentHealing$ = AIQuery.GetTraitValue( m_Go$, spell$, QT_LIFE_HEALING );
+
+        if( maxHealing$ < currentHealing$ )
+        {
+          maxHealing$   = currentHealing$;
+          bestHelper$   = helper$;
+          bestSpell$    = spell$;
+        }
+      }
+    }
+    i$ += 1;
+  }
+
+  ////////////////////////////////////////
+  //  cast healing spell
+
+  if( bestHelper$ != NULL )
+  {
+    report.reportf( "aiskrit", "'%s' - found best helper to heal with = '%s'\n", m_Go$.TemplateName, bestHelper$.TemplateName );
+
+    if ( m_Go$.Children.Get( 0 ).Player.Controller == PC_COMPUTER )
+    {
+      Job temp_job$ = helper$.Mind.GetFrontJob( JQ_ACTION );
+      bool doit$ = true;
+
+      if( temp_job$ != NULL )
+      {
+        // make sure we aren't about to cast the heal spell
+
+        Go current_spell$ = temp_job$.GoalModifier.Go;
+        if( current_spell$ != NULL)
+        {
+          if( StringTool.SameNoCase(temp_job$.GoalModifier.Go.templatename, bestSpell$.TemplateName ) )
+          {
+            doit$ = false;
+          }
+        }
+      }
+
+      if( doit$ )
+      {
+        bestHelper$.Mind.SDoJob( MakeJobReq( JAT_CAST, JQ_ACTION, QP_FRONT, AO_PARTY, weakMember$.Goid, bestSpell$.Goid ) );
+
+        // set up the timer to decrement the resurrection charges.
+
+        if( heal_recharge$ > 0.0 )
+        {
+          if( heal_charges_used$ == 0 )
+          {
+            This.CreateTimer( 3, heal_recharge$ );
+            This.SetTimerGlobal( 3, true );
+          }
+          heal_charges_used$ += 1;
+
+//          report.genericf("using: heal_charges_used: %d\n",heal_charges_used$);
+          This.SetTimerRepeatCount( 3, heal_charges_used$ );
+        }
+        return( true );
+      }
+    }
+    else
+    {
+      bestHelper$.Mind.SDoJob( MakeJobReq( JAT_CAST, JQ_ACTION, QP_FRONT, AO_PARTY, weakMember$.Goid, bestSpell$.Goid ) );
+      return( true );
+    }
+  }
+  else
+  {
+    report.reportf( "aiskrit", "'%s' - failed to find best helper to heal with\n", m_Go$.TemplateName );
+  }
+
+  return false;
+}
+
+////////////////////////////////////////
+//  function TryChannelMana
+//  Use the party members specified to try to channel mana to a friend
+
+bool TryChannelMana$( GopColl Chanelling_members$ )
+{
+  m_Party$.TempGopCollB.Clear();
+  m_Party$.TempGopCollC.Clear();
+
+  if ( AIQuery.GetMin( m_Go$, QT_MANA_LOW, m_Go$.Children, m_Party$.TempGopCollB ) )
+  {
+    ////////////////////////////////////////////////////////////////////////////////
+    //  help member with low MANA
+    Go weakMember$ = m_Party$.TempGopCollB.Get( 0 );
+    m_Party$.TempGopCollB.Clear();
+
+    ////////////////////////////////////////
+    //  find member to cast mana xfer with
+    int i$     = 0;
+    int iend$   = Chanelling_members$.Size();
+
+    Go helper$  = NULL;
+    Go spell$  = NULL;
+
+    while( i$ != iend$ )
+    {
+      if( !Chanelling_members$.Get( i$ ).Mind.ActorAutoXfersMana )
+      {
+        i$ += 1;
+        continue;
+      }
+      helper$ = Chanelling_members$.Get( i$ );
+
+      ////////////////////////////////////////
+      //  eliminate candidate who is already transferring mana
+      if( helper$.Inventory.IsSpellInProgress( "spell_mana_channel" ) )
+      {
+        i$ += 1;
+        continue;
+      }
+
+      ////////////////////////////////////////
+      //  look for mana xfer spell in inventory
+      if( !helper$.Mind.GetAutoItems( QT_SPELL, m_Party$.TempGopCollC ) )
+      {
+        i$ += 1;
+        continue;
+      }
+
+      int j$     = 0;
+      int jend$  = m_Party$.TempGopCollC.Size();
+
+      while( j$ != jend$ )
+      {
+        if( m_Party$.TempGopCollC.Get(j$).TemplateName == "spell_mana_channel" )  // $$$ is this comparison allowed in Skrit?
+        {
+          // candidate must have enough mana for spell to be cast
+          if( spell$.Magic.ManaCost < helper$.Aspect.CurrentMana )
+          {
+            spell$ = m_Party$.TempGopCollC.Get(j$);
+            break;
+          }
+        }
+        j$ += 1;
+      }
+
+      if( helper$ && spell$ )
+      {
+        break;
+      }
+
+      i$ += 1;
+    }
+
+    ////////////////////////////////////////
+    //  cast mana xfer spell
+
+    if( helper$ && spell$ )
+    {
+      helper$.Mind.SDoJob( MakeJobReq( JAT_CAST, JQ_ACTION, QP_FRONT, AO_PARTY, helper$.Goid, spell$.Goid ) );
+      return( true );
+    }
+  }
+  return false;
+}
+
+////////////////////////////////////////
+//  function TrySupport
+//  find a party member in trouble, and try to help him out.
+
+bool TrySupport$( GopColl alive_members$ )
+{
+  m_Party$.TempGopCollB.Clear;
+  m_Party$.TempGopCollC.Clear;
+  Go member$ = NULL;
+
+  m_Party$.TempQtColl1.Add( QT_LIFE_LOW );
+
+  ////////////////////////////////////////
+  //  get the fighting actor who is most in trouble
+
+  if( AIQuery.Get( m_Go$, QT_FIGHTING, alive_members$, m_Party$.TempGopCollC ) )
+  {
+    // if we have anyone with low life then try to help out the most hurt character.
+
+    if( AIQuery.Get( m_Go$, QT_LIFE_LOW, m_Party$.TempGopCollC, m_Party$.TempGopCollB ) )
+    {
+      report.reportf( "aiskrit", "'%s' -  zurb1\n",m_Go$.TemplateName );
+
+      if( !AIQuery.GetMin( m_Go$, QT_SURVIVAL_FACTOR, m_Party$.TempGopCollB, m_Party$.TempGopCollC ) )
+      {
+        report.reportf( "aiskrit", "'%s' -  can't find weakest member\n",m_Go$.TemplateName );
+        return( false );
+      }
+
+    }
+    member$ = m_Party$.TempGopCollC.Get( 0 );
+  }
+
+  if( member$ == NULL )
+  {
+    report.reportf( "aiskrit", "'%s' -  can't find member being attacked\n",m_Go$.TemplateName );
+    return( false );
+  }
+
+  report.reportf( "aiskrit", "'%s' -  found weakest member '%s', goid 0x%08x\n", m_Go$.TemplateName, member$.TemplateName, member$.Goid );
+
+  // Get the enemy that our friend thinks is the best one to attack.
+  Go focusEnemy$ = member$.Mind.GetBestFocusEnemy();;
+
+  m_Party$.TempGopCollA.Clear;
+  m_Party$.TempGopCollB.Clear;
+
+  if( focusEnemy$ == NULL )
+  {
+    report.reportf( "aiskrit", "'%s' -  can't find attacking enemy\n",m_Go$.TemplateName );
+    return( false );
+  }
+
+  ////////////////////////////////////////
+  //  find idle members to help
+  m_Mind$.TempQtColl1.Clear;
+  m_Mind$.TempQtColl1.Add( QT_IDLE  );
+  m_Mind$.TempQtColl1.Add( QT_ALIVE_CONSCIOUS );
+
+  if( !AIQuery.Get( m_Go$, m_Mind$.TempQtColl1, m_Go$.Children, m_Party$.TempGopCollA ) )
+  {
+    report.reportf( "aiskrit", "'%s' -  can't find idle member\n",m_Go$.TemplateName );
+    return( false );
+  }
+
+  Go helper$ = NULL;
+  bool helped$ = false;
+  int ih$ = 0;
+  int ihend$ = m_Party$.TempGopCollA.Size();
+
+  report.reportf( "aiskrit", "'%s' - picking helpers\n",m_Go$.TemplateName );
+
+  ///////////////////////////////////////
+  // try to get everyone to help out based on movement orders.
+
+  bool followMode$ = false;
+  #only( game )
+  [[
+    followMode$ = UIPartyManager.FollowMode;
+  ]]
+
+  while( ih$ != ihend$ )
+  {
+    helper$ = m_Party$.TempGopCollA.Get( ih$ );
+
+    // check to see if this party member wants to help
+    if( !helper$.Mind.ActorAutoDefendsOthers || ( helper$.Mind.MovementOrders == MO_HOLD ) )
+    {
+      ih$ += 1;
+      continue;
+    }
+
+    // we want to try to attack someone standing right on top of us first
+    // attack our best focus to avoid people running around all willy nilly
+
+    if( !helper$.Inventory.IsRangedWeaponSelected && !helper$.Inventory.IsSpellSelected )
+    {
+      Go target$ = helper$.Mind.GetBestFocusEnemy();
+
+      if( target$ != NULL )
+      {
+        if( helper$.Mind.IsInMeleeEngageRange( target$ ) )
+        {
+          if( TryRespondToAttack$( helper$, target$ ) )
+          {
+            report.reportf( "aiskrit", "'%s' -  Trying to attack someone near me instead of running around\n",m_Go$.TemplateName );
+            helped$ = true;
+            ih$ += 1;
+            continue;
+          }
+        }
+      }
+    }
+
+    // can we see the action?
+    if ( !followMode$ && ( helper$.Mind.SightRange < helper$.Mind.GetDistance( member$ ) ) )
+    {
+      report.reportf( "aiskrit", "'%s' -  wanted to help but wasn't close enough.\n",m_Go$.TemplateName );
+      ih$ += 1;
+      continue;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    // we can respond to melee attackers with anyone, but only ranged attackers with ranged friends.
+    // but anyone can respond if the enemy is close enough.
+
+    if(  !MayRespondToAttack$( helper$, focusEnemy$ ) )
+    {
+      ih$ += 1;
+      continue;
+    }
+
+    bool enemyVeryCloseToWeakling$ = member$.Mind.InnerComfortZoneRange > member$.Mind.GetDistance( focusEnemy$ );
+
+    // don't help members who are engaged in log-ranged combat if we're melee
+    if(  !enemyVeryCloseToWeakling$
+      && ( ( focusEnemy$.Inventory.IsRangedWeaponSelected || focusEnemy$.Inventory.IsSpellSelected )
+        && ( !helper$.Inventory.IsRangedWeaponSelected
+          && !helper$.Inventory.IsSpellSelected ) ) )
+    {
+      ih$ += 1;
+      continue;
+    }
+
+    if( focusEnemy$ != NULL && helper$ != NULL )
+    {
+      report.reportf( "aiskrit", "'%s' -  %s is helping a friend under attack (1).\n",m_Go$.TemplateName, helper$.TemplateName );
+      helper$.Mind.SDoJob( MakeJobReq( JAT_ATTACK_OBJECT, JQ_ACTION, QP_FRONT, AO_PARTY, focusEnemy$.Goid ) );
+      helped$ = true;
+      ih$ += 1;
+      continue;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    // if we couldn't attack what our weakest friend was getting attacked by then lets try to attack what he is attacking.
+
+    Go tempEnemy$ = member$.Mind.EngagedObject.Go;
+    helper$ = m_Party$.TempGopCollB.Get( ih$ );
+
+    if( tempEnemy$ == NULL )
+    {
+      ih$ += 1;
+      continue;
+    }
+
+    if( helper$.Inventory.IsSpellSelected )
+    {
+      if ( GetStrongestAutoAttackSpell$( helper$, tempEnemy$ ) == NULL )
+      {
+        ih$ += 1;
+        continue;
+      }
+    }
+
+    if(    ( member$.Mind.EngagedObject.IsValid )
+       && ( followMode$
+       || ( ( !member$.Inventory.IsRangedWeaponSelected && !member$.Inventory.IsSpellSelected )
+         && ( MayRespondToAttack$( m_Party$.TempGopCollB.Get( ih$ ), tempEnemy$ ) ) ) ) )
+    {
+      if( ( member$ != NULL ) &&
+        ( helper$ != NULL ) &&
+        AIQuery.Is( m_Go$, member$, QT_FIGHTING) )
+      {
+        report.reportf( "aiskrit", "'%s' -  %s is helping a friend under attack (2).\n",m_Go$.TemplateName, helper$.TemplateName );
+        helper$.Mind.SDoJob( MakeJobReq( JAT_ATTACK_OBJECT, JQ_ACTION, QP_FRONT, AO_PARTY, tempEnemy$.goid ) );
+      }
+      helped$ = true;
+    }
+
+    ih$ += 1;
+  }
+  return helped$;
+}
+
+////////////////////////////////////////
+//  function TryAttack
+//  make everyone in the party attack.
+
+bool TryAttack$()
+{
+  m_Party$.TempGopCollA.Clear;
+
+  ////////////////////////////////////////
+  //  find idle members to help
+  m_Mind$.TempQtColl1.Clear;
+  m_Mind$.TempQtColl1.Add( QT_IDLE  );
+  m_Mind$.TempQtColl1.Add( QT_ALIVE_CONSCIOUS );
+
+  if( !AIQuery.Get( m_Go$, m_Mind$.TempQtColl1, m_Go$.Children, m_Party$.TempGopCollA ) )
+  {
+    report.reportf( "aiskrit", "'%s' -  can't find idle member\n",m_Go$.TemplateName );
+    return( false );
+  }
+
+  bool attacked$ = false;
+  int ih$ = 0;
+  int ihend$ = m_Party$.TempGopCollA.Size();
+  Go attacker$ = NULL;
+  Go toughestEnemy$;
+
+  ////////////////////////////////////////
+  //  pick a good default enemy for us to attack if we can't see any.
+  if( ihend$ > 0 )
+  {
+    toughestEnemy$ = GetToughestEnemy$( m_Party$.TempGopCollA.Get( 0 ) );
+  }
+
+  if( toughestEnemy$ == NULL )
+  {
+    return( false );
+  }
+
+  report.reportf( "aiskrit", "'%s' - picking attackers\n",m_Go$.TemplateName );
+
+  ///////////////////////////////////////
+  // try to get everyone to help out based on movement orders.
+
+  while( ih$ != ihend$ )
+  {
+    // check to see if this party member wants to help
+    if( m_Mind$.MovementOrders != MO_FREE )
+    {
+      ih$ += 1;
+      continue;
+    }
+
+    attacker$ = m_Party$.TempGopCollA.Get( ih$ );
+
+    Go enemy$ = attacker$.mind.GetBestFocusEnemy();
+
+    if( enemy$ == NULL )
+    {
+      enemy$ = toughestEnemy$;
+    }
+
+    attacker$.Mind.SDoJob( MakeJobReq( JAT_ATTACK_OBJECT, JQ_ACTION, QP_FRONT, AO_PARTY, enemy$.Goid ) );
+    attacked$ = true;
+    ih$ += 1;
+  }
+  return attacked$;
+}
+
+////////////////////////////////////////
+//  function TryFlee
+//  make everyone in the party flee.
+
+bool TryFlee$()
+{
+  m_Party$.TempGopCollA.Clear;
+
+  // get alive party members
+  if( !AIQuery.Get( m_Go$, QT_ALIVE_CONSCIOUS, m_Go$.Children, m_Party$.TempGopCollA ) )
+  {
+    report.reportf( "aiskrit", "'%s' -  can't find alive members\n",m_Go$.TemplateName );
+    return false;
+  }
+
+  bool fled$ = false;
+  int ih$ = 0;
+  int ihend$ = m_Party$.TempGopCollA.Size();
+
+  ///////////////////////////////////////
+  // try to get everyone to flee.
+
+  while( ih$ != ihend$ )
+  {
+    Go member$ = m_Party$.TempGopCollA.Get( ih$ );
+    Go enemy$ = member$.mind.GetBestFocusEnemy();
+
+    if( enemy$ == NULL )
+    {
+      ih$ += 1;
+      continue;
+    }
+
+    fled$ = true;
+    member$.Mind.SDoJob( MakeJobReq( JAT_FLEE_FROM_OBJECT, JQ_ACTION, QP_CLEAR, AO_PARTY, enemy$.Goid ) );
+    ih$ += 1;
+  }
+  return fled$;
+}
+
+////////////////////////////////////////
+//  function FormOnEnemy
+//  find an enemy, and take formation facing him.
+
+bool FormOnEnemy$()
+{
+  report.reportf( "aiskrit", "'%s' -  trying to form up on an enemy\n",m_Go$.TemplateName );
+
+  m_Party$.TempGopCollA.Clear;
+
+  // get alive party members
+  if( !AIQuery.Get( m_Go$, QT_ALIVE_CONSCIOUS, m_Go$.Children, m_Party$.TempGopCollA ) )
+  {
+    report.reportf( "aiskrit", "'%s' -  can't find alive members\n",m_Go$.TemplateName );
+  } else {
+    report.reportf( "aiskrit", "'%s' -  Found %d party members to move\n",m_Go$.TemplateName,m_Party$.TempGopCollA.size );
+  }
+
+  /// find the lowest ranking member, we want our
+  int i$ = 0,lowest_rank$ = 1000, leader$ = 0;
+  int iend$ = m_Party$.TempGopCollA.Size();
+
+  while( i$ != iend$ )
+  {
+    int rank$ = m_Party$.TempGopCollA.Get( i$ ).Mind.Rank;
+    if( ( rank$ < lowest_rank$ ) && ( rank$ >= 0 ) )
+    {
+      lowest_rank$ = rank$;
+      leader$ = i$;
+    }
+
+    i$ += 1;
+  }
+
+  Go member$ = m_Party$.TempGopCollA.Get( leader$ );
+
+  member$.Mind.SDoJob( MakeJobReq( JAT_STOP, JQ_ACTION, QP_CLEAR, AO_PARTY ));
+
+  ////////////////////////////////////////
+  //  pick best enemy for leader to form up on.
+
+  Go toughestEnemy$ = GetToughestEnemy$( member$ );
+
+  if( toughestEnemy$ == NULL )
+  {
+    report.reportf( "aiskrit", "'%s' -  can't find a good enemy\n",m_Go$.TemplateName );
+    return false;
+  }
+
+  GetSiegeDifference( m_Go$.Party.Formation.Direction, member$.placement.position, toughestEnemy$.placement.position );
+  MoveFormation$( member$.placement.position );
+
+  if( formation_recharge$ > 0.0 )
+  {
+    if( formation_charges_used$ == 0 )
+    {
+      This.CreateTimer( 2, formation_recharge$ );
+      This.SetTimerGlobal( 2, true );
+    }
+    formation_charges_used$ += 1;
+    This.SetTimerRepeatCount( 2, formation_charges_used$ );
+  }
+  return( true );
+}
+
+
+////////////////////////////////////////
+//  function ApproachEnemy
+//  find an enemy, and approach him in formation.
+
+bool ApproachEnemy$()
+{
+  report.reportf( "aiskrit", "'%s' -  trying to approach an enemy\n",m_Go$.TemplateName );
+
+  m_Party$.TempGopCollA.Clear;
+
+  // get alive party members
+  if( !AIQuery.Get( m_Go$, QT_ALIVE_CONSCIOUS, m_Go$.Children, m_Party$.TempGopCollA ) )
+  {
+    report.reportf( "aiskrit", "'%s' -  can't find alive members\n",m_Go$.TemplateName );
+  }
+
+  /// find the lowest ranking member, we want our
+  int i$ = 0,lowest_rank$ = 1000, leader$ = 0;
+  int iend$ = m_Party$.TempGopCollA.Size();
+
+  while( i$ != iend$ )
+  {
+    int rank$ = m_Party$.TempGopCollA.Get( i$ ).Mind.Rank;
+    if( ( rank$ < lowest_rank$ ) && ( rank$ >= 0 ) )
+    {
+      lowest_rank$ = rank$;
+      leader$ = i$;
+    }
+
+    i$ += 1;
+  }
+
+  Go member$ = m_Party$.TempGopCollA.Get( leader$ );
+
+  ////////////////////////////////////////
+  //  pick best enemy for leader to form up on.
+
+  Go toughestEnemy$ = GetToughestEnemy$( member$ );
+
+  if( toughestEnemy$ == NULL )
+  {
+    report.reportf( "aiskrit", "'%s' -  can't find a good enemy\n",m_Go$.TemplateName );
+    return false;
+  }
+
+  float distance$ = AIQuery.GetDistance( member$.Placement.Position, toughestEnemy$.Placement.Position );
+
+  if( melee_ranked$ && !move_freely$ )
+  {
+    if ( ( distance$ < melee_approach_distance$ ) || ( distance$ < approach_distance$ ) )
+    {
+      return false;
+    }
+  }
+  else if ( ( distance$ < min_approach_distance$ ) || ( distance$ < approach_distance$ ) )
+  {
+    if( move_melee_in_formation$ )
+    {
+      RankMelee$();
+    }
+    return false;
+  }
+
+  SiegePos TempPos$;
+  TempPos$ = member$.placement.position;
+
+  if( AIQuery.FindSpotRelativeToSource(  member$,
+                  toughestEnemy$,
+                  false,
+                  approach_distance$ * 0.75,
+                  approach_distance$ * 1.25,
+                  10,
+                  10,
+                  approach_distance$ * 2.0,
+                  member$.mind.TempPos1,
+                  false ) )
+  {
+    TempPos$ = member$.mind.TempPos1;
+  } else {
+    report.generic("couldn't find spot!\n");
+    member$.Mind.SDoJob( MakeJobReq( JAT_STOP, JQ_ACTION, QP_CLEAR, AO_PARTY ));
+  }
+
+  GetSiegeDifference( m_Go$.Party.Formation.Direction, TempPos$, toughestEnemy$.placement.position );
+  MoveFormation$( TempPos$ );
+
+  if( formation_recharge$ > 0.0 )
+  {
+    if( formation_charges_used$ == 0 )
+    {
+      This.CreateTimer( 2, formation_recharge$ );
+      This.SetTimerGlobal( 2, true );
+    }
+    formation_charges_used$ += 1;
+    This.SetTimerRepeatCount( 2, formation_charges_used$ );
+  }
+  return( true );
+}
+
+////////////////////////////////////////
+//  function ThinkDefense
+bool ThinkDefense$()
+{
+  m_Party$.TempGopCollA.Clear();
+  m_Party$.TempGopCollB.Clear();
+  m_Party$.TempGopCollC.Clear();
+
+  if( m_Go$.Children.Size < 2 )
+  {
+    return( false );
+  }
+
+  report.report( "aiskrit", "ThinkDefense$\n" );
+
+  ////////////////////////////////////////
+  // Actions we will give to busy party members.
+
+  ////////////////////////////////////////
+  // Try to heal buddy.
+
+  if( ( m_Go$.Children.Get( 0 ).Player.Controller == PC_COMPUTER ) )
+  {
+//    report.genericf(" HCU: %d, HC: %d\n",heal_charges_used$,heal_charges$ );
+
+    if( ( Math.RandomFloat( 1 ) < heal$ ) && ( heal_charges_used$ < heal_charges$ ) )
+    {
+      if( TryHeal$( m_Go$.Children, false ) )
+      {
+        return true;
+      }
+    }
+  }
+
+  ////////////////////////////////////////
+  // Try to resurrect buddy.
+
+  if( ( m_Go$.Children.Get( 0 ).Player.Controller == PC_COMPUTER ) )
+  {
+    if( ( Math.RandomFloat( 1 ) < reanimate$ ) && ( reanimate_charges_used$ < reanimate_charges$ ) )
+    {
+      if( TryResurrect$( m_Go$.Children ) )
+      {
+        return true;
+      }
+    }
+  }
+
+  ////////////////////////////////////////
+  // Actions we will give to idle party members.
+
+  ////////////////////////////////////////
+  //  find IDLE members to help
+  m_Mind$.TempQtColl1.Clear;
+  m_Mind$.TempQtColl1.Add( QT_IDLE  );
+  m_Mind$.TempQtColl1.Add( QT_ALIVE_CONSCIOUS );
+
+  if( !AIQuery.Get( m_Go$, m_Mind$.TempQtColl1, m_Go$.Children, m_Party$.TempGopCollA ) )
+  {
+    return( false );
+  }
+
+  if( m_Go$.Children.Get( 0 ).Player.Controller == PC_HUMAN )
+  {
+    // heal conscious party members
+    if( TryHeal$( m_Party$.TempGopCollA, false ) )
+    {
+      return true;
+    }
+
+    // heal unconscious party members
+    if( TryHeal$( m_Party$.TempGopCollA, true ) )
+    {
+      return true;
+    }
+  }
+
+  if( TryChannelMana$( m_Party$.TempGopCollA ) )
+  {
+    return true;
+  }
+
+  ////////////////////////////////////////
+  //  catch-all: took no action
+  return( false );
+}
+
+
+////////////////////////////////////////
+//  function ThinkOffense
+bool ThinkOffense$()
+{
+  if( m_Go$.Children.Size < 2 )
+  {
+    return( false );
+  }
+
+  report.report( "aiskrit", "ThinkOffense$\n" );
+
+  m_Party$.TempGopCollA.Clear;
+
+  ////////////////////////////////////////
+  //  check the living
+  if( !AIQuery.Get( m_Go$, QT_ALIVE_CONSCIOUS, m_Go$.Children, m_Party$.TempGopCollA ) )
+  {
+    report.reportf( "aiskrit", "'%s' -  can't find alive members\n",m_Go$.TemplateName );
+    return( false );
+  }
+
+  num_alive_members_in_party$ = m_Party$.TempGopCollA.size;
+
+  if( ( m_Go$.Children.Get( 0 ).Player.Controller == PC_COMPUTER ) && ( num_ranked$ > 0 ) )
+  {
+    if( formation_charges_used$ < formation_charges$ )
+    {
+      if( ( required_members_for_all_out_attack$ >= 0 ) || ( required_alive_members_for_all_out_attack$ >= 0 ) )
+      {
+        if( ( ( required_members_for_all_out_attack$ >= 0 ) && ( m_Go$.Children.size >= required_members_for_all_out_attack$ ) ) || ( ( num_alive_members_in_party$ >= required_alive_members_for_all_out_attack$ ) && ( required_alive_members_for_all_out_attack$ >= 0 ) ) )
+        {
+          if( TryAttack$() )
+          {
+            report.reportf( "aiskrit", "'%s' -  trying all out attack, I have %d guys, and I need %d\n",m_Go$.TemplateName,m_Go$.Children.size,required_members_for_all_out_attack$ );
+            return true;
+          }
+        }
+      }
+
+      if ( !move_freely$ )
+      {
+        if( num_ranged_attackers_in_party$ >= required_ranged_attackers_to_hold_ground$ )
+        {
+          if( FormOnEnemy$() )
+          {
+            report.reportf( "aiskrit", "'%s' -  trying to hold, I have %d ranged guys, and I need %d\n",m_Go$.TemplateName,num_ranged_attackers_in_party$,required_ranged_attackers_to_hold_ground$ );
+            return true;
+          }
+        }
+
+        if( num_ranged_attackers_in_party$ >= required_ranged_attackers_to_hold_formation$ )
+        {
+          if( ApproachEnemy$() )
+          {
+            report.reportf( "aiskrit", "'%s' -  trying to approach, I have %d ranged guys, and I need %d\n",m_Go$.TemplateName,num_ranged_attackers_in_party$,required_ranged_attackers_to_hold_formation$);
+            return true;
+          }
+        }
+      }
+
+      if( move_ranged_in_formation$ && ( num_ranged_attackers_in_party$ >= required_ranged_attackers_to_hold_formation$ ) && ( num_alive_members_in_party$ >= required_party_members_to_hold_formation$ ) )
+      {
+        if( ApproachEnemy$() )
+        {
+          report.reportf( "aiskrit", "'%s' -  trying to approach, I have %d ranged guys, and I need %d\n",m_Go$.TemplateName,num_ranged_attackers_in_party$,required_ranged_attackers_to_hold_formation$);
+          return true;
+        }
+      }
+    }
+  }
+
+  m_Party$.TempGopCollA.Clear;
+  AIQuery.Get( m_Go$, QT_ALIVE_CONSCIOUS, m_Go$.Children, m_Party$.TempGopCollA );
+  if( TrySupport$( m_Party$.TempGopCollA ) )
+  {
+    return true;
+  }
+
+  return( false );
+}
+
+/////////////////////
+// Certain actions can only happen a few times before they need to recharge, Timer 1 corresponds to resurection.
+
+/////////////////////
+// Resurrection recharge
+
+Trigger OnTimer$( 1 )
+{
+  reanimate_charges_used$ -= 1;
+  if( reanimate_charges_used$ < 0)
+  {
+    Report.generic("Error: Miscalculation of remaining resurrection charges.\n");
+  }
+}
+
+/////////////////////
+// Formation recharge
+
+Trigger OnTimer$( 2 )
+{
+  formation_charges_used$ -= 1;
+  if( formation_charges_used$ < 0)
+  {
+    Report.generic("Error: Miscalculation of remaining formation charges.\n");
+  }
+}
+
+/////////////////////
+// Heal recharge
+
+Trigger OnTimer$( 3 )
+{
+  heal_charges_used$ -= 1;
+  if( heal_charges_used$ < 0)
+  {
+    report.genericf("heal_charges_used: %d\n",heal_charges_used$);
+    Report.generic("Error: Miscalculation of remaining heal charges.\n");
+  }
+}
+
+/////////////////////
+// Battle Time
+// This is done to assure that our enemies aren't hitting us too much with ranged attacks that we can't respond to.
+
+Trigger OnTimer$( 10 )
+{
+//  report.generic("I don't think I'm in combat anymore.\n");
+  in_combat$ = false;
+}
+
+Trigger OnTimer$( 11 )
+{
+  if( in_combat$ )
+  {
+//    report.generic("wasn't able to fight back, charge!!\n");
+    FreeMovement$();
+    TryAttack$();
+  }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+//  main state machine
+state Thinking$
+{
+  float update$ = 0.1;
+
+  ////////////////////////////////////////
+  //  process messages sent to party members
+
+  event OnCCWorldMessage$( eWorldEvent e$, WorldMessage msg$ )
+  {
+    if(  m_Go$.Children.Size > 0 )
+    {
+      if(  m_Go$.Children.Get( 0 ).Player.Controller == PC_COMPUTER )
+      {
+        if( e$ == WE_MANA_RATIO_REACHED_LOW )
+        {
+          Go Low$ = msg$.GetSendTo().Go;
+
+          Low$.Mind.RSSetCombatOrders( CO_FREE );
+          Low$.Mind.RSSetMovementOrders( MO_LIMITED );
+        }
+        else  if( e$ == WE_LIFE_RATIO_REACHED_LOW )
+        {
+          if( !move_freely$ && free_move_on_life_low$ )
+          {
+            FreeMovement$();
+          }
+        }
+        else if( e$ == WE_KILLED )
+        {
+          if( flee_when_member_killed$ )
+          {
+            TryFlee$();
+          }
+          party_dirty$ = true;
+        }
+        else if( e$ == WE_RESURRECTED )
+        {
+          party_dirty$ = true;
+        }
+        else if( e$ == WE_ENEMY_ENTERED_INNER_COMFORT_ZONE )
+        {
+          if( !move_freely$ && free_move_on_enemy_enter_ICZ$ )
+          {
+            FreeMovement$();
+          }
+        }
+        else if( e$ == WE_ENEMY_ENTERED_OUTER_COMFORT_ZONE )
+        {
+          if( !move_freely$ && free_move_on_enemy_enter_OCZ$ )
+          {
+            FreeMovement$();
+          }
+        }
+
+        // to make sure that we aren't getting hit from outside our range. Checking to see that we get to attack every once in a while
+        // otherwise we will free movement so the player can't take advantage of the mosters staying in formation.
+
+        else if( e$ == WE_DAMAGED )
+        {
+          if( free_move_if_cant_respond$ )
+          {
+            if( !move_freely$ && ( m_Go$.Children.Get( 0 ).Player.Controller == PC_COMPUTER ) )
+            {
+              if( in_combat$ )
+              {
+                This.CreateTimer( 10, 8); // we are in combat for eight seconds after we are hit.
+                This.SetTimerGlobal( 10, true );
+              } else {
+                This.CreateTimer( 10, 8); // we aren't effective at fighting if we haven't been able to attack for at least 10 seconds and we are still in combat.
+                This.SetTimerGlobal( 10, true );
+                This.CreateTimer( 11, 10);
+                This.SetTimerGlobal( 11, true );
+                in_combat$ = true;
+              }
+            }
+          }
+        }
+        else if( e$ == WE_ANIM_WEAPON_FIRE )
+        {
+          if( free_move_if_cant_respond$ )
+          {
+            if( in_combat$ && !move_freely$ && ( m_Go$.Children.Get( 0 ).Player.Controller == PC_COMPUTER ) )
+            {
+              This.CreateTimer( 11, 10); // we aren't effective at fighting if we haven't been able to attack for at least 10 seconds and we are still in combat.
+            }
+          }
+        }
+      }
+    }
+  }
+
+/*  ////////////////////////////////////////
+  //  process messages sent to party
+
+  event OnWorldMessage$( eWorldEvent e$, WorldMessage msg$ )
+  {
+  }
+*/
+  trigger OnWorldMessage$( WE_JOB_TIMER_DONE )
+  {
+    m_Job$.SetTimer( m_Mind$.SensorScanPeriod );
+
+    if( m_Go$.Children.Size > 0 )
+    {
+      if(  m_Go$.Children.Get( 0 ).Player.Controller == PC_COMPUTER )
+      {
+        // check to see if we have any alive members, if not get rid of the party.
+        if( AIQuery.GetCount( m_Go$, QT_ALIVE_CONSCIOUS, m_Go$.Children ) == 0 )
+        {
+          GoDb.SMarkForDeletion( m_Go$.goid );
+          return;
+        }
+        else
+        {
+          // check to see if anyone added themselves to our party.
+          int new_memebers$ = m_Go$.Children.Size();
+          if( new_memebers$ != num_memebers$ )
+          {
+            num_memebers$ = new_memebers$;
+            party_dirty$ = true;
+          }
+
+          if( party_dirty$ )
+          {
+            party_dirty$ = false;
+            if( rank_members$ )
+            {
+              InitParty$();
+            }
+           }
+        }
+      }
+
+      update$ = ( update$ > ( 6 * m_Mind$.SensorScanPeriod ) ) ? update$ : ( update$ + m_Mind$.SensorScanPeriod );
+
+      if( ThinkDefense$() )
+      {
+        update$ = m_Mind$.SensorScanPeriod;
+      }
+      if( ThinkOffense$() )
+      {
+        update$ = m_Mind$.SensorScanPeriod;
+      }
+
+//      report.genericf("update: %g\n", update$);
+      m_Job$.SetTimer( update$ );
+
+    }
+    else if ( m_Party$.WaitingToJoinCount == 0 )
+    {
+      GoDb.SMarkForDeletion( m_Go$.goid );
+    }
+  }
+
+  event OnEnterState$
+  {
+    update$ = m_Mind$.SensorScanPeriod;
+    m_Job$.SetTimer( m_Mind$.SensorScanPeriod );
+  }
+}
