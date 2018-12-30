@@ -1,0 +1,52 @@
+
+[t:template,n:island_chitterskrag_desert]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Desert Crawler (lvl 71-82)";
+  specializes = dsx_chitterskrag_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =     44, 0;
+      intelligence = 8, 0;
+      dexterity =    24, 0;
+      melee =        68, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 190000;
+    life             = 780;
+    max_life         = 780;
+    mana             = 10;
+    max_mana         = 10;
+    model = m_c_edm_chs_pos_1;
+    scale_base = 0.30;
+    [voice]
+    {
+      [die]      { priority = high;  * = s_e_die_baby_chitterskrag_SED;    }
+      [enemy_spotted]  { priority = high; * = s_e_call_baby_chitterskrag_SED; }
+    }
+    textures:0 =  b_c_edm_im;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 570;
+    damage_min = 550;
+  }
+  [common]
+  {
+    screen_name = "Desert Scurrier";
+    membership = monster;
+  }
+  [defend] { defense = 850; }
+  [body]
+  {
+    avg_move_velocity = 6;
+  }
+  [inventory]
+  {
+  }
+}

@@ -1,0 +1,201 @@
+[t:template,n:island_base_rock_spirit]
+{
+  category_name = "1W_evil_d";
+  doc = "island_base_rock_spirit";
+  specializes = actor_evil;
+  [aspect]
+  {
+    model = m_c_edm_ls_pos_1;
+    [voice]
+    {
+      [enemy_spotted]  { priority = high; * = s_e_call_lava_spirit_SED; }
+      [die]      { priority = high; * = s_e_die_lava_spirit_SED; }
+      [hit_critical]  { priority = low; * = s_e_hit_lava_spirit_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_lava_spirit_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_lava_spirit_SED; }
+    }
+  }
+  [body]
+  {
+    [bone_translator]
+    {
+      body_anterior   = head_bone;
+      body_mid     = Mid_torso;
+      body_posterior   = Spine_end;
+      kill_bone     = Mid_torso;
+      shield_bone   = shield_grip;
+      weapon_bone   = weapon_grip;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_ecm_wr_fs;
+      [chore_attack]
+      {
+        chore_stances = 0;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00=at;
+          01=at-02;
+          02=at-05;
+        }
+      }
+      [chore_default]
+      {
+        chore_stances = 0;
+        skrit = infinite_loop;
+        [anim_files] { 00=dfs; }
+      }
+      [chore_die]
+      {
+        chore_stances = 0;
+        skrit = select_transition;
+        [anim_files] { 00=di; }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0;
+        skrit = select_fidget;
+        [anim_files] { 00=dff; }
+      }
+      [chore_misc]
+      {
+        chore_stances = 0;
+        skrit = select_transition;
+        [anim_files]
+        {
+          slep = ds;
+          wake = up;
+        }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0;
+        skrit = select_walk;
+        [anim_files] { 00=wl; }
+      }
+      [chore_magic]
+      {
+        chore_stances = 0;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00=mg;
+          01=mg-02;
+        }
+      }
+    }
+  }
+  [common]
+  {
+    screen_name="Rock Spirit";
+  }
+  [effect_manager_server]
+  {
+    effect_name  = "rock_spirit_flames";
+      repeat    = false;
+
+      start_msg  = WE_ENEMY_SPOTTED;
+      stop_msg  = WE_KILLED;
+  }
+  mind:actor_auto_fidgets = false;
+  mind:jat_startup = world\ai\jobs\common\job_startup_reveal.skrit;
+  [physics]
+  {
+    explode_when_killed = true;
+    explosion_magnitude = 1.0;
+    [break_particulate]
+    {
+      frag_glb_lava_spirit_01 = 1;
+      frag_glb_lava_spirit_02 = 3;
+      frag_glb_lava_spirit_03 = 1;
+      frag_glb_lava_spirit_04 = 1;
+      frag_glb_lava_spirit_05 = 1;
+      frag_glb_lava_spirit_06 = 2;
+      frag_glb_lava_spirit_07 = 1;
+      frag_glb_lava_spirit_08 = 1;
+      frag_glb_lava_spirit_09 = 3;
+      frag_glb_lava_spirit_10 = 1;
+    }
+  }
+}
+[t:template,n:island_rock_spirit]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Rock Spirit (lvl 39-49)";
+  specializes = island_base_rock_spirit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =     18, 0;
+      intelligence =   8, 0;
+      dexterity =   11, 0;
+      melee =      30, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 100000;
+    life = 523;
+    max_life = 523;
+    mana = 800;
+    max_mana = 800;
+    textures:0 = b_c_edm_ee;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max   = 168;
+    damage_min   = 140;
+  }
+  [defend] { defense=390; }
+  [mind]
+  {
+    melee_engage_range = 10;
+    personal_space_range = 0.7;
+    ranged_engage_range = 10.0;
+    sight_range = 10;
+  }
+}
+
+[t:template,n:island_plant_spirit]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Plant Spirit (lvl 34-42)";
+  specializes = island_base_rock_spirit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =     18, 0;
+      intelligence =   8, 0;
+      dexterity =   11, 0;
+      melee =      30, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 100000;
+    life = 490;
+    max_life = 490;
+    mana = 800;
+    max_mana = 800;
+    textures:0 = b_c_edm_vines;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max   = 158;
+    damage_min   = 146;
+  }
+  [common]{screen_name = "Woodland Spirit";}
+  [defend] { defense=320; }
+  [mind]
+  {
+    melee_engage_range = 8;
+    personal_space_range = 0.7;
+    ranged_engage_range = 8;
+    sight_range = 8;
+  }
+}

@@ -1,0 +1,470 @@
+
+//   -----RANGED------------------------------------------------
+[t:template,n:island_zaurask_spine]
+{
+// Balanced to level 16, medium ranged
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Ranged (lvl 16-17)";
+  specializes = zaurask_ranged_base;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 14, 0;
+      intelligence   = 8, 0;
+      dexterity    = 10, 0;
+      ranged      = 11, 0;
+    }
+  }
+
+  [aspect]
+  {
+    experience_value = 500;
+    life       = 298;
+    max_life     = 298;
+    mana       = 54;
+    max_mana     = 54;
+    scale_base     = 0.85;
+    textures:0 = b_c_eam_zaurask2;
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 57;
+    damage_min = 45;
+  }
+
+  [common] {screen_name="Zaurask Rebel"; }
+
+  [defend] { defense=40; }
+
+  [inventory]
+  {
+    // we may want to give them a percentage change of dropping
+    // their main spell or weapon.
+    spew_equipped_kill_count = <ignore>;
+    selected_active_location = IL_ACTIVE_RANGED_WEAPON;
+    [equipment]
+    {
+      es_shield_hand = bw_dsx_zaurask_2_b;
+    }
+    [pcontent]
+    {
+    /* Generated: Tue Jun 17 11:13:15 2003
+      Level 17, Medium */
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 10;
+          max = 20;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = .1525
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_glb_lore_zpamphlet;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = #weapon/33-47;
+          il_main = #armor/13-100;
+          il_main = #*/33-47;
+        }
+        [oneof*]
+        {
+          chance = 0.0075;
+          il_main = #weapon/-rare(1)/36-52;
+          il_main = #armor/-rare(1)/71-156;
+          il_main = #*/-rare(1)/36-52;
+        }
+
+      }
+    }
+  }
+  [mind]
+  {
+    actor_auto_switches_to_melee         = false;
+    actor_auto_switches_to_ranged         = true;
+    actor_auto_uses_stored_items     = false;
+    actor_weapon_preference       = WP_RANGED;
+  }
+}
+//balanced to Level 22
+[t:template,n:island_zaurask_archer]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Ranged (lvl 18-20)";
+  specializes = zaurask_ranged_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength   = 17, 0;
+      intelligence =  8, 0;
+      dexterity   = 11, 0;
+      ranged     = 16, 0;
+    }
+  }
+
+  [aspect]
+  {
+    experience_value = 700;
+    life       = 208;
+    max_life     = 208;
+    mana       = 173;
+    max_mana     = 173;
+    scale_base   = 0.9;
+    textures:0 = b_c_eam_zaurask1;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 68;
+    damage_min = 60;
+  }
+  [common] {screen_name="Zaurask Militia"; }
+  [defend] { defense = 60; }
+  [inventory]
+  {
+    // we may want to give them a percentage change of dropping
+    // their main spell or weapon.
+    spew_equipped_kill_count = <ignore>;
+    selected_active_location = IL_ACTIVE_RANGED_WEAPON;
+    [equipment]
+    {
+      es_shield_hand = bw_dsx_zau_2_c;
+    }
+    [pcontent]
+    {
+      /* Generated: Tue Jun 17 11:13:15 2003
+      Level 23, Weak */
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 50;
+          max = 100;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = #weapon/44-63;
+          il_main = #armor/19-146;
+          il_main = #*/44-63;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-rare(1)/41-66;
+          il_main = #armor/-rare(1)/100-146;
+          il_main = #*/-rare(1)/41-66;
+        }
+      }
+    }
+  }
+
+  [mind]
+  {
+    actor_auto_switches_to_melee         = false;
+    actor_auto_switches_to_ranged         = true;
+    actor_auto_uses_stored_items     = false;
+
+    actor_weapon_preference         = WP_RANGED;
+  }
+}
+[t:template,n:island_zaurask_ranger]
+//balanced for Level 18
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Ranged (lvl 20-26)";
+  specializes = zaurask_ranged_base;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength  = 18, 0;
+      intelligence = 8, 0;
+      dexterity  = 11, 0;
+      melee    = 18, 0;
+      ranged     = 20, 0;
+    }
+  }
+
+  [aspect]
+  {
+    experience_value = 1200;
+    life      = 482;
+    max_life    = 482;
+    mana      = 200;
+    max_mana    = 200;
+    textures:0 = b_c_eam_zaurask2;
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 90;
+    damage_min = 88;
+
+  }
+
+  [common] {screen_name="Zaurask Ranger"; }
+
+  [defend] { defense=100; }
+
+  [inventory]
+  {
+    // we may want to give them a percentage change of dropping
+    // their main spell or weapon.
+    spew_equipped_kill_count = <ignore>;
+    selected_active_location = IL_ACTIVE_RANGED_WEAPON;
+    [equipment]
+    {
+      es_shield_hand = bw_dsx_zau_2_d;
+    }
+    [pcontent]
+    {
+    /* Generated: Tue Jun 17 11:13:15 2003
+      Level 24, Medium */
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 100;
+          max = 200;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = #weapon/49-66;
+          il_main = #armor/21-156;
+          il_main = #*/49-66;
+        }
+        [oneof*]
+        {
+          chance = 0.0075;
+          il_main = #weapon/-rare(1)/52-71;
+          il_main = #armor/-rare(1)/118-221;
+          il_main = #*/-rare(1)/52-71;
+        }
+
+      }
+    }
+  }
+
+  [mind]
+  {
+    actor_auto_switches_to_melee         = false;
+    actor_auto_switches_to_ranged         = true;
+    actor_auto_uses_stored_items     = false;
+
+    actor_weapon_preference         = WP_RANGED;
+  }
+}
+//Strongest
+[t:template,n:island_zaurask_archer_highest]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Ranged (lvl 25-31)";
+  specializes = zaurask_ranged_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength   = 17, 0;
+      intelligence =  8, 0;
+      dexterity   = 11, 0;
+      ranged     = 16, 0;
+    }
+  }
+
+  [aspect]
+  {
+    experience_value = 700;
+    life       = 208;
+    max_life     = 208;
+    mana       = 173;
+    max_mana     = 173;
+    scale_base   = 1.1;
+    textures:0 = b_c_eam_zaurask1;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 68;
+    damage_min = 60;
+  }
+  [common] {screen_name="Zaurask Hunter"; }
+  [defend] { defense = 60; }
+  [inventory]
+  {
+    // we may want to give them a percentage change of dropping
+    // their main spell or weapon.
+    spew_equipped_kill_count = <ignore>;
+    selected_active_location = IL_ACTIVE_RANGED_WEAPON;
+    [equipment]
+    {
+      es_shield_hand = bw_dsx_zau_2_c;
+    }
+    [pcontent]
+    {
+      /* Generated: Tue Jun 17 11:13:15 2003
+      Level 23, Weak */
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 50;
+          max = 100;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = #weapon/44-63;
+          il_main = #armor/19-146;
+          il_main = #*/44-63;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-rare(1)/41-66;
+          il_main = #armor/-rare(1)/100-146;
+          il_main = #*/-rare(1)/41-66;
+        }
+      }
+    }
+  }
+
+  [mind]
+  {
+    actor_auto_switches_to_melee         = false;
+    actor_auto_switches_to_ranged         = true;
+    actor_auto_uses_stored_items     = false;
+
+    actor_weapon_preference         = WP_RANGED;
+  }
+}
+
+//Strongest
+[t:template,n:island_zaurask_archer_super]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Ranged (lvl 32-46)";
+  specializes = zaurask_ranged_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength   = 17, 0;
+      intelligence =  8, 0;
+      dexterity   = 11, 0;
+      ranged     = 16, 0;
+    }
+  }
+
+  [aspect]
+  {
+    experience_value = 700;
+    life       = 208;
+    max_life     = 208;
+    mana       = 173;
+    max_mana     = 173;
+    scale_base   = 1.1;
+    textures:0 = b_c_eam_zaurask1;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 68;
+    damage_min = 60;
+  }
+  [common] {screen_name="Zaurask Striker"; }
+  [defend] { defense = 60; }
+  [inventory]
+  {
+    // we may want to give them a percentage change of dropping
+    // their main spell or weapon.
+    spew_equipped_kill_count = <ignore>;
+    selected_active_location = IL_ACTIVE_RANGED_WEAPON;
+    [equipment]
+    {
+      es_shield_hand = bw_dsx_zau_2_c;
+    }
+    [pcontent]
+    {
+      /* Generated: Tue Jun 17 11:13:15 2003
+      Level 23, Weak */
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 50;
+          max = 100;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = #weapon/44-63;
+          il_main = #armor/19-146;
+          il_main = #*/44-63;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-rare(1)/41-66;
+          il_main = #armor/-rare(1)/100-146;
+          il_main = #*/-rare(1)/41-66;
+        }
+      }
+    }
+  }
+
+  [mind]
+  {
+    actor_auto_switches_to_melee         = false;
+    actor_auto_switches_to_ranged         = true;
+    actor_auto_uses_stored_items     = false;
+
+    actor_weapon_preference         = WP_RANGED;
+  }
+}

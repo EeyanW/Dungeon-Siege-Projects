@@ -1,0 +1,19 @@
+
+[t:template,n:island_dppl_test]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Dpplz Test";
+  specializes = island_base_npc_fb;
+  [aspect]
+  {
+    [textures]
+    {
+      0 = b_c_ecm_doppleganger_01;
+      1 = b_c_ecm_doppleganger_02;
+    }
+  }
+  [common]
+  {
+    screen_name = "Iskandarian";
+  }
+}

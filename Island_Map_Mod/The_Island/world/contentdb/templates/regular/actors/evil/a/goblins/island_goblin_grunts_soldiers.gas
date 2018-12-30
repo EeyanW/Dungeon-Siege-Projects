@@ -1,0 +1,591 @@
+//////////////////////////////////////////////////////////////////////////////
+/*
+ORDER AS FOLLOWS:
+-Armored Goblin
+-Goblin Soldier
+-Goblin Guard
+-Goblin Heavy
+-Goblin Royal Guard
+*/
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+//Armored Goblin//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//lvl 23-34
+[t:template,n:island_goblin_armored]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Guard (1) (lvl 23-34)";
+  specializes = base_goblin;
+  [body]
+  {
+    max_move_velocity = 4.3;
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength =   12, 0;
+      intelligence =    14, 0;
+      dexterity =    10, 0;
+      melee =      12,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 4000;
+    life = 255;
+    max_life = 255;
+    mana = 22;
+    max_mana = 22;
+    model = m_c_eam_ggt_pos_1;
+    scale_base = 0.8;
+    textures:0 = b_c_eam_ggd;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 91;
+    damage_min = 87;
+  }
+  [common] { screen_name="Armored Goblin"; }
+  [defend] { defense=210; }
+  [inventory]
+  {
+      [pcontent]
+    {
+      [oneof*]
+      {
+        es_weapon_hand = ss_g_c_bl_1h_avg;
+        es_weapon_hand = mc_g_c_s_1h_avg;
+        es_weapon_hand = sd_g_c_gl_1h_avg;
+        es_weapon_hand = ax_g_c_1h2b_avg;
+        es_weapon_hand = torch_small;
+      }
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.1;
+          max = 22;
+          min = 18;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = #*/40-80;
+          il_main = #armor/20-60;
+          il_main = #nmagic/3-20;
+          il_main = #cmagic/3-20;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_09;
+          il_main = island_trinket_glb_10;
+          il_main = island_trinket_glb_11;
+          il_main = island_trinket_glb_12;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+      }
+    }
+  }
+  [mind]
+  {
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious  = 0.4
+      &social    = 0.35
+      &meander  = true
+      &interest  = interest
+      &still    = false;
+
+    jat_attack_object_melee       = world\ai\jobs\common\job_attack_object_melee.skrit
+      ?run_chance           = 1.0;
+    melee_engage_range = 12;
+    personal_space_range = 0.5;
+    ranged_engage_range = 12.0;
+    sight_range = 14.0;
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
+//Goblin Soldier//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//lvl 35-48
+[t:template,n:island_goblin_soldier]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Guard (2) (lvl 35-48)";
+  specializes = base_goblin;
+  [body]
+  {
+    max_move_velocity = 4.3;
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength =   24, 0;
+      intelligence =    14, 0;
+      dexterity =    10, 0;
+      melee =      28,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 60000;
+    life = 286;
+    max_life = 286;
+    mana = 22;
+    max_mana = 22;
+    model = m_c_eam_ggt_pos_1;
+    scale_base = 0.9;
+    textures:0 = b_c_eam_ggd;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 110;
+    damage_min = 100;
+  }
+  [common] { screen_name="Goblin Soldier"; }
+  [defend] { defense=560; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        es_weapon_hand = ss_g_c_bl_1h_avg;
+        es_weapon_hand = mc_g_c_s_1h_avg;
+        es_weapon_hand = sd_g_c_gl_1h_avg;
+        es_weapon_hand = ax_g_c_1h2b_avg;
+      }
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.1;
+          max = 22;
+          min = 18;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = #*/40-80;
+          il_main = #armor/20-60;
+          il_main = #nmagic/3-20;
+          il_main = #cmagic/3-20;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = #weapon/-rare(1)/30-80;
+          il_main = #armor/-rare(1)/80-130;
+          il_main = #*/-rare(1)/50-90;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = #weapon/-unique(2)/80-100;
+          il_main = #armor/-unique(2)/130-190;
+          il_main = #*/-unique(2)/90-120;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_10;
+          il_main = island_trinket_glb_11;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+      }
+    }
+  }
+  [mind]
+  {
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious  = 0.4
+      &social    = 0.35
+      &meander  = true
+      &interest  = interest
+      &still    = false;
+
+    jat_attack_object_melee       = world\ai\jobs\common\job_attack_object_melee.skrit
+      ?run_chance           = 1.0;
+    melee_engage_range = 12;
+    personal_space_range = 0.6;
+    ranged_engage_range = 12.0;
+    sight_range = 14.0;
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
+//Goblin Guard////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//lvl 49-58
+[t:template,n:island_goblin_guard]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Guard (3) (lvl 49-58)";
+  specializes = base_goblin;
+  [body]
+  {
+    max_move_velocity = 4.3;
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength =   24, 0;
+      intelligence =    14, 0;
+      dexterity =    10, 0;
+      melee =      42,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 650;
+    life = 385;
+    max_life = 385;
+    mana = 22;
+    max_mana = 22;
+    model = m_c_eam_ggt_pos_1;
+    scale_base = 1.0;
+    textures:0 = b_c_eam_ggd;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 150;
+    damage_min = 140;
+  }
+  [common] { screen_name="Goblin Sentry"; }
+  [defend] { defense=620; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        es_weapon_hand = ss_g_c_bl_1h_avg;
+        es_weapon_hand = mc_g_c_s_1h_avg;
+        es_weapon_hand = sd_g_c_gl_1h_avg;
+        es_weapon_hand = ax_g_c_1h2b_avg;
+      }
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.1;
+          max = 22;
+          min = 18;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = #*/40-80;
+          il_main = #armor/20-60;
+          il_main = #nmagic/3-20;
+          il_main = #cmagic/3-20;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = #weapon/-rare(1)/30-80;
+          il_main = #armor/-rare(1)/80-130;
+          il_main = #*/-rare(1)/50-90;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = #weapon/-unique(2)/80-100;
+          il_main = #armor/-unique(2)/130-190;
+          il_main = #*/-unique(2)/90-120;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [mind]
+  {
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious  = 0.4
+      &social    = 0.35
+      &meander  = true
+      &interest  = interest
+      &still    = false;
+
+    jat_attack_object_melee       = world\ai\jobs\common\job_attack_object_melee.skrit
+      ?run_chance           = 1.0;
+    melee_engage_range = 12;
+    personal_space_range = 0.7;
+    ranged_engage_range = 12.0;
+    sight_range = 14.0;
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
+//Goblin Heavy////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//lvl 59-74
+[t:template,n:island_goblin_heavy]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Guard (4) (lvl 59-74)";
+  specializes = base_goblin;
+  [body]
+  {
+    max_move_velocity = 4.3;
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength =   36, 0;
+      intelligence =    14, 0;
+      dexterity =    10, 0;
+      melee =      44,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 70000;
+    life = 723;
+    max_life = 723;
+    mana = 22;
+    max_mana = 22;
+    model = m_c_eam_ggt_pos_1;
+    scale_base = 1.4;
+    textures:0 = b_c_eam_ggd;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 190;
+    damage_min = 185;
+  }
+  [common] { screen_name="Goblin Heavy"; }
+  [defend] { defense=730; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        es_weapon_hand = ss_g_c_bl_1h_avg;
+        es_weapon_hand = ax_d_o_1h1b_avg;
+        es_weapon_hand = sd_g_c_gl_1h_avg;
+        es_weapon_hand = ax_g_c_1h2b_avg;
+        es_weapon_hand = sd_g_c_bl_1h_avg;
+        es_weapon_hand = sd_g_c_fa_1h_avg;
+      }
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.1;
+          max = 22;
+          min = 18;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = #*/40-80;
+          il_main = #armor/20-60;
+          il_main = #nmagic/3-20;
+          il_main = #cmagic/3-20;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = #weapon/-rare(1)/30-80;
+          il_main = #armor/-rare(1)/80-130;
+          il_main = #*/-rare(1)/50-90;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = #weapon/-unique(2)/80-100;
+          il_main = #armor/-unique(2)/130-190;
+          il_main = #*/-unique(2)/90-120;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [mind]
+  {
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious  = 0.4
+      &social    = 0.35
+      &meander  = true
+      &interest  = interest
+      &still    = false;
+
+    jat_attack_object_melee       = world\ai\jobs\common\job_attack_object_melee.skrit
+      ?run_chance           = 1.0;
+    melee_engage_range = 12;
+    personal_space_range = 0.7;
+    ranged_engage_range = 12.0;
+    sight_range = 14.0;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//Goblin Royal////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//lvl 75+
+[t:template,n:island_goblin_royal]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Guard (4) (lvl 75+)";
+  specializes = base_goblin;
+  [body]
+  {
+    max_move_velocity = 4.3;
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength =   24, 0;
+      intelligence =    14, 0;
+      dexterity =    10, 0;
+      melee =      12,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 1000;
+    life = 385;
+    max_life = 385;
+    mana = 22;
+    max_mana = 22;
+    model = m_c_eam_ggt_pos_1;
+    scale_base = 1.2;
+    textures:0 = b_c_eam_ggd_royal;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 190;
+    damage_min = 185;
+  }
+  [common] { screen_name="Royal Goblin Guard"; }
+  [defend] { defense=178; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        es_weapon_hand = ss_g_c_bl_1h_avg;
+        es_weapon_hand = ax_d_o_1h1b_avg;
+        es_weapon_hand = sd_g_c_gl_1h_avg;
+        es_weapon_hand = ax_g_c_1h2b_avg;
+        es_weapon_hand = sd_g_c_bl_1h_avg;
+        es_weapon_hand = sd_g_c_fa_1h_avg;
+      }
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.1;
+          max = 22;
+          min = 18;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = #*/40-80;
+          il_main = #armor/20-60;
+          il_main = #nmagic/3-20;
+          il_main = #cmagic/3-20;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = #weapon/-rare(1)/90-280;
+          il_main = #armor/-rare(1)/180-230;
+          il_main = #*/-rare(1)/150-190;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = #weapon/-unique(2)/180-1000;
+          il_main = #armor/-unique(2)/230-390;
+          il_main = #*/-unique(2)/190-520;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [mind]
+  {
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious  = 0.4
+      &social    = 0.35
+      &meander  = true
+      &interest  = interest
+      &still    = false;
+
+    jat_attack_object_melee       = world\ai\jobs\common\job_attack_object_melee.skrit
+      ?run_chance           = 1.0;
+    melee_engage_range = 12;
+    personal_space_range = 0.7;
+    ranged_engage_range = 12.0;
+    sight_range = 14.0;
+  }
+}

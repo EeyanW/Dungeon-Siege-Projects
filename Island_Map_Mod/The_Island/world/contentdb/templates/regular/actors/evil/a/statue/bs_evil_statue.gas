@@ -1,0 +1,46 @@
+
+//TEST for an enemy statue
+[t:template,n:bs_test_statue_evil]  //fen_statue 03
+{
+  category_name = "1W_evil_a";
+  doc = "bs evil statue man";
+  specializes = bs_base_evil_statue;
+  [aspect]
+  {
+    experience_value = 100;
+    life = 400;
+    material = stone;
+    max_life = 400;
+    mana = 20;
+    max_mana = 20;
+    model = m_c_gah_fb_pos_a3;
+    [textures]
+    {
+      0 = b_i_glb_statue_03-01;
+      1 = b_i_glb_statue_03-02;
+    }
+  }
+  [attack]
+  {
+    damage_max = 50;
+    damage_min = 40;
+  }
+  [common]
+  {
+    screen_name = "Stone Warrior";
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("inspiration");
+      }
+    }
+  }
+  [defend]
+  {
+    defense = 150;
+  }
+}

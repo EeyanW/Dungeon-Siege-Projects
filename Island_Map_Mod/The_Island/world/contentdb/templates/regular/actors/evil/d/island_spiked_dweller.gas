@@ -1,0 +1,126 @@
+
+[t:template,n:island_spiked_dweller_large_crazylevel]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Spiked Dweller (lvl 70+)";
+  specializes = base_maw;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    14, 0;
+      intelligence =  5, 0;
+      dexterity =    9, 0;
+      ranged =      18,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 15450;
+    life = 585;
+    max_life = 585;
+    mana = 10;
+    max_mana = 10;
+    textures:0 = b_c_edm_sm;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 260;
+    damage_min = 220;
+  }
+  [common]
+  {
+    screen_name="Mutated Spiker";
+    membership = monster, party_spiked_dweller;
+  }
+  [defend] { defense=460; }
+  [inventory]
+  {
+    selected_active_location = il_active_primary_spell;
+    [other] { il_active_primary_spell=spell_spiked_dweller_spikes; }
+  }
+  [mind]
+  {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true
+      &actor_creates_own_party  = true
+      &party_template        = "party_spiked_dweller";
+  }
+  [physics]
+  {
+    explode_when_killed = true;
+    break_effect = blood_mist;
+    [break_particulate]
+    {
+      frag_glb_spiked_dweller_01 = 1;
+      frag_glb_spiked_dweller_02 = 1;
+      frag_glb_spiked_dweller_03 = 1;
+      frag_glb_spiked_dweller_04 = 6;
+      frag_glb_spiked_dweller_05 = 8;
+    }
+  }
+}
+
+[t:template,n:island_spiked_dweller_large_highlevel]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Spiked Dweller (lvl 34-46)";
+  specializes = base_maw;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    14, 0;
+      intelligence =  5, 0;
+      dexterity =    9, 0;
+      ranged =      18,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 15450;
+    life = 385;
+    max_life = 385;
+    mana = 10;
+    max_mana = 10;
+    textures:0 = b_c_edm_sm-02;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 119;
+    damage_min = 113;
+  }
+  [common]
+  {
+    screen_name="Monstrous Spiker";
+    membership = monster, party_spiked_dweller;
+  }
+  [defend] { defense=300; }
+  [inventory]
+  {
+    selected_active_location = il_active_primary_spell;
+    [other] { il_active_primary_spell=spell_spiked_dweller_spikes; }
+  }
+  [mind]
+  {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true
+      &actor_creates_own_party  = true
+      &party_template        = "party_spiked_dweller";
+  }
+  [physics]
+  {
+    explode_when_killed = true;
+    break_effect = blood_mist;
+    [break_particulate]
+    {
+      frag_glb_spiked_dweller_01 = 1;
+      frag_glb_spiked_dweller_02 = 1;
+      frag_glb_spiked_dweller_03 = 1;
+      frag_glb_spiked_dweller_04 = 6;
+      frag_glb_spiked_dweller_05 = 8;
+    }
+  }
+}

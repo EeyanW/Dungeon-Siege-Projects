@@ -1,0 +1,232 @@
+[t:template,n:bs_spiked_dweller]
+{
+  category_name = "1W_evil_d";
+  doc = "bs_spiky_froggy";
+  specializes = base_maw;
+  material = flesh;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength =     7, 0;
+      intelligence =   7, 0;
+      dexterity =   10, 0;
+      melee =         6, 0;
+      nature_magic =  2, 0;
+      combat_magic =  2, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 150;
+    life       = 20;
+    max_life     = 20;
+    mana       = 40;
+    max_mana     = 40;
+    scale_base = .4;
+    [voice]
+    {
+      [cast]    {  * = s_e_attack_spiker_SED;  }
+      [die]      { priority = high; * = s_e_die_spiked_maw; }
+      [hit_critical]  { priority = low; * = s_e_hit_spiked_maw_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_spiked_maw_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_spiked_maw_SED; }
+    }
+
+
+    textures:0 = b_c_edm_sm-03;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 12;
+    damage_min = 8;
+  }
+  [common]
+  {
+    screen_name="Rabid Spiker";
+    membership = monster, party_spiked_dweller;
+  }
+  [defend] { defense=4; }
+  [inventory]
+  {
+    selected_active_location = il_active_primary_spell;
+    [other] { il_active_primary_spell=bs_spell_spiked_dweller_spikes; }
+  }
+  [mind]
+  {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true
+      &actor_creates_own_party  = true
+      &party_template        = "party_spiked_dweller";
+  }
+  [physics]
+  {
+    explode_when_killed = true;
+    break_effect = blood_mist;
+    [break_particulate]
+    {
+      frag_glb_spiked_dweller_01 = 1;
+      frag_glb_spiked_dweller_02 = 1;
+      frag_glb_spiked_dweller_03 = 1;
+      frag_glb_spiked_dweller_04 = 6;
+      frag_glb_spiked_dweller_05 = 8;
+    }
+  }
+}
+[t:template,n:bs_spiked_dweller_explosion]
+{
+  category_name = "1W_evil_d";
+  doc = "bs_spiky_froggy_go_boom_boom";
+  specializes = base_maw;
+  material = flesh;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength =     7, 0;
+      intelligence =   7, 0;
+      dexterity =   10, 0;
+      melee =         6, 0;
+      nature_magic =  2, 0;
+      combat_magic =  2, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 30;
+    life       = 20;
+    max_life     = 20;
+    mana       = 40;
+    max_mana     = 40;
+    scale_base = .4;
+    [voice]
+    {
+      [cast]    {  * = s_e_attack_spiker_SED;  }
+      [die]      { priority = high; * = s_e_die_spiked_maw; }
+      [hit_critical]  { priority = low; * = s_e_hit_spiked_maw_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_spiked_maw_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_spiked_maw_SED; }
+    }
+
+
+    textures:0 = b_c_edm_sm-03;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 12;
+    damage_min = 8;
+  }
+  [common]
+  {
+    screen_name="Rabid Spiker";
+    membership = monster, party_spiked_dweller;
+  }
+  [defend] { defense=4; }
+  [inventory]
+  {
+    selected_active_location = il_active_primary_spell;
+    [other] { il_active_primary_spell=bs_spell_spiked_dweller_spikes; }
+  }
+  [mind]
+  {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true
+      &actor_creates_own_party  = true
+      &party_template        = "party_spiked_dweller";
+  }
+  [physics]
+  {
+    explode_when_killed = false;
+    break_effect = blood_mist;
+    [break_particulate]
+    {
+      frag_glb_spiked_dweller_01 = 1;
+      frag_glb_spiked_dweller_02 = 1;
+      frag_glb_spiked_dweller_03 = 1;
+      frag_glb_spiked_dweller_04 = 6;
+      frag_glb_spiked_dweller_05 = 8;
+    }
+  }
+}
+[t:template,n:bs_spiked_dweller_nice]
+{
+  category_name = "1W_ambients";
+  doc = "bs_spiky_froggy_passive";
+  specializes = base_maw;
+  material = flesh;
+
+  [actor]
+  {
+   alignment = aa_neutral;
+    [skills]
+    {
+      strength =     7, 0;
+      intelligence =   7, 0;
+      dexterity =   10, 0;
+      melee =         6, 0;
+      nature_magic =  2, 0;
+      combat_magic =  2, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 30;
+    life       = 20;
+    max_life     = 20;
+    mana       = 40;
+    max_mana     = 40;
+    scale_base = .4;
+    [voice]
+    {
+      [cast]    {  * = s_e_attack_spiker_SED;  }
+      [die]      { priority = high; * = s_e_die_spiked_maw; }
+      [hit_critical]  { priority = low; * = s_e_hit_spiked_maw_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_spiked_maw_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_spiked_maw_SED; }
+    }
+
+
+    textures:0 = b_c_edm_sm-03;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 12;
+    damage_min = 8;
+  }
+  [common]
+  {
+    screen_name="Wild Spiker";
+    membership = monster, party_spiked_dweller;
+  }
+  [defend] { defense=20; }
+  [inventory]
+  {
+    selected_active_location = il_active_primary_spell;
+    [other] { il_active_primary_spell=bs_spell_spiked_dweller_spikes; }
+  }
+  [mind]
+  {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true
+      &actor_creates_own_party  = true
+      &party_template        = "party_spiked_dweller";
+  }
+  [physics]
+  {
+    explode_when_killed = true;
+    break_effect = blood_mist;
+    [break_particulate]
+    {
+      frag_glb_spiked_dweller_01 = 1;
+      frag_glb_spiked_dweller_02 = 1;
+      frag_glb_spiked_dweller_03 = 1;
+      frag_glb_spiked_dweller_04 = 6;
+      frag_glb_spiked_dweller_05 = 8;
+    }
+  }
+}

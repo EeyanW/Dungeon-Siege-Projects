@@ -1,0 +1,155 @@
+
+///////////////////////////////////////////////////////////////////////////////
+//melee dummy
+///////////////////////////////////////////////////////////////////////////////
+[t:template,n:bs_strawman_sword]
+{
+  category_name = "1W_evil_d";
+  doc = "bs_strawman_sword";
+  specializes = prop;
+  [actor]
+  {
+   alignment = aa_evil;
+   can_show_health = false;
+    [skills]
+    {
+      strength =     5, 0;
+      intelligence = 3, 0;
+      dexterity =    4, 0;
+      melee =        1, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 10;
+    is_usable  = false;
+    is_selectable  = true;
+    is_invincible = true;
+    life_state  = LS_ALIVE_CONSCIOUS;
+    max_life  = 1;
+    life    = 1;
+    does_block_path = true;
+    is_collidable      = true;
+    draw_selection_indicator  = false;
+    megamap_icon = <none>;
+    material = cloth;
+    model = m_i_glb_strawman-01;
+  }
+  [attack]
+  {
+  }
+  [common]
+  {
+    screen_name = "Training Dummy";
+    membership = monster;
+  }
+  [defend] { defense = 1; }
+  [body]
+  {
+    avg_move_velocity = 0;
+  }
+  [inventory]
+  {
+  }
+  [physics]
+  {
+  }
+  [mind]
+  {
+    actor_may_attack = false;
+    actor_may_be_attacked = true;
+    melee_engage_range               = .6;
+    outer_comfort_zone_range         = 1.0;
+    personal_space_range             = 0.5;
+    ranged_engage_range              = 2.0;
+    sight_range                      = 6.0;
+  }
+}
+///////////////////////////////////////////////////////////////////////////////
+//ranged target
+///////////////////////////////////////////////////////////////////////////////
+[t:template,n:bs_strawman_target]
+{
+  category_name = "1W_evil_d";
+  doc = "bs_target";
+  specializes = prop;
+  [actor]
+  {
+   alignment = aa_evil;
+   can_show_health = false;
+    [skills]
+    {
+      strength =     5, 0;
+      intelligence = 3, 0;
+      dexterity =    4, 0;
+      melee =        1, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 10;
+    is_usable  = false;
+    is_selectable  = true;
+    is_invincible = true;
+    life_state  = LS_ALIVE_CONSCIOUS;
+    max_life  = 1;
+    life    = 1;
+    does_block_path = true;
+    is_collidable      = true;
+    draw_selection_indicator  = false;
+    megamap_icon = <none>;
+    material = cloth;
+    model = m_i_glb_target-01;
+  }
+  [attack]
+  {
+  }
+  [common]
+  {
+    screen_name = "Training Target";
+    membership = monster;
+  }
+  [defend] { defense = 1; }
+  [body]
+  {
+    avg_move_velocity = 0;
+  }
+  [inventory]
+  {
+  }
+  [physics]
+  {
+  }
+  [mind]
+  {
+    actor_may_attack = false;
+    actor_may_be_attacked = true;
+    melee_engage_range               = .6;
+    outer_comfort_zone_range         = 1.0;
+    personal_space_range             = 0.5;
+    ranged_engage_range              = 2.0;
+    sight_range                      = 6.0;
+  }
+}
+///////////////////////////////////////////////////////////////////////////////
+//target test
+///////////////////////////////////////////////////////////////////////////////
+/*[t:template,n:bs_ranged_target_01]
+{
+  category_name = "outdoor";
+  doc = "bs_target_bullseye";
+  specializes = prop;
+
+  [aspect]
+  {
+    model=m_i_glb_target-01;
+    does_block_path = true;
+    is_invincible = true;
+    is_selectable = true;
+    is_usable = true;
+    life_state = ls_alive_conscious;
+    max_life = 1;
+    is_selectable = true;
+    is_usable = false;
+  }
+}*/

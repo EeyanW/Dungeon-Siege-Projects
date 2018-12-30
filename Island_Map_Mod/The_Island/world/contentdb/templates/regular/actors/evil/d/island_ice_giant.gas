@@ -1,0 +1,105 @@
+
+[t:template,n:island_cave_giant_base]
+{
+  category_name = "1W_evil_a";
+  doc = "island_cave_giant";
+  specializes = base_cyclops;
+  [actor]
+  {
+    [skills]
+    {
+      strength =  24, 0;
+      intelligence =  6, 0;
+      dexterity =  11, 0;
+            melee =  9,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 700;
+    life = 750;
+    max_life = 750;
+    mana = 18;
+    max_mana = 18;
+    [textures]  { 0 = b_c_ecm_frost_giant; }
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_cave_giant; }
+      [hit_critical]  { priority = low; * = s_e_hit_cave_giant_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_cave_giant_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_cave_giant_SED; }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 95;
+    damage_min = 85;
+    reload_delay = 0;
+  }
+  [common] { screen_name="Arctic Giant"; }
+    [defend] { defense=94; }
+  [mind]
+  {
+    melee_engage_range = 14;
+    personal_space_range = 0.7;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+}
+[t:template,n:island_arctic_giant]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Arctic Giant (lvl 38-46)";
+  specializes = island_cave_giant_base;
+}
+
+[t:template,n:island_cave_giant_small]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Arctic Giant Small (lvl 38-46)";
+  specializes = base_cyclops;
+  [actor]
+  {
+    [skills]
+    {
+      strength =  24, 0;
+      intelligence =  6, 0;
+      dexterity =  11, 0;
+            melee =  9,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 700;
+    life = 480;
+    max_life = 480;
+    mana = 18;
+    max_mana = 18;
+    scale_base = .4;
+    [textures]  { 0 = b_c_ecm_frost_giant; }
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_cave_giant; }
+      [hit_critical]  { priority = low; * = s_e_hit_cave_giant_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_cave_giant_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_cave_giant_SED; }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 87;
+    damage_min = 85;
+    reload_delay = 0;
+  }
+  [common] { screen_name="Arctic Giant Spawn"; }
+    [defend] { defense=88; }
+  [mind]
+  {
+    melee_engage_range = 14;
+    personal_space_range = 0.7;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+}

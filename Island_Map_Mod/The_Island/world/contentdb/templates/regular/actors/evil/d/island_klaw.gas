@@ -1,0 +1,103 @@
+
+[t:template,n:island_klaw]
+{
+  category_name = "1W_evil_d";
+  doc = "island klaw (lvl 30-37)";
+  specializes = base_klaw;
+  [actor]
+  {
+    [skills]
+    {
+      strength =  20, 0;
+      intelligence =  8, 0;
+      dexterity =  12, 0;
+            melee =  36,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 12000;
+    life = 731;
+        max_life = 731;
+        mana = 18;
+    max_mana = 18;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 120;
+    damage_min = 100;
+  }
+  [common]
+  {
+    screen_name="Arctic Klaw";
+    membership = party_klaw_boss, monster;
+  }
+  [defend] { defense=320; }
+
+  [mind]
+  {
+    jat_brain              = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party      = true;
+  }
+}
+[t:template,n:island_klaw_boss_01]
+{
+  category_name = "1W_evil_d";
+  doc = "island klaw boss 01";
+  specializes = base_klaw;
+  [actor]
+  {
+    [skills]
+    {
+      strength =  20, 0;
+      intelligence =  8, 0;
+      dexterity =  12, 0;
+            melee =  36,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 190000;
+    life = 803;
+        max_life = 803;
+        mana = 18;
+    max_mana = 18;
+    textures:0 = b_c_edm_kw-03;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 130;
+    damage_min = 110;
+  }
+  [common]
+  {
+    screen_name="Darkened Klaw";
+    membership=monster,immune_charm,immune_control,immune_freeze,immune_polymorph,immune_align_change,immune_explode;
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_ray_purple(sgx)");
+      }
+    }
+  }
+    [defend] { defense=320; }
+  [mind]
+  {
+    jat_fidget      = world\ai\jobs\common\job_fidget.skrit
+      ?social        = 0.8
+      &approach_dist    = 2.5
+      &friend_template  = false
+      &friends      = party_klaw_boss
+      &still        = false;
+
+    jat_brain               = world\ai\jobs\common\brain_hero.skrit
+      ?actor_creates_own_party      = true
+      &party_template            = "party_klaw_boss";
+  }
+}

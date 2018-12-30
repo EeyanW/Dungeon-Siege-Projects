@@ -1,0 +1,308 @@
+
+[t:template,n:island_troll_forest]
+{
+  category_name = "1W_evil_d";
+  doc = "island troll forest (lvl 9-15)";
+  specializes = dsx_troll;
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 12, 0;
+      intelligence   =  8, 0;
+      dexterity     = 12, 0;
+      melee       = 6, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 220;
+    life       = 88;
+    max_life     = 88;
+    mana       = 10;
+    max_mana     = 10;
+    life_recovery_unit = 1;
+    life_recovery_period = 8;
+    scale_base = 0.7;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 62;
+    damage_min = 58;
+  }
+  [common] { screen_name = "Forest Troll"; }
+  [defend] { defense = 48; }
+  [inventory]
+  {
+    drop_at_use_point = true;
+    spew_equipped_kill_count = <ignore>;
+    [pcontent]
+  {
+  /* Generated: Tue Jun 17 11:13:15 2003
+    Level 26, Medium */
+    [all*]
+    {
+      es_weapon_hand = cb_un_1h_troll_dsx_scrub;
+      [gold*]
+      {
+        chance = 0.5;
+        min = 80;
+        max = 100;
+      }
+      [oneof*]
+      {
+        chance = 0.25;
+        il_main = potion_mana_small;
+        il_main = potion_health_small;
+      }
+      [oneof*]
+      {
+        chance = 0.021;
+        il_main = potion_mana_medium;
+        il_main = potion_health_medium;
+      }
+      [oneof*]
+      {
+        chance = 0.02;
+        il_main = #weapon/31-36;
+        il_main = #armor/100-120;
+        il_main = #*/42-72;
+      }
+      [oneof*]
+      {
+        chance = 0.009;
+        il_main = #weapon/-rare(1)/58-77;
+        il_main = #armor/-rare(1)/120-180;
+        il_main = #*/-rare(1)/30-80;
+      }
+      [oneof*]
+      {
+          chance = 0.15;
+          il_main = island_trinket_glb_05;
+          il_main = island_trinket_glb_06;
+      }
+      [oneof*]
+      {
+          chance = 0.0025;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+      }
+    }
+  }
+  }
+  [mind]
+  {
+    melee_engage_range = 14.0;
+    personal_space_range = 0.7;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+}
+
+
+[t:template,n:island_troll_forest_boss]
+{
+  category_name = "1W_evil_d";
+  doc = "island troll forest (lvl 17-21)";
+  specializes = dsx_troll;
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 18, 0;
+      intelligence   =  8, 0;
+      dexterity     = 12, 0;
+      melee       = 14, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 600;
+    life       = 102;
+    max_life     = 102;
+    mana       = 10;
+    max_mana     = 10;
+    life_recovery_unit = 1;
+    life_recovery_period = 4;
+    scale_base = 1.0;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 70;
+    damage_min = 64;
+  }
+  [common] { screen_name = "Sophisticated Forest Troll"; }
+  [defend] { defense = 142; }
+  [inventory]
+  {
+    drop_at_use_point = true;
+    spew_equipped_kill_count = <ignore>;
+    [pcontent]
+  {
+    [all*]
+    {
+      es_weapon_hand = cb_un_1h_troll_dsx_scrub;
+      [gold*]
+      {
+        chance = 0.5;
+        min = 80;
+        max = 100;
+      }
+      [oneof*]
+      {
+        chance = 0.25;
+        il_main = potion_mana_small;
+        il_main = potion_health_small;
+      }
+      [oneof*]
+      {
+        chance = 0.021;
+        il_main = potion_mana_medium;
+        il_main = potion_health_medium;
+      }
+      [oneof*]
+      {
+        chance = 0.02;
+        il_main = #weapon/31-36;
+        il_main = #armor/100-120;
+        il_main = #*/42-72;
+      }
+      [oneof*]
+      {
+        chance = 0.009;
+        il_main = #weapon/-rare(1)/58-77;
+        il_main = #armor/-rare(1)/120-180;
+        il_main = #*/-rare(1)/30-80;
+      }
+      [oneof*]
+      {
+          chance = 0.15;
+          il_main = island_trinket_glb_07;
+          il_main = island_trinket_glb_08;
+      }
+      [oneof*]
+      {
+          chance = 0.0025;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+      }
+    }
+  }
+  }
+  [mind]
+  {
+    melee_engage_range = 14.0;
+    personal_space_range = 0.7;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+}
+
+
+[t:template,n:island_troll_highlands]
+{
+  category_name = "1W_evil_d";
+  doc = "island troll highlands (lvl 15-21)";
+  specializes = dsx_troll;
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 15, 0;
+      intelligence   =  8, 0;
+      dexterity     = 11, 0;
+      melee       = 14, 0;
+    }
+  }
+  [aspect]
+  {
+    scale_base     = .7;
+    experience_value = 600;
+    life       = 45;
+    max_life     = 45;
+    mana       = 10;
+    max_mana     = 10;
+    life_recovery_unit = 1;
+    life_recovery_period = 6;
+    scale_base = 0.7;
+    textures:0 = b_c_edm_tl-02;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 78;
+    damage_min = 66;
+  }
+  [body]
+  {
+    min_move_velocity = 2.8;
+    max_move_velocity = 4.1;
+  }
+  [common] { screen_name = "Highland Troll"; }
+  [defend] { defense = 150; }
+  [inventory]
+  {
+    drop_at_use_point = true;
+    spew_equipped_kill_count = <ignore>;
+    [pcontent]
+    {
+      [all*]
+      {
+        es_weapon_hand = cb_un_1h_troll_dsx_scrub;
+        [gold*]
+        {
+          chance = 0.4;
+          min = 50;
+          max = 70;
+        }
+        [oneof*]
+        {
+          chance = 0.25;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.021;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = #weapon/39-45;
+          il_main = #armor/100-120;
+          il_main = #*/45-77;
+        }
+        [oneof*]
+        {
+          chance = 0.009;
+          il_main = #weapon/-rare(1)/58-77;
+          il_main = #armor/-rare(1)/120-180;
+          il_main = #*/-rare(1)/40-80;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = island_trinket_glb_05;
+          il_main = island_trinket_glb_06;
+        }
+        [oneof*]
+        {
+          chance = 0.0015;
+          il_main = island_trinket_glb_10;
+          il_main = island_trinket_glb_12;
+        }
+      }
+    }
+  }
+  [mind]
+  {
+    melee_engage_range = 8.0;
+    personal_space_range = 0.7;
+    ranged_engage_range = 8.0;
+    sight_range = 14.0;
+  }
+}

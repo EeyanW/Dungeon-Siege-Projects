@@ -1,0 +1,111 @@
+
+[t:template,n:island_phrak_grass_ranged]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Phrak Grassland Melee (lvl 25-32)";
+  specializes = base_phrak;
+  [actor]
+  {
+    [skills]
+    {
+      strength =  2, 0;
+      intelligence =  12, 0;
+      dexterity =  10, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 1800;
+    life = 120;
+        max_life = 120;
+        mana = 200;
+    max_mana = 200;
+    scale_base = 0.5;
+    textures:0 = b_c_edm_ph-02;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 105;
+    damage_min = 85;
+    damage_bonus_min_cmagic = 105;
+    damage_bonus_max_cmagic = 85;
+  }
+  [common]
+  {
+    screen_name="Grassland Phrak";
+    membership = phrak;
+  }
+
+  [defend] { defense=100; }
+  [inventory]
+  {
+    selected_active_location = il_active_primary_spell;
+    [other] { il_active_primary_spell=spell_phrak_dart; }
+  }
+  [mind]
+  {
+    actor_weapon_preference      = WP_MAGIC;
+    actor_auto_switches_to_magic  = true;
+    actor_auto_switches_to_karate  = false;
+    actor_auto_switches_to_melee  = false;
+
+    jat_brain              = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party    = true
+      &guard              = true
+      &friends            = phrak;
+  }
+    [physics]
+  {
+    [break_particulate]
+    {
+      frag_glb_phrak_piercer_01 = 1;
+      frag_glb_phrak_piercer_02 = 2;
+      frag_glb_phrak_piercer_03 = 2;
+      frag_glb_phrak_piercer_04 = 1;
+      frag_glb_phrak_piercer_05 = 2;
+    }
+  }
+}
+[t:template,n:island_phrak_grass_melee]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Phrak Grassland Melee (lvl 25-32)";
+  specializes = base_phrak;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    9, 0;
+      intelligence =  11, 0;
+      dexterity =    12, 0;
+            melee =     12, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 2000;
+    life = 180;
+        max_life = 180;
+        mana = 2;
+    max_mana = 2;
+    scale_base = 0.40;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 115;
+    damage_min = 105;
+  }
+  [common]
+  {
+    screen_name="Grassland Phrak";
+    membership = phrak;
+  }
+    [defend] { defense=100; }
+  [mind]
+  {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party    = true;
+  }
+}

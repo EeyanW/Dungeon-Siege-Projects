@@ -1,0 +1,548 @@
+
+//lvl 28-36
+[t:template,n:island_goblin_hammerhand]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Hammerhand (lvl 28-36)";
+  specializes = dsx_base_krug;
+  [actor]
+  {
+    [skills]
+    {
+        strength   = 24, 0;
+        dexterity   =  8, 0;
+        intelligence  = 10, 0;
+        melee   = 20, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 12000;
+    life = 385;
+    max_life = 385;
+    mana = 18;
+    max_mana = 18;
+    model = m_c_eam_kc_pos_1;
+    scale_base = 0.8;
+    selection_indicator_scale = 0.85;
+    material = steel;
+    [textures]
+    {
+        0 = b_c_eam_gobkrg;
+    }
+    [voice]
+    {
+      [die]    { priority = high; * = s_e_die_mutant_goblin_SED;  }
+      [enemy_spotted]  { priority = high; * = s_e_call_mutant_goblin_SED; }
+      [hit_critical]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+      [hit_glance]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+      [hit_solid]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+    }
+  }
+  [attack]
+  {
+    damage_max = 72;
+    damage_min = 66;
+  }
+  [body]
+  {
+    min_move_velocity = 1.75;
+    avg_move_velocity = 2;
+  }
+  [common]
+  {
+      screen_name = "Goblin Hammerhand";
+      membership = goblin, monster;
+  }
+  [defend]
+  {
+      defense = 204;
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_weapon_hand = ax_d_d_dsx_goblin_mutant;
+    }
+
+    [pcontent]
+    {
+    /* Generated: Tue Jun 17 11:13:15 2003
+      Level 26, Medium */
+      [all*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 22;
+          max = 48;
+        }
+        [oneof*]
+        {
+          chance = 0.05;
+          il_main = potion_mana_large;
+          il_main = potion_health_large;
+        }
+        [oneof*]
+        {
+          chance = 0.109;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+        }
+        [oneof*]
+        {
+          chance = 0.19;
+          il_main = #weapon/55-71;
+          il_main = #armor/23-174;
+          il_main = #*/55-71;
+        }
+        [oneof*]
+        {
+          chance = 0.075;
+          il_main = #weapon/-rare(1)/58-77;
+          il_main = #armor/-rare(1)/137-240;
+          il_main = #*/-rare(1)/58-77;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_09;
+          il_main = island_trinket_glb_10;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_09;
+          il_main = island_trinket_glb_10;
+        }
+      }
+    }
+  }
+
+  [physics]
+  {
+    break_sound = s_e_meat_explosion;
+    explosion_magnitude = 1.5;
+    [break_particulate]
+    {
+        frag_glb_krug_commander_01 = 1;
+        frag_glb_krug_commander_02 = 1;
+        frag_glb_krug_commander_03 = 1;
+        frag_glb_krug_commander_04 = 1;
+        frag_glb_krug_commander_05 = 1;
+        frag_glb_krug_commander_06 = 1;
+        frag_glb_krug_commander_07 = 1;
+        frag_glb_krug_commander_08 = 1;
+    }
+  }
+}
+
+//lvl 37-50
+[t:template,n:island_goblin_brute]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Brute (lvl 37-50)";
+  specializes = dsx_base_krug;
+  [actor]
+  {
+    [skills]
+    {
+        strength   = 24, 0;
+        dexterity   =  8, 0;
+        intelligence  = 10, 0;
+        melee   = 30, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 14000;
+    life = 480;
+    max_life = 480;
+    mana = 18;
+    max_mana = 18;
+    model = m_c_eam_kc_pos_1;
+    scale_base = 1.0;
+    selection_indicator_scale = 0.85;
+    material = steel;
+    [textures]
+    {
+        0 = b_c_eam_gobkrg;
+    }
+    [voice]
+    {
+      [die]    { priority = high; * = s_e_die_mutant_goblin_SED;  }
+      [enemy_spotted]  { priority = high; * = s_e_call_mutant_goblin_SED; }
+      [hit_critical]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+      [hit_glance]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+      [hit_solid]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+    }
+  }
+  [attack]
+  {
+    damage_max = 110;
+    damage_min = 98;
+  }
+  [body]
+  {
+    min_move_velocity = 1.75;
+    avg_move_velocity = 2;
+  }
+  [common]
+  {
+      screen_name = "Goblin Brute";
+      membership = goblin, monster;
+  }
+  [defend]
+  {
+      defense = 204;
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_weapon_hand = ax_d_d_dsx_goblin_mutant;
+    }
+
+    [pcontent]
+    {
+    /* Generated: Tue Jun 17 11:13:15 2003
+      Level 26, Medium */
+      [all*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 22;
+          max = 48;
+        }
+        [oneof*]
+        {
+          chance = 0.05;
+          il_main = potion_mana_large;
+          il_main = potion_health_large;
+        }
+        [oneof*]
+        {
+          chance = 0.109;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+        }
+        [oneof*]
+        {
+          chance = 0.19;
+          il_main = #weapon/55-71;
+          il_main = #armor/23-174;
+          il_main = #*/55-71;
+        }
+        [oneof*]
+        {
+          chance = 0.075;
+          il_main = #weapon/-rare(1)/58-77;
+          il_main = #armor/-rare(1)/137-240;
+          il_main = #*/-rare(1)/58-77;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_14;
+        }
+      }
+    }
+  }
+
+  [physics]
+  {
+    break_sound = s_e_meat_explosion;
+    explosion_magnitude = 1.5;
+    [break_particulate]
+    {
+        frag_glb_krug_commander_01 = 1;
+        frag_glb_krug_commander_02 = 1;
+        frag_glb_krug_commander_03 = 1;
+        frag_glb_krug_commander_04 = 1;
+        frag_glb_krug_commander_05 = 1;
+        frag_glb_krug_commander_06 = 1;
+        frag_glb_krug_commander_07 = 1;
+        frag_glb_krug_commander_08 = 1;
+    }
+  }
+}
+
+//lvl 51-70
+[t:template,n:island_goblin_brute_mutated]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Brute Mutated (lvl 51-70)";
+  specializes = dsx_base_krug;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    50, 0;
+      intelligence =  18, 0;
+      dexterity =    27, 0;
+      melee =      39, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 150000;
+    life = 1620;
+    max_life = 1620;
+    mana = 24;
+    max_mana = 24;
+    model = m_c_eam_kc_pos_1;
+    scale_base = 1.3;
+    selection_indicator_scale = 0.85;
+    material = steel;
+    [textures]
+    {
+        0 = b_c_eam_gobkrg;
+    }
+    [voice]
+    {
+      [die]    { priority = high; * = s_e_die_mutant_goblin_SED;  }
+      [enemy_spotted]  { priority = high; * = s_e_call_mutant_goblin_SED; }
+      [hit_critical]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+      [hit_glance]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+      [hit_solid]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+    }
+  }
+  [attack]
+  {
+    damage_max = 207;
+    damage_min = 189;
+  }
+  [body]
+  {
+    min_move_velocity = 1.75;
+    avg_move_velocity = 2;
+  }
+  [common]
+  {
+      screen_name = "Mutated Goblin Brute";
+      membership = goblin, monster;
+  }
+  [defend]
+  {
+      defense = 720;
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_weapon_hand = ax_d_d_dsx_goblin_mutant;
+    }
+
+    [pcontent]
+    {
+    /* Generated: Tue Jun 17 11:13:15 2003
+      Level 26, Medium */
+      [all*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 22;
+          max = 48;
+        }
+        [oneof*]
+        {
+          chance = 0.05;
+          il_main = potion_mana_large;
+          il_main = potion_health_large;
+        }
+        [oneof*]
+        {
+          chance = 0.109;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+        }
+        [oneof*]
+        {
+          chance = 0.19;
+          il_main = #weapon/55-71;
+          il_main = #armor/23-174;
+          il_main = #*/55-71;
+        }
+        [oneof*]
+        {
+          chance = 0.075;
+          il_main = #weapon/-rare(1)/58-77;
+          il_main = #armor/-rare(1)/137-240;
+          il_main = #*/-rare(1)/58-77;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+        }
+      }
+    }
+  }
+
+  [physics]
+  {
+    break_sound = s_e_meat_explosion;
+    explosion_magnitude = 1.5;
+    [break_particulate]
+    {
+        frag_glb_krug_commander_01 = 1;
+        frag_glb_krug_commander_02 = 1;
+        frag_glb_krug_commander_03 = 1;
+        frag_glb_krug_commander_04 = 1;
+        frag_glb_krug_commander_05 = 1;
+        frag_glb_krug_commander_06 = 1;
+        frag_glb_krug_commander_07 = 1;
+        frag_glb_krug_commander_08 = 1;
+    }
+  }
+}
+
+//lvl 71+
+[t:template,n:island_goblin_monstrosity]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Brute Monstrosity";
+  specializes = dsx_base_krug;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    50, 0;
+      intelligence =  18, 0;
+      dexterity =    27, 0;
+      melee =      61, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 150000;
+    life = 1620;
+    max_life = 1620;
+    mana = 24;
+    max_mana = 24;
+    model = m_c_eam_kc_pos_1;
+    scale_base = 1.7;
+    selection_indicator_scale = 0.85;
+    material = steel;
+    [textures]
+    {
+        0 = b_c_eam_gobkrg;
+    }
+    [voice]
+    {
+      [die]    { priority = high; * = s_e_die_mutant_goblin_SED;  }
+      [enemy_spotted]  { priority = high; * = s_e_call_mutant_goblin_SED; }
+      [hit_critical]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+      [hit_glance]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+      [hit_solid]  { priority = low; * = s_e_hit_krug_scout_SED;  }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 644;
+    damage_min = 438;
+  }
+  [body]
+  {
+    min_move_velocity = 1.75;
+    avg_move_velocity = 2;
+  }
+  [common]
+  {
+      screen_name = "Goblin Monstrosity";
+      membership = goblin, monster;
+  }
+  [defend]
+  {
+      defense = 680;
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_weapon_hand = ax_d_d_dsx_goblin_mutant;
+    }
+
+    [pcontent]
+    {
+      [all*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 22;
+          max = 48;
+        }
+        [oneof*]
+        {
+          chance = 0.05;
+          il_main = potion_mana_large;
+          il_main = potion_health_large;
+        }
+        [oneof*]
+        {
+          chance = 0.109;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+        }
+        [oneof*]
+        {
+          chance = 0.19;
+          il_main = #weapon/255-271;
+          il_main = #armor/223-474;
+          il_main = #*/155-171;
+        }
+        [oneof*]
+        {
+          chance = 0.075;
+          il_main = #weapon/-rare(1)/258-277;
+          il_main = #armor/-rare(1)/137-240;
+          il_main = #*/-rare(1)/158-177;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_18;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+        }
+        [oneof*]
+        {
+          chance = .4;
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+        }
+      }
+    }
+  }
+
+  [physics]
+  {
+    break_sound = s_e_meat_explosion;
+    explosion_magnitude = 1.5;
+    [break_particulate]
+    {
+        frag_glb_krug_commander_01 = 1;
+        frag_glb_krug_commander_02 = 1;
+        frag_glb_krug_commander_03 = 1;
+        frag_glb_krug_commander_04 = 1;
+        frag_glb_krug_commander_05 = 1;
+        frag_glb_krug_commander_06 = 1;
+        frag_glb_krug_commander_07 = 1;
+        frag_glb_krug_commander_08 = 1;
+    }
+  }
+}

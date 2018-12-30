@@ -1,0 +1,122 @@
+
+[t:template,n:island_sand_ripper]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Sand Ripper (lvl 36-43)";
+  specializes = base_imp;
+  [actor]
+  {
+    [skills]
+    {
+      strength =     13, 0;
+      intelligence =   10, 0;
+      dexterity =   12, 0;
+      melee =      29, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 22000;
+    life = 220;
+    max_life = 220;
+    mana = 14;
+    max_mana = 14;
+    model = m_c_edm_li_pos_1;
+    [textures] { 0=b_c_edm_li-05; }
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_sand_ripper; }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 170;
+    damage_min = 150;
+  }
+  [common] { screen_name="Sand Ripper"; }
+  [defend] { defense=300; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        chance = .01;
+        il_main = island_trinket_glb_11;
+      }
+    }
+  }
+  [mind]
+  {
+    jat_fidget = world\ai\jobs\common\job_fidget.skrit;
+
+    melee_engage_range = 14;
+    personal_space_range = 0.7;
+    ranged_engage_range = 14.0;
+    sight_range = 14;
+  }
+}
+
+[t:template,n:island_sand_basher]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Sand Basher (lvl 44-50)";
+  specializes = base_imp;
+  [actor]
+  {
+    [skills]
+    {
+      strength =     15, 0;
+      intelligence =   10, 0;
+      dexterity =   12, 0;
+      melee =      30, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 50000;
+    life = 1260;
+    max_life = 1260;
+    mana = 10;
+    max_mana = 10;
+    model = m_c_edm_li_pos_3;
+    scale_base = 1.2;
+    [textures] { 0=b_c_edm_li-07; }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 210;
+    damage_min = 190;
+  }
+  [common]
+  {
+    screen_name="Sand Basher";
+    membership = monster, party_sand_mage;
+  }
+  [defend] { defense=380; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        chance = .01;
+        il_main = island_trinket_glb_12;
+      }
+    }
+  }
+  [mind]
+  {
+    jat_brain              = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party    = true;
+
+    jat_fidget              = world\ai\jobs\common\job_fidget.skrit;
+
+    melee_engage_range = 14;
+    personal_space_range = 0.7;
+    ranged_engage_range = 14.0;
+    sight_range = 14;
+  }
+}

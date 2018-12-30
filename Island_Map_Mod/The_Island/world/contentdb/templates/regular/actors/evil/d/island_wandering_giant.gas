@@ -1,0 +1,100 @@
+
+[t:template,n:island_wandering_giant]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Wandering Giant (lvl 98-105)";
+  specializes = 2W_base_cyclops;
+  [actor]
+  {
+    [skills]
+    {
+      strength =  88, 0;
+      intelligence =  32, 0;
+      dexterity =  20, 0;
+            melee =  96,  0;
+    }
+  }
+  [aspect]
+  {
+    scale_base = 3;
+    experience_value = 2500000;
+    life = 50002;
+    max_life = 50002;
+    mana = 100;
+    max_mana = 100;
+    textures:0 = b_c_ecm_cy-02;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_cave_giant; }
+      [hit_critical]  { priority = low; * = s_e_hit_cave_giant_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_cave_giant_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_cave_giant_SED; }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 600;
+    damage_min = 520;
+    reload_delay = 0;
+  }
+  [common] { screen_name="Wandering Giant"; }
+    [defend] { defense=720; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        [oneof*]
+        {
+          il_main = island_trinket_glb_16;
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_18;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_16;
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_16;
+          il_main = island_trinket_glb_17;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_01;
+          il_main = island_trinket_glb_05;
+          il_main = island_trinket_glb_09;
+          il_main = island_trinket_glb_10;
+          il_main = island_trinket_glb_11;
+          il_main = island_trinket_glb_01;
+          il_main = island_trinket_glb_07;
+          il_main = island_trinket_glb_09;
+          il_main = island_trinket_glb_10;
+          il_main = island_trinket_glb_13;
+        }
+        [oneof*]
+        {
+          il_main = island_trinket_glb_01;
+          il_main = island_trinket_glb_02;
+          il_main = island_trinket_glb_07;
+          il_main = island_trinket_glb_09;
+          il_main = island_trinket_glb_11;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_01;
+          il_main = island_trinket_glb_02;
+        }
+      }
+    }
+  }
+  [mind]
+  {
+    melee_engage_range = 8;
+    personal_space_range = 0.9;
+    ranged_engage_range = 8;
+    sight_range = 8;
+  }
+}

@@ -1,0 +1,117 @@
+
+[t:template,n:island_gremal]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Gremal (lvl 0-3)";
+  specializes = base_gremal;
+  [actor]
+  {
+    alignment      = aa_evil;
+    [skills]
+    {
+      strength =  4, 0;
+      intelligence =  1, 0;
+      dexterity =  2, 0;
+      melee =  1,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 14;
+    life = 2;
+    max_life = 2;
+    mana = 4;
+        max_mana = 4;
+    megamap_icon = <none>;
+    model = m_c_edm_gm_pos_2;
+    scale_base = 0.4;
+  }
+  [attack]
+  {
+    damage_max = 8;
+    damage_min = 6;
+  }
+  [common]
+  {
+    screen_name="Wild Gremal";
+  }
+  [mind]
+  {
+    jat_fidget = world\ai\jobs\common\job_fidget.skrit
+      ?social = 0.30
+      &wander = 0.50
+      &approach_dist = 2.50
+      &still  = false;
+
+    on_enemy_spotted_alert_friends = false;
+    //on_enemy_entered_ocz_flee      = true;
+    on_enemy_entered_icz_attack    = true;
+
+    inner_comfort_zone_range = 2;
+    melee_engage_range = 14.0;
+    ranged_engage_range = 14.0;
+    outer_comfort_zone_range = 5;
+    personal_space_range = 0.7;
+    sight_range = 14.0;
+  }
+}
+
+[t:template,n:island_gremal_evil]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Gremal Mutated (lvl 48-61)";
+  specializes = base_gremal;
+  [actor]
+  {
+    [skills]
+    {
+      strength =  42, 0;
+      intelligence =  4, 0;
+      dexterity =  30, 0;
+      melee =  38,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 200000;
+    life = 5024;
+    max_life = 5024;
+    mana = 4;
+        max_mana = 4;
+    model = m_c_edm_gm_pos_1;
+    [textures] { 0=b_c_edm_gm-02; }
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_gremal_killer; }
+      [hit_critical]  { priority = low; * = s_e_hit_gremal_killer_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_gremal_killer_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_gremal_killer_SED; }
+    }
+  }
+  [attack]
+  {
+    damage_max = 220;
+    damage_min = 180;
+  }
+  [common] { screen_name="Mutated Killer Gremal"; }
+  [defend] { defense=680; }
+  [mind]
+  {
+    jat_fidget = world\ai\jobs\common\job_fidget.skrit
+      ?social = 0.30
+      &wander = 0.50
+      &approach_dist = 2.50
+      &still  = false;
+
+    on_enemy_spotted_alert_friends = false;
+    //on_enemy_entered_ocz_flee      = true;
+    on_enemy_entered_icz_attack    = true;
+
+    inner_comfort_zone_range = 2;
+    melee_engage_range = 14.0;
+    ranged_engage_range = 14.0;
+    outer_comfort_zone_range = 5;
+    personal_space_range = 0.7;
+    sight_range = 14.0;
+  }
+}

@@ -1,0 +1,85 @@
+
+[t:template,n:island_cyclops]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Cyclops (lvl 28-38)";
+  specializes = base_cyclops;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    24, 0;
+      intelligence =  10, 0;
+      dexterity =    11, 0;
+            melee =      24,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 13000;
+    life = 1820;
+    max_life = 1820;
+    mana = 18;
+    max_mana = 18;
+    scale_base = 1.4;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 103;
+    damage_min = 95;
+    reload_delay = 0;
+  }
+  [common] { screen_name="Cyclops"; }
+    [defend] { defense=278; }
+     [inventory]
+  {
+      [pcontent]
+    {
+      [oneof*]
+      {
+        [oneof*]
+        {
+          es_weapon_hand = cb_un_2h_cyclops;
+        }
+        [oneof*]
+        {
+          chance = 0.5;
+          il_main = #*/75-103;
+          il_main = #armor/46-235;
+                  il_main = #nmagic/15-30;
+                  il_main = #cmagic/15-30;
+        }
+        [oneof*]
+        {
+                chance = 0.25;
+                  il_main = #weapon/-rare(1)/90-110;
+                  il_main = #armor/-rare(1)/289-343;
+                    il_main = #*/-rare(1)/90-110;
+        }
+        [oneof*]
+        {
+                  chance = 0.15;
+                  il_main = #weapon/-unique(2)/90-110;
+                  il_main = #armor/-unique(2)/289-343;
+                    il_main = #*/-unique(2)/90-110;
+        }
+        [all*]
+        {
+                  chance = 0.1;
+                  il_main = #weapon/-unique(2)/90-110;
+                  il_main = #armor/-unique(2)/289-343;
+                    il_main = #*/-unique(2)/90-110;
+                    il_main = #*/-unique(2)/90-110;
+        }
+      }
+    }
+  }
+  [mind]
+  {
+    melee_engage_range = 8;
+    personal_space_range = 0.7;
+    ranged_engage_range = 8.0;
+    sight_range = 16.0;
+  }
+}

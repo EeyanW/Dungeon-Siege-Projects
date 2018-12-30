@@ -1,0 +1,179 @@
+[t:template,n:island_werewolf_base]
+{
+  category_name = "1W_evil_d";
+  doc = "island werewolf base";
+  specializes = actor_evil;
+  [aspect]
+  {
+    model = m_c_edm_ww_pos_1;
+    [voice]
+    {
+
+      [die]      { priority = high; * = s_e_die_werewolf;      }
+      [enemy_spotted]  { priority = high; * = s_e_die_werewolf; }
+      [hit_glance]  { priority = low; * = s_e_hit_werewolf_SED;  }
+      [hit_solid]    { priority = low; * = s_e_hit_werewolf_SED;  }
+      [hit_critical]  { priority = low; * = s_e_hit_werewolf_SED;  }
+    }
+    material = claws;
+    textures:0 = b_c_edm_ww;
+  }
+  [body]
+  {
+
+    min_move_velocity = 3.0;
+    avg_move_velocity = 3.6;
+
+    [bone_translator]
+    {
+      body_anterior = bip01_head;
+      body_mid = bip01_spine1;
+      body_posterior = bip01_pelvis;
+      kill_bone = bip01_spine;
+      shield_bone = shield_grip;
+      weapon_bone = weapon_grip;
+    }
+
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_edm_ww_fs;
+      [chore_attack]
+      {
+        chore_stances = 0;
+        skrit = select_attack;
+        [anim_files]
+        {
+          01 = at;
+          02 = at-02;
+        }
+      }
+      [chore_default]
+      {
+        chore_stances = 0;
+        skrit = infinite_loop;
+        [anim_files]
+        {
+          00=ds;
+        }
+      }
+      [chore_die]
+      {
+        chore_stances = 0;
+        skrit = select_transition;
+        [anim_files] { 00=di; }
+      }
+
+      [chore_fidget]
+      {
+        chore_stances = 0;
+        skrit = select_fidget;
+        [anim_files]
+        {
+          00 = dff;
+        }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0;
+        skrit = select_walk;
+        [anim_files] { 00=wl; }
+      }
+    }
+  }
+  [guts_manager]
+  {
+    effect_name = melee_hit_2;
+  }
+  [mind]
+  {
+    jat_fidget  = world\ai\jobs\common\job_fidget.skrit
+      ?meander  = false
+      &still    = false;
+
+    melee_engage_range = 14;
+    personal_space_range = 0.7;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+}
+[t:template,n:island_werewolf_01]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Werewolf 01";
+  specializes = island_werewolf_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =  21, 0;
+      intelligence =  8, 0;
+      dexterity =  16, 0;
+      melee =  16, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 11000;
+    life = 550;
+    max_life = 550;
+    mana = 18;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 162;
+    damage_min = 148;
+  }
+  [common]
+  {
+    forced_expiration_class = decay_fresh;
+    screen_name="Okami";
+    membership=monster,immune_charm,immune_control,immune_freeze,immune_polymorph,immune_align_change;
+
+  }
+  [defend]
+  {
+    defense=280;
+  }
+}
+
+[t:template,n:island_werewolf_02]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Werewolf 02";
+  specializes = island_werewolf_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =  21, 0;
+      intelligence =  8, 0;
+      dexterity =  16, 0;
+      melee =  16, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 110000;
+    life = 680;
+    max_life = 680;
+    mana = 18;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 193;
+    damage_min = 187;
+  }
+  [common]
+  {
+    forced_expiration_class = decay_fresh;
+    screen_name="Rabid Okami";
+    membership=monster,immune_charm,immune_control,immune_freeze,immune_polymorph,immune_align_change;
+
+  }
+  [defend]
+  {
+    defense=320;
+  }
+}

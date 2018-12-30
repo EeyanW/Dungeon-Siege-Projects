@@ -1,0 +1,114 @@
+[t:template,n:island_darkblood]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Darkblood (lvl 83-99)";
+  specializes = actor_evil;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    30, 0;
+      intelligence =  8, 0;
+      dexterity =    14, 0;
+      melee =      90, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 650000;
+    life = 854;
+    max_life = 854;
+    mana = 22;
+    max_mana = 22;
+    model = m_c_ecm_db_pos_1;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_darkblood; }
+      [hit_critical]  { priority = low; * = s_e_hit_darkblood_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_darkblood_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_darkblood_SED; }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 340;
+    damage_min = 320;
+  }
+  [body]
+  {
+    min_move_velocity = 3.0;
+    avg_move_velocity = 3.750000;
+    [bone_translator]
+    {
+      body_anterior = bip01_head;
+      body_mid = bip01_spine2;
+      body_posterior = bip01_pelvis;
+      kill_bone = bip01_spine2;
+      shield_bone = shield_grip;
+      weapon_bone = weapon_grip;
+    }
+    [weapon_scales]
+    {
+      as_two_handed_melee  = 1.5, 1.5, 1.5;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_ecm_db_fs;
+      [chore_attack]
+      {
+        chore_stances = 0,3;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = at;
+          01 = at-02;
+        }
+      }
+      [chore_default]
+      {
+        chore_stances = 0,3;
+        skrit = infinite_loop;
+        [anim_files] { 00=ds; }
+      }
+      [chore_die]
+      {
+        chore_stances = 0,3;
+        skrit = select_transition;
+        [anim_files] { 00=di; }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0,3;
+        skrit = select_fidget;
+        [anim_files] { 00=dff; }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0,3;
+        skrit = select_walk;
+        [anim_files] { 00=wl; }
+      }
+    }
+  }
+  [common] { screen_name="Darkblood"; }
+  [defend] { defense=580; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_weapon_hand = ax_un_2h1b_darkblood;
+      }
+    }
+  }
+
+  [mind]
+  {
+    melee_engage_range = 14;
+    personal_space_range = 0.7;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+}

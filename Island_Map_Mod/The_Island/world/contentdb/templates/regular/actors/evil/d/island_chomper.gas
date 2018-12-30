@@ -1,0 +1,120 @@
+//lvl 9-18
+[t:template,n:island_chomper_base]
+{
+  category_name = "1W_evil_d";
+  doc = "island_chomper_base";
+  specializes = actor_evil;
+  [actor]
+  {
+    [skills]
+    {
+      strength =     10, 0;
+      intelligence = 7, 0;
+      dexterity =    8, 0;
+      melee =        5, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 80;
+    life             = 117;
+    max_life         = 117;
+    mana             = 15;
+    max_mana         = 15;
+    model = m_c_ecm_db_pos_1;
+    textures:0 = b_c_ecm_db-02;
+    material = flesh;
+    [voice]
+    {
+      [attack]    {  * = s_e_attack_chomper_SED;  }
+      [die]      { priority = high; * = s_e_die_chomper_SED; }
+      [enemy_spotted]  { priority = high; * = s_e_call_chomper_SED; }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 78;
+    damage_min = 62;
+  }
+  [body]
+  {
+    min_move_velocity = 3.0;
+    avg_move_velocity = 3.750000;
+    [bone_translator]
+    {
+      body_anterior = bip01_head;
+      body_mid = bip01_spine2;
+      body_posterior = bip01_pelvis;
+      kill_bone = bip01_spine2;
+      shield_bone = shield_grip;
+      weapon_bone = weapon_grip;
+    }
+    [weapon_scales]
+    {
+      as_two_handed_melee  = 1.5, 1.5, 1.5;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_ecm_db_fs;
+      [chore_attack]
+      {
+        chore_stances = 0,3;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = at;
+          01 = at-02;
+        }
+      }
+      [chore_default]
+      {
+        chore_stances = 0,3;
+        skrit = infinite_loop;
+        [anim_files] { 00=ds; }
+      }
+      [chore_die]
+      {
+        chore_stances = 0,3;
+        skrit = select_transition;
+        [anim_files] { 00=di; }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0,3;
+        skrit = select_fidget;
+        [anim_files] { 00=dff; }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0,3;
+        skrit = select_walk;
+        [anim_files] { 00=wl; }
+      }
+    }
+  }
+  [common]
+  {
+    screen_name = "Chomper";
+    membership = monster;
+  }
+  [defend] { defense = 44; }
+  [mind]
+  {
+    jat_brain = world\ai\jobs\common\brain_hero.skrit
+    ?actor_joins_existing_party  = true;
+    jat_fidget = world\ai\jobs\common\job_fidget.skrit;
+
+    melee_engage_range = 14;
+    personal_space_range = 0.7;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+}
+
+[t:template,n:island_chomper]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Chomper (lvl 9-18)";
+  specializes = island_chomper_base;
+}

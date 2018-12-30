@@ -1,0 +1,565 @@
+
+[t:template,n:island_skeleton_legionnaire_base]
+{
+  category_name = "1W_evil_c";
+  doc = "Island_Skeleton_Legionnaire_Base";
+  specializes = base_skeleton;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    17, 0;
+      intelligence =  9, 0;
+      dexterity =    8, 0;
+      melee =      37,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 17980;
+    life = 752;
+    max_life = 752;
+    mana = 10;
+    max_mana = 10;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 120;
+    damage_min = 90;
+  }
+  [common]
+  {
+    screen_name="Undead Legionnaire";
+    membership = monster, party_skeleton_mercenary_archer;
+  }
+  [defend] { defense=480; }
+
+     [mind]
+  {
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.65
+      &interest    = interest
+      &still      = false;
+
+    jat_brain             = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party     = true;
+
+    sight_origin_height  = 1.3;
+    melee_engage_range = 14.0;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        [oneof*]
+        {
+            es_weapon_hand = sd_g_c_st_1h_avg;
+          es_weapon_hand = ss_g_c_sd_1h_avg;
+        }
+        es_shield_hand = #shield/-no_mod/150-180;
+        es_chest = #bd_un_pl_f_g_c_fun;
+      }
+      [oneof*]
+      {
+        [oneof*]
+        {
+          chance = 0.25;
+          il_main = #*/89-105;
+          il_main = #armor/53-266;
+                  il_main = #nmagic/15-29;
+                  il_main = #cmagic/15-28;
+        }
+        [oneof*]
+        {
+                chance = 0.004;
+                  il_main = #weapon/-rare(1)/95-113;
+                  il_main = #armor/-rare(1)/258-282;
+                    il_main = #*/-rare(1)/95-113;
+                }
+        [oneof*]
+        {
+                  chance = 0.002;
+                  il_main = #weapon/-unique(2)/95-113;
+                  il_main = #armor/-unique(2)/258-282;
+                    il_main = #*/-unique(2)/95-113;
+              }
+        [gold*]
+        {
+          chance = 0.125;
+          max = 10000;
+          min = 1000;
+        }
+      }
+    }
+  }
+}
+[t:template,n:skeleton_legionnaire_boss_01]
+{
+  category_name = "1W_evil_c";
+  doc = "Island Skeleton Legionnaire Captain";
+  specializes = island_skeleton_legionnaire_base;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength =    19, 0;
+      intelligence =  13, 0;
+      dexterity =    15, 0;
+      melee =      40,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 42420;
+    life = 924;
+    max_life = 924;
+    mana = 10;
+    max_mana = 10;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 145;
+    damage_min = 115;
+  }
+  [common]
+  {
+    screen_name="Undead Legionnaire Captain";
+    membership = monster, party_skeleton_mercenary_archer;
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_ray_purple(sgx)");
+      }
+    }
+  }
+  [defend] { defense=567; }
+
+     [mind]
+  {
+    sight_origin_height  = 1.3;
+    melee_engage_range = 14.0;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        [oneof*]
+        {
+            es_weapon_hand = sd_g_c_st_1h_avg;
+          es_weapon_hand = ss_g_c_sd_1h_avg;
+        }
+        es_shield_hand = #shield/-no_mod/150-180;
+        es_chest = bd_un_pl_f_g_c_avg;
+      }
+      [all*]
+      {
+        [oneof*]
+        {
+          il_main = #*/115-140;
+          il_main = #armor/380-430;
+        }
+        [oneof*]
+        {
+                chance = 0.004;
+                  il_main = #weapon/-rare(1)/138-150;
+                  il_main = #armor/-rare(1)/412-442;
+                    il_main = #*/-rare(1)/138-150;
+                }
+        [oneof*]
+        {
+                  chance = 0.002;
+                  il_main = #weapon/-unique(2)/138-150;
+                  il_main = #armor/-unique(2)/412-442;
+                    il_main = #*/-unique(2)/138-150;
+              }
+        [gold*]
+        {
+          max = 30000;
+          min = 20000;
+          min_pile = 2000;
+          piles = 4 - 6;
+        }
+      }
+    }
+  }
+}
+[t:template,n:island_skeleton_legionnaire_archer_base]
+{
+  category_name = "1W_evil_c";
+  doc = "Island_Skeleton_Legionnaire_Archer_Base";
+  specializes = base_skeleton;
+  [actor]
+  {
+    [skills]
+    {
+      strength =  16, 0;
+      intelligence =  9, 0;
+      dexterity =  11, 0;
+      ranged =  36,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 12000;
+    life = 525;
+    max_life = 525;
+    mana = 14;
+    max_mana = 14;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 119;
+    damage_min = 100;
+  }
+  [common]
+  {
+    screen_name= "Undead Legionnaire";
+    membership = monster, party_skeleton_mercenary_archer;
+  }
+  [defend] { defense=312; }
+
+     [mind]
+  {
+    sight_origin_height  = 1.3;
+    melee_engage_range = 14.0;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+    jat_brain              = world\ai\jobs\common\brain_hero.skrit
+      ?actor_creates_own_party    = true
+      &actor_joins_existing_party    = true
+      &party_template          = "party_skeleton_mercenary_archer";
+
+    jat_fidget              = world\ai\jobs\common\job_fidget.skrit
+      ?meander            = false
+      &still              = false;
+  }
+
+  [inventory]
+  {
+    selected_active_location = IL_ACTIVE_RANGED_WEAPON;
+
+    [pcontent]
+    {
+      [all*]
+      {
+        es_shield_hand = bw_g_c_c_l_4_avg;
+        es_chest = #bd_un_pl_f_g_c_avg;
+      }
+
+      [oneof*]
+      {
+        [oneof*]
+        {
+          chance = 0.25;
+          il_main = #*/89-105;
+          il_main = #armor/53-260;
+                  il_main = #nmagic/15-29;
+                  il_main = #cmagic/15-28;
+        }
+                [oneof*]
+        {
+                chance = 0.004;
+                  il_main = #weapon/-rare(1)/95-113;
+                  il_main = #armor/-rare(1)/258-282;
+                    il_main = #*/-rare(1)/95-113;
+                }
+        [oneof*]
+        {
+                  chance = 0.002;
+                  il_main = #weapon/-unique(2)/95-113;
+                  il_main = #armor/-unique(2)/258-282;
+                    il_main = #*/-unique(2)/95-113;
+              }
+        [gold*]
+        {
+          chance = 0.125;
+          max = 10000;
+          min = 4000;
+        }
+      }
+    }
+  }
+}
+[t:template,n:island_skeleton_legionnaire]
+{
+  category_name = "1W_evil_c";
+  doc = "Island Skeleton Legionnaire";
+  specializes = island_skeleton_legionnaire_base;
+}
+[t:template,n:island_skeleton_legionnaire_reveal]
+{
+  category_name = "1W_evil_c";
+  doc = "Island Skeleton Legionnaire Activate";
+  specializes = island_skeleton_legionnaire_base;
+  [aspect]
+  {
+    [voice]
+    {
+      [enemy_spotted]  { priority = high; * = ; }
+    }
+  }
+  [common]
+  {
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("we_req_activate");
+        action* = call_sfx_script("skeleton_reveal");
+      }
+    }
+  }
+  [mind]
+  {
+    jat_brain  = world\ai\jobs\common\brain_hero.skrit;
+    jat_startup = world\ai\jobs\common\job_startup_reveal.skrit
+      ?invisible = true
+      &construct_anim = true
+      &activate = true;
+    sight_origin_height = 1;
+    actor_auto_fidgets = false;
+  }
+}
+[t:template,n:island_skeleton_legionnaire_reveal_02]
+{
+  category_name = "1W_evil_c";
+  doc = "Island Skeleton Legionnaire Activate 02";
+  specializes = island_skeleton_legionnaire_base;
+  [mind]
+  {
+    jat_brain   = world\ai\jobs\common\brain_hero.skrit;
+    jat_startup = world\ai\jobs\common\job_startup_reveal.skrit
+      ?invisible = true
+      &construct_anim = true;
+    sight_origin_height = 1;
+    actor_auto_fidgets = false;
+  }
+}
+[t:template,n:island_skeleton_legionnaire_archer]
+{
+  category_name = "1W_evil_c";
+  doc = "Island Skeleton Legionnaire Archer";
+  specializes = island_skeleton_legionnaire_archer_base;
+}
+[t:template,n:island_skeleton_legionnaire_archer_reveal]
+{
+  category_name = "1W_evil_c";
+  doc = "Island Skeleton Legionnaire Archer Activate";
+  specializes = island_skeleton_legionnaire_archer_base;
+  [aspect]
+  {
+    [voice]
+    {
+      [enemy_spotted]  { priority = high; * = ; }
+    }
+  }
+  [common]
+  {
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("we_req_activate");
+        action* = call_sfx_script("skeleton_reveal");
+      }
+    }
+  }
+  [mind]
+  {
+    jat_brain   = world\ai\jobs\common\brain_hero.skrit;
+    jat_startup = world\ai\jobs\common\job_startup_reveal.skrit
+      ?invisible = true
+      &construct_anim = true
+      &activate = true;
+    sight_origin_height = 1;
+    actor_auto_fidgets = false;
+  }
+}
+[t:template,n:island_skeleton_legionnaire_archer_reveal_02]
+{
+  category_name = "1W_evil_c";
+  doc = "Island Skeleton Legionnaire Archer Activate 02";
+  specializes = island_skeleton_legionnaire_archer_base;
+  [mind]
+  {
+    jat_brain   = world\ai\jobs\common\brain_hero.skrit;
+    jat_startup = world\ai\jobs\common\job_startup_reveal.skrit
+      ?invisible = true
+      &construct_anim = true;
+    sight_origin_height = 1;
+    actor_auto_fidgets = false;
+  }
+}
+[t:template,n:island_skeleton_large]
+{
+  category_name = "1W_evil_c";
+  doc = "Island Skeleton Large";
+  specializes = base_skeleton;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    35, 0;
+      intelligence =  7, 0;
+      dexterity =    9, 0;
+      melee =      24,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 55000;
+    life = 1200;
+    max_life = 1200;
+    mana = 4;
+    max_mana = 4;
+    [textures]  {0=b_c_ecm_sk-02;}
+        scale_base = 2.0;
+  }
+  [attack]
+  {
+    damage_max = 80;
+    damage_min = 60;
+  }
+
+  [body]
+  {
+    armor_version = ecm_sk;
+    avg_move_velocity = 1.500000;
+    [bone_translator]
+    {
+      body_anterior = bip01_head;
+      body_mid = bip01_spine2;
+      body_posterior = bip01_pelvis;
+      kill_bone = bip01_spine;
+      shield_bone = shield_grip;
+      weapon_bone = weapon_grip;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_ecm_sk_fs;
+      [chore_attack]
+      {
+        chore_stances = 0,1,2,3,4,5,6;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = at;
+          02 = at-03;
+          04 = at-05;
+          05 = at-06;
+        }
+      }
+      [chore_default]
+      {
+        chore_stances = 0,1,2,3,4,5,6;
+        skrit = infinite_loop;
+        [anim_files] { 00=dfs; }
+      }
+      [chore_die]
+      {
+        chore_stances = 0,1,2,3,4,5,6;
+        skrit = select_transition;
+        [anim_files] { 00=di; }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0,1,2,3,4,5,6;
+        skrit = select_fidget;
+        [anim_files]
+        {
+          00 = dff;
+          01 = dff-02;
+          02 = dff-03;
+        }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0,1,2,3,4,5,6;
+        skrit = select_walk;
+        [anim_files] { 00=wl-02; }
+      }
+    }
+  }
+
+  [physics]
+  {
+    [break_particulate]
+    {
+      frag_glb_bone_dirty_01 = 1;
+      frag_glb_bone_dirty_02 = 1;
+      frag_glb_bone_dirty_03 = 1;
+      frag_glb_bone_dirty_04 = 4;
+      frag_glb_bone_dirty_05 = 1;
+      frag_glb_bone_dirty_06 = 1;
+    }
+  }
+  [common] { screen_name="Skeleton Giant"; }
+  [defend] { defense=430; }
+  [inventory]
+  {
+    [pcontent]
+    {
+/*         [oneof*]
+      {
+          es_weapon_hand = sd_g_c_sd_1h_avg;
+            }
+
+      //es_shield_hand = #shield/-no_mod/150-380;*/
+
+      [oneof*]
+      {
+        [oneof*]
+        {
+          chance = 0.25;
+          il_main = #*/109-135;
+          il_main = #armor/60-303;
+        }
+        [oneof*]
+        {
+                chance = 0.004;
+                  il_main = #weapon/-rare(1)/122-144;
+                  il_main = #armor/-rare(1)/355-380;
+                    il_main = #*/-rare(1)/122-144;
+                }
+        [oneof*]
+        {
+                  chance = 0.002;
+                  il_main = #weapon/-unique(2)/122-144;
+                  il_main = #armor/-unique(2)/355-380;
+                    il_main = #*/-unique(2)/122-144;
+              }
+        [gold*]
+        {
+          chance = 0.125;
+          max = 22457;
+          min = 17754;
+        }
+      }
+        }
+  }
+    [mind]
+  {
+    melee_engage_range = 14.0;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+    personal_space_range = 1.4;
+  }
+}

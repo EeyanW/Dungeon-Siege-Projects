@@ -1,0 +1,77 @@
+[t:template,n:island_spiked_dweller]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Spiky Froggy (lvl 12-14)";
+  specializes = base_maw;
+  material = flesh;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength =     7, 0;
+      intelligence =   7, 0;
+      dexterity =   10, 0;
+      melee =         6, 0;
+      nature_magic =  6, 0;
+      combat_magic =  6, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 310;
+    life       = 88;
+    max_life     = 88;
+    mana       = 80;
+    max_mana     = 80;
+    scale_base = .4;
+    [voice]
+    {
+      [cast]    {  * = s_e_attack_spiker_SED;  }
+      [die]      { priority = high; * = s_e_die_spiked_maw; }
+      [hit_critical]  { priority = low; * = s_e_hit_spiked_maw_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_spiked_maw_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_spiked_maw_SED; }
+    }
+
+
+    textures:0 = b_c_edm_sm-03;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 76;
+    damage_min = 70;
+  }
+  [common]
+  {
+    screen_name="Rabid Spiker";
+    membership = monster, party_spiked_dweller;
+  }
+  [defend] { defense=62; }
+  [inventory]
+  {
+    selected_active_location = il_active_primary_spell;
+    [other] { il_active_primary_spell=bs_spell_spiked_dweller_spikes; }
+  }
+  [mind]
+  {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true
+      &actor_creates_own_party  = true
+      &party_template        = "party_spiked_dweller";
+  }
+  [physics]
+  {
+    explode_when_killed = true;
+    break_effect = blood_mist;
+    [break_particulate]
+    {
+      frag_glb_spiked_dweller_01 = 1;
+      frag_glb_spiked_dweller_02 = 1;
+      frag_glb_spiked_dweller_03 = 1;
+      frag_glb_spiked_dweller_04 = 6;
+      frag_glb_spiked_dweller_05 = 8;
+    }
+  }
+}

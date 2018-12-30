@@ -1,0 +1,88 @@
+
+[t:template,n:island_bandit_boss]
+{
+  doc = "Island Bandit Boss";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   16, 0;
+      intelligence = 10, 0;
+      dexterity =   14, 0;
+      melee =  6,  0;
+    }
+  }
+  [common]
+  {
+    screen_name = "Bandit Boss";
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_ray_green(sgx)");
+      }
+    }
+  }
+  [aspect]
+  {
+    life = 202;
+    max_life = 202;
+    mana = 22;
+    max_mana = 22;
+    experience_value = 180;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_35;
+      1 = b_c_pos_a3_234;
+    }
+  }
+  [inventory]
+  {
+        custom_head = m_c_gah_fb_hlmt_head-04;
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                es_weapon_hand = ax_g_c_1h2b_avg;
+      }
+      [all*]
+      {
+        [oneof*]
+        {
+          il_main = #*/20-40;
+          il_main = #armor/40-72;
+        }
+        [oneof*]
+        {
+          il_main = #weapon/-rare(1)/32-44;
+          il_main = #armor/-rare(1)/54-98;
+          il_main = #*/-rare(1)/28-62;
+        }
+        [oneof*]
+        {
+          il_main = #weapon/-unique(2)/32-48;
+          il_main = #armor/-unique(2)/55-101;
+          il_main = #*/-unique(2)/40-52;
+        }
+        [gold*]
+        {
+          max = 100;
+          min = 80;
+          piles = 4 - 6;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 44;
+    damage_min = 40;
+  }
+  [defend] { defense=90; }
+}

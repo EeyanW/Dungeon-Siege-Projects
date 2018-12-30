@@ -1,0 +1,669 @@
+
+//Lowest
+[t:template,n:island_hassathineicus_easy]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Hassathineicus (lvl 1-3)";
+  specializes = base_hassat_tiger;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 6, 0;
+      intelligence = 2, 0;
+      dexterity    = 4, 0;
+      melee        = 3, 0;
+    }
+  }
+
+  [aspect]
+  {
+    scale_base = .2;
+    experience_value = 10;
+    life             = 8;
+    max_life         = 8;
+    mana             = 0;
+    max_mana         = 0;
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 6;
+    damage_min = 4;
+  }
+
+  [common]
+  {
+    screen_name="Immature Hassathineicus";
+    membership = hassat, monster;
+  }
+
+  [defend] { defense=4; }
+
+    [inventory]
+    {
+      drop_at_use_point = true;
+      [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.3;
+          min = 1;
+          max = 4;
+        }
+        [oneof*]
+        {
+          chance = 0.3;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_01;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_02;
+        }
+      }
+    }
+  }
+    [mind]
+  {
+    on_enemy_spotted_alert_friends    = true;
+    jat_brain        = world\ai\jobs\common\brain_hero.skrit
+    ?actor_joins_existing_party    = true;
+  }
+}
+//Low
+[t:template,n:island_hassathineicus_normal]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Hassathineicus (lvl 4-6)";
+  specializes = base_hassat_tiger;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 10, 0;
+      intelligence = 2, 0;
+      dexterity    = 4, 0;
+      melee        = 4, 0;
+    }
+  }
+
+  [aspect]
+  {
+    scale_base = .3;
+    experience_value = 30;
+    life             = 12;
+    max_life         = 12;
+    mana             = 0;
+    max_mana         = 0;
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 26;
+    damage_min = 24;
+  }
+
+  [common]
+  {
+    screen_name="Hassathineicus";
+    membership = hassat, monster;
+  }
+
+  [defend] { defense=4; }
+
+    [inventory]
+    {
+      drop_at_use_point = true;
+      [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 1;
+          max = 4;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_02;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_03;
+        }
+      }
+    }
+  }
+    [mind]
+  {
+    on_enemy_spotted_alert_friends    = true;
+    jat_brain        = world\ai\jobs\common\brain_hero.skrit
+    ?actor_joins_existing_party    = true;
+  }
+}
+
+//Medium Low
+[t:template,n:island_hassathineicus_strong]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Hassathineicus (lvl 5-9)";
+  specializes = base_hassat_tiger;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 8, 0;
+      intelligence = 2, 0;
+      dexterity    = 4, 0;
+      melee        = 3, 0;
+    }
+  }
+
+  [aspect]
+  {
+    scale_base = .3;
+    textures:0     = b_c_eam_hg-02;
+    experience_value = 40;
+    life             = 18;
+    max_life         = 18;
+    mana             = 0;
+    max_mana         = 0;
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 32;
+    damage_min = 30;
+  }
+
+  [common]
+  {
+    screen_name="Hassathineicus Panther";
+    membership = hassat, monster;
+  }
+
+  [defend] { defense=18; }
+
+    [inventory]
+    {
+      drop_at_use_point = true;
+      [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 1;
+          max = 4;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_05;
+        }
+      }
+    }
+  }
+    [mind]
+  {
+    on_enemy_spotted_alert_friends    = true;
+    jat_brain        = world\ai\jobs\common\brain_hero.skrit
+    ?actor_joins_existing_party    = true;
+  }
+}
+
+//lvl 10-15
+//Medium High
+[t:template,n:island_hassathineicus_large]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Hassathineicus (lvl 10-15)";
+  specializes = base_hassat_tiger;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 18, 0;
+      intelligence = 6, 0;
+      dexterity    = 10, 0;
+      melee        = 8, 0;
+    }
+  }
+
+  [aspect]
+  {
+    scale_base = .35;
+    experience_value = 1100;
+    life             = 102;
+    max_life         = 102;
+    mana             = 0;
+    max_mana         = 0;
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 62;
+    damage_min = 54;
+  }
+
+  [common]
+  {
+    screen_name="Hassathineicus Brute";
+    membership = hassat, monster;
+  }
+
+  [defend] { defense=72; }
+
+    [inventory]
+    {
+      drop_at_use_point = true;
+      [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 1;
+          max = 4;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_05;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_06;
+        }
+      }
+    }
+  }
+    [mind]
+  {
+    on_enemy_spotted_alert_friends    = true;
+    jat_brain        = world\ai\jobs\common\brain_hero.skrit
+    ?actor_joins_existing_party    = true;
+  }
+}
+
+//lvl 16-21
+//High
+[t:template,n:island_hassathineicus_superior]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Hassathineicus (lvl 16-21)";
+  specializes = base_hassat_tiger;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 18, 0;
+      intelligence = 10, 0;
+      dexterity    = 11, 0;
+      melee        = 16, 0;
+    }
+  }
+
+  [aspect]
+  {
+    scale_base = .35;
+    experience_value = 1930;
+    life             = 230;
+    max_life         = 230;
+    mana             = 0;
+    max_mana         = 0;
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 72;
+    damage_min = 64;
+  }
+
+  [common]
+  {
+    screen_name="Superior Hassathineicus";
+    membership = hassat, monster;
+  }
+
+  [defend] { defense=180; }
+
+    [inventory]
+    {
+      drop_at_use_point = true;
+      [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 1;
+          max = 4;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_07;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_09;
+        }
+      }
+    }
+  }
+    [mind]
+  {
+    on_enemy_spotted_alert_friends    = true;
+    jat_brain        = world\ai\jobs\common\brain_hero.skrit
+    ?actor_joins_existing_party    = true;
+  }
+}
+
+//lvl 22-34
+//Highest
+[t:template,n:island_hassathineicus_deranged]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Hassathineicus (lvl 22-34)";
+  specializes = base_hassat_tiger;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 22, 0;
+      intelligence = 10, 0;
+      dexterity    = 11, 0;
+      melee        = 20, 0;
+    }
+  }
+
+  [aspect]
+  {
+    scale_base = .4;
+    experience_value = 2002;
+    life             = 230;
+    max_life         = 230;
+    mana             = 0;
+    max_mana         = 0;
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 82;
+    damage_min = 74;
+  }
+
+  [common]
+  {
+    screen_name="Deranged Hassathineicus";
+    membership = hassat, monster;
+  }
+
+  [defend] { defense=180; }
+
+    [inventory]
+    {
+      drop_at_use_point = true;
+      [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 1;
+          max = 4;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_07;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_09;
+        }
+      }
+    }
+  }
+    [mind]
+  {
+    on_enemy_spotted_alert_friends    = true;
+    jat_brain        = world\ai\jobs\common\brain_hero.skrit
+    ?actor_joins_existing_party    = true;
+  }
+}
+
+//lvl 34-52
+//Super
+[t:template,n:island_hassathineicus_mutated]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Hassathineicus (lvl 34-52)";
+  specializes = base_hassat_tiger;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 22, 0;
+      intelligence = 10, 0;
+      dexterity    = 11, 0;
+      melee        = 20, 0;
+    }
+  }
+
+  [aspect]
+  {
+    scale_base = .4;
+    experience_value = 6000;
+    life             = 330;
+    max_life         = 330;
+    mana             = 0;
+    max_mana         = 0;
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 102;
+    damage_min = 84;
+  }
+
+  [common]
+  {
+    screen_name= "Mutated Hassathineicus";
+    membership = hassat, monster;
+  }
+
+  [defend] { defense=180; }
+
+    [inventory]
+    {
+      drop_at_use_point = true;
+      [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 1;
+          max = 4;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_07;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_09;
+        }
+      }
+    }
+  }
+    [mind]
+  {
+    on_enemy_spotted_alert_friends    = true;
+    jat_brain        = world\ai\jobs\common\brain_hero.skrit
+    ?actor_joins_existing_party    = true;
+  }
+}
+
+//lvl 53+
+//Crazy
+[t:template,n:island_hassathineicus_crazy]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Hassathineicus (lvl 53+)";
+  specializes = base_hassat_tiger;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 30, 0;
+      intelligence = 10, 0;
+      dexterity    = 11, 0;
+      melee        = 30, 0;
+    }
+  }
+
+  [aspect]
+  {
+    scale_base = .4;
+    experience_value = 16000;
+    life             = 330;
+    max_life         = 330;
+    mana             = 0;
+    max_mana         = 0;
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 152;
+    damage_min = 130;
+  }
+
+  [common]
+  {
+    screen_name= "Deranged Mutated Hassathineicus";
+    membership = hassat, monster;
+  }
+
+  [defend] { defense=220; }
+
+    [inventory]
+    {
+      drop_at_use_point = true;
+      [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 1;
+          max = 4;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_large;
+          il_main = potion_health_large;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_11;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_12;
+        }
+      }
+    }
+  }
+    [mind]
+  {
+    on_enemy_spotted_alert_friends    = true;
+    jat_brain        = world\ai\jobs\common\brain_hero.skrit
+    ?actor_joins_existing_party    = true;
+  }
+}

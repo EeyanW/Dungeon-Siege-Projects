@@ -1,0 +1,671 @@
+
+[t:template,n:island_bandit_ranged_base]
+{
+  doc = "Island Bandit Ranged Base";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   10, 0;
+      intelligence = 6, 0;
+      dexterity =   10, 0;
+      ranged =  4,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 48;
+    max_life = 48;
+    mana = 20;
+    max_mana = 20;
+       experience_value = 52;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a3_001;
+    }
+  }
+  [common]
+  {
+    screen_name="Bandit Archer";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+        custom_head = m_c_gah_fb_hlmt_head-05;
+      selected_active_location = IL_ACTIVE_RANGED_WEAPON;
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                es_shield_hand = bw_g_c_s_l_c_avg;
+      }
+      [oneof*]
+      {
+      [gold*]
+      {
+          chance = 0.12;
+          max = 40;
+          min = 10;
+      }
+      [all*]
+      {
+          chance = 0.15;
+          il_main = potion_rejuvenation_small;
+          il_main = potion_rejuvenation_small;
+      }
+      [all*]
+      {
+            chance = 0.03;
+                   il_main = #spell/2-6;
+      }
+      [oneof*]
+      {
+          chance = 0.008;
+          il_main = #weapon/14-17;
+          il_main = #*/14-17;
+          il_main = #armor/7-35;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+      }
+    }
+  }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 20;
+    damage_min = 16;
+  }
+  [defend] { defense=10; }
+  [mind]
+    {
+      jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_creates_own_party    = true
+      &actor_joins_existing_party    = true
+      &party_template          = "party_bandit_ranged";
+
+      jat_fidget            = world\ai\jobs\common\job_fidget.skrit
+        ?social              = 0.35
+        &still              = false;
+    }
+}
+
+//lvl 7-12
+//Lowest, Low
+[t:template,n:island_bandit_ranged_low]
+{
+  doc = "Island Bandit Ranged Low (lvl 7-12)";
+  specializes = island_bandit_ranged_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   10, 0;
+      intelligence = 6, 0;
+      dexterity =   10, 0;
+      ranged =  4,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 54;
+    max_life = 54;
+    mana = 20;
+    max_mana = 20;
+       experience_value = 52;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a3_001;
+    }
+  }
+  [common]
+  {
+    screen_name="Bandit Archer";
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                es_shield_hand = bw_g_c_s_l_c_avg;
+      }
+      [oneof*]
+      {
+      [gold*]
+      {
+          chance = 0.12;
+          max = 40;
+          min = 10;
+      }
+      [all*]
+      {
+          chance = 0.15;
+          il_main = potion_rejuvenation_medium;
+          il_main = potion_rejuvenation_medium;
+      }
+      [all*]
+      {
+            chance = 0.03;
+                   il_main = #spell/2-6;
+      }
+      [oneof*]
+      {
+                   chance = 0.002;
+                   il_main = #weapon/-rare(1)/15-18;
+                   il_main = #armor/-rare(1)/30-40;
+      }
+      [oneof*]
+        {
+          chance = 0.05;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+    }
+  }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 20;
+    damage_min = 16;
+  }
+  [defend] { defense=10; }
+}
+
+//lvl 13-22
+//Medium Low, Medium High
+[t:template,n:island_bandit_ranged_mid]
+{
+  doc = "Island Bandit Ranged Mid (lvl 13-22)";
+  specializes = island_bandit_ranged_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   10, 0;
+      intelligence = 6, 0;
+      dexterity =   10, 0;
+      ranged =  6,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 49;
+    max_life = 49;
+    mana = 20;
+    max_mana = 20;
+       experience_value = 180;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a3_002;
+    }
+  }
+  [common]
+  {
+    screen_name="Bandit Marksman";
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                es_shield_hand = bw_g_c_s_l_c_avg;
+      }
+      [oneof*]
+      {
+      [gold*]
+      {
+          chance = 0.12;
+          max = 40;
+          min = 10;
+      }
+      [all*]
+      {
+          chance = 0.15;
+          il_main = potion_rejuvenation_large;
+          il_main = potion_rejuvenation_large;
+      }
+      [all*]
+      {
+            chance = 0.03;
+                   il_main = #spell/7-18;
+      }
+      [oneof*]
+      {
+                   chance = 0.002;
+                   il_main = #weapon/-rare(1)/15-18;
+                   il_main = #armor/-rare(1)/30-40;
+      }
+      [oneof*]
+        {
+          chance = 0.05;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+    }
+  }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 32;
+    damage_min = 24;
+  }
+  [defend] { defense=48; }
+}
+
+//lvl 23-36
+//High
+[t:template,n:island_bandit_ranged_high]
+{
+  doc = "Island Bandit Ranged High (lvl 23-36)";
+  specializes = island_bandit_ranged_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   14, 0;
+      intelligence = 10, 0;
+      dexterity =   12, 0;
+      ranged =  14,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 218;
+    max_life = 218;
+    mana = 20;
+    max_mana = 20;
+       experience_value = 1100;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a3_006;
+    }
+  }
+  [common]
+  {
+    screen_name="Bandit Ranger";
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                es_shield_hand = bw_g_c_s_l_c_avg;
+      }
+      [oneof*]
+      {
+      [gold*]
+      {
+          chance = 0.12;
+          max = 40;
+          min = 10;
+      }
+      [all*]
+      {
+          chance = 0.15;
+          il_main = potion_rejuvenation_large;
+          il_main = potion_rejuvenation_large;
+      }
+      [all*]
+      {
+            chance = 0.03;
+                   il_main = #spell/14-26;
+      }
+      [oneof*]
+      {
+                   chance = 0.002;
+                   il_main = #weapon/-rare(1)/15-18;
+                   il_main = #armor/-rare(1)/30-40;
+            }
+      [oneof*]
+      {
+          chance = 0.10;
+          il_main = #weapon/14-17;
+          il_main = #*/14-17;
+          il_main = #armor/7-35;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+      }
+      [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+    }
+  }
+  }
+  [attack]
+  {
+    attack_range = 0.1;
+    damage_max = 60;
+    damage_min = 50;
+  }
+  [defend] { defense=150; }
+}
+
+//lvl 37-50
+//Highest
+[t:template,n:island_bandit_ranged_veryhigh]
+{
+  doc = "Island Bandit Ranged Highest (lvl 37-50)";
+  specializes = island_bandit_ranged_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   24, 0;
+      intelligence = 16, 0;
+      dexterity =   30, 0;
+      ranged =  40,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 302;
+    max_life = 302;
+    mana = 20;
+    max_mana = 20;
+       experience_value = 24000;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a3_006;
+    }
+  }
+  [common]
+  {
+    screen_name="Bandit Sharpshooter";
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                es_shield_hand = bw_g_c_s_l_c_avg;
+      }
+      [oneof*]
+      {
+      [gold*]
+      {
+          chance = 0.12;
+          max = 40;
+          min = 10;
+      }
+      [all*]
+      {
+          chance = 0.15;
+          il_main = potion_rejuvenation_super;
+          il_main = potion_rejuvenation_super;
+      }
+      [all*]
+      {
+            chance = 0.03;
+                   il_main = #spell/2-6;
+      }
+      [oneof*]
+      {
+                   chance = 0.002;
+                   il_main = #weapon/-rare(1)/15-18;
+                   il_main = #armor/-rare(1)/30-40;
+      }
+      [oneof*]
+      {
+          chance = 0.10;
+          il_main = #weapon/14-17;
+          il_main = #*/14-17;
+          il_main = #armor/7-35;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+      }
+      [oneof*]
+        {
+          chance = 0.2;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+    }
+  }
+  }
+  [attack]
+  {
+    attack_range = 0.01;
+    damage_max = 62;
+    damage_min = 52;
+  }
+  [defend] { defense=320; }
+}
+
+//lvl 51-70
+//Super
+[t:template,n:island_bandit_ranged_super]
+{
+  doc = "Island Bandit Ranged Super (lvl 51-70)";
+  specializes = island_bandit_ranged_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   31, 0;
+      intelligence = 18, 0;
+      dexterity =   46, 0;
+      ranged =  30,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 704;
+    max_life = 704;
+    mana = 20;
+    max_mana = 20;
+       experience_value = 88000;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a3_013;
+    }
+  }
+  [common]
+  {
+    screen_name="Bandit Piercer";
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                es_shield_hand = bw_g_c_s_l_c_avg;
+      }
+      [oneof*]
+      {
+      [gold*]
+      {
+          chance = 0.12;
+          max = 40;
+          min = 10;
+      }
+      [all*]
+      {
+          chance = 0.15;
+          il_main = potion_rejuvenation_super;
+          il_main = potion_rejuvenation_super;
+      }
+      [all*]
+      {
+            chance = 0.03;
+                   il_main = #spell/2-6;
+      }
+      [oneof*]
+      {
+                   chance = 0.002;
+                   il_main = #weapon/-rare(1)/15-18;
+                   il_main = #armor/-rare(1)/30-40;
+            }
+      [oneof*]
+      {
+          chance = 0.10;
+          il_main = #weapon/14-17;
+          il_main = #*/14-17;
+          il_main = #armor/7-35;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+      }
+    }
+  }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 190;
+    damage_min = 160;
+  }
+  [defend] { defense=380; }
+}
+
+//lvl 71+
+//Super
+[t:template,n:island_bandit_ranged_crazy]
+{
+  doc = "Island Bandit Ranged Crazy (lvl 71+)";
+  specializes = island_bandit_ranged_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   42, 0;
+      intelligence = 20, 0;
+      dexterity =   52, 0;
+      ranged =  84,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 1012;
+    max_life = 1012;
+    mana = 200;
+    max_mana = 200;
+       experience_value = 180000;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a3_012;
+    }
+  }
+  [common]
+  {
+    screen_name="Rogue";
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                es_shield_hand = bw_g_c_s_l_c_avg;
+      }
+      [oneof*]
+      {
+      [gold*]
+      {
+          chance = 0.12;
+          max = 40;
+          min = 10;
+      }
+      [all*]
+      {
+          chance = 0.15;
+          il_main = potion_rejuvenation_super;
+          il_main = potion_rejuvenation_super;
+      }
+      [all*]
+      {
+            chance = 0.03;
+                   il_main = #spell/2-6;
+      }
+      [oneof*]
+      {
+                   chance = 0.002;
+                   il_main = #weapon/-rare(1)/15-18;
+                   il_main = #armor/-rare(1)/30-40;
+            }
+      [oneof*]
+      {
+          chance = 0.10;
+          il_main = #weapon/14-17;
+          il_main = #*/14-17;
+          il_main = #armor/7-35;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+      }
+      [all*]
+        {
+          chance = 0.05;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [all*]
+        {
+          chance = 0.005;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+    }
+  }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 260;
+    damage_min = 180;
+  }
+  [defend] { defense=720; }
+}
+
+

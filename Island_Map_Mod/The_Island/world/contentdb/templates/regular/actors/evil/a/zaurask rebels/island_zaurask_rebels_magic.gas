@@ -1,0 +1,286 @@
+
+//   -----MAGIC------------------------------------------------
+// strong magic variant (area 5)
+[t:template,n:island_zaurask_adept]
+{
+// balanced to Level 17, medium ranged
+  category_name = "1w_evil_a";
+  doc="Island Zaurask Magic (lvl 16-19)";
+  specializes = zaurask_magic_base;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 14, 0;
+      intelligence   = 8, 0;
+      dexterity    = 10, 0;
+      combat_magic  = 12, 0;
+      nature_magic  = 12, 0;
+    }
+  }
+
+  [aspect]
+    {
+    textures:0  = b_c_eam_zcaster-01;
+    scale_base   = 0.82;
+    experience_value = 392;
+    life    = 278;
+    max_life  = 278;
+    mana    = 54;
+    max_mana  = 54;
+    }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 58;
+    damage_min = 48;
+
+  }
+  [common] {screen_name="Zaurask Rebel"; }
+  [defend] { defense = 20; }
+  [mind]
+  {
+    actor_weapon_preference               = WP_MAGIC;
+    actor_auto_switches_to_magic         = true;
+  }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    selected_active_location = il_active_primary_spell;
+    [equipment]
+    {
+      es_weapon_hand=st_ra_g_o_r_puller;
+    }
+    [other]
+    {
+      il_active_primary_spell    = dsx_spell_zaurask_adept;
+    }
+    [pcontent]
+    {
+    /* Generated: Tue Jun 17 11:13:15 2003
+      Level 17, Medium */
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 50;
+          max = 100;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+        }
+        [all*]
+        {
+          chance = .1525
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_lore_genesis;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = #weapon/33-47;
+          il_main = #armor/13-100;
+          il_main = #*/33-47;
+        }
+        [oneof*]
+        {
+          chance = 0.0075;
+          il_main = #weapon/-rare(1)/36-52;
+          il_main = #armor/-rare(1)/71-156;
+          il_main = #*/-rare(1)/36-52;
+        }
+
+      }
+    }
+  }
+}
+[t:template,n:island_zaurask_seer]
+//balanced for Level 17
+{
+  category_name = "1w_evil_a";
+  doc="Island Zaurask Magic (lvl 20-22)";
+  specializes = zaurask_magic_base;
+
+  [actor]
+    {
+      [skills]
+        {
+          strength    = 17, 0;
+          intelligence   = 8, 0;
+          dexterity    = 11, 0;
+          nature_magic  = 17, 0;
+          combat_magic  = 17, 0;
+        }
+    }
+
+  [aspect]
+  {
+    textures:0 = b_c_eam_zcaster-02;
+    scale_base   = 0.87;
+    experience_value = 977;
+    life      = 400;
+    max_life    = 400;
+    mana      = 173;
+    max_mana    = 173;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 70;
+    damage_min = 62;
+
+  }
+  [common] {screen_name="Zaurask Seer"; }
+  [defend] { defense = 40; }
+  [inventory]
+  {
+    // we may want to give them a percentage change of dropping
+    // their main spell or weapon.
+    spew_equipped_kill_count = <ignore>;
+    selected_active_location = il_active_primary_spell;
+    [other]
+    {
+      il_active_primary_spell  = dsx_spell_zaurask_caster;
+    }
+    [pcontent]
+    {
+      /* Generated: Tue Jun 17 11:13:15 2003
+      Level 23, Medium */
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 500;
+          max = 1000;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = #weapon/47-63;
+          il_main = #armor/19-146;
+          il_main = #*/47-63;
+        }
+        [oneof*]
+        {
+          chance = 0.0075;
+          il_main = #weapon/-rare(1)/49-68;
+          il_main = #armor/-rare(1)/118-212;
+          il_main = #*/-rare(1)/49-68;
+        }
+
+      }
+    }
+  }
+
+  [mind]
+  {
+    actor_weapon_preference     = WP_MAGIC;
+    actor_auto_switches_to_magic = true;
+  }
+
+}
+[t:template,n:island_zaurask_mage]
+{
+  category_name = "1w_evil_a";
+  doc="Island Zaurask Magic (lvl 22-26)";
+  specializes = zaurask_magic_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength  = 18, 0;
+      intelligence = 8, 0;
+      dexterity  = 11, 0;
+      nature_magic = 20, 0;
+      combat_magic = 20, 0;
+    }
+  }
+  [aspect]
+  {
+    textures:0 = b_c_eam_zcaster-02;
+    experience_value = 1656;
+    life      = 717;
+    max_life    = 717;
+    mana      = 173;
+    max_mana    = 173;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 102;
+    damage_min = 93;
+  }
+  [common] {screen_name="Zaurask Mage"; }
+  [defend] { defense = 80; }
+  [inventory]
+  {
+    // we may want to give them a percentage change of dropping
+    // their main spell or weapon.
+    spew_equipped_kill_count = <ignore>;
+    selected_active_location = il_active_primary_spell;
+    [other]
+    {
+      il_active_primary_spell    = spell_zaurask_mage_dsx;
+    }
+    [pcontent]
+    {
+      /* Generated: Tue Jun 17 11:13:15 2003
+      Level 24, Strong */
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 1000;
+          max = 2000;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = #weapon/52-68;
+          il_main = #armor/30-165;
+          il_main = #*/52-68;
+        }
+        [oneof*]
+        {
+          chance = 0.01;
+          il_main = #weapon/-rare(1)/68-77;
+          il_main = #armor/-rare(1)/128-230;
+          il_main = #*/-rare(1)/68-77;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-unique(2)/68-77;
+          il_main = #armor/-unique(2)/128-230;
+          il_main = #*/-unique(2)/68-77;
+        }
+      }
+    }
+  }
+
+  [mind]
+  {
+    actor_weapon_preference      = WP_MAGIC;
+    actor_auto_switches_to_magic  = true;
+  }
+
+}

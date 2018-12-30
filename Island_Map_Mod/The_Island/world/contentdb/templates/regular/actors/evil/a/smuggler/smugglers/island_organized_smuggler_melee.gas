@@ -1,0 +1,1043 @@
+
+//////////////////////////////////////////////////////////////////////////////
+//Smuggler//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//lvl 34
+[t:template,n:island_smuggler_weakest]
+{
+  doc = "Island Smuggler (lvl 34)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   17, 0;
+      intelligence =  13, 0;
+      dexterity =   15, 0;
+      melee =  30,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 527;
+    max_life = 527;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 20000;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_011;
+      1 = b_c_pos_a1_024;
+    }
+  }
+  [common]
+  {
+    screen_name = "Smuggler";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                es_weapon_hand = dg_g_c_1h_avg;
+      }
+      [all*]
+      {
+        [all*]
+        {
+          chance = 0.03;
+          il_main = #spell/30-70;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = island_trinket_glb_08;
+          il_main = island_trinket_glb_09;
+          il_main = island_trinket_glb_10;
+          il_main = island_trinket_glb_11;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = island_trinket_glb_08;
+          il_main = island_trinket_glb_09;
+          il_main = island_trinket_glb_10;
+          il_main = island_trinket_glb_11;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = island_trinket_glb_08;
+          il_main = island_trinket_glb_09;
+          il_main = island_trinket_glb_10;
+          il_main = island_trinket_glb_11;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 120;
+    damage_min = 100;
+  }
+     [defend] { defense=300; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}
+
+//lvl 35-43
+[t:template,n:island_smuggler_weak]
+{
+  doc = "Island Smuggler (lvl 35-43)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   19, 0;
+      intelligence =  13, 0;
+      dexterity =   15, 0;
+      melee =  40,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 753;
+    max_life = 753;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 42420;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_011;
+      1 = b_c_pos_a1_024;
+    }
+  }
+  [common]
+  {
+    screen_name = "Armed Smuggler";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                //es_weapon_hand = sd_g_c_gl_1h_avg;
+      }
+      [oneof*]
+      {
+        es_weapon_hand = mc_g_c_dsx_smr_avg;
+        es_weapon_hand = mc_d_c_s_1h_mag;
+        es_weapon_hand = cb_g_c_dsx_ltn_avg;
+        es_weapon_hand = mc_g_c_s_1h_low;
+      }
+      [all*]
+      {
+        [all*]
+        {
+          chance = 0.03;
+          il_main = #spell/30-70;
+        }
+        [oneof*]
+        {
+          chance = 0.22;
+          il_main = #*/115-140;
+          il_main = #armor/383-530;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-rare(1)/138-150;
+          il_main = #armor/-rare(1)/412-442;
+          il_main = #*/-rare(1)/138-150;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 150;
+    damage_min = 140;
+  }
+     [defend] { defense=340; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}
+
+//lvl 44-56
+[t:template,n:island_smuggler_privateer]
+{
+  doc = "Island Smuggler (lvl 44-56)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   19, 0;
+      intelligence =  13, 0;
+      dexterity =   15, 0;
+      melee =  54,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 1053;
+    max_life = 1053;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 62930;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_011;
+      1 = b_c_pos_a1_043;
+    }
+  }
+  [common]
+  {
+    screen_name = "Privateer";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+      }
+      [oneof*]
+      {
+        es_weapon_hand = mc_g_c_dsx_smr_avg;
+        es_weapon_hand = mc_d_c_s_1h_mag;
+        es_weapon_hand = cb_g_c_dsx_ltn_avg;
+        es_weapon_hand = mc_g_c_s_1h_low;
+      }
+      [all*]
+      {
+        [all*]
+        {
+          chance = 0.03;
+          il_main = #spell/30-70;
+        }
+        [oneof*]
+        {
+          chance = 0.22;
+          il_main = #*/115-140;
+          il_main = #armor/383-530;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-rare(1)/138-150;
+          il_main = #armor/-rare(1)/412-442;
+          il_main = #*/-rare(1)/138-250;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 210;
+    damage_min = 170;
+  }
+     [defend] { defense=500; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}
+
+//lvl 57-65
+[t:template,n:island_smuggler_studded]
+{
+  doc = "Island Smuggler (lvl 57-65)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   48, 0;
+      intelligence =  50, 0;
+      dexterity =   30, 0;
+      melee =  59,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 3053;
+    max_life = 3053;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 85110;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_011;
+      1 = b_c_pos_a1_049;
+    }
+  }
+  [common]
+  {
+    screen_name = "Studded Privateer";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+      }
+      [oneof*]
+      {
+        es_weapon_hand = mc_g_c_dsx_smr_avg;
+        es_weapon_hand = mc_d_c_s_1h_mag;
+        es_weapon_hand = cb_g_c_dsx_ltn_avg;
+        es_weapon_hand = mc_g_c_s_1h_low;
+      }
+      [all*]
+      {
+        [all*]
+        {
+          chance = 0.03;
+          il_main = #spell/30-70;
+        }
+        [oneof*]
+        {
+          chance = 0.22;
+          il_main = #*/115-140;
+          il_main = #armor/383-530;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-rare(1)/238-350;
+          il_main = #armor/-rare(1)/412-442;
+          il_main = #*/-rare(1)/238-350;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 410;
+    damage_min = 390;
+  }
+     [defend] { defense=560; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}
+
+//lvl 66-77
+[t:template,n:island_smuggler_corsair]
+{
+  doc = "Island Smuggler (lvl 66-77)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   54, 0;
+      intelligence =  50, 0;
+      dexterity =   34, 0;
+      melee =  80,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 5053;
+    max_life = 5053;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 185110;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_011;
+      1 = b_c_pos_a1_058;
+    }
+  }
+  [common]
+  {
+    screen_name = "Corsair";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+      }
+      [oneof*]
+      {
+        es_weapon_hand = mc_g_c_dsx_smr_avg;
+        es_weapon_hand = mc_d_c_s_1h_mag;
+        es_weapon_hand = cb_g_c_dsx_ltn_avg;
+        es_weapon_hand = mc_g_c_s_1h_low;
+      }
+      [all*]
+      {
+        [all*]
+        {
+          chance = 0.03;
+          il_main = #spell/30-70;
+        }
+        [oneof*]
+        {
+          chance = 0.22;
+          il_main = #*/215-340;
+          il_main = #armor/383-530;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-rare(1)/238-350;
+          il_main = #armor/-rare(1)/412-442;
+          il_main = #*/-rare(1)/238-350;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 490;
+    damage_min = 470;
+  }
+     [defend] { defense=660; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}
+
+//lvl 78-83
+[t:template,n:island_smuggler_corsair_brute]
+{
+  doc = "Island Smuggler (lvl 78-83)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   56, 0;
+      intelligence =  56, 0;
+      dexterity =   44, 0;
+      melee =  80,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 6057;
+    max_life = 6057;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 485110;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_011;
+      1 = b_c_pos_a1_047;
+    }
+  }
+  [common]
+  {
+    screen_name = "Corsair Brute";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+      }
+      [oneof*]
+      {
+        es_weapon_hand = mc_g_c_dsx_smr_avg;
+        es_weapon_hand = mc_d_c_s_1h_mag;
+        es_weapon_hand = cb_g_c_dsx_ltn_avg;
+        es_weapon_hand = mc_g_c_s_1h_low;
+      }
+      [all*]
+      {
+        [all*]
+        {
+          chance = 0.03;
+          il_main = #spell/40-80;
+        }
+        [oneof*]
+        {
+          chance = 0.22;
+          il_main = #*/215-340;
+          il_main = #armor/383-530;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-rare(1)/438-550;
+          il_main = #armor/-rare(1)/512-642;
+          il_main = #*/-rare(1)/338-450;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 530;
+    damage_min = 490;
+  }
+     [defend] { defense=680; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}
+
+//lvl 84-95
+[t:template,n:island_smuggler_corsair_mutineer]
+{
+  doc = "Island Smuggler (lvl 84-95)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   56, 0;
+      intelligence =  56, 0;
+      dexterity =   44, 0;
+      melee =  80,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 7057;
+    max_life = 7057;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 1185110;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_011;
+      1 = b_c_pos_a1_052;
+    }
+  }
+  [common]
+  {
+    screen_name = "Corsair Mutineer";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+      }
+      [oneof*]
+      {
+        es_weapon_hand = mc_g_c_dsx_smr_avg;
+        es_weapon_hand = mc_d_c_s_1h_mag;
+        es_weapon_hand = cb_g_c_dsx_ltn_avg;
+        es_weapon_hand = mc_g_c_s_1h_low;
+      }
+      [all*]
+      {
+        [all*]
+        {
+          chance = 0.03;
+          il_main = #spell/60-100;
+        }
+        [oneof*]
+        {
+          chance = 0.22;
+          il_main = #*/415-540;
+          il_main = #armor/483-630;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-rare(1)/538-650;
+          il_main = #armor/-rare(1)/612-742;
+          il_main = #*/-rare(1)/538-650;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 590;
+    damage_min = 530;
+  }
+     [defend] { defense=750; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}
+
+//lvl 96
+[t:template,n:island_smuggler_corsair_rogue]
+{
+  doc = "Island Smuggler (lvl 96+)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   68, 0;
+      intelligence =  60, 0;
+      dexterity =   64, 0;
+      melee =  100,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 9055;
+    max_life = 9055;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 7685110;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_011;
+      1 = b_c_pos_a1_048;
+    }
+  }
+  [common]
+  {
+    screen_name = "Rogue Corsair";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+      }
+      [oneof*]
+      {
+        es_weapon_hand = mc_g_c_dsx_smr_avg;
+        es_weapon_hand = mc_d_c_s_1h_mag;
+        es_weapon_hand = cb_g_c_dsx_ltn_avg;
+        es_weapon_hand = mc_g_c_s_1h_low;
+      }
+      [all*]
+      {
+        [all*]
+        {
+          chance = 0.03;
+          il_main = #spell/80-110;
+        }
+        [oneof*]
+        {
+          chance = 0.22;
+          il_main = #*/515-740;
+          il_main = #armor/583-730;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-rare(1)/638-750;
+          il_main = #armor/-rare(1)/712-842;
+          il_main = #*/-rare(1)/638-750;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_18;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_18;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_18;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_gold_glb_01;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 630;
+    damage_min = 570;
+  }
+     [defend] { defense=850; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}

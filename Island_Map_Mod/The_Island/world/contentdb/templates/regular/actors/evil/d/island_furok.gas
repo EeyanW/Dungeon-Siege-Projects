@@ -1,0 +1,100 @@
+[t:template,n:island_furok]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Furok (lvl 71+)";
+  specializes = furok_base;
+  [actor]
+    {
+      [skills]
+  {
+    strength =  42, 0;
+    intelligence =  12, 0;
+    dexterity =  22, 0;
+    melee =  71,  0;
+  }
+    }
+  [aspect]
+  {
+      experience_value = 700000;
+      life = 3042;
+      max_life = 3042;
+      mana = 0;
+      max_mana = 0;
+      scale_base = 1.4;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_furok; }
+      [hit_critical]  { priority = low; * = s_e_hit_furok_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_furok_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_furok_SED; }
+    }
+    }
+  [attack]
+    {
+      attack_range = 0.5;
+      damage_max = 680;
+      damage_min = 520;
+    }
+  [common]
+    {
+      screen_name="Yeti";
+      membership = party_furok_boss, monster;
+    }
+  [defend] { defense = 732; }
+  [mind]
+    {
+      jat_brain              = world\ai\jobs\common\brain_hero.skrit
+  ?actor_joins_existing_party      = true;
+    }
+}
+
+[t:template,n:island_furok_forest]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Furok Forest (lvl 51-70)";
+  specializes = furok_base;
+  [actor]
+    {
+      [skills]
+  {
+    strength =  42, 0;
+    intelligence =  12, 0;
+    dexterity =  22, 0;
+    melee =  71,  0;
+  }
+    }
+  [aspect]
+  {
+      experience_value = 70000;
+      life = 2084;
+      max_life = 2084;
+      mana = 0;
+      max_mana = 0;
+      scale_base = 1.0;
+      textures:0 = b_c_edm_fr-03;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_furok; }
+      [hit_critical]  { priority = low; * = s_e_hit_furok_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_furok_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_furok_SED; }
+    }
+    }
+  [attack]
+    {
+      attack_range = 0.5;
+      damage_max = 270;
+      damage_min = 240;
+    }
+  [common]
+    {
+      screen_name="Forest Slasher";
+      membership = party_furok_boss, monster;
+    }
+  [defend] { defense = 640; }
+  [mind]
+    {
+      jat_brain              = world\ai\jobs\common\brain_hero.skrit
+  ?actor_joins_existing_party      = true;
+    }
+}

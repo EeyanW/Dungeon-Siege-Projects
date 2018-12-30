@@ -1,0 +1,143 @@
+
+[t:template,n:island_scrub_howler_base]
+{
+  category_name = "1W_evil_c";
+  doc = "island_skrub_howler_base";
+  specializes = actor_evil;
+  [actor]
+  {
+    [skills]
+    {
+      strength     =  16, 0;
+      intelligence   =   8, 0;
+      dexterity     =  12, 0;
+      melee       =  22, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value   = 16000;
+    life         = 180;
+    max_life       = 180;
+    mana         = 14;
+    max_mana       = 14;
+    [textures]  { 0 = b_c_ecm_scrub_howler; }
+    model = m_c_ecm_SCRUBHWL_pos_1;
+    [voice]
+    {
+      [enemy_spotted]  { priority = high; * = s_e_call_scrub_howler_SED; }
+      [die]      { priority = high; * = s_e_die_scrub_howler_SED; }
+      [hit_critical]  { priority = low; * = s_e_hit_scrub_howler_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_scrub_howler_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_scrub_howler_SED; }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 130;
+    damage_min = 110;
+  }
+  [body]
+  {
+    avg_move_velocity = 2.340000;
+    max_move_velocity = 3.7;
+    [bone_translator]
+    {
+      body_anterior = bip01_head;
+      body_mid = bip01_spine1;
+      body_posterior = bip01_pelvis;
+      kill_bone = bip01_spine1;
+      shield_bone = shield_grip;
+      weapon_bone = weapon_grip;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_ecm_to_fs;
+      [chore_attack]
+      {
+        chore_stances = 5;
+        skrit = select_attack;
+        [anim_files]
+          {
+            00 = at;
+            01 = at-02;
+          }
+      }
+      [chore_default]
+      {
+        chore_stances = 5;
+        skrit = infinite_loop;
+        [anim_files] { 00=ds; }
+      }
+      [chore_die]
+      {
+        chore_stances = 5;
+        skrit = select_transition;
+        [anim_files] { 00=di; }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 5;
+        skrit = select_fidget;
+        [anim_files] { 00=dff; }
+      }
+      [chore_walk]
+      {
+        chore_stances = 5;
+        skrit = select_walk;
+        [anim_files] { 00=wl; }
+      }
+    }
+    //[weapon_scales]
+    //{
+      //as_staff  = 1.8, 1.8, 1.8;
+    //}
+  }
+  [common] { screen_name="Howler"; }
+  [defend] { defense=380; }
+     [inventory]
+  {
+      [pcontent]
+    {
+      //es_weapon_hand = st_un_toreck_dsx;
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 50;
+          max = 100;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+      }
+    }
+  }
+  [mind]
+  {
+    jat_attack_object_melee       = world\ai\jobs\common\job_attack_object_melee.skrit
+      ?run_chance           = 1.0;
+    jat_fidget              = world\ai\jobs\common\job_fidget.skrit
+      ?curious              = 0.75
+      &interest              = interest
+      &meander              = false
+      &still                = false;
+
+    melee_engage_range = 14;
+    personal_space_range = 0.5;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+}
+
+[t:template,n:island_scrub_howler]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Scrub Howler (lvl 34-46)";
+  specializes = island_scrub_howler_base;
+}

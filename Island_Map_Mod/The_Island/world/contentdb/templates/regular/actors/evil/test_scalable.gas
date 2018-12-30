@@ -1,0 +1,105 @@
+
+
+
+[t:template,n:bs_test_scalable]
+{
+  doc = "A TEST SCALABLE";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      //strength =   5, 0;
+      //intelligence =  3, 0;
+      //dexterity =   4, 0;
+      //melee =  1,  0;
+      [override]
+      {
+        skill_name = 3, 26, 1;
+      }
+    }
+  }
+  [aspect]
+  {
+    //life = 10;
+    //max_life = 10;
+    //mana = 20;
+    //max_mana = 20;
+       //experience_value = 6;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_22;
+      1 = b_c_pos_a3_020;
+    }
+    //life_recovery_unit   = 1;
+    //life_recovery_period = 4;
+
+    //mana_recovery_unit   = 1;
+    //mana_recovery_period = 3;
+  }
+  [common]
+  {
+    screen_name = "Bandit";
+    membership = party_bandit_ranged, bandit;
+  }
+  //[copy_hero]{ statsMultiplier = 0.5; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+       }
+        [oneof*]
+        {
+           es_weapon_hand = cb_g_r_1h_avg;
+           es_weapon_hand = cb_g_d_r_1h_fun;
+           es_weapon_hand = cb_g_c_r_1h_avg;
+        }
+        [oneof*]
+        {
+           es_chest = bd_ro_m_g_c_001;
+           es_chest = bd_ro_m_g_c_002;
+        }
+        [oneof*]
+        {
+           chance = 0.25;
+           il_main = potion_health_small;
+           il_main = potion_mana_small;
+        }
+        [oneof*]
+        {
+          chance = 0.4;
+          il_main = #*/1-6;
+          il_main = #armor/1-4;
+        }
+        [gold*]
+        {
+          chance = 0.35;
+          max = 6;
+          min = 2;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    //damage_max = 1;
+    //damage_min = 1;
+  }
+     [defend] { defense=10; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+    jat_talk    = world\ai\jobs\common\job_talk.skrit;
+  }
+}

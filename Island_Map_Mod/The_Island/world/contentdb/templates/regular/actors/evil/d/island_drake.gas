@@ -1,0 +1,96 @@
+
+[t:template,n:island_drake_highland_base]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Drake Highlands Base";
+  specializes = base_drake;
+     [actor]
+  {
+    [skills]
+    {
+      strength =    49, 0;
+      intelligence =  30, 0;
+      dexterity =    48, 0;
+            melee =      55, 0;
+            nature_magic =  55, 0;
+    }
+  }
+  [aspect]
+  {
+    draw_shadow = false;
+    experience_value = 150000;
+    life = 1560;
+    max_life = 1560;
+    mana = 3200;
+        max_mana = 3200;
+    model=m_c_edm_dk_pos_1;
+        scale_base = 0.70;
+     [textures] { 0=b_c_edm_dk_highlands; }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 310;
+    damage_min = 220;
+  }
+
+  [common]
+  {
+        screen_name="Highland Drake";
+    [template_triggers]
+    {
+      [*]
+      {
+        action* = call_sfx_script("drake_wing");
+        condition* = receive_world_message("we_anim_sfx",2);
+      }
+      [*]
+      {
+        action* = call_sfx_script("drake_scream_green");
+        condition* = receive_world_message("we_anim_sfx",3);
+      }
+
+    }
+
+  }
+     [defend] { defense=520; }
+    [mind]   { personal_space_range = 1.0; }
+     [inventory]
+  {
+      selected_active_location = il_active_primary_spell;
+    [other] { il_active_primary_spell=spell_drake_breath_highlands; }
+
+    [pcontent]
+    {
+      [oneof*]
+      {
+        [oneof*]
+        {
+          chance = 0.45;
+          il_main = #*/104-150;
+          il_main = #armor/68-341;
+        }
+        [oneof*]
+        {
+                chance = 0.45;
+                  il_main = #weapon/-rare(1)/145-163;
+                  il_main = #armor/-rare(1)/370-430;
+                    il_main = #*/-rare(1)/145-163;
+        }
+        [oneof*]
+        {
+                  chance = 0.1;
+                  il_main = #weapon/-unique(2)/145-163;
+                  il_main = #armor/-unique(2)/370-430;
+                    il_main = #*/-unique(2)/145-163;
+        }
+      }
+    }
+  }
+}
+[t:template,n:island_drake_highlands]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Drake Highlands (lvl 50-65)";
+  specializes = island_drake_highland_base;
+}

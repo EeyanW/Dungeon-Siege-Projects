@@ -1,0 +1,77 @@
+
+[t:template,n:island_rock_beast_base]
+{
+  category_name = "1W_evil_d";
+  doc = "rock_beast";
+  specializes = base_rock_beast;
+  [actor]
+  {
+    [skills]
+    {
+      strength =  64, 0;
+      intelligence =  10, 0;
+      dexterity =  52, 0;
+            melee =    70,  0;
+    }
+  }
+  [aspect]
+  {
+    draw_shadow = false;
+    experience_value = 900000;
+    life = 50000;
+    material = stone;
+    max_life = 50000;
+    mana = 10000;
+    max_mana = 10000;
+    scale_base = 2.0;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 610;
+    damage_min = 520;
+  }
+  [common] { screen_name="Rock Colossus"; }
+  [defend] { defense=720; }
+  [inventory]
+  {
+    selected_active_location = il_active_primary_spell;
+    [other] { il_active_primary_spell=spell_rock_collosus_blast; }
+
+    [pcontent]
+    {
+      [oneof*]
+      {
+        [all*]
+        {
+          il_main = #armor/420-840;
+          il_main = #*/400-930;
+          max = 10;
+          min = 6;
+        }
+        [all*]
+        {
+          il_main = #ring/420-840;
+          il_main = #*/400-630;
+          max = 10;
+          min = 6;
+        }
+      }
+    }
+  }
+  [mind]
+  {
+    melee_engage_range = 6;
+    personal_space_range = 2.6;
+    ranged_engage_range = 16.0;
+    sight_range = 18.0;
+    inner_comfort_zone_range        = 5.0;
+    outer_comfort_zone_range        = 9.0;
+  }
+}
+[t:template,n:island_rock_beast]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Rock Colossus";
+  specializes = island_rock_beast_base;
+}

@@ -1,0 +1,81 @@
+
+//TEST for an enemy statue voice base
+[t:template,n:bs_test_statue_evil_voice_base]  //fen_statue 03
+{
+  category_name = "1W_evil_a";
+  doc = "bs evil statue man";
+  specializes = bs_base_evil_statue;
+  [aspect]
+  {
+    experience_value = 100;
+    life = 400;
+    material = stone;
+    max_life = 400;
+    mana = 20;
+    max_mana = 20;
+    model = m_c_gah_fb_pos_a3;
+    [textures]
+    {
+      0 = b_i_glb_statue_03-01;
+      1 = b_i_glb_statue_03-02;
+    }
+  }
+  [attack]
+  {
+    damage_max = 50;
+    damage_min = 40;
+  }
+  [common]
+  {
+    screen_name = "Stone Warrior";
+  }
+  [defend]
+  {
+    defense = 150;
+  }
+}
+//TEST for an enemy statue with custom sound
+[t:template,n:bs_evil_poke_heart]  //fen_statue 03
+{
+  category_name = "1W_evil_a";
+  doc = "bs evil statue man";
+  specializes = bs_test_statue_evil_voice_base;
+  [aspect]
+  {
+    experience_value = 1;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_heart_poke; }
+      [enemy_spotted]  { priority = high; * = s_e_die_werewolf; }
+    }
+  }
+  [attack]
+  {
+    damage_max = 1;
+    damage_min = 1;
+  }
+  [common]
+  {
+    screen_name = "Stone Warrior Poke";
+  }
+  [defend]
+  {
+    defense = 1;
+  }
+  [physics]
+  {
+      break_effect = blood_mist;
+      break_sound =  s_e_heart_poke;
+      explode_when_killed = true;
+    [break_particulate]
+    {
+        frag_glb_molten_golem_02 = 2;
+        frag_glb_spike_rock_08 = 4;
+        frag_glb_gargoyle_05 = 2;
+        frag_glb_gargoyle_01 = 2;
+        frag_glb_stone_04 = 6;
+        frag_glb_stone_10 = 4;
+    }
+  }
+}
+}

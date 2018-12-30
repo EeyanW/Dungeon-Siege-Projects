@@ -1,0 +1,86 @@
+
+[t:template,n:island_iskandar_evil_weak]
+{
+  doc = "Island Iskandar Melee Weak";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   12, 0;
+      intelligence =  10, 0;
+      dexterity =   9, 0;
+      melee =  4,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 49;
+    max_life = 49;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 44;
+    model = m_c_gah_fb_pos_a1;
+
+    [textures]
+    {
+      0 = b_c_ecm_doppleganger_01;
+      1 = b_c_ecm_doppleganger_02;
+    }
+  }
+  [common]
+  {
+    screen_name = "Escaped Iskandarian";
+    membership = monster, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      //[all*]
+      //{
+        //es_feet = bo_bo_le_light;
+                //es_weapon_hand = sd_g_c_gl_1h_avg;
+      //}
+      [oneof*]
+      {
+        es_weapon_hand = hm_g_c_1h1m_low;
+        es_weapon_hand = blacksmith_hammer;
+        es_weapon_hand = torch_small;
+        es_weapon_hand = cb_g_d_r_1h_low;
+      }
+      [oneof*]
+      {
+        [oneof*]
+        {
+           chance = 0.02;
+           il_main = potion_health_small;
+           il_main = potion_mana_small;
+        }
+        [gold*]
+        {
+          chance = 0.1;
+          max = 10;
+          min = 2;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 8;
+    damage_min = 6;
+  }
+     [defend] { defense=5; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}

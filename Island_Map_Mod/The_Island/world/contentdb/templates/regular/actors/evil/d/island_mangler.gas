@@ -1,0 +1,94 @@
+
+[t:template,n:island_mangler_sea_giant]
+{
+  doc = "Island Mangler Sea Giant";
+  specializes = base_mangler;
+  [actor]
+  {
+    [skills]
+    {
+      strength =     35, 0;
+      intelligence =   4, 0;
+      dexterity =   22, 0;
+      melee =      30, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 60000;
+    life = 920;
+    max_life = 920;
+    mana = 4;
+    material = teeth;
+    max_mana = 4;
+    scale_base = 1.2;
+    [textures]  {0=b_c_edm_mn-03;}
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 210;
+    damage_min = 190;
+  }
+  [common] { screen_name="Monstrous Sea Mangler"; }
+  [defend] { defense=440; }
+  [mind]
+  {
+    jat_attack_object_melee  = world\ai\jobs\common\job_attack_object_melee.skrit
+      ?cautious_chance  = 0.75
+      &min_cautious_distance = 3.00
+      &cautious_approach_distance = 1.0
+      &cautious_down_time = 1.1;
+
+
+    jat_fidget = world\ai\jobs\common\job_fidget.skrit
+      ?social     = 0.35
+      &approach_dist   = 2.00
+      &move_distance   = 4.00
+      &min_distance   = 2.00
+      &still       = false;
+  }
+}
+
+[t:template,n:island_mangler]
+{
+  doc = "Island Mangler (lvl 19-25)";
+  specializes = base_mangler;
+  [actor]
+  {
+    [skills]
+    {
+      strength =     16, 0;
+      intelligence =   5, 0;
+      dexterity =   9, 0;
+      melee =      12,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 1300;
+    life = 360;
+    max_life = 360;
+    mana = 10;
+    max_mana = 10;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 120;
+    damage_min = 90;
+  }
+  [common] { screen_name="Mangler"; }
+  [defend] { defense=193; }
+  [inventory]
+  {
+      [pcontent]
+    {
+      [oneof*]
+      {
+        chance = 0.2;
+        il_main = #*/59-71;
+      }
+    }
+  }
+}

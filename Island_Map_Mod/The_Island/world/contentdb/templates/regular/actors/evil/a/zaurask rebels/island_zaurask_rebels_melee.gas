@@ -1,0 +1,687 @@
+//   -----MELEE------------------------------------------------
+[t:template,n:island_zaurask_rebel]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Rebel (lvl 15)";
+  specializes = zaurask_melee_base;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 13, 0;
+      intelligence  = 8, 0;
+      dexterity    = 10, 0;
+      melee      = 12, 0;
+    }
+  }
+
+  [aspect]
+  {
+    textures:0 = b_c_eam_zmelee;
+    experience_value    = 710;
+    life       = 320;
+    max_life     = 320;
+    mana       = 54;
+    max_mana     = 54;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 86;
+    damage_min = 78;
+  }
+  [common] { screen_name="Zaurask Rebel"; }
+
+  [defend] { defense=74; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.3;
+          min = 10;
+          max = 20;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+          il_main = #spell/2-12;
+        }
+        [oneof*]
+        {
+          chance = .2;
+          il_main = island_trinket_glb_05;
+        }
+      }
+    }
+  }
+}
+
+[t:template,n:island_zaurask_insurgent]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Rebel (lvl 16-19)";
+  specializes = zaurask_melee_base;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 14, 0;
+      intelligence  = 8, 0;
+      dexterity    = 10, 0;
+      melee      = 13, 0;
+    }
+  }
+
+  [aspect]
+  {
+    textures:0 = b_c_eam_zmelee-01;
+    experience_value    = 910;
+    life       = 332;
+    max_life     = 332;
+    mana       = 54;
+    max_mana     = 54;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 88;
+    damage_min = 78;
+  }
+  [common] { screen_name="Zaurask Insurgent"; }
+
+  [defend] { defense=80; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        chance = .4;
+        //es_weapon_hand = ss_g_c_bl_1h_fun_03_dsx;
+        es_weapon_hand = sd_g_c_gl_1h_avg;
+        es_weapon_hand = sd_g_c_gl_1h_avg;
+        es_weapon_hand = #melee/-rare(1)/36-49;
+        es_weapon_hand = #melee/33-44;
+      }
+      [all*]
+      {
+        [gold*]
+        {
+          chance = 0.3;
+          min = 10;
+          max = 20;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+          il_main = #spell/4-18;
+        }
+        [oneof*]
+        {
+          chance = .2;
+          il_main = island_trinket_glb_03;
+          il_main = island_trinket_glb_04;
+          il_main = island_trinket_glb_05;
+        }
+        [oneof*]
+        {
+          chance = .002;
+          il_main = island_trinket_glb_05;
+          il_main = island_trinket_glb_06;
+          il_main = island_trinket_glb_07;
+        }
+      }
+    }
+  }
+}
+
+[t:template,n:island_zaurask_insurrectionist]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Rebel (lvl 20-25)";
+  specializes = zaurask_melee_base;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 14, 0;
+      intelligence  = 8, 0;
+      dexterity    = 10, 0;
+      melee      = 13, 0;
+    }
+  }
+
+  [aspect]
+  {
+    textures:0 = b_c_eam_zmelee-01;
+    experience_value    = 1010;
+    life       = 380;
+    max_life     = 380;
+    mana       = 54;
+    max_mana     = 54;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 92;
+    damage_min = 82;
+  }
+  [common] { screen_name="Zaurask Insurrectionist"; }
+
+  [defend] { defense=82; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        chance = .7;
+        //es_weapon_hand = ss_g_c_bl_1h_fun_03_dsx;
+        es_weapon_hand = sd_g_c_gl_1h_avg;
+        es_weapon_hand = sd_g_c_gl_1h_avg;
+        es_weapon_hand = #melee/-rare(1)/36-49;
+        es_weapon_hand = #melee/33-44;
+      }
+      [all*]
+      {
+        [gold*]
+        {
+          chance = 0.3;
+          min = 10;
+          max = 20;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+          il_main = #spell/8-22;
+        }
+        [oneof*]
+        {
+          chance = .2;
+          il_main = island_trinket_glb_04;
+          il_main = island_trinket_glb_05;
+          il_main = island_trinket_glb_06;
+        }
+        [oneof*]
+        {
+          chance = .02;
+          il_main = island_trinket_glb_06;
+          il_main = island_trinket_glb_07;
+          il_main = island_trinket_glb_08;
+        }
+        [oneof*]
+        {
+          chance = .002;
+          il_main = island_trinket_glb_08;
+          il_main = island_trinket_glb_09;
+          il_main = island_trinket_glb_10;
+        }
+      }
+    }
+  }
+}
+
+[t:template,n:island_zaurask_militia]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Rebel (lvl 26-32)";
+  specializes = zaurask_melee_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 18, 0;
+      intelligence   = 8, 0;
+      dexterity    = 11, 0;
+      melee      = 30, 0;
+    }
+  }
+  [aspect]
+  {
+    textures:0 = b_c_eam_zmelee-02;
+    scale_base     = 0.95;
+    experience_value = 7080;
+    life      = 457;
+    max_life    = 457;
+    mana      = 150;
+    max_mana    = 150;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 138;
+    damage_min = 128;
+  }
+  [common] { screen_name="Zaurask Militia"; }
+  [defend] { defense=500; }
+  [inventory]
+  {
+    [equipment]
+    {
+      es_weapon_hand = sd_g_c_st_1h_avg;
+      es_weapon_hand = ss_g_c_sd_1h_avg;
+    }
+    [pcontent]
+    {
+      [all*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 60;
+          max = 80;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+          il_main = island_book_glb_lore_zpamphlet;
+        }
+        [oneof*]
+        {
+          chance = .1525
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_lore_genesis;
+          il_main = #spell/8-30;
+        }
+        [oneof*]
+        {
+          chance = .058;
+          il_main = island_trinket_glb_11;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+        }
+      }
+    }
+  }
+}
+
+[t:template,n:island_zaurask_trooper]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Rebel (lvl 33-40)";
+  specializes = zaurask_melee_base;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 20, 0;
+      intelligence   =  12, 0;
+      dexterity    = 18, 0;
+      melee      = 40, 0;
+    }
+  }
+
+  [aspect]
+  {
+    scale_base     = 0.9;
+    experience_value = 40500;
+    life    = 800;
+    max_life  = 800;
+    mana    = 150;
+    max_mana  = 150;
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 165;
+    damage_min = 155;
+
+  }
+
+  [common] { screen_name="Zaurask Trooper"; }
+
+  [defend] { defense=700; }
+
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_weapon_hand=ss_g_c_bl_1h_fun_04_dsx;
+      es_shield_hand=sh_un_m_o_r_m_turtle_02_dsx; // adds 0 defense
+    }
+    [pcontent]
+    {
+      [all*]
+      {
+        [gold*]
+        {
+          chance = 0.2;
+          min = 400;
+          max = 500;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+          il_main = island_book_glb_lore_zpamphlet;
+        }
+        [oneof*]
+        {
+          chance = .1525
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_lore_genesis;
+        }
+        [oneof*]
+        {
+          chance = 0.0075;
+          il_main = #amulet/2-10;
+          il_main = #ring/2-8;
+          il_main = #*/-rare(1)/52-200;
+        }
+        [oneof*]
+        {
+          chance = .058;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+        }
+      }
+    }
+  }
+}
+
+[t:template,n:island_zaurask_peacekeeper]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Rebel (lvl 41-52)";
+  specializes = zaurask_melee_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength  = 50, 0;
+      intelligence = 30, 0;
+      dexterity  = 28, 0;
+      melee    = 50, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 100000;
+    life      = 900;
+    max_life    = 900;
+    mana      = 26;
+    max_mana    = 26;
+    scale_base = 1.2;
+    textures:0 = b_c_eam_zmelee-02;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 193;
+    damage_min = 175;
+  }
+  [defend] { defense = 710; }
+  [common] { screen_name="Zaurask Peacekeeper"; }
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_weapon_hand=ss_g_c_bl_1h_fun_01_dsx;
+      es_shield_hand=sh_un_m_o_r_m_turtle_01_dsx; // adds 0 defense
+    }
+    [pcontent]
+    {
+      [all*]
+      {
+        [oneof*]
+        {
+          chance = .058;
+          il_main = potion_health_large;
+          il_main = potion_mana_large;
+        }
+        [oneof*]
+        {
+          chance = .058;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+          il_main = island_trinket_glb_17;
+        }
+        [oneof*]
+        {
+          chance = .058;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+          il_main = island_trinket_glb_17;
+        }
+        [oneof*]
+        {
+          chance = 0.0075;
+          il_main = #amulet/2-14;
+          il_main = #ring/2-8;
+          il_main = #*/-rare(1)/52-200;
+        }
+        [oneof*]
+        {
+          chance = 0.0075;
+          il_main = #amulet/2-14;
+          il_main = #ring/2-8;
+          il_main = #*/-rare(1)/52-200;
+        }
+      }
+    }
+  }
+}
+[t:template,n:island_zaurask_organizer]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Rebel (lvl 53-70)";
+  specializes = zaurask_melee_base;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength  = 52, 0;
+      intelligence = 40, 0;
+      dexterity  = 30, 0;
+      melee    = 60, 0;
+    }
+  }
+
+  [aspect]
+  {
+    experience_value = 240000;
+    life      = 1050;
+    max_life    = 1050;
+    mana      = 50;
+    max_mana    = 50;
+    scale_base = 1.0;
+    model = m_c_eam_zcomm;
+    textures:0 = b_c_eam_zcomm;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_zaurask_mini_boss_SED;   }
+      [enemy_spotted]  { priority = high; * = s_e_call_zaurask_mini_boss; }
+      //[hit_critical]  { priority = low; * = s_e_hit_zaurask_mini_boss_2_SED;  }
+      //[hit_glance]  { priority = low; * = s_e_hit_zaurask_mini_boss_1_SED;  }
+      [hit_solid]    { priority = low; * = s_e_hit_zaurask_mini_boss_2_SED;  }
+    }
+
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 260;
+    damage_min = 240;
+  }
+  [defend] { defense=720; }
+
+  [common] { screen_name="Zaurask Organizer";   }
+
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_weapon_hand=ss_g_c_bl_1h_fun_dsx;
+      es_shield_hand=sh_un_m_o_r_m_turtle_dsx;
+    }
+    [pcontent]
+    {
+      [all*]
+      {
+        [oneof*]
+        {
+          chance = 0.3;
+          il_main = potion_mana_large;
+          il_main = potion_health_large;
+        }
+        [all*]
+        {
+          //chance = .1525
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_lore_genesis;
+        }
+        [oneof*]
+        {
+          chance = .058;
+          il_main = island_trinket_glb_14;
+          il_main = island_trinket_glb_15;
+        }
+        [oneof*]
+        {
+          chance = .058;
+          il_main = island_trinket_glb_16;
+          il_main = island_trinket_glb_17;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = #ring/4-22;
+          il_main = #amulet/2-42;
+          il_main = #*/-unique(2)/149-187;
+        }
+      }
+    }
+  }
+}
+
+[t:template,n:island_zaurask_champion]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Zaurask Rebel (lvl 71+)";
+  specializes = zaurask_melee_base;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength  = 70, 0;
+      intelligence = 50, 0;
+      dexterity  = 60, 0;
+      melee    = 80, 0;
+    }
+  }
+
+  [aspect]
+  {
+    experience_value = 500000;
+    life      = 15450;
+    max_life    = 15450;
+    mana      = 50;
+    max_mana    = 50;
+    scale_base = 1.2;
+    model = m_c_eam_zcomm;
+    textures:0 = b_c_eam_zcomm;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_zaurask_mini_boss_SED;   }
+      [enemy_spotted]  { priority = high; * = s_e_call_zaurask_mini_boss; }
+      //[hit_critical]  { priority = low; * = s_e_hit_zaurask_mini_boss_2_SED;  }
+      //[hit_glance]  { priority = low; * = s_e_hit_zaurask_mini_boss_1_SED;  }
+      [hit_solid]    { priority = low; * = s_e_hit_zaurask_mini_boss_2_SED;  }
+    }
+
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 330;
+    damage_min = 310;
+  }
+  [defend] { defense=840; }
+
+  [common] { screen_name="Zaurask Champion";   }
+
+  [inventory]
+  {
+    spew_equipped_kill_count = <ignore>;
+    [equipment]
+    {
+      es_weapon_hand=ss_g_c_bl_1h_fun_dsx;
+      es_shield_hand=sh_un_m_o_r_m_turtle_dsx;
+    }
+    [pcontent]
+    {
+      [all*]
+      {
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = potion_mana_super;
+          il_main = potion_health_super;
+        }
+        [all*]
+        {
+          chance = .4
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_glb_lore_zpamphlet;
+          il_main = island_book_lore_genesis;
+        }
+        [oneof*]
+        {
+          chance = 0.3;
+          il_main = #*/-rare(1)/330-540;
+        }
+        [oneof*]
+        {
+          chance = 0.2;
+          il_main = #*/-unique(2)/410-580;
+        }
+        [oneof*]
+        {
+          chance = .058;
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_18;
+        }
+        [oneof*]
+        {
+          chance = .058;
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_18;
+        }
+      }
+    }
+  }
+}

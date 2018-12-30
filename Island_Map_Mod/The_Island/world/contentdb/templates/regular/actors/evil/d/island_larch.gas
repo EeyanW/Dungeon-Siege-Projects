@@ -1,0 +1,131 @@
+
+[t:template,n:island_larch]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Larch (lvl 70+)";
+  specializes = base_larch;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    27, 0;
+      intelligence =  5, 0;
+      dexterity =    9, 0;
+            melee =      20,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 100000;
+    life = 888;
+    max_life = 888;
+    mana = 10;
+    max_mana = 10;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_larch; }
+      [hit_critical]  { priority = low; * = s_e_hit_larch_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_larch_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_larch_SED; }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 250;
+    damage_min = 230;
+    reload_delay = 0;
+  }
+  [common]
+  {
+    screen_name="Larch";
+    membership = party_larch_boss, monster;
+  }
+     [defend] { defense=720; }
+     [mind]
+  {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party    = true;
+
+    jat_fidget            = world\ai\jobs\common\job_fidget.skrit
+      ?meander            = false
+      &still              = false;
+
+    melee_engage_range = 14;
+    personal_space_range = 1.0; //0.7
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+}
+[t:template,n:island_larch_boss_01]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Larch Boss (lvl 70+)";
+  specializes = base_larch;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    33, 0;
+      intelligence =  5, 0;
+      dexterity =    12, 0;
+            melee =      30,  0;
+    }
+  }
+  [aspect]
+  {
+    textures:0 = b_c_edm_la-06;
+    experience_value = 200000;
+    life = 1599;
+    max_life = 1599;
+    mana = 10;
+    max_mana = 10;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_larch; }
+      [hit_critical]  { priority = low; * = s_e_hit_larch_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_larch_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_larch_SED; }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 250;
+    damage_min = 230;
+    reload_delay = 0;
+  }
+  [common]
+  {
+    screen_name="Infested Larch";
+    membership=monster,immune_charm,immune_control,immune_freeze,immune_polymorph,immune_align_change,immune_explode;
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_ray_green(sgx)");
+      }
+    }
+  }
+     [defend] { defense=780; }
+     [mind]
+  {
+    jat_fidget            = world\ai\jobs\common\job_fidget.skrit
+      ?social              = 0.8
+      &friend_template        = false
+      &friends            = party_larch_boss
+      &still              = false;
+
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_creates_own_party      = true
+      &party_template            = "party_larch_boss";
+
+    melee_engage_range = 14;
+    personal_space_range = 1.0; //0.7
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+}

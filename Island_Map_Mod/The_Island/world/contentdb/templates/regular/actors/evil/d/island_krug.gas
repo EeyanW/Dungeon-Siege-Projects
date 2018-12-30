@@ -1,0 +1,241 @@
+
+[t:template,n:island_krug_ranged]
+{
+    category_name = "1W_evil_a";
+    doc = "Island Krug Throwing (lvl 3-7)";
+    specializes = base_krug;
+  [actor]
+  {
+    [skills]
+    {
+        dexterity = 10, 0;
+        intelligence = 7, 0;
+        ranged = 2,  0;
+        strength = 7, 0;
+    }
+  }
+  [aspect]
+  {
+      experience_value = 80;
+      life = 22;
+      mana = 6;
+      max_life = 22;
+      max_mana = 6;
+      selection_indicator_scale = 0.85;
+      scale_base = .8;
+    [textures]
+    {
+        0 = b_c_eam_ksv;
+    }
+    [voice]
+    {
+      [attack]    {  * = s_e_attack_krug_throw;  }
+      [die]      { priority = high;  * = s_e_die_krug_scout;    }
+      [hit_critical]  { priority = low;  * = s_e_hit_krug_scout_SED;    }
+      [hit_glance]  { priority = low;  * = s_e_hit_krug_scout_SED;    }
+      [hit_solid]    { priority = low;  * = s_e_hit_krug_scout_SED;    }
+    }
+  }
+  [attack]
+  {
+      attack_range = 0.5;
+      damage_max = 16;
+      damage_min = 12;
+      reload_delay = 1;
+  }
+  [common]
+  {
+      screen_name = "Lowland Thrower";
+      membership = krug;
+  }
+  [defend]
+  {
+      defense = 10;
+  }
+  [inventory]
+  {
+      selected_active_location = il_active_ranged_weapon;
+    [equipment]
+    {
+        es_shield_hand = rock_krug;
+    }
+    [pcontent]
+    {
+      [gold*]
+      {
+          chance = 0.12;
+          max = 20;
+          min = 10;
+      }
+      [oneof*]
+      {
+          chance = 0.15;
+          il_main = island_trinket_glb_02;
+      }
+      [oneof*]
+      {
+          chance = 0.0025;
+          il_main = island_jewel_glb_02;
+      }
+    }
+  }
+  [mind]
+  {
+    jat_fidget  = world\ai\jobs\common\job_fidget.skrit
+      ?social    = 0.35
+      &still    = false;
+
+    actor_weapon_preference      = WP_RANGED;
+
+    actor_auto_switches_to_ranged  = true;
+    on_enemy_spotted_alert_friends  = true;
+    inner_comfort_zone_range = 2;
+    melee_engage_range = 5.2;
+    ranged_engage_range = 8.0;
+    outer_comfort_zone_range = 5;
+    personal_space_range = 0.7;
+    sight_range = 10.0;
+
+  }
+}
+[t:template,n:island_krug_melee]
+{
+    category_name = "1W_evil_a";
+    doc = "Island Krug Eating (lvl 3-7)";
+    specializes = base_krug;
+  [actor]
+  {
+    [skills]
+    {
+        dexterity = 6, 0;
+        intelligence = 3, 0;
+        melee = 3,  0;
+        strength = 8, 0;
+    }
+  }
+  [aspect]
+  {
+      experience_value = 80;
+      life = 33;
+      mana = 8;
+      max_life = 33;
+      max_mana = 8;
+      selection_indicator_scale = 0.85;
+      scale_base = .8;
+    [textures]
+    {
+        0 = b_c_eam_ksv;
+    }
+  }
+  [attack]
+  {
+      damage_max = 18;
+      damage_min = 14;
+  }
+  [body]
+  {
+    [chore_dictionary]
+    {
+        chore_prefix = a_c_eam_kg_fs;
+      [chore_attack]
+      {
+          chore_stances = 1;
+          skrit = select_transition;
+        [anim_files]
+        {
+            00 = at;
+        }
+      }
+      [chore_default]
+      {
+          chore_stances = 1;
+          skrit = infinite_loop;
+        [anim_files]
+        {
+            00 = dfs;
+        }
+      }
+      [chore_die]
+      {
+          chore_stances = 1;
+          skrit = select_transition;
+        [anim_files]
+        {
+            00 = di;
+        }
+      }
+      [chore_fidget]
+      {
+          chore_stances = 1;
+          skrit = select_fidget;
+        [anim_files]
+        {
+            00 = dff-02;
+        }
+      }
+      [chore_walk]
+      {
+          chore_stances = 1;
+          skrit = select_walk;
+        [anim_files]
+        {
+            00 = wl;
+        }
+      }
+    }
+  }
+  [common]
+  {
+      screen_name = "Lowland Poacher";
+  }
+  [defend]
+  {
+      defense = 10;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [gold*]
+      {
+          chance = 0.12;
+          max = 15;
+          min = 5;
+      }
+      [oneof*]
+      {
+          es_weapon_hand = island_meat_bone;
+      }
+      [oneof*]
+      {
+        [oneof*]
+        {
+            chance = 0.02;
+            il_main = potion_mana_small;
+            il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.15;
+          il_main = island_trinket_glb_02;
+        }
+        [oneof*]
+        {
+          chance = 0.0025;
+          il_main = island_jewel_glb_02;
+        }
+      }
+    }
+  }
+  [mind]
+  {
+    on_enemy_spotted_alert_friends  = true;
+    jat_fidget            = world\ai\jobs\common\job_fidget.skrit;
+        inner_comfort_zone_range = 2;
+    melee_engage_range = 8.0;
+    ranged_engage_range = 8.0;
+    outer_comfort_zone_range = 5;
+    personal_space_range = 0.7;
+    sight_range = 10.0;
+  }
+}

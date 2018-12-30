@@ -1,0 +1,356 @@
+
+[t:template,n:island_skatwyrm_melee]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Skatwyrn Melee (lvl 33-47)";
+  specializes = skatwyrm_base;
+
+  [actor]
+  {
+    [skills]
+    {
+      strength     =  19, 0;
+      intelligence   =  8, 0;
+      dexterity     =  15, 0;
+      melee       =  32,  0;
+    }
+  }
+  [aspect]
+  {
+    [textures]  { 0 = b_c_edm_skatwyrm_melee; }
+    experience_value = 50000;
+    life       = 545;
+    max_life     = 545;
+    mana       = 12;
+    max_mana     = 12;
+    [voice]
+    {
+      [enemy_spotted]  { priority = high; * = s_e_call_skatwyrm_SED; }
+    }
+  }
+
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max   = 130;
+    damage_min   = 110;
+  }
+
+  [common]
+  {
+    screen_name="Skatwyrn Drone";
+    membership = monster;
+  }
+
+  [defend] { defense= 455; }
+
+  [mind]
+  {
+    jat_brain = world\ai\jobs\common\brain_hero.skrit
+    ?actor_joins_existing_party  = true;
+
+    jat_fidget = world\ai\jobs\common\job_fidget.skrit;
+
+    melee_engage_range = 14;
+    personal_space_range = 0.7;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+  }
+  [physics]
+  {
+    explode_when_killed = true;
+    break_effect = blood_mist;
+    break_sound = s_e_meat_explosion;
+    [break_particulate]
+    {
+      frag_glb_skatwyrm_01 = 1;
+      frag_glb_skatwyrm_02 = 2;
+      frag_glb_skatwyrm_03 = 4;
+      frag_glb_skatwyrm_04 = 2;
+      frag_glb_skatwyrm_05 = 4;
+    }
+  }
+
+
+
+}
+
+[t:template,n:island_skatwyrm_ranged]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Skatwyrn Ranged (lvl 33-47)";
+  specializes = skatwyrm_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength     = 16, 0;
+      intelligence   = 8, 0;
+      dexterity     = 12, 0;
+      ranged       = 26,  0;
+      melee      = 28, 0;
+      combat_magic   = 30, 0;
+      nature_magic   = 30, 0;
+    }
+  }
+  [aspect]
+  {
+
+    [textures]  { 0 = b_c_edm_skatwyrm_ranged; }
+    experience_value = 30000;
+    life       = 343;
+    max_life    = 343;
+    mana       = 120;
+    max_mana     = 120;
+
+    [voice]
+    {
+      [enemy_spotted] { priority = high; * = s_e_call_skatwyrm_SED; }
+    }
+  }
+  [body]
+  {
+    avg_move_velocity = 2.5;
+    [bone_translator]
+    {
+      body_anterior = bone12;
+      body_mid = bone02;
+      body_posterior = bone03;
+      kill_bone = bone08;
+      shield_bone = bone02;
+      weapon_bone = bone01;
+    }
+
+    [weapon_scales]
+    {
+      as_single_melee = 1.5, 1.5, 1.5;
+    }
+
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_edm_qs_fs;
+      [chore_attack]
+      {
+        chore_stances = 0;
+        skrit = select_attack;
+        [anim_files]
+        {
+          01 = at-02;
+        }
+      }
+      [chore_default]
+      {
+        chore_stances = 0;
+        skrit = infinite_loop;
+        [anim_files] { 00=ds; }
+      }
+      [chore_die]
+      {
+        chore_stances = 0;
+        skrit = select_transition;
+        [anim_files] { 00=di; }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0;
+        skrit = select_fidget;
+        [anim_files] { 00=dff; }
+      }
+      [chore_magic]
+      {
+        chore_stances = 0;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = at;
+        }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0;
+        skrit = select_walk;
+        [anim_files] { 00=wl; }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 120;
+    damage_min = 110;
+    damage_bonus_min_cmagic = 120;
+    damage_bonus_max_cmagic = 110;
+    damage_bonus_min_nmagic = 120;
+    damage_bonus_max_nmagic = 110;
+  }
+
+  [common]
+  {
+    screen_name="Skatwyrn Spewer";
+    membership = monster;
+  }
+
+  [defend] { defense = 310; }
+  [inventory]
+  {
+    selected_active_location = il_active_primary_spell;
+    [other] { il_active_primary_spell=dsx_spell_skatwyrm_gas; }
+
+  }
+  [mind]
+  {
+    actor_weapon_preference      = WP_MAGIC;
+    actor_auto_switches_to_magic  = true;
+    actor_auto_switches_to_karate  = true;
+    actor_auto_switches_to_melee  = true;
+
+    on_enemy_entered_icz_switch_to_melee = true;
+
+    jat_brain = world\ai\jobs\common\brain_hero.skrit
+    ?actor_joins_existing_party  = true;
+
+    jat_fidget  = world\ai\jobs\common\job_fidget.skrit;
+
+    jat_attack_object_melee       = world\ai\jobs\common\job_attack_object_melee.skrit
+      ?persistence        = 0.0
+      &hit_multiple        = true;
+
+    melee_engage_range = 14.0;
+    personal_space_range = 0.7;
+    ranged_engage_range = 14.0;
+    sight_range = 14.0;
+    inner_comfort_zone_range        = 4.0;
+    outer_comfort_zone_range        = 9.0;
+  }
+  [physics]
+  {
+    explode_when_killed = true;
+    break_effect = blood_mist;
+    break_sound = s_e_meat_explosion;
+    [break_particulate]
+    {
+      frag_glb_skatwyrm_r_01 = 1;
+      frag_glb_skatwyrm_r_02 = 2;
+      frag_glb_skatwyrm_r_03 = 4;
+      frag_glb_skatwyrm_r_04 = 2;
+      frag_glb_skatwyrm_r_05 = 4;
+    }
+}
+
+[t:template,n:island_skatwyrm_desert]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Skatwyrm Desert(lvl 90-97)";
+  specializes = actor_evil;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    88, 0;
+      intelligence =  18, 0;
+      dexterity =    28, 0;
+            melee  =        90, 0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 1300000;
+    life = 10082;
+    max_life = 10082;
+    mana = 10;
+    max_mana = 10;
+    model = m_c_edm_qs_pos_1;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_quadscale; }
+      [hit_critical]  { priority = low; * = s_e_hit_quadscale_SED; }
+      [hit_glance]  { priority = low; * = s_e_hit_quadscale_SED; }
+      [hit_solid]    { priority = low; * = s_e_hit_quadscale_SED; }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 510;
+    damage_min = 480;
+    reload_delay = 0;
+  }
+  [body]
+  {
+    avg_move_velocity = 2.370000;
+    [bone_translator]
+    {
+      body_anterior = bone12;
+      body_mid = bone02;
+      body_posterior = bone03;
+      kill_bone = bone08;
+      shield_bone = bone02;
+      weapon_bone = bone01;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_edm_qs_fs;
+      [chore_attack]
+      {
+        chore_stances = 0;
+        skrit = select_attack;
+        [anim_files]
+        {
+          00 = at;
+          01 = at-02;
+        }
+      }
+      [chore_default]
+      {
+        chore_stances = 0;
+        skrit = infinite_loop;
+        [anim_files] { 00=ds; }
+      }
+      [chore_die]
+      {
+        chore_stances = 0;
+        skrit = select_transition;
+        [anim_files] { 00=di; }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0;
+        skrit = select_fidget;
+        [anim_files] { 00=dff; }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0;
+        skrit = select_walk;
+        [anim_files] { 00=wl; }
+      }
+    }
+  }
+  [common] { screen_name="Desert Skatwyrm"; }
+    [defend] { defense=560; }
+  [mind]
+  {
+    jat_fidget      = world\ai\jobs\common\job_fidget.skrit
+      ?meander      = false
+      &still        = false;
+
+    melee_engage_range = 12;
+    personal_space_range = 0.7;
+    ranged_engage_range  = 12.0;
+    sight_range = 12.0;
+  }
+  [physics]
+  {
+    explode_when_killed = true;
+    break_effect = blood_mist;
+    break_sound = s_e_meat_explosion;
+    [break_particulate]
+    {
+      frag_glb_quadscale_01 = 1;
+      frag_glb_quadscale_02 = 2;
+      frag_glb_quadscale_03 = 4;
+      frag_glb_quadscale_04 = 2;
+      frag_glb_quadscale_05 = 4;
+    }
+  }
+}

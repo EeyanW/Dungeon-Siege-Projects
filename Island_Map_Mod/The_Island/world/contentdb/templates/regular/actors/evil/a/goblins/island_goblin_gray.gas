@@ -1,0 +1,306 @@
+//////////////////////////////////////////////////////////////////////////////
+/*
+ORDER AS FOLLOWS:
+-Lurker
+-Monstrous Lurker
+-Luminescent Lurker
+*/
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+//Lurker Normal///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//lvl 40-50
+[t:template,n:island_goblin_gray_normal]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Gray(1) (lvl 40-50)";
+  specializes = base_goblin;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    45, 0;
+      intelligence =    15, 0;
+      dexterity =    26, 0;
+      melee =      35,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 82000;
+    life = 1202;
+    max_life = 1202;
+    mana = 24;
+    max_mana = 24;
+    model = m_c_eam_ggt_pos_1;
+    scale_base = .7;
+    [textures] {0=b_c_eam_ggt_gray;}
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 190;
+    damage_min = 160;
+  }
+  [common] { screen_name="Lurker"; }
+  [defend] { defense=450; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        [oneof*]
+        {
+          es_weapon_hand = hm_g_c_1h1m_low;
+          es_weapon_hand = ax_d_c_1h1b_avg;
+          es_weapon_hand = blacksmith_hammer;
+          es_weapon_hand = torch_small;
+          es_weapon_hand = cb_g_c_r_1h_fun;
+          es_weapon_hand = cb_g_d_r_1h_low;
+        }
+        [gold*]
+        {
+          chance = 0.5;
+          max = 50;
+          min = 40;
+        }
+        [all*]
+          {
+            chance = 0.1;
+            il_main = island_jewel_glb_02;
+            il_main = island_jewel_glb_03;
+          }
+          [all*]
+          {
+            chance = 0.1;
+            il_main = island_jewel_glb_01;
+            il_main = island_jewel_glb_04;
+          }
+          [all*]
+          {
+            chance = 0.1;
+            il_main = island_trinket_glb_11;
+            il_main = island_trinket_glb_12;
+          }
+          [all*]
+          {
+            chance = 0.1;
+            il_main = island_trinket_glb_14;
+            il_main = island_trinket_glb_15;
+          }
+      }
+    }
+  }
+  [mind]
+  {
+    on_life_ratio_low_flee = true;
+    flee_count = 6;
+    flee_distance = 20;
+    melee_engage_range = 10;
+    personal_space_range = 0.4;
+    ranged_engage_range = 10.0;
+    sight_range = 10.0;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//Lurker Monstrous///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//lvl 51-80
+[t:template,n:island_goblin_gray_large]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Gray(2) lvl 51-80)";
+  specializes = base_goblin;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    42, 0;
+      intelligence =    16, 0;
+      dexterity =    40, 0;
+      melee =      38,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 88000;
+    life = 2032;
+    max_life = 2032;
+    mana = 240;
+    max_mana = 240;
+    model = m_c_eam_ggt_pos_1;
+    scale_base = 1.2;
+    [textures] {0=b_c_eam_ggt_gray;}
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 250;
+    damage_min = 210;
+  }
+  [common] { screen_name="Monstrous Lurker"; }
+  [defend] { defense=830; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+          [oneof*]
+          {
+            es_weapon_hand = cb_g_c_r_1h_fun;
+            es_weapon_hand = cb_g_d_r_1h_low;
+          }
+          [gold*]
+          {
+            chance = 0.5;
+            max = 80;
+            min = 60;
+          }
+          [all*]
+          {
+            chance = 0.2;
+            il_main = island_jewel_glb_02;
+            il_main = island_jewel_glb_03;
+          }
+          [all*]
+          {
+            chance = 0.2;
+            il_main = island_jewel_glb_01;
+            il_main = island_jewel_glb_04;
+          }
+          [all*]
+          {
+            chance = 0.2;
+            il_main = island_trinket_glb_15;
+            il_main = island_trinket_glb_16;
+          }
+          [all*]
+          {
+            chance = 0.2;
+            il_main = island_trinket_glb_15;
+            il_main = island_trinket_glb_16;
+          }
+        }
+    }
+  }
+  [mind]
+  {
+    on_life_ratio_low_flee = false;
+    flee_count = 6;
+    flee_distance = 10;
+    melee_engage_range = 12;
+    personal_space_range = 0.6;
+    ranged_engage_range = 12.0;
+    sight_range = 13.0;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//Lurker Luminescent///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//lvl 81+
+[t:template,n:island_goblin_gray_light]
+{
+  category_name = "1W_evil_a";
+  doc = "Island Goblin Gray(3) (lvl 81+)";
+  specializes = base_goblin;
+  [actor]
+  {
+    [skills]
+    {
+      strength =    64, 0;
+      intelligence =    22, 0;
+      dexterity =    55, 0;
+      melee =      71,  0;
+    }
+  }
+  [aspect]
+  {
+    experience_value = 300000;
+    life = 5492;
+    max_life = 5492;
+    mana = 24;
+    max_mana = 24;
+    model = m_c_eam_ggt_pos_1;
+    scale_base = .8;
+    [textures] {0=b_c_eam_ggt_special;}
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 510;
+    damage_min = 420;
+  }
+  [common]
+  {
+    screen_name="Luminescent Lurker";
+    [template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_ray_purple(sgx)");
+      }
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("spirit_armor");
+      }
+    }
+  }
+  [defend] { defense=1500; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+          [oneof*]
+          {
+            es_weapon_hand = torch_small;
+            es_weapon_hand = cb_g_c_r_1h_fun;
+          }
+
+          [all*]
+          {
+            chance = 0.2;
+            il_main = island_jewel_glb_03;
+            il_main = island_jewel_glb_03;
+          }
+          [all*]
+          {
+            chance = 0.2;
+            il_main = island_trinket_glb_17;
+            il_main = island_trinket_glb_18;
+          }
+          [all*]
+          {
+            chance = 0.2;
+            il_main = island_trinket_glb_16;
+            il_main = island_trinket_glb_18;
+          }
+        }
+    }
+  }
+  [mind]
+  {
+    on_life_ratio_low_flee = true;
+    flee_count = 2;
+    flee_distance = 30;
+    melee_engage_range = 10;
+    personal_space_range = 0.4;
+    ranged_engage_range = 10.0;
+    sight_range = 12.0;
+  }
+}

@@ -1,0 +1,634 @@
+//////////////////////////////////////////////////////////////////////////////
+/*
+ORDER AS FOLLOWS:
+-Bandit Initiate
+-Bandit Knave
+-Bandit Lieutenant
+*/
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+//Bandit Initiate/////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//lvl 6-12
+[t:template,n:island_bandit_melee_weak]
+{
+  doc = "Island Bandit Melee Weak (lvl 6-12)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   12, 0;
+      intelligence =  10, 0;
+      dexterity =   9, 0;
+      melee =  4,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 72;
+    max_life = 72;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 120;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_011;
+      1 = b_c_pos_a3_032;
+    }
+  }
+  [common]
+  {
+    screen_name = "Bandit Initiate";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                //es_weapon_hand = sd_g_c_gl_1h_avg;
+      }
+      [oneof*]
+      {
+        es_weapon_hand = hm_g_c_1h1m_low;
+        es_weapon_hand = ax_d_c_1h1b_avg;
+        es_weapon_hand = blacksmith_hammer;
+        es_weapon_hand = torch_small;
+        es_weapon_hand = cb_g_c_r_1h_fun;
+        es_weapon_hand = cb_g_d_r_1h_low;
+        //es_weapon_hand = #sword/1-4;
+        es_weapon_hand = #club/1-4;
+        //es_weapon_hand = #weapon/-rare(1)/15-17;
+      }
+      [oneof*]
+      {
+           es_chest = bd_le_f_g_c_avg;
+           es_chest = bd_le_f_g_c_fun;
+           es_chest = bd_le_r_g_c_avg;
+           es_chest = bd_le_r_g_c_low;
+           es_chest = #armor/6-36;
+           es_chest = #armor/-rare(1)/10-30;
+      }
+      [oneof*]
+      {
+        [oneof*]
+        {
+           chance = 0.05;
+           il_main = potion_health_small;
+           il_main = potion_mana_small;
+        }
+        [all*]
+        {
+          chance = 0.03;
+          il_main = #spell/3-10;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = island_trinket_glb_02;
+          il_main = island_trinket_glb_03;
+          il_main = island_trinket_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [gold*]
+        {
+          chance = 0.125;
+          max = 20;
+          min = 12;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 50;
+    damage_min = 40;
+  }
+     [defend] { defense=32; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
+//Bandit Normal Base//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//lvl 12-40
+[t:template,n:island_bandit_melee_normal_base]
+{
+  doc = "Island Bandit Melee Normal Base (lvl 12-40)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   14, 0;
+      intelligence =  10, 0;
+      dexterity =   9, 0;
+      melee =  11,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 228;
+    max_life = 228;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 514;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a3_032;
+    }
+  }
+  [common]
+  {
+    screen_name = "Bandit Knave";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+                //es_weapon_hand = sd_g_c_gl_1h_avg;
+      }
+      [oneof*]
+      {
+        es_weapon_hand = ax_d_c_1h1b_avg;
+        es_weapon_hand = cb_g_c_r_1h_fun;
+        es_weapon_hand = #sword/1-4;
+        //es_weapon_hand = #dagger/1-4;
+      }
+      [oneof*]
+      {
+        [oneof*]
+        {
+           chance = 0.05;
+           il_main = potion_health_medium;
+           il_main = potion_mana_medium;
+        }
+        [all*]
+        {
+          chance = 0.03;
+          il_main = #spell/3-29;
+        }
+        [oneof*]
+        {
+          chance = 0.12;
+          il_main = #*/8-44;
+          il_main = #armor/6-36;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = #weapon/-rare(1)/15-17;
+          il_main = #armor/-rare(1)/10-30;
+          il_main = #*/-rare(1)/3-11;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_05;
+          il_main = island_trinket_glb_06;
+          il_main = island_trinket_glb_07;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_08;
+          il_main = island_trinket_glb_09;
+          il_main = island_trinket_glb_10;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = island_trinket_glb_11;
+          il_main = island_trinket_glb_12;
+        }
+        [oneof*]
+        {
+          chance = 0.05;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [gold*]
+        {
+          chance = 0.125;
+          max = 500;
+          min = 100;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 78;
+    damage_min = 72;
+  }
+     [defend] { defense=138; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}
+
+//lvl 27-38
+//Bandit Normal 01
+[t:template,n:island_bandit_melee_normal_01]
+{
+  doc = "Island Bandit Melee Normal 01 (lvl 27-38)";
+  specializes = island_bandit_melee_normal_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   28, 0;
+      intelligence =  17, 0;
+      dexterity =   18, 0;
+      melee =  27,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 558;
+    max_life = 558;
+    mana = 100;
+    max_mana = 100;
+       experience_value = 3000;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a3_205;
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 148;
+    damage_min = 122;
+  }
+  [defend] { defense=220; }
+}
+
+//lvl 18-26
+//Bandit Normal 02
+[t:template,n:island_bandit_melee_normal_02]
+{
+  doc = "Island Bandit Melee Normal 02 (lvl 19-26)";
+  specializes = island_bandit_melee_normal_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   14, 0;
+      intelligence =  10, 0;
+      dexterity =   9, 0;
+      melee =  13,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 236;
+    max_life = 236;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 1400;
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a3_238;
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 84;
+    damage_min = 68;
+  }
+  [defend] { defense=180; }
+}
+
+//lvl 12-18
+//Bandit Normal 03
+[t:template,n:island_bandit_melee_normal_03]
+{
+  doc = "Island Bandit Melee Normal 03 (lvl 12-18)";
+  specializes = island_bandit_melee_normal_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   14, 0;
+      intelligence =  10, 0;
+      dexterity =   9, 0;
+      melee =  11,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 228;
+    max_life = 228;
+    mana = 14;
+    max_mana = 14;
+       experience_value = 514;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a3_001;
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 42;
+    damage_min = 36;
+  }
+  [defend] { defense=138; }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//Bandit Lieutenant///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+[t:template,n:island_bandit_melee_strong]
+{
+  doc = "Island Bandit Melee Strong (lvl 39-70)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   17, 0;
+      intelligence =  11, 0;
+      dexterity =   11, 0;
+      melee =  39,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 980;
+    max_life = 980;
+    mana = 140;
+    max_mana = 140;
+    model = m_c_gah_fb_pos_a5;
+       experience_value = 32000;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a5_204;
+    }
+  }
+  [common]
+  {
+    screen_name = "Bandit Lieutenant";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+        es_weapon_hand = sd_g_c_gl_1h_avg;
+      }
+      [oneof*]
+      {
+        [oneof*]
+        {
+           chance = 0.005;
+           il_main = potion_health_medium;
+           il_main = potion_mana_medium;
+        }
+        [all*]
+        {
+          chance = 0.055;
+          il_main = #spell/3-10;
+        }
+        [oneof*]
+        {
+          chance = 0.145;
+          il_main = #*/8-44;
+          il_main = #armor/6-36;
+        }
+        [oneof*]
+        {
+          chance = 0.055;
+          il_main = #weapon/-rare(1)/100-170;
+          il_main = #armor/-rare(1)/100-300;
+          il_main = #*/-rare(1)/30-110;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = island_trinket_glb_12;
+          il_main = island_trinket_glb_13;
+          il_main = island_trinket_glb_14;
+        }
+        [oneof*]
+        {
+          chance = 0.04;
+          il_main = island_trinket_glb_15;
+          il_main = island_trinket_glb_16;
+          il_main = island_trinket_glb_17;
+        }
+        [oneof*]
+        {
+          chance = 0.07;
+          il_main = island_jewel_glb_01;
+          il_main = island_jewel_glb_02;
+        }
+        [oneof*]
+        {
+          chance = 0.007;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [gold*]
+        {
+          chance = 0.04;
+          max = 50000;
+          min = 10000;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 170;
+    damage_min = 130;
+  }
+     [defend] { defense=360; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//Rogue///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//lvl 71+
+[t:template,n:island_bandit_melee_strongest]
+{
+  doc = "Island Bandit Melee Strongest (lvl 71+)";
+  specializes = base_bandit;
+  [actor]
+  {
+    [skills]
+    {
+      strength =   51, 0;
+      intelligence =  20, 0;
+      dexterity =   33, 0;
+      melee =  88,  0;
+    }
+  }
+  [aspect]
+  {
+    life = 3020;
+    max_life = 3020;
+    mana = 140;
+    max_mana = 140;
+    model = m_c_gah_fb_pos_a6;
+       experience_value = 300000;
+
+    [textures]
+    {
+      0 = b_c_gah_fb_skin_34;
+      1 = b_c_pos_a6_007;
+    }
+  }
+  [common]
+  {
+    screen_name = "Rogue";
+    membership = monster, party_bandit_ranged, bandit;
+  }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        es_feet = bo_bo_le_light;
+        es_weapon_hand = sd_g_c_gl_1h_avg;
+      }
+      [oneof*]
+      {
+        [oneof*]
+        {
+           chance = 0.005;
+           il_main = potion_health_super;
+           il_main = potion_mana_super;
+        }
+        [all*]
+        {
+          chance = 0.055;
+          il_main = #spell/30-100;
+        }
+        [oneof*]
+        {
+          chance = 0.145;
+          il_main = #*/80-440;
+          il_main = #armor/60-360;
+        }
+        [oneof*]
+        {
+          chance = 0.055;
+          il_main = #weapon/-rare(1)/150-170;
+          il_main = #armor/-rare(1)/100-300;
+          il_main = #*/-rare(1)/30-110;
+        }
+        [oneof*]
+        {
+          chance = 0.1;
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_18;
+        }
+        [all*]
+        {
+          chance = 0.01;
+          il_main = island_trinket_glb_17;
+          il_main = island_trinket_glb_18;
+        }
+        [oneof*]
+        {
+          chance = 0.09;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.009;
+          il_main = island_jewel_glb_03;
+          il_main = island_jewel_glb_04;
+        }
+        [gold*]
+        {
+          chance = 0.04;
+          max = 50000;
+          min = 10000;
+        }
+      }
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 340;
+    damage_min = 280;
+  }
+     [defend] { defense=1024; }
+     [mind]
+     {
+    jat_brain            = world\ai\jobs\common\brain_hero.skrit
+      ?actor_joins_existing_party  = true;
+    jat_fidget    = world\ai\jobs\common\job_fidget.skrit
+      ?curious    = 0.75
+      &interest    = interest
+      &meander    = true
+      &still      = false;
+  }
+}

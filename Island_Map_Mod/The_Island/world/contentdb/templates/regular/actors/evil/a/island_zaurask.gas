@@ -1,0 +1,659 @@
+
+//lvl 1-2
+//Lowest
+[t:template,n:island_lizardus_immature]
+{
+  category_name = "1W_evil_a";
+  doc = "island lizardus 1 (lvl 1-2)";
+  specializes = base_zaurask;
+
+  [aspect]
+  {
+    model=m_c_eam_zmelee;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_zaurask_melee_SED;   }
+      [enemy_spotted]  { priority = high; * = s_e_call_zaurask_melee_SED; }
+      //[hit_critical]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      //[hit_glance]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      [hit_solid]    { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+    }
+
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 9, 0;
+      intelligence   = 4, 0;
+      dexterity    = 6, 0;
+      melee      = 4, 0;
+    }
+  }
+  [aspect]
+  {
+    scale_base     = 0.25;
+    experience_value = 12;
+    life       = 8;
+    max_life     = 8;
+    mana       = 4;
+    max_mana     = 4;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 6;
+    damage_min = 4;
+  }
+  [common] { screen_name="Immature Zauralidellus"; }
+  [defend] { defense=4; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.02;
+          min = 1;
+          max = 2;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [all*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_01;
+        }
+      }
+    }
+  }
+}
+
+//lvl 3-5
+//Low
+[t:template,n:island_lizardus_adolescant]
+{
+  category_name = "1W_evil_a";
+  doc = "island lizardus 2 (lvl 3-5)";
+  specializes = base_zaurask;
+
+  [aspect]
+  {
+    model=m_c_eam_zmelee;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_zaurask_melee_SED;   }
+      [enemy_spotted]  { priority = high; * = s_e_call_zaurask_melee_SED; }
+      //[hit_critical]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      //[hit_glance]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      [hit_solid]    { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+    }
+
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 11, 0;
+      intelligence   = 6, 0;
+      dexterity    = 8, 0;
+      melee      = 3, 0;
+    }
+  }
+  [aspect]
+  {
+    scale_base     = 0.35;
+    experience_value = 26;
+    life       = 14;
+    max_life     = 14;
+    mana       = 4;
+    max_mana     = 4;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 21;
+    damage_min = 19;
+  }
+  [common] { screen_name="Adolescant Zauralidellus"; }
+  [defend] { defense=8; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.02;
+          min = 1;
+          max = 2;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [all*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_01;
+        }
+      }
+    }
+  }
+}
+
+//lvl 6-9
+//Medium Low
+[t:template,n:island_lizardus]
+{
+  category_name = "1W_evil_a";
+  doc = "island lizardus 3 (lvl 6-9)";
+  specializes = base_zaurask;
+
+  [aspect]
+  {
+    model=m_c_eam_zmelee;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_zaurask_melee_SED;   }
+      [enemy_spotted]  { priority = high; * = s_e_call_zaurask_melee_SED; }
+      //[hit_critical]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      //[hit_glance]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      [hit_solid]    { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+    }
+
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 13, 0;
+      intelligence   = 5, 0;
+      dexterity    = 9, 0;
+      melee      = 5, 0;
+    }
+  }
+  [aspect]
+  {
+    scale_base     = 0.4;
+    experience_value = 70;
+    life       = 22;
+    max_life     = 22;
+    mana       = 4;
+    max_mana     = 4;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 26;
+    damage_min = 22;
+  }
+  [common] { screen_name="Zauralidellus"; }
+  [defend] { defense=32; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.02;
+          min = 5;
+          max = 10;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_01;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_02;
+        }
+      }
+    }
+  }
+}
+
+//lvl 10-14
+//Medium High
+[t:template,n:island_lizardus_brute]
+{
+  category_name = "1W_evil_a";
+  doc = "island lizardus 4 (lvl 10-14)";
+  specializes = base_zaurask;
+
+  [aspect]
+  {
+    model=m_c_eam_zmelee;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_zaurask_melee_SED;   }
+      [enemy_spotted]  { priority = high; * = s_e_call_zaurask_melee_SED; }
+      //[hit_critical]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      //[hit_glance]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      [hit_solid]    { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+    }
+
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 15, 0;
+      intelligence   = 6, 0;
+      dexterity    = 10, 0;
+      melee      = 8, 0;
+    }
+  }
+  [aspect]
+  {
+    scale_base     = 0.5;
+    experience_value = 32;
+    life       = 46;
+    max_life     = 46;
+    mana       = 4;
+    max_mana     = 4;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 36;
+    damage_min = 34;
+  }
+  [common] { screen_name="Zauralidellus Brute"; }
+  [defend] { defense=70; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.02;
+          min = 10;
+          max = 20;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = potion_mana_small;
+          il_main = potion_health_small;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_03;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_04;
+        }
+      }
+    }
+  }
+}
+
+//lvl 15-21
+//High
+[t:template,n:island_lizardus_rabid]
+{
+  category_name = "1W_evil_a";
+  doc = "island lizardus 6 (lvl 15-21)";
+  specializes = base_zaurask;
+
+  [aspect]
+  {
+    model=m_c_eam_zmelee;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_zaurask_melee_SED;   }
+      [enemy_spotted]  { priority = high; * = s_e_call_zaurask_melee_SED; }
+      //[hit_critical]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      //[hit_glance]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      [hit_solid]    { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+    }
+
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 18, 0;
+      intelligence   = 7, 0;
+      dexterity    = 11, 0;
+      melee      = 14, 0;
+    }
+  }
+  [aspect]
+  {
+    scale_base     = 0.5;
+    experience_value = 580;
+    life       = 102;
+    max_life     = 102;
+    mana       = 4;
+    max_mana     = 4;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 57;
+    damage_min = 33;
+  }
+  [common] { screen_name="Rabid Zauralidellus"; }
+  [defend] { defense= 50; }
+  [inventory]
+  {
+    [pcontent]
+    {
+    /* Generated: Tue Jun 17 11:13:15 2003
+      Level 8, Strong */
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.02;
+          min = 10;
+          max = 20;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_04;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_05;
+        }
+      }
+    }
+  }
+}
+
+//lvl 22-32
+//Highest
+[t:template,n:island_lizardus_mutated]
+{
+  category_name = "1W_evil_a";
+  doc = "island lizardus 7 (lvl 22-32)";
+  specializes = base_zaurask;
+
+  [aspect]
+  {
+    model=m_c_eam_zmelee;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_zaurask_melee_SED;   }
+      [enemy_spotted]  { priority = high; * = s_e_call_zaurask_melee_SED; }
+      //[hit_critical]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      //[hit_glance]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      [hit_solid]    { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+    }
+
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 18, 0;
+      intelligence   = 7, 0;
+      dexterity    = 11, 0;
+      melee      = 16, 0;
+    }
+  }
+  [aspect]
+  {
+    scale_base     = .7;
+    experience_value = 5890;
+    life       = 205;
+    max_life     = 205;
+    mana       = 4;
+    max_mana     = 4;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 88;
+    damage_min = 78;
+  }
+  [common] { screen_name="Mutated Zauralidellus"; }
+  [defend] { defense = 72; }
+  [inventory]
+  {
+    [pcontent]
+    {
+    /* Generated: Tue Jun 17 11:13:15 2003
+      Level 8, Strong */
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.02;
+          min = 100;
+          max = 200;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = potion_mana_medium;
+          il_main = potion_health_medium;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_05;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_06;
+        }
+      }
+    }
+  }
+}
+
+//lvl 32-52
+//Highest
+[t:template,n:island_lizardus_crazed_mutated]
+{
+  category_name = "1W_evil_a";
+  doc = "island lizardus 8 (lvl 32-52)";
+  specializes = base_zaurask;
+
+  [aspect]
+  {
+    model=m_c_eam_zmelee;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_zaurask_melee_SED;   }
+      [enemy_spotted]  { priority = high; * = s_e_call_zaurask_melee_SED; }
+      //[hit_critical]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      //[hit_glance]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      [hit_solid]    { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+    }
+
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 18, 0;
+      intelligence   = 7, 0;
+      dexterity    = 11, 0;
+      melee      = 10, 0;
+    }
+  }
+  [aspect]
+  {
+    scale_base     = .7;
+    experience_value = 58800;
+    life       = 205;
+    max_life     = 205;
+    mana       = 4;
+    max_mana     = 4;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 120;
+    damage_min = 100;
+  }
+  [common] { screen_name="Crazed Mutated Zauralidellus"; }
+  [defend] { defense = 220; }
+  [inventory]
+  {
+    [pcontent]
+    {
+    /* Generated: Tue Jun 17 11:13:15 2003
+      Level 8, Strong */
+      [oneof*]
+      {
+        [gold*]
+        {
+          chance = 0.02;
+          min = 100;
+          max = 200;
+        }
+        [oneof*]
+        {
+          chance = 0.02;
+          il_main = potion_mana_large;
+          il_main = potion_health_large;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_08;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_10;
+        }
+      }
+    }
+  }
+}
+
+//lvl 53+
+//Boss
+[t:template,n:island_lizardus_alpha]
+{
+  category_name = "1W_evil_a";
+  doc = "island lizardus boss (lvl 53+)";
+  specializes = base_zaurask;
+
+  [aspect]
+  {
+    model=m_c_eam_zmelee;
+    [voice]
+    {
+      [die]      { priority = high; * = s_e_die_zaurask_melee_SED;   }
+      [enemy_spotted]  { priority = high; * = s_e_call_zaurask_melee_SED; }
+      //[hit_critical]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      //[hit_glance]  { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+      [hit_solid]    { priority = low; * = s_e_hit_zaurask_melee_SED;  }
+    }
+
+  }
+  [actor]
+  {
+    [skills]
+    {
+      strength    = 48, 0;
+      intelligence   = 14, 0;
+      dexterity    = 33, 0;
+      melee      = 45, 0;
+    }
+  }
+  [aspect]
+  {
+    scale_base     = .5;
+    experience_value = 150000;
+    life       = 573;
+    max_life     = 573;
+    mana       = 4;
+    max_mana     = 4;
+    model = m_c_eam_zcomm;
+    textures:0 = b_c_eam_zcomm;
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 270;
+    damage_min = 230;
+  }
+  [common]
+  {
+    screen_name="Zauralidellus Alpha";
+    /*[template_triggers]
+    {
+      [*]
+      {
+        condition* = receive_world_message("WE_ENTERED_WORLD");
+        single_shot = true;
+        no_trig_bits = true;
+        action* = call_sfx_script("unique_ray_red(sgx)");
+      }
+    }*/
+  }
+  [defend] { defense = 480; }
+  [inventory]
+  {
+    [pcontent]
+    {
+      [all*]
+      {
+        [gold*]
+        {
+          chance = .6;
+          min = 100;
+          max = 300;
+        }
+        [oneof*]
+        {
+          chance = 0.005;
+          il_main = island_trinket_glb_14;
+        }
+        [oneof*]
+        {
+          chance = 0.0005;
+          il_main = island_trinket_glb_16;
+        }
+      }
+    }
+  }
+}

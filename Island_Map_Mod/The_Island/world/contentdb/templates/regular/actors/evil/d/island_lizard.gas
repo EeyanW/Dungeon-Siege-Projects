@@ -1,0 +1,98 @@
+
+///////////////////////////////////////////////////////////////////////////
+
+[t:template,n:island_lizard_thunder]
+{
+  category_name = "1W_evil_d";
+  doc = "Island Lizard Coastal (lvl 47-69)";
+  specializes = dsx_lizard_base;
+  [actor]
+  {
+    [skills]
+    {
+      strength     =  115, 0;
+      intelligence   =  8, 0;
+      dexterity     =  11, 0;
+      melee     =  58,  0;
+    }
+  }
+  [attack]
+  {
+    attack_range = 0.5;
+    damage_max = 240;
+    damage_min = 210;
+  }
+  [defend] { defense=480; }
+  [common]
+  {
+    screen_name="Littoral Lizard";
+    membership = monster;
+  }
+  [aspect]
+    {
+  experience_value = 88000;
+  life = 1938;
+  max_life = 1938;
+  mana = 8;
+  max_mana = 8;
+
+  material = claw;
+  [voice]
+  {
+    [die]      { priority = high; * = s_e_die_lectar;    }
+    [enemy_spotted]  { priority = high; * = s_e_call_thunder_lizard_SED; }
+    [hit_critical]  { priority = low; * = s_e_hit_lectar_SED;  }
+    [hit_glance]  { priority = low; * = s_e_hit_lectar_SED;  }
+    [hit_solid]    { priority = low; * = s_e_hit_lectar_SED;  }
+  }
+    model = m_c_edm_giantlizard_pos_1;
+    textures: 0 = b_c_edm_gz-01;
+  }
+  [body]
+    {
+    avg_move_velocity = 2.090000;
+    [bone_translator]
+    {
+      body_anterior = bone01;
+      body_mid = root_bone;
+      body_posterior = bone01;
+      kill_bone = bone09;
+      shield_bone = bone01;
+      weapon_bone = bone01;
+    }
+    [chore_dictionary]
+    {
+      chore_prefix = a_c_edm_gz_fs;
+      [chore_attack]
+      {
+        chore_stances = 0;
+        skrit = select_attack;
+        [anim_files] { 00=at; }
+      }
+      [chore_default]
+      {
+        chore_stances = 0;
+        skrit = infinite_loop;
+        [anim_files] { 00=ds; }
+      }
+      [chore_die]
+      {
+        chore_stances = 0;
+        skrit = select_transition;
+        [anim_files] { 00=di; }
+      }
+      [chore_fidget]
+      {
+        chore_stances = 0;
+        skrit = select_fidget;
+        [anim_files] { 00=dff; }
+      }
+      [chore_walk]
+      {
+        chore_stances = 0;
+        skrit = select_walk;
+        [anim_files] { 00=wl; }
+      }
+    }
+  }
+}
