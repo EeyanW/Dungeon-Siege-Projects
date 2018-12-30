@@ -1,0 +1,722 @@
+/////////////////////////////////////////////////////////////////////////////////
+//WARLORD'S SET ITEMS////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+[island_ancient_ring]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_MAX_LIFE;
+        duration = #infinite;
+
+        value = 2*((#itemsequipped)-1) * 10 + 5;
+        description = "Adds <ALTER_MAX_LIFE> to Health";
+      }
+
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+
+  [modifier*]
+  {
+    [enchantments]
+    {
+    [*]
+      {
+        is_set_item = true;
+        alteration = alter_special_defense;
+        special_defense = fireshot;
+        value = ((#itemsequipped)-2)*9+5;
+        duration = #infinite;
+        is_permanent = true;
+        is_single_instance = false;
+        special_defense_skrit = world\global\skrits\special_defense.skrit?damage_min=10&damage_max=15&effect_script="fireshot";
+        description = "<alter_special_defense>% Chance to Cast Fireshot on Taking Damage";
+      }
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_ARMOR;
+        duration = #infinite;
+        value = 2*((#itemsequipped-1))*3+10;
+        description = "Adds <ALTER_ARMOR> to Armor";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+}
+
+//
+//Amulet
+//
+[island_ancient_amulet]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_MAX_LIFE;
+        duration = #infinite;
+
+        value = 4*((#itemsequipped)-1) * 12 + 8;
+        description = "Adds <ALTER_MAX_LIFE> to Health";
+      }
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_MAX_MANA;
+        duration = #infinite;
+
+        value = 2**((#itemsequipped)-1) * 8 + 3;
+        description = "Adds <ALTER_MAX_MANA> to Mana";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_ARMOR;
+        duration = #infinite;
+
+        value = (#itemsequipped)*7+16;
+        description = "Adds <ALTER_ARMOR> to Armor";
+      }
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_LIFE_STEAL;
+        duration = #infinite;
+
+        value = 2**((#itemsequipped)-1)+(#itemsequipped);
+        description = "<ALTER_LIFE_STEAL> Health Stolen Per Hit";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [special_defense]
+      {
+                  is_set_item = true;
+                  alteration = ALTER_SPECIAL_DEFENSE;
+                  special_defense = fire_spray;
+                  value = 3*(2**((#itemsequipped)-1));
+                  duration = #infinite;
+                  is_permanent = true;
+                  is_single_instance = false;
+        special_defense_skrit = world\global\skrits\special_defense.skrit?damage_min=20&damage_max=25&effect_script="fire_spray";
+        description = "<alter_special_defense>% Chance to Cast Firespray on Taking Damage";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 3;
+  }
+}
+
+//
+//Sword
+//
+[island_ancient_sword]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_LIFE_BONUS;
+        duration = #infinite;
+
+        value = ((#itemsequipped * 7)-1)*4 + 10;
+        description = "Adds <ALTER_LIFE_BONUS> Health per Hit";
+      }
+      [*]
+      {
+        is_set_item = true;
+        alteration      = alter_custom_damage_melee;
+        custom_damage    = fire;
+        value        = ((#itemsequipped * 8)-8)*6 + 10;
+        //max_value      = ((#itemsequipped * 8)-8)*4 + 10;
+        description      = "Adds <alter_custom_damage_melee> Fire Damage";
+        duration      = #infinite;
+        is_permanent    = true;
+        is_single_instance  = false;
+        effect_script_equip  = dam_fire_7_re;
+        effect_script_hit  = fire_weapon;
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//LEGION SET ITEMS////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+//
+//Helm
+//
+[island_legion_helm]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_ARMOR;
+        duration = #infinite;
+
+        value = (#itemsequipped)*4;
+        description = "Adds <ALTER_ARMOR> to Armor";
+      }
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_MAX_LIFE;
+        duration = #infinite;
+
+        value = (#itemsequipped) * 12;
+        description = "Adds <ALTER_MAX_LIFE> to Health";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+}
+
+//
+//Plate
+//
+[island_legion_plate]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_ARMOR;
+        duration = #infinite;
+
+        value = (#itemsequipped)*10;
+        description = "Adds <ALTER_ARMOR> to Armor";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_MAX_LIFE;
+        duration = #infinite;
+
+        value = (#itemsequipped) * 6;
+        description = "Adds <ALTER_MAX_LIFE> to Health";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 3;
+  }
+}
+
+//
+//Sword
+//
+[island_legion_sword]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_melee_damage_min;
+        value      = 7*((#itemsequipped)-1);
+        duration    = #infinite;
+        description    = "Adds <alter_melee_damage_min> to Min Melee Damage";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_melee_damage_max;
+        value      = 7*((#itemsequipped)-1);
+        description    = "Adds <alter_melee_damage_max> Max Melee Damage";
+        duration    = #infinite;
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+}
+
+//
+//Shield
+//
+[island_legion_shield]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_ARMOR;
+        duration = #infinite;
+
+        value = (#itemsequipped)*6;
+        description = "Adds <ALTER_ARMOR> to Armor";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_MAX_LIFE;
+        duration = #infinite;
+
+        value = (#itemsequipped) * 8;
+        description = "Adds <ALTER_MAX_LIFE> to Health";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+}
+
+//
+//Bow
+//
+[island_legion_bow]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_ranged_damage_min;
+        value      = 12*((#itemsequipped)-1);
+        duration    = #infinite;
+        description    = "Adds <alter_ranged_damage_min> to Min Ranged Damage";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_ranged_damage_max;
+        value      = 12*((#itemsequipped)-1);
+        description    = "Adds <alter_ranged_damage_max> Max Ranged Damage";
+        duration    = #infinite;
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//Mercenary SET ITEMS////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+//
+//Sledgehammer
+//
+[island_mercenary_sledgehammer]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_melee_damage_min;
+        value      = 100*((#itemsequipped)-1);
+        duration    = #infinite;
+        description    = "Adds <alter_melee_damage_min> to Min Melee Damage";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_melee_damage_max;
+        value      = 100*((#itemsequipped)-1);
+        description    = "Adds <alter_melee_damage_max> Max Melee Damage";
+        duration    = #infinite;
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+}
+
+//
+//Gloves
+//
+[island_mercenary_gloves]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_melee_damage_min;
+        value      = 5*((#itemsequipped));
+        duration    = #infinite;
+        description    = "Adds <alter_melee_damage_min> to Min Melee Damage";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_melee_damage_max;
+        value      = 5*((#itemsequipped));
+        description    = "Adds <alter_melee_damage_max> Max Melee Damage";
+        duration    = #infinite;
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+}
+
+//
+//Ring
+//
+[island_mercenary_ring]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_ARMOR;
+        duration = #infinite;
+
+        value = 5*((#itemsequipped));
+        description = "Adds <ALTER_ARMOR> to Armor";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_melee_damage_min;
+        value      = 25*((#itemsequipped));
+        duration    = #infinite;
+        description    = "Adds <alter_melee_damage_min> to Min Melee Damage";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_melee_damage_max;
+        value      = 25*((#itemsequipped));
+        description    = "Adds <alter_melee_damage_max> Max Melee Damage";
+        duration    = #infinite;
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//Scavenger SET ITEMS////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+//
+//Rock Club
+//
+[island_scavenger_club]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        description = "+10% Chance To Poison And";
+        alteration = alter_custom_damage_chance_melee;
+        custom_damage = poison;
+        value = 10;
+        duration = #infinite;
+        is_permanent = true;
+        is_single_instance = false;
+      }
+      [*]
+      {
+      description = " Adds 3 to 5 Poison Damage";
+      alteration = alter_custom_damage_melee;
+      max_value = 5;
+      value = 3;
+      custom_damage = poison;
+      duration = #infinite;
+      is_permanent = true;
+      is_single_instance = false;
+      custom_damage_skrit = world\global\skrits\weapon_poison.skrit?duration=4;
+      effect_script_equip = dsx_modifier_poisonous_melee;
+      effect_script_hit = dsx_modifier_poisonous_hit;
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+}
+
+//
+//Boots
+//
+[island_scavenger_boots]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_MAX_LIFE;
+        duration = #infinite;
+
+        value = 4*((#itemsequipped)-1) * 3 + 3;
+        description = "Adds <ALTER_MAX_LIFE> to Health";
+      }
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_MAX_MANA;
+        duration = #infinite;
+
+        value = 4*((#itemsequipped)-1) * 3 + 3;
+        description = "Adds <ALTER_MAX_MANA> to Mana";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_ARMOR;
+        duration = #infinite;
+
+        value = (#itemsequipped)*4+12;
+        description = "Adds <ALTER_ARMOR> to Armor";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+//Trekker SET ITEMS////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+//
+//Gloves
+//
+[island_trekker_gloves]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_ARMOR;
+        duration = #infinite;
+
+        value = (#itemsequipped)*2+12;
+        description = "Adds <ALTER_ARMOR> to Armor";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+}
+
+//
+//Boots
+//
+[island_trekker_boots]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration = ALTER_ARMOR;
+        duration = #infinite;
+
+        value = (#itemsequipped)*6+2;
+        description = "Adds <ALTER_ARMOR> to Armor";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 2;
+  }
+}
+
+//
+//Leather
+//
+[island_trekker_leather]
+{
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_ranged_damage_min;
+        value      = 6*((#itemsequipped)*2);
+        duration    = #infinite;
+        description    = "Adds <alter_ranged_damage_min> to Min Ranged Damage";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_ranged_damage_max;
+        value      = 6*((#itemsequipped)*2);
+        description    = "Adds <alter_ranged_damage_max> Max Ranged Damage";
+        duration    = #infinite;
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_melee_damage_min;
+        value      = 6*((#itemsequipped)*2);
+        duration    = #infinite;
+        description    = "Adds <alter_melee_damage_min> to Min Melee Damage";
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+  [modifier*]
+  {
+    [enchantments]
+    {
+      [*]
+      {
+        is_set_item = true;
+        alteration    = alter_melee_damage_max;
+        value      = 6*((#itemsequipped)*2);
+        description    = "Adds <alter_melee_damage_max> Max Melee Damage";
+        duration    = #infinite;
+      }
+    }
+    // the number of set_items that need to be equipped before this comes into effect
+    set_item_requirement = 1;
+  }
+}

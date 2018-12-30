@@ -1,0 +1,211 @@
+//////////////////////////////////////////////////////////////////////////////
+//
+// File     :  doppelganger.skrit
+// Author(s):  Tara Teich, Eric Tams
+//
+// Copyright © 2003 Mad Doc Software, LLC.  All rights reserved.
+//----------------------------------------------------------------------------
+//  $Revision: $              $Date:$
+//----------------------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+// public definitions
+
+// reserved tags
+property string  _doc$  = "Changes to look like its target when attacking.";
+
+// external properties
+property float  statsMultiplier$ = .5            doc = "Fraction of stats of copied creature.";
+property float  levelToChange$ = 1               doc = "What level, based on the player level, does this creature start to scale?";
+property string  manager_template$ = "doppelganger_manager"  doc = "Object to use to manage the new doppleganger";
+//property string  effect_script$ = "doppelganger_glow"    doc = "Effect to play on the doppelganger while it's copied";
+//property bool   copy_inventory$ = true        doc = "should doppelganger copy and use player's inventory?";
+
+owner = GoSkritComponent;
+
+Goid target$;
+//Goid newMe$;
+
+// can we copy target$?  is it a good target?
+bool IsValidDoppelgangerTarget$( Go target$ )
+{
+  if( target$.Actor.HasGenericState("summoned") ||
+      target$.Actor.HasGenericState("DSX_mezmerizing") ||
+      target$.Actor.HasGenericState("invisibility_self") ||
+      target$.Inventory.IsPackOnly)
+  {
+    return false;
+  }
+
+  return true;
+}
+
+Goid GetPartyMemberInRange$( goid temptarget$, float range$ )
+{
+  // get the bad guys party
+  Go EnemyParty$;
+  // JCD 8/12/03
+  // if temptarget is a summon, we need to get its owner's party instead
+  if( temptarget$.go.Actor.HasGenericState("summoned") )
+  {
+    #only( game )
+    [[
+    EnemyParty$ = temptarget$.go.actor.GetGenericStateCasterGoid("summoned").go.GetPlayer().GetParty();
+    ]]
+  }
+  else if( temptarget$.go.actor.HasGenericState("DSX_mezmerizing") )
+  {
+    #only( game )
+    [[
+    EnemyParty$ = temptarget$.go.actor.GetGenericStateCasterGoid("DSX_mezmerizing").go.GetPlayer().GetParty();
+    ]]
+  }
+  else
+  {
+    #only( game )
+    [[
+    EnemyParty$ = temptarget$.go.GetPlayer().GetParty();
+    ]]
+  }
+  if( EnemyParty$ != NULL )
+  {
+    AIQuery.TempGopColl1.clear;
+
+    int i$ = 0;
+    int iend$ = EnemyParty$.children.size;
+//    report.genericf("Doppelganger: enemy party size: %d\n",iend$ );
+    while( i$ < iend$ )
+    {
+//      report.genericf("Doppleganger: searching for enemy within range\n");
+      Go member$ = EnemyParty$.children.Get( i$ );
+      // add all of the party members in range to the list.
+
+      // JCD 8/4/03
+      // don't allow dopps to copy summoned creatures nor spectral images
+      //  nor pack animals
+      if(  IsValidDoppelgangerTarget$( member$ ) &&
+        IsAlive( member$.Aspect.Lifestate ) &&
+        AIQuery.GetDistance( member$.Placement.Position, owner.Go.Placement.Position ) < ( range$ ) )
+      {
+//        report.genericf("Doppleganger: attackable enemy found\n");
+        AIQuery.TempGopColl1.Add( member$ );
+      }
+
+        i$ += 1;
+    }
+
+    if( AIQuery.TempGopColl1.size() > 0 )
+    {
+      Go temp$ = AIQuery.TempGopColl1.Get( Math.RandomInt( AIQuery.TempGopColl1.size() - 1 ) );
+
+      if( temp$ != NULL )
+      {
+        return temp$.goid;
+      }
+    }
+  }
+  return temptarget$;
+}
+
+Startup state Wait$
+{
+
+/*  event OnGoHandleMessage$( eWorldEvent e$, WorldMessage )
+  {
+    if (  e$ == WE_ALERT_ENEMY_SPOTTED ||
+          e$ == WE_ENEMY_ENTERED_OUTER_COMFORT_ZONE ||
+          e$ == WE_ENEMY_ENTERED_INNER_COMFORT_ZONE  )
+    {
+      */
+
+  event OnEnterState$
+  {
+    // every second we poll our range for an enemy to dopp.
+    this.CreateTimer(1, 1);
+  }
+  trigger OnTimer$(1)
+  {
+    this.CreateTimer(1, 1);
+
+    // We're going to clone our target enemy and then remove ourself
+    // Find who we're attacking
+    Job action$ = owner.Go.Mind.GetFrontJob( JQ_ACTION );
+
+    target$ = NULL;
+
+    // JCD 8/12/03
+    // if the target is valid, just choose that
+    if ( action$!=NULL )
+    {
+      if( action$.IsOffensive )
+      {
+        if( action$.GoalObject.go.HasActor )
+        {
+          if( IsValidDoppelgangerTarget$(action$.GoalObject.go) )
+          {
+  //          report.genericf("Doppelganger: we have a suitable target");
+            target$ = action$.GoalObject;
+          }
+        }
+        // we can't do much if our target doesn't have an actor...
+        else
+        {
+          return;
+        }
+      }
+    }
+    // otherwise we need to look for someone else to clone.
+    if( target$ == NULL )
+    {
+      // JCD 8/12/03
+      // if we have an enemy near us, we can set it as our target
+      if( owner.Go.Mind.GetBestFocusEnemy()!=NULL )
+      {
+        // find the closest enemy
+        target$ = owner.Go.Mind.GetBestFocusEnemy().Goid;
+      }
+      // if we have none near us, we can't do anything.
+      else
+      {
+        return;
+      }
+
+      // see if we can get a better target.
+      // see if we should choose a party member.
+      if( target$.IsValid )
+      {
+        target$ = GetPartyMemberInRange$( target$, owner.Go.mind.sightrange * 1.5 );
+      }
+    }
+
+    // JCD 8/4/03
+    // we don't allow dopps to clone summoned creatures nor spectral images
+    if( !IsValidDoppelgangerTarget$(target$.go) )
+    {
+      return;
+    }
+
+    //SiegeFX.SRunScript( "doppelganager_switch", owner.Goid, target$, "", target$, WE_REQ_ACTIVATE );
+    //SetState Switch$;
+
+    //GoCloneReq cloneReq$ = MakeGoCloneReq( temp$.GetTemplateName );
+    //newMe$ = GoDb.SCloneGo( MakeGoCloneReq( temp$.GetTemplateName ) );
+    //if (target$.Go.Actor.UberSkill > 5)
+    {
+    #only( game )
+          [[
+
+    // and skills
+    //this.RSCopySkills( owner.Go.Actor, statsMultiplier$ );
+    //owner.Go.Aspect.SSetMaxLife( target$.Go.Aspect.MaxLife * statsMultiplier$ );
+    owner.Go.Actor.RSCopySkills( target$.Go.Actor,  statsMultiplier$ );
+    owner.Go.RSSetDoppelgangerStats( target$.Go,  statsMultiplier$ );
+    // set up the appropriate stats
+
+    ]]
+    }
+    // delete myself
+    GoDb.SMarkForDeletion( owner.Go );
+  }
+}

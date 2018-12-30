@@ -1,0 +1,124 @@
+//////////////////////////////////////////////////////////////////////////////
+//
+// File     :  check_level_all.skrit
+// Author(s):  Eric Tams
+//
+// Copyright © 2000 Gas Powered Games, Inc.  All rights reserved.
+//----------------------------------------------------------------------------
+//  $Revision:: $              $Date:$
+//----------------------------------------------------------------------------
+//
+// This skrit should check to see if the local player in a multiplayer game is a
+// high enough level to handle an are, and play an effect accprdingly.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////
+// public definitions
+
+// reserved tags
+property bool      _server_only$      = false;
+property string      _doc$          = "Checks quest state upon receiving we_req_activate";
+
+// exported properties
+property bool      check_level$    = false      doc = "Check the level of the Screen hero in sight range.";
+property float      low_level$      = 5.0      doc = "if uber level is under this play the level too low effect";
+property float      high_level$      = 10.0      doc = "if uber level is above this play the level too high effect";
+property float      low_level_2w$    = 0.0      doc = "in 2w if uber level is under this play the level too low effect";
+property float      high_level_2w$    = 0.0      doc = "in 2w if uber level is above this play the level too high effect";
+property float      low_level_3w$    = 0.0      doc = "in 3w if uber level is under this play the level too low effect";
+property float      high_level_3w$    = 0.0      doc = "in 3w if uber level is above this play the level too high effect";
+property string     low_script$      = "level_low"  doc = "Name of the SiegeFx script that will be providing the visual when too low of a level.";
+property string     high_script$    = "level_high"  doc = "Name of the SiegeFx script that will be providing the visual when too high of a level.";
+
+owner = GoSkritComponent;
+
+//////////////////////////////////////////////////////////////////////////////
+
+startup state Startup$
+{
+  transition -> Waiting$: OnGoHandleMessage( WE_ENTERED_WORLD );
+}
+
+state Waiting$
+{
+/*  transition -> Waiting$: OnTimer( 1 );
+
+  event OnGoHandleMessage$( eWorldEvent e$, WorldMessage msg$ )
+  {
+    // if the person that we are concerned about warning talks to use, then we don't need to warn them again.
+    if( e$ == WE_REQ_TALK_BEGIN )
+    {
+      Go player$ = Server.GetScreenHero;
+      Goid talker$ = msg$.SendFrom;
+
+      if( ( player$ == NULL ) || ( !talker$.IsValid ) )
+      {
+        return;
+      }
+
+      if( player$ == talker$.Go )
+      {
+        SetState Warned$;
+        return;
+      }
+    }
+  }*/
+
+  event OnEnterState$
+    {
+    if( !check_level$ )
+    {
+      SetState Warned$;
+      return;
+    }
+
+    This.CreateTimer( 1, 3.0 );
+
+    //Go player$ = Server.ScreenParty.Children.Get( 0 );
+    Go player$ = Server.GetScreenHero;
+
+    if( player$ == NULL )
+    {
+//      report.generic("bad player\n");
+      return;
+    }
+
+    if( AiQuery.GetDistance( player$.placement.position, owner.Go.placement.position ) < owner.Go.mind.SightRange )
+    {
+      float level$ = player$.Actor.GetSkillLevel( "Uber" );
+
+      float low$ = low_level$;
+      float high$ = high_level$;
+
+      if ( World.IsMultiPlayer() )
+      {
+        string world_name$ = WorldMap.GetMpWorldName();
+        if ( world_name$ == "veteran" )
+        {
+          low$ = low_level_2w$;
+          high$ = high_level_2w$;
+        }
+        else if ( world_name$ == "elite" )
+        {
+          low$ = low_level_3w$;
+          high$ = high_level_3w$;
+        }
+      }
+
+      if( level$ < low$ )
+      {
+        SiegeFx.RunScript( low_script$, owner.goid, owner.goid, "", owner.Goid, WE_UNKNOWN );
+      }
+      else if( level$ > high$ )
+      {
+        SiegeFx.RunScript( high_script$, owner.goid, owner.goid, "", owner.Goid, WE_UNKNOWN );
+      }
+    }
+  }
+}
+
+state Warned$
+{
+  // just hang out here, we already warned the player.
+}
