@@ -1,0 +1,68 @@
+[rain]
+{
+  // Maximum rain drop settings
+  max_drop_count    = 2000;
+  max_density      = 300.0f;
+
+  // Length of each rain drop
+  min_drop_length    = 0.2f;
+  max_drop_length    = 0.5f;
+
+  // Lightning time delays
+  min_lightning_delay  = 30.0f;
+  max_lightning_delay  = 60.0f;
+  min_thunder_delay  = 1.5f;
+  max_thunder_delay  = 3.0f;
+
+  // Color
+  drop_head_color    = 0xC08080C0;
+  drop_tail_color    = 0x40353535;
+
+  // Speed at which the rain falls
+  drop_speed      = 12.0f;
+
+  // Radius in which the rain falls
+  rain_radius      = 20.0f;
+
+  // Ceiling offset for rain spawn
+  ceiling_offset    = 4.0f;
+
+  // Sound information
+  rain_sound      = s_e_ambient_rain1;
+  lightning_sound    = s_e_ambient_thunder;
+}
+
+[snow]
+{
+  // Maximum snow flake settings
+  max_flake_count    = 4000;//2000
+  max_density      = 800.0f;//400f
+
+  // Size of each flake
+  flake_size      = 0.15f;
+
+  // Maximum perturb for snow direction
+  snow_perturb    = 0.2f;//0.65f
+
+  // Speed at which the snow falls
+  min_flake_speed    = 2.0f;
+  max_flake_speed    = 5.0f;
+
+  // Radius in which the snow falls
+  snow_radius      = 25.0f;//25f
+
+  // Ceiling offset for snow spawn
+  ceiling_offset    = 4.0f;
+
+  // Texture for the snow flakes
+  snow_texture    = b_sfx_snow_01;
+}
+
+[wind]
+{
+  // Maximum wind velocity
+  max_velocity    = 50.0f;
+
+  // Wind sound
+  wind_sound      = s_e_ambient_wind_02;
+}

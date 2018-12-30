@@ -1,0 +1,37 @@
+[multiplayer]
+{
+  [settings]
+  {
+    default_multiplayer_map = map_expansion;
+    ghost_timeout = 60;  // seconds until ghosting wears off
+  }
+
+  [characters]
+  {
+    * = dsx_mp_farmboy;
+    * = dsx_mp_farmgirl;
+    * = dsx_mp_dwarf;
+    * = dsx_mp_skeleton;
+    * = halfgiant;
+    * = utraean_boy;
+    * = utraean_girl;
+  }
+
+  [ingame]
+  {
+    player_label_font = b_gui_fnt_12p_copperplate-light;
+  }
+
+  [game_timer]
+  {
+    // List all the minute denominations of time you want
+    * = 15;
+    * = 30;
+    * = 45;
+    * = 60;
+    * = 90;
+    * = 120;
+    * = 180;
+    * = 300;
+  }
+}
